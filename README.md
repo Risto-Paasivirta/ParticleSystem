@@ -3,7 +3,7 @@ We could really use a catchy name ^^
 
 ## Get Started
 
-`clone the repository
+Clone the repository
 After you have cloned the repository just open the PowerShell in the project folder and run:
 
 "npm i" 
@@ -13,7 +13,7 @@ To install the node js packages.
 To run the real time test environment. The web page should get automatically refreshed when you modify the code.
 
 If you are getting a warning or error message make sure you have the latest node.js installed.
-You can check which version you have by typing "node" in shell. I am running v16.13.2`
+You can check which version you have by typing "node" in shell. I am running v16.13.2
 
 ## Commands
 
