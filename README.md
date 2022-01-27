@@ -1,9 +1,6 @@
 # Lightweight Particle System for TypeScript WebGL
 We could really use a catchy name ^^
 
-## Based on boilerplate template from yordan-kanchelov/pixi-typescript-boilerplate
-## Beginner friendly template for pixi.js with [Webpack](https://webpack.js.org/)
-
 ## Get Started
 
 `clone the repository
@@ -18,7 +15,7 @@ To run the real time test environment. The web page should get automatically ref
 If you are getting a warning or error message make sure you have the latest node.js installed.
 You can check which version you have by typing "node" in shell. I am running v16.13.2`
 
-## Commands:
+## Commands
 
 -   `npm run build` - starts build procedure
 -   `npm run start` - start watching for files and open's server on localhost:8080
@@ -27,3 +24,11 @@ You can check which version you have by typing "node" in shell. I am running v16
 -   `npm run code-style-check` - run's eslint and prettier check on your code
 
 For vscode users - ctrl ( or ⌘ ) + shift + b will run the watch build as its set as default vscode task
+
+## License:
+MIT-license
+
+## 3rd Party Credits
+
+Based on boilerplate template by [Yordan Kanchelov](https://github.com/yordan-kanchelov/pixi-typescript-boilerplate)
+Beginner friendly template for pixi.js with [Webpack](https://webpack.js.org/)
