@@ -1,47 +1,36 @@
-import { Application, Loader, Texture, AnimatedSprite } from "pixi.js";
-import { getSpine } from "./spine-example";
-import { getLayersExample } from "./layers-example";
+import { Application, Loader } from "pixi.js";
+import { ExampleTest } from "./example_test";
 import "./style.css";
-
-declare const VERSION: string;
 
 const gameWidth = 800;
 const gameHeight = 600;
 
-console.log(`Welcome from pixi-typescript-boilerplate ${VERSION}`);
-
 const app = new Application({
-    backgroundColor: 0xd3d3d3,
+    backgroundColor: 0x051033,
     width: gameWidth,
     height: gameHeight,
 });
 
+let example_test: ExampleTest;
+
 window.onload = async (): Promise<void> => {
     await loadGameAssets();
-
     document.body.appendChild(app.view);
-
-    getLayersExample(app);
-
+    example_test = new ExampleTest(app.stage);
+    example_test.init();
     resizeCanvas();
+    window.onresize = resizeCanvas;
 
-    const birdFromSprite = getBird();
-    birdFromSprite.anchor.set(0.5, 0.5);
-    birdFromSprite.position.set(gameWidth / 2, 530);
-
-    const spineExample = getSpine();
-    spineExample.position.y = 580;
-
-    app.stage.addChild(birdFromSprite);
-    app.stage.addChild(spineExample);
-    app.stage.interactive = true;
+    app.ticker.add(() => {
+        const dt = app.ticker.elapsedMS / 1000;
+        example_test.update(dt);
+    });
 };
 
 async function loadGameAssets(): Promise<void> {
     return new Promise((res, rej) => {
         const loader = Loader.shared;
-        loader.add("rabbit", "./assets/simpleSpriteSheet.json");
-        loader.add("pixie", "./assets/spine-assets/pixie.json");
+        loader.add("spritesheet", "./assets/kenney_particlePack.json");
 
         loader.onComplete.once(() => {
             res();
@@ -58,26 +47,14 @@ async function loadGameAssets(): Promise<void> {
 function resizeCanvas(): void {
     const resize = () => {
         app.renderer.resize(window.innerWidth, window.innerHeight);
-        app.stage.scale.x = window.innerWidth / gameWidth;
-        app.stage.scale.y = window.innerHeight / gameHeight;
+
+        //fit the contents to the window
+        const scale = Math.min(window.innerWidth / gameWidth, window.innerHeight / gameHeight);
+        app.stage.scale.x = scale;
+        app.stage.scale.y = scale;
     };
 
     resize();
 
     window.addEventListener("resize", resize);
-}
-
-function getBird(): AnimatedSprite {
-    const bird = new AnimatedSprite([
-        Texture.from("birdUp.png"),
-        Texture.from("birdMiddle.png"),
-        Texture.from("birdDown.png"),
-    ]);
-
-    bird.loop = true;
-    bird.animationSpeed = 0.1;
-    bird.play();
-    bird.scale.set(3);
-
-    return bird;
 }
