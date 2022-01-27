@@ -1,25 +1,22 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/14e7ef42-5c90-44c8-a7ec-0b6e20c59735/deploy-status)](https://pixi-typescript-boilerplate.netlify.com) ![Windows build](https://github.com/jkanchelov/pixi-typescript-boilerplate/workflows/Windows%20build/badge.svg?branch=master) ![Linux build](https://github.com/jkanchelov/pixi-typescript-boilerplate/workflows/Linux%20build/badge.svg) ![MacOs build](https://github.com/jkanchelov/pixi-typescript-boilerplate/workflows/MacOs%20build/badge.svg)
+# Lightweight Particle System for TypeScript WebGL
+We could really use a catchy name ^^
 
-# pixi-typescript-boilerplate
-
+## Based on boilerplate template from yordan-kanchelov/pixi-typescript-boilerplate
 ## Beginner friendly template for pixi.js with [Webpack](https://webpack.js.org/)
 
-## Highlights
+## Get Started
 
--   🔰 - Beginner friendly.
--   🚀 - Blazing fast bundle times ( by using [swc](https://github.com/swc-project/swc) for transpiling ) 
--   🛠 - Typescript + swc
--   ✈️ - Live reload.
--   📝 - Consistent code style using Prettier and Eslint
--   📝 - Unit test support with [Jest](https://jestjs.io/), generating code coverage.
+`clone the repository
+After you have cloned the repository just open the PowerShell in the project folder and run:
 
-## Usage
+"npm i" 
+To install the node js packages.
 
-### Click on the green button "Use this template" on top of the repo or <br> <br> Simply copy paste this and start coding
+"npm run dev" 
+To run the real time test environment. The web page should get automatically refreshed when you modify the code.
 
-`git clone --depth=1 --branch=master https://github.com/yordan-kanchelov/pixi-typescript-boilerplate`
-
-`rm -r -force ./pixi-typescript-boilerplate/.git`
+If you are getting a warning or error message make sure you have the latest node.js installed.
+You can check which version you have by typing "node" in shell. I am running v16.13.2`
 
 ## Commands:
 
