@@ -1,4 +1,4 @@
-# Lightweight Particle System for TypeScript WebGL
+# Lightweight Particle System for TypeScript with example PIXI.js integration
 We could really use a catchy name ^^
 
 ## Get Started
