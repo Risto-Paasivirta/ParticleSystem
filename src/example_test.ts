@@ -6,7 +6,7 @@ import { LifeTimeDestructor } from "./ParticleSystemSrc/Destructors/LifeTimeDest
 import { LifeTimeRange } from "./ParticleSystemSrc/Initializers/LifeTimeRange";
 import { position } from "./ParticleSystemSrc/Types";
 
-const maxSprites = 100;
+const maxSprites = 200;
 
 export class ExampleTest {
     stage: PIXI.Container;
