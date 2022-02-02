@@ -1,10 +1,10 @@
 import * as PIXI from "pixi.js";
-import { ParticleSystem } from "./ParticleSystemSrc/ParticleSystem";
-import { PointGenerator } from "./ParticleSystemSrc/Generators/PointGenerator";
-import { RandomVelocity } from "./ParticleSystemSrc/Modifiers/RandomVelocity";
-import { LifeTimeDestructor } from "./ParticleSystemSrc/Destructors/LifeTimeDestructor";
-import { LifeTimeRange } from "./ParticleSystemSrc/Initializers/LifeTimeRange";
-import { position } from "./ParticleSystemSrc/Types";
+import { ParticleSystem } from "./ParticleSystem";
+import { PointGenerator } from "./Generators/PointGenerator";
+import { RandomVelocity } from "./Modifiers/RandomVelocity";
+import { LifeTimeDestructor } from "./Destructors/LifeTimeDestructor";
+import { LifeTimeRange } from "./Initializers/LifeTimeRange";
+import { position } from "./Types";
 
 const maxSprites = 200;
 
