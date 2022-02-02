@@ -6,11 +6,9 @@
         "esModuleInterop": true,
         "allowSyntheticDefaultImports": true,
         "moduleResolution": "node",
-        "paths": {
-            "mini-signals": ["./node_modules/resource-loader/typings/mini-signals.d.ts"]
-        },
+        "baseUrl": "src",
         "skipLibCheck": false,
         "lib": ["DOM", "ES2020"]
     },
-    "include": ["./src/index.ts"]
+    "include": ["src/**/*.ts", "apps/**/*.ts"]
 }

@@ -8,13 +8,16 @@ const merge = require("webpack-merge").merge;
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
+const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
 
 module.exports = (env) => {
     const config = {
-        entry: "./src/index.ts",
+        // TODO: Must support all files placed in apps folder.
+        entry: "./apps/test.ts",
 
         resolve: {
             extensions: [".ts", ".tsx", ".js", ".json"],
+            plugins: [new TsconfigPathsPlugin()],
         },
 
         module: {
@@ -42,14 +45,6 @@ module.exports = (env) => {
                 patterns: [
                     {
                         from: "assets/**",
-
-                        // if there are nested subdirectories , keep the hierarchy
-                        transformPath(targetPath, absolutePath) {
-                            const assetsPath = path.resolve(__dirname, "assets");
-                            const endpPath = absolutePath.slice(assetsPath.length);
-
-                            return Promise.resolve(`assets/${endpPath}`);
-                        },
                     },
                 ],
             }),
