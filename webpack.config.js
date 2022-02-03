@@ -42,14 +42,6 @@ module.exports = (env) => {
                 patterns: [
                     {
                         from: "assets/**",
-
-                        // if there are nested subdirectories , keep the hierarchy
-                        transformPath(targetPath, absolutePath) {
-                            const assetsPath = path.resolve(__dirname, "assets");
-                            const endpPath = absolutePath.slice(assetsPath.length);
-
-                            return Promise.resolve(`assets/${endpPath}`);
-                        },
                     },
                 ],
             }),
