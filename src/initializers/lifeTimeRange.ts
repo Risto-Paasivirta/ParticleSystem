@@ -1,10 +1,10 @@
-import { Module } from "../Module";
-import { Particle } from "../Particle";
-import { range } from "../Types";
-import { lerp } from "../Util";
+import { Module } from "../module";
+import { Particle } from "../particle";
+import { Range } from "../types";
+import { lerp } from "../util";
 
 export class LifeTimeRange extends Module {
-    lifetime: range = { min: 1.5, max: 2.5 };
+    lifetime: Range = { min: 1.5, max: 2.5 };
 
     init(): void {
         this.active = false; //not used in update
