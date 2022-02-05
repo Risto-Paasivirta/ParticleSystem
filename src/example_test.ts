@@ -4,7 +4,7 @@ import { PointGenerator } from "./Generators/PointGenerator";
 import { RandomVelocity } from "./Modifiers/RandomVelocity";
 import { LifeTimeDestructor } from "./Destructors/LifeTimeDestructor";
 import { LifeTimeRange } from "./Initializers/LifeTimeRange";
-import { position } from "./Types";
+import { Position } from "./Types";
 
 const maxSprites = 200;
 
@@ -14,7 +14,7 @@ export class ExampleTest {
 
     cachedSprites: PIXI.Sprite[] = [];
 
-    center: position = { x: 0, y: 0 };
+    center: Position = { x: 0, y: 0 };
 
     constructor(stage: PIXI.Container) {
         this.stage = stage;
