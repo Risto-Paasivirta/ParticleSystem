@@ -1,16 +1,12 @@
 // Test application
 
 import * as PIXI from "pixi.js";
-import { ParticleSystem } from "ParticleSystem";
-import { PointGenerator } from "Generators/PointGenerator";
-import { RandomVelocity } from "Modifiers/RandomVelocity";
-import { LifeTimeDestructor } from "Destructors/LifeTimeDestructor";
-import { LifeTimeRange } from "Initializers/LifeTimeRange";
-import { position } from "Types";
-
-document.body.style.overflow = "hidden";
-document.body.style.margin = "0 auto";
-document.body.style.backgroundColor = "black";
+import { ParticleSystem } from "particleSystem";
+import { PointGenerator } from "generators/pointGenerator";
+import { RandomVelocity } from "modifiers/randomVelocity";
+import { LifeTimeDestructor } from "destructors/lifeTimeDestructor";
+import { LifeTimeRange } from "initializers/lifeTimeRange";
+import { Position } from "types";
 
 const maxSprites = 200;
 
@@ -20,7 +16,7 @@ class ExampleTest {
 
     cachedSprites: PIXI.Sprite[] = [];
 
-    center: position = { x: 0, y: 0 };
+    center: Position = { x: 0, y: 0 };
 
     constructor(stage: PIXI.Container) {
         this.stage = stage;
