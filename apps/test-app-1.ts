@@ -8,6 +8,8 @@ import { LifeTimeDestructor } from "destructors/lifeTimeDestructor";
 import { LifeTimeRange } from "initializers/lifeTimeRange";
 import { Position } from "types";
 
+console.log("TEST 1");
+
 const maxSprites = 200;
 
 class ExampleTest {
