@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title><%= htmlWebpackPlugin.options.title %></title>
+    </head>
+    <body>
+        <ul>
+            <% for(var i = 0; i < apps.length; i++){ %>
+            <li><a href="<%= apps[i] %>"><%= apps[i] %></a></li>
+            <% } %>
+        </ul>
+    </body>
+</html>

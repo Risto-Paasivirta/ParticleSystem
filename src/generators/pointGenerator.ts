@@ -1,10 +1,10 @@
-import { position } from "../Types";
-import { Module } from "../Module";
-import { Particle } from "../Particle";
+import { Position } from "../types";
+import { Module } from "../module";
+import { Particle } from "../particle";
 
 export class PointGenerator extends Module {
     interval = 0.1;
-    position: position = { x: 0, y: 0 };
+    position: Position = { x: 0, y: 0 };
 
     private _timer = 0;
 
