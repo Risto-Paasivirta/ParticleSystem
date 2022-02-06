@@ -1,14 +1,18 @@
+// Test application
+
 import * as PIXI from "pixi.js";
-import { ParticleSystem } from "./ParticleSystem";
-import { PointGenerator } from "./Generators/PointGenerator";
-import { RandomVelocity } from "./Modifiers/RandomVelocity";
-import { LifeTimeDestructor } from "./Destructors/LifeTimeDestructor";
-import { LifeTimeRange } from "./Initializers/LifeTimeRange";
-import { Position } from "./Types";
+import { ParticleSystem } from "particleSystem";
+import { PointGenerator } from "generators/pointGenerator";
+import { RandomVelocity } from "modifiers/randomVelocity";
+import { LifeTimeDestructor } from "destructors/lifeTimeDestructor";
+import { LifeTimeRange } from "initializers/lifeTimeRange";
+import { Position } from "types";
+
+console.log("TEST 1");
 
 const maxSprites = 200;
 
-export class ExampleTest {
+class ExampleTest {
     stage: PIXI.Container;
     particleSystem = new ParticleSystem();
 
@@ -61,4 +65,61 @@ export class ExampleTest {
             }
         }
     }
+}
+
+const gameWidth = 800;
+const gameHeight = 600;
+
+const app = new PIXI.Application({
+    backgroundColor: 0x051033,
+    width: gameWidth,
+    height: gameHeight,
+});
+
+let example_test: ExampleTest;
+
+window.onload = async (): Promise<void> => {
+    await loadGameAssets();
+    document.body.appendChild(app.view);
+    example_test = new ExampleTest(app.stage);
+    example_test.init();
+    resizeCanvas();
+    window.onresize = resizeCanvas;
+
+    app.ticker.add(() => {
+        const dt = app.ticker.elapsedMS / 1000;
+        example_test.update(dt);
+    });
+};
+
+async function loadGameAssets(): Promise<void> {
+    return new Promise((res, rej) => {
+        const loader = PIXI.Loader.shared;
+        loader.add("spritesheet", "./assets/kenney_particlePack.json");
+
+        loader.onComplete.once(() => {
+            res();
+        });
+
+        loader.onError.once(() => {
+            rej();
+        });
+
+        loader.load();
+    });
+}
+
+function resizeCanvas(): void {
+    const resize = () => {
+        app.renderer.resize(window.innerWidth, window.innerHeight);
+
+        //fit the contents to the window
+        const scale = Math.min(window.innerWidth / gameWidth, window.innerHeight / gameHeight);
+        app.stage.scale.x = scale;
+        app.stage.scale.y = scale;
+    };
+
+    resize();
+
+    window.addEventListener("resize", resize);
 }
