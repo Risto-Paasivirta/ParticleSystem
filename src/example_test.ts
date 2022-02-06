@@ -2,7 +2,6 @@ import * as PIXI from "pixi.js";
 import { ParticleSystem } from "./ParticleSystem";
 import { PointGenerator } from "./Generators/PointGenerator";
 import { RandomVelocity } from "./Modifiers/RandomVelocity";
-import { initializeGravity } from "./Modifiers/initializeGravity";
 import { LifeTimeDestructor } from "./Destructors/LifeTimeDestructor";
 import { LifeTimeRange } from "./Initializers/LifeTimeRange";
 import { position } from "./Types";
@@ -30,10 +29,6 @@ export class ExampleTest {
 
         const modifier = new RandomVelocity(this.particleSystem);
         this.particleSystem.modules.push(modifier);
-
-        // For gravity testing.
-        // const modifier = new initializeGravity(this.particleSystem);
-        // this.particleSystem.modules.push(modifier);
 
         const destructor = new LifeTimeDestructor(this.particleSystem);
         this.particleSystem.modules.push(destructor);
