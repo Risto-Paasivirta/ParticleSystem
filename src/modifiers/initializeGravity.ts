@@ -1,17 +1,21 @@
 import { Module } from "../Module";
 import { Particle } from "../Particle";
 
-export class initializeGravity extends Module {
-    gravity = 50;
-    onAir: boolean = false;
+export class InitializeGravity extends Module {
+    gravity = 2;
+    modifier = 0.1;
 
     init(): void {
         this.parentSystem.addParticleListeners.push(this);
     }
 
+    update(dt: number): void {
+        this.parentSystem.particles.forEach((particle) => {
+            particle.velocity.y += this.modifier * this.gravity;
+        });
+    }
+
     onAddParticle(particle: Particle): void {
-        if (this.onAir = false) {
-            particle.velocity.y = this.gravity;
-        }
+        particle.velocity.y = this.gravity;
     }
 }
