@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-function */
-import { Particle } from "./Particle";
-import { ParticleSystem } from "./ParticleSystem";
+import { Particle } from "./particle";
+import { ParticleSystem } from "./particleSystem";
 
 export abstract class Module {
     active = true;
