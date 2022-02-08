@@ -1,5 +1,5 @@
-import { Module } from "../Module";
-import { Particle } from "../Particle";
+import { Module } from "../module";
+import { Particle } from "../particle";
 
 export class InitializeGravity extends Module {
     gravity = 2;
