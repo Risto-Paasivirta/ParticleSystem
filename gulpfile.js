@@ -36,7 +36,7 @@ const entrypointGenerator = () =>
                     }
                 };
                 const exportedImports = imports.filter(duplicateFilter);
-                const imported = `export {${exportedImports.join(",")}} from "${file.path
+                const imported = `export { ${exportedImports.join(", ")} } from "${file.path
                     .replace(path.join(file.cwd, "src/"), "")
                     .replace(/\.ts$/g, "")
                     .replace(/\\/g, "/")}";\n`;
