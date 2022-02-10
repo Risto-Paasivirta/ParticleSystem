@@ -6,6 +6,14 @@ import { Module } from "../module";
  * `Module` that destroys all particles whose center location is outside a generic _boundary_.
  *
  * Boundary must be specified when the module is created and can be modified during run-time with `boundary` property.
+ *
+ * ```ts
+ *  // Example usage
+ *  const destructor = new OutsideBoundsDestructor(
+ *      particleSystem,
+ *      Shapes.Triangle({ x: 100, y: 400 }, { x: 300, y: 400 }, { x: 200, y: 0 }),
+ *  );
+ * ```
  */
 export class OutsideBoundsDestructor extends Module {
     /**
