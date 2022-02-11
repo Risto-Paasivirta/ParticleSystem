@@ -1,4 +1,4 @@
-import { Color, Position, Velocity } from "./Types";
+import { Color, Position, Velocity } from "./types";
 
 export class Particle {
     position: Position = { x: 0, y: 0 };
