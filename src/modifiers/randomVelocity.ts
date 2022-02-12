@@ -8,11 +8,11 @@ export class RandomVelocity extends Module {
     randomY: Range = { min: -50, max: 50 };
 
     init(): void {
-        this.parentSystem.addParticleListeners.push(this);
+        this.parentSystem.addParticleListeners.push(this.handleParticleAdd);
     }
 
-    onAddParticle(particle: Particle): void {
+    handleParticleAdd = (particle: Particle): void => {
         particle.velocity.x = lerp(this.randomX.min, this.randomX.max, Math.random());
         particle.velocity.y = lerp(this.randomY.min, this.randomY.max, Math.random());
-    }
+    };
 }
