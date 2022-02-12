@@ -6,7 +6,7 @@ import { PointGenerator } from "generators/pointGenerator";
 import { RandomVelocity } from "modifiers/randomVelocity";
 import { LifeTimeRange } from "initializers/lifeTimeRange";
 import { Position } from "types";
-import { Gravity } from "modifiers/Gravity";
+import { Gravity } from "modifiers/gravity";
 
 const maxSprites = 200;
 
