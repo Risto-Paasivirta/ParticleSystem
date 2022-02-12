@@ -1,7 +1,6 @@
 import { Module } from "../module";
-import { Particle } from "../particle";
 
-export class InitializeGravity extends Module {
+export class Gravity extends Module {
     gravity = 2;
     modifier = 0.1;
 
@@ -13,9 +12,5 @@ export class InitializeGravity extends Module {
         this.parentSystem.particles.forEach((particle) => {
             particle.velocity.y += this.modifier * this.gravity;
         });
-    }
-
-    onAddParticle(particle: Particle): void {
-        particle.velocity.y = this.gravity;
     }
 }

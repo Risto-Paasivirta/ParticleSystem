@@ -6,7 +6,7 @@ import { PointGenerator } from "generators/pointGenerator";
 import { RandomVelocity } from "modifiers/randomVelocity";
 import { LifeTimeRange } from "initializers/lifeTimeRange";
 import { Position } from "types";
-import { InitializeGravity } from "modifiers/initializeGravity";
+import { Gravity } from "modifiers/Gravity";
 
 const maxSprites = 200;
 
@@ -31,11 +31,11 @@ class ExampleTest {
 
         const randomVelocity = new RandomVelocity(this.particleSystem);
         randomVelocity.randomX = { min: -100, max: 100 };
-        randomVelocity.randomY = { min: 0, max: -100 };
+        randomVelocity.randomY = { min: -100, max: -100 };
         this.particleSystem.modules.push(randomVelocity);
 
-        const gravity = new InitializeGravity(this.particleSystem);
-        gravity.gravity = 50;
+        const gravity = new Gravity(this.particleSystem);
+        gravity.gravity = 2;
         this.particleSystem.modules.push(gravity);
 
         this.particleSystem.init();
