@@ -2,6 +2,9 @@ import { Particle } from "particle";
 import { ParticleSystem } from "particleSystem";
 import * as PIXI from "pixi.js";
 
+/**
+ * `PIXI.js` based renderer class for particle systems.
+ */
 export class Renderer {
     private readonly container: HTMLElement;
     private readonly particleSystem: ParticleSystem;
