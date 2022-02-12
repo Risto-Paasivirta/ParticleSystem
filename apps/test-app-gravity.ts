@@ -35,7 +35,7 @@ class ExampleTest {
         this.particleSystem.modules.push(randomVelocity);
 
         const gravity = new Gravity(this.particleSystem);
-        gravity.gravity = 2;
+        gravity.gravity = 0.2;
         this.particleSystem.modules.push(gravity);
 
         this.particleSystem.init();
