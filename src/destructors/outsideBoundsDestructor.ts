@@ -28,8 +28,7 @@ export class OutsideBoundsDestructor extends Module {
         this.boundary = boundary;
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    update(dt: number): void {
+    update(_dt: number): void {
         const len = this.parentSystem.particles.length;
         for (let i = 0; i < len; i += 1) {
             const particle = this.parentSystem.particles[i];

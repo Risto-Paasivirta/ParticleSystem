@@ -1,12 +1,9 @@
 import { Module } from "../module";
 /**
- * 'Module' that destroys all particles whose
- *
- *
+ * `Module` that destroys all particles whose color alpha value is less or equal to 0
  */
-export class AlphaDestructor extends Module {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    update(dt: number): void {
+export class AlphaColorDestructor extends Module {
+    update(_dt: number): void {
         const len = this.parentSystem.particles.length;
         for (let i = 0; i < len; i += 1) {
             const particle = this.parentSystem.particles[i];
