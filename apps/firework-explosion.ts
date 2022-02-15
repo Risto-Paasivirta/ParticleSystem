@@ -5,6 +5,7 @@ import { LifeTimeDestructor } from "destructors/lifeTimeDestructor";
 import { LifeTimeRange } from "initializers/lifeTimeRange";
 import { Renderer } from "renderer/renderer";
 import { RandomAngleVelocity } from "initializers/randomAngleVelocity";
+import { VelocityOverLifetime } from "modifiers/velocityOverLifetime";
 
 document.body.style.margin = "0px 0px";
 document.body.style.width = "100vw";
@@ -23,6 +24,9 @@ particleSystem.modules.push(initializer);
 
 const modifier = new RandomAngleVelocity(particleSystem);
 particleSystem.modules.push(modifier);
+
+const velocityOverLifetime = new VelocityOverLifetime(particleSystem);
+particleSystem.modules.push(velocityOverLifetime);
 
 const destructor = new LifeTimeDestructor(particleSystem);
 particleSystem.modules.push(destructor);
