@@ -1,7 +1,7 @@
 import * as PIXI from "pixi.js";
 import { ParticleSystem } from "particleSystem";
 import { PointGenerator } from "generators/pointGenerator";
-import { RandomVelocity } from "modifiers/randomVelocity";
+import { RandomVelocity } from "initializers/randomVelocity";
 import { LifeTimeDestructor } from "destructors/lifeTimeDestructor";
 import { LifeTimeRange } from "initializers/lifeTimeRange";
 import { Renderer } from "renderer/renderer";
