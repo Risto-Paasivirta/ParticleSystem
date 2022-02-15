@@ -5,8 +5,8 @@ export class ParticleSystem {
     modules: Module[] = [];
     particles: Particle[] = [];
 
-    addParticleListeners: Module[] = [];
-    destroyParticleListeners: Module[] = [];
+    addParticleListeners: ((particle: Particle) => unknown)[] = [];
+    destroyParticleListeners: ((particle: Particle) => unknown)[] = [];
 
     init(): void {
         this.modules.forEach((module) => {
@@ -41,8 +41,8 @@ export class ParticleSystem {
 
     addParticle(particle: Particle) {
         this.particles.push(particle);
-        this.addParticleListeners.forEach((module) => {
-            module.onAddParticle(particle);
+        this.addParticleListeners.forEach((clbk) => {
+            clbk(particle);
         });
     }
 
@@ -54,8 +54,8 @@ export class ParticleSystem {
     destroyParticle(particle: Particle) {
         // Modifying particle arrays can be heavy, better mark particles that should be removed and modify array just once during update.
         particle.destroyed = true;
-        this.destroyParticleListeners.forEach((module) => {
-            module.onDestroyParticle(particle);
+        this.destroyParticleListeners.forEach((clbk) => {
+            clbk(particle);
         });
     }
 }

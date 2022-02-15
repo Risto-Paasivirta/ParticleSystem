@@ -9,10 +9,10 @@ export class LifeTimeRange extends Module {
     init(): void {
         this.active = false; //not used in update
 
-        this.parentSystem.addParticleListeners.push(this);
+        this.parentSystem.addParticleListeners.push(this.handleParticleAdd);
     }
 
-    onAddParticle(particle: Particle): void {
+    handleParticleAdd = (particle: Particle): void => {
         particle.lifeTime = lerp(this.lifetime.min, this.lifetime.max, Math.random());
-    }
+    };
 }
