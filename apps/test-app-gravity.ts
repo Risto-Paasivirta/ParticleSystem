@@ -3,7 +3,7 @@
 import * as PIXI from "pixi.js";
 import { ParticleSystem } from "particleSystem";
 import { PointGenerator } from "generators/pointGenerator";
-import { RandomVelocity } from "modifiers/randomVelocity";
+import { RandomVelocity } from "initializers/randomVelocity";
 import { LifeTimeRange } from "initializers/lifeTimeRange";
 import { Position } from "types";
 import { Gravity } from "modifiers/gravity";
