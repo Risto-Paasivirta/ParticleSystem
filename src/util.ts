@@ -24,12 +24,10 @@ export const lerpColor = (a: Color, b: Color, factor: number): Color => {
         b: lerp(aLab.b, bLab.b, factor),
     };
     const lerbRGB = labToRgb(lerpLab);
-    const lerpA = lerp(a.a, b.a, factor);
     return {
         r: lerbRGB.r,
         g: lerbRGB.g,
         b: lerbRGB.b,
-        a: lerpA,
     };
 };
 
