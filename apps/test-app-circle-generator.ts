@@ -5,7 +5,7 @@ import { ParticleSystem } from "particleSystem";
 import { LifeTimeDestructor } from "destructors/lifeTimeDestructor";
 import { LifeTimeRange } from "initializers/lifeTimeRange";
 import { Position } from "types";
-import { CircleGenerator } from "generators/circleGenerator";
+import { CircleExteriorGenerator } from "generators/circleExteriorGenerator";
 
 const maxSprites = 200;
 
@@ -22,7 +22,7 @@ class ExampleTest {
     }
 
     init(): void {
-        const generator = new CircleGenerator(this.particleSystem);
+        const generator = new CircleExteriorGenerator(this.particleSystem);
         this.particleSystem.modules.push(generator);
 
         const initializer = new LifeTimeRange(this.particleSystem);

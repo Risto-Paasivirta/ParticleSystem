@@ -3,7 +3,15 @@ import { Module } from "../module";
 import { Particle } from "../particle";
 import { randomIntFromRange } from "../util";
 
-export class CircleGenerator extends Module {
+// NOTE: Ideally we would have a class for `CircleGenerator`, where user could configure whether to generate particles inside the circle or along the exterior.
+// `generator.onlyExterior = true` or something like this.
+
+/**
+ * Generator module that creates particles along the exterior of a circular area.
+ *
+ * Each particle is generated next to each other, so that when particles are regularly generated they move around the circle.
+ */
+export class CircleExteriorGenerator extends Module {
     interval = 0.1;
     position: Position = { x: 0, y: 0 };
     radians = Math.random() * Math.PI * 2;
