@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-function */
-import { Particle } from "./particle";
 import { ParticleSystem } from "./particleSystem";
 
 export abstract class Module {
@@ -13,6 +12,4 @@ export abstract class Module {
 
     init(): void {}
     update(dt: number): void {}
-    onAddParticle(particle: Particle): void {}
-    onDestroyParticle(particle: Particle): void {}
 }

@@ -4,11 +4,9 @@ import * as PIXI from "pixi.js";
 import { ParticleSystem } from "particleSystem";
 import { PointGenerator } from "generators/pointGenerator";
 import { RandomVelocity } from "modifiers/randomVelocity";
-import { LifeTimeDestructor } from "destructors/lifeTimeDestructor";
 import { LifeTimeRange } from "initializers/lifeTimeRange";
 import { Position } from "types";
-
-console.log("TEST 2");
+import { Gravity } from "modifiers/gravity";
 
 const maxSprites = 200;
 
@@ -31,18 +29,21 @@ class ExampleTest {
         const initializer = new LifeTimeRange(this.particleSystem);
         this.particleSystem.modules.push(initializer);
 
-        const modifier = new RandomVelocity(this.particleSystem);
-        this.particleSystem.modules.push(modifier);
+        const randomVelocity = new RandomVelocity(this.particleSystem);
+        randomVelocity.randomX = { min: -100, max: 100 };
+        randomVelocity.randomY = { min: -100, max: -100 };
+        this.particleSystem.modules.push(randomVelocity);
 
-        const destructor = new LifeTimeDestructor(this.particleSystem);
-        this.particleSystem.modules.push(destructor);
+        const gravity = new Gravity(this.particleSystem);
+        gravity.gravity = 0.2;
+        this.particleSystem.modules.push(gravity);
 
         this.particleSystem.init();
 
         for (let i = 0; i < maxSprites; i++) {
             //the texture cache is automatically populated when the spritesheet was loaded
             //you can find the names of the sprites from "./assets/kenney_particlePack.json"
-            const sprite = new PIXI.Sprite(PIXI.utils.TextureCache["circle_01.png"]);
+            const sprite = new PIXI.Sprite(PIXI.utils.TextureCache["circle_05.png"]);
             sprite.blendMode = PIXI.BLEND_MODES.ADD;
             sprite.scale.set(0.2, 0.2);
             sprite.visible = false;
