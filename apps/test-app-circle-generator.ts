@@ -5,7 +5,7 @@ import { ParticleSystem } from "particleSystem";
 import { LifeTimeDestructor } from "destructors/lifeTimeDestructor";
 import { LifeTimeRange } from "initializers/lifeTimeRange";
 import { Position } from "types";
-import { CircleGenerator } from "generators/circle-generator";
+import { CircleGenerator } from "generators/circleGenerator";
 
 const maxSprites = 200;
 
