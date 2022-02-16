@@ -18,12 +18,21 @@ export const randomInRange = (min: number, max: number): number => min + Math.ra
  */
 export const vec2 = {
     /**
+     * Subtract two vectors.
+     * @param a     Vector
+     * @param b     Position
+     * @return      `{ x: a.x - b.x, y: a.y - b.x }`
+     */
+    subtract: (a: Position, b: Position): Position => {
+        return { x: a.x - b.x, y: a.y - b.y };
+    },
+    /**
      * Multiply vector with a number.
      * @param a     Vector
      * @param b     Number
      * @return      `{ x: a.x * b, y: a.y * b }`
      */
-    mul: (a: Position, b: number): Position => {
+    multiply: (a: Position, b: number): Position => {
         return { x: a.x * b, y: a.y * b };
     },
 };
