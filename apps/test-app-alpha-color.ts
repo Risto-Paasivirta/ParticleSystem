@@ -2,7 +2,7 @@ import * as PIXI from "pixi.js";
 import { ParticleSystem } from "particleSystem";
 import { PointGenerator } from "generators/pointGenerator";
 import { RandomVelocity } from "modifiers/randomVelocity";
-import { AlphaColorDestructor } from "destructors/alphaColorDestructor";
+import { AlphaDestructor } from "destructors/alphaDestructor";
 
 const maxSprites = 1000;
 
@@ -23,7 +23,7 @@ class ExampleTest {
         const modifier = new RandomVelocity(this.particleSystem);
         this.particleSystem.modules.push(modifier);
 
-        const destructor = new AlphaColorDestructor(this.particleSystem);
+        const destructor = new AlphaDestructor(this.particleSystem);
         this.particleSystem.modules.push(destructor);
 
         this.particleSystem.init();
