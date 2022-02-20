@@ -7,7 +7,7 @@
         "build": "webpack",
         "start": "webpack-dev-server",
         "dev": "npm run start",
-        "ci:dev-apps": "npm run build",
+        "ci:build-dev": "npm run build",
         "ci:code-style": "npm run lint",
         "lint": "npx eslint ./src/**/*.ts",
         "build-entry": "gulp cleanEntry && gulp buildEntry",
