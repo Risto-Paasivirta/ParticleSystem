@@ -113,6 +113,7 @@ export class Renderer {
             sprite.y = particle.position.y;
             sprite.scale.x = particle.scale;
             sprite.scale.y = particle.scale;
+            sprite.alpha = particle.color.a;
         });
     }
 
