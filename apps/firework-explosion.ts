@@ -1,11 +1,13 @@
 import * as PIXI from "pixi.js";
 import { ParticleSystem } from "particleSystem";
 import { PointGenerator } from "generators/pointGenerator";
-import { RandomVelocity } from "modifiers/randomVelocity";
 import { LifeTimeDestructor } from "destructors/lifeTimeDestructor";
 import { LifeTimeRange } from "initializers/lifeTimeRange";
 import { Renderer } from "renderer/renderer";
-import { RandomAngleVelocity } from "modifiers/randomAngleVelocity";
+import { RandomAngleVelocity } from "initializers/randomAngleVelocity";
+import { DeaccelerationOverLifetime } from "modifiers/deaccelerationOverLifetime";
+import { AlphaOverLifetime } from "modifiers/alphaOverLifetime";
+import { EasingFunctions } from "easing";
 
 document.body.style.margin = "0px 0px";
 document.body.style.width = "100vw";
@@ -19,11 +21,18 @@ generator.interval = 0;
 particleSystem.modules.push(generator);
 
 const initializer = new LifeTimeRange(particleSystem);
-initializer.lifetime = { min: 1.0, max: 3.0 };
+initializer.lifetime = { min: 1.0, max: 2.5 };
 particleSystem.modules.push(initializer);
 
 const modifier = new RandomAngleVelocity(particleSystem);
 particleSystem.modules.push(modifier);
+
+const deacceleration = new DeaccelerationOverLifetime(particleSystem);
+particleSystem.modules.push(deacceleration);
+
+const alpha = new AlphaOverLifetime(particleSystem);
+alpha.easing = EasingFunctions.easeOutCirc;
+particleSystem.modules.push(alpha);
 
 const destructor = new LifeTimeDestructor(particleSystem);
 particleSystem.modules.push(destructor);
