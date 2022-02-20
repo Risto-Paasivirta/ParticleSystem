@@ -21,7 +21,8 @@
         "prettier:check": "npm run prettier -- -c ./src/**/*.ts",
         "lint-check": "npx eslint ./src/**/*.ts",
         "code-style-check": "npm run lint-check && npm run prettier:check",
-        "prepare": "husky install"
+        "prepare": "husky install",
+        "ci:dev-apps": "npm run webpack -- --env mode=development"
     },
     "author": "jkanchelov",
     "license": "MIT",
