@@ -1,4 +1,4 @@
-import { Position } from "Types";
+import { Position } from "types";
 import { Shape } from "./shape";
 
 /**
