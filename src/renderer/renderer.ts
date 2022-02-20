@@ -114,6 +114,7 @@ export class Renderer {
             sprite.scale.x = particle.scale;
             sprite.scale.y = particle.scale;
             sprite.alpha = particle.alpha;
+            sprite.tint = PIXI.utils.rgb2hex([particle.color.r, particle.color.g, particle.color.b]);
         });
     }
 
