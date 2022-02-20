@@ -5,7 +5,7 @@ import { LifeTimeDestructor } from "destructors/lifeTimeDestructor";
 import { LifeTimeRange } from "initializers/lifeTimeRange";
 import { Renderer } from "renderer/renderer";
 import { RandomAngleVelocity } from "initializers/randomAngleVelocity";
-import { DeaccelerationOverLifetime } from "modifiers/deaccelerationOverLifetime";
+import { DeaccelerationOverLifetime } from "initializer/deaccelerationOverLifetime";
 
 document.body.style.margin = "0px 0px";
 document.body.style.width = "100vw";
