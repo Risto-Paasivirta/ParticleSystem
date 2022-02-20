@@ -4,8 +4,9 @@ import { PointGenerator } from "generators/pointGenerator";
 import { Renderer } from "renderer/renderer";
 import { AlphaDestructor } from "destructors/alphaDestructor";
 import { AlphaRange } from "initializers/alphaRange";
-import { Alpha } from "modifiers/alpha";
-import { RandomVelocity } from "modifiers/randomVelocity";
+import { AlphaOverLifetime } from "modifiers/alphaOverLifetime";
+import { RandomVelocity } from "initializers/randomVelocity";
+import { EasingFunctions } from "easing";
 
 document.body.style.margin = "0px 0px";
 document.body.style.width = "100vw";
@@ -23,8 +24,9 @@ particleSystem.modules.push(generator);
 const initializer = new AlphaRange(particleSystem);
 particleSystem.modules.push(initializer);
 
-const alphaModifier = new Alpha(particleSystem);
-particleSystem.modules.push(alphaModifier);
+const alphaOverLifeTimeModifier = new AlphaOverLifetime(particleSystem);
+alphaOverLifeTimeModifier.easing = EasingFunctions.linear;
+particleSystem.modules.push(alphaOverLifeTimeModifier);
 
 const randomVelocityModifier = new RandomVelocity(particleSystem);
 randomVelocityModifier.randomX = { min: -100, max: 100 };
