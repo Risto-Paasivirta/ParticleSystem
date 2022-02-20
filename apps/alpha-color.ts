@@ -5,7 +5,7 @@ import { Renderer } from "renderer/renderer";
 import { AlphaDestructor } from "destructors/alphaDestructor";
 import { AlphaRange } from "initializers/alphaRange";
 import { Alpha } from "modifiers/alpha";
-import { RandomVelocity } from "entry";
+import { RandomVelocity } from "modifiers/randomVelocity";
 
 document.body.style.margin = "0px 0px";
 document.body.style.width = "100vw";
