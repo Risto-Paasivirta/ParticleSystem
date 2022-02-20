@@ -28,7 +28,7 @@ export class OutsideBoundsDestructor extends Module {
         this.boundary = boundary;
     }
 
-    update(_dt: number): void {
+    update(dt: number): void {
         const len = this.parentSystem.particles.length;
         for (let i = 0; i < len; i += 1) {
             const particle = this.parentSystem.particles[i];

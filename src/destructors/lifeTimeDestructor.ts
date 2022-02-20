@@ -1,7 +1,7 @@
 import { Module } from "../module";
 
 export class LifeTimeDestructor extends Module {
-    update(_dt: number): void {
+    update(dt: number): void {
         const len = this.parentSystem.particles.length;
         for (let i = 0; i < len; i += 1) {
             const particle = this.parentSystem.particles[i];
