@@ -23,6 +23,6 @@ export class AlphaRange extends Module {
     }
 
     handleParticleAdd = (particle: Particle): void => {
-        particle.color.a = randomInRange(this.alphaRange.min, this.alphaRange.max);
+        particle.alpha = randomInRange(this.alphaRange.min, this.alphaRange.max);
     };
 }
