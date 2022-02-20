@@ -39,7 +39,8 @@ setInterval(() => {
         const asd = performance.now() % (cycle * 2);
         const lerpFactor = asd < cycle ? asd / cycle : 1 - (asd - cycle) / cycle;
         particle.scale = 0.4;
-        particle.color = lerpColor({ r: 1, g: 0, b: 0, a: alpha }, { r: 0, g: 1, b: 0, a: alpha }, lerpFactor);
+        particle.alpha = alpha;
+        particle.color = lerpColor({ r: 1, g: 0, b: 0 }, { r: 0, g: 1, b: 0 }, lerpFactor);
     });
 }, 1000 / 60);
 

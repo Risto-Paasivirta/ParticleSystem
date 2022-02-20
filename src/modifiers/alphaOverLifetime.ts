@@ -23,7 +23,7 @@ export class AlphaOverLifetime extends Module {
         for (let i = 0; i < len; i += 1) {
             const particle = particles[i];
             const alpha = 1 - this.easing(particle.timeLived / particle.lifeTime);
-            particle.color.a = alpha;
+            particle.alpha = alpha;
         }
     }
 }
