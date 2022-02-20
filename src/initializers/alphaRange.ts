@@ -3,8 +3,18 @@ import { Particle } from "../particle";
 import { Range } from "../types";
 import { randomInRange } from "../util";
 
+/**
+ * Module which overrides `Particle.color.a` property from a configurable random value range.
+ *
+ * Range can be configured with `alphaRange` property.
+ */
 export class AlphaRange extends Module {
-    private alphaRange: Range = { min: 0, max: 1 };
+    /**
+     * Value ranges for `Particle.color.a`.
+     *
+     * Should be a number in range [0, 1] where 1 is fully opaque and 0 is completely invisible.
+     */
+    alphaRange: Range = { min: 0, max: 1 };
 
     init(): void {
         this.active = false; //not used in update
