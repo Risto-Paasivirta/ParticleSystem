@@ -4,7 +4,7 @@ import { PointGenerator } from "generators/pointGenerator";
 import { RandomVelocity } from "initializers/randomVelocity";
 import { LifeTimeRange } from "initializers/lifeTimeRange";
 import { Renderer } from "renderer/renderer";
-import { lerpColor } from "util";
+import { lerpColor } from "utilities";
 import { LifeTimeDestructor } from "destructors/lifeTimeDestructor";
 
 document.body.style.margin = "0px 0px";
