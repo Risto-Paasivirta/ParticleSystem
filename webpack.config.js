@@ -53,6 +53,9 @@ module.exports = {
         ],
     },
     mode: "development",
+    devServer: {
+        open: true,
+    },
     output: {
         path: path.resolve(__dirname, "dist"),
         filename: "[name].js",
