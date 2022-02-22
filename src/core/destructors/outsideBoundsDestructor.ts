@@ -1,5 +1,5 @@
-import { ParticleSystem } from "particleSystem";
-import { Shape } from "shapes/shape";
+import { ParticleSystem } from "core/particleSystem";
+import { Shape } from "core/shapes/shape";
 import { Module } from "../module";
 
 /**

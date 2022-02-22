@@ -1,7 +1,7 @@
 import { Module } from "../module";
 import { Particle } from "../particle";
 import { Range } from "../types";
-import { randomInRange } from "utilities";
+import { randomInRange } from "core/utilities";
 
 /**
  * Module which overrides `Particle.color.a` property from a configurable random value range.

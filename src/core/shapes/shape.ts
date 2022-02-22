@@ -1,4 +1,4 @@
-import { Position } from "types";
+import { Position } from "core/types";
 
 /**
  * Interface for a Shape object.

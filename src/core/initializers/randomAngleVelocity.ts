@@ -1,7 +1,7 @@
 import { Range } from "../types";
 import { Module } from "../module";
 import { Particle } from "../particle";
-import { randomInRange } from "utilities";
+import { randomInRange } from "core/utilities";
 
 /**
  * Module that assigns a random angular velocity to each particle.

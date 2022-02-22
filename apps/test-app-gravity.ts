@@ -1,10 +1,10 @@
 import * as PIXI from "pixi.js";
-import { ParticleSystem } from "particleSystem";
-import { PointGenerator } from "generators/pointGenerator";
-import { RandomVelocity } from "initializers/randomVelocity";
-import { LifeTimeRange } from "initializers/lifeTimeRange";
+import { ParticleSystem } from "core/particleSystem";
+import { PointGenerator } from "core/generators/pointGenerator";
+import { RandomVelocity } from "core/initializers/randomVelocity";
+import { LifeTimeRange } from "core/initializers/lifeTimeRange";
 import { Renderer } from "renderer/renderer";
-import { Gravity } from "modifiers/gravity";
+import { Gravity } from "core/modifiers/gravity";
 
 document.body.style.margin = "0px 0px";
 document.body.style.width = "100vw";
