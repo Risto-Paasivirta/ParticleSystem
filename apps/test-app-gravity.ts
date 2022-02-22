@@ -26,7 +26,7 @@ randomVelocity.randomY = { min: -100, max: -100 };
 particleSystem.modules.push(randomVelocity);
 
 const gravity = new Gravity(particleSystem);
-gravity.gravity = 0.2;
+gravity.strength = 0.2;
 particleSystem.modules.push(gravity);
 
 const loader = PIXI.Loader.shared;
