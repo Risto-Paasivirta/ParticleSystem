@@ -21,8 +21,8 @@ generator.position.y = window.innerHeight / 2;
 
 particleSystem.modules.push(generator);
 
-const initializer = new AlphaRange(particleSystem);
-particleSystem.modules.push(initializer);
+const alphaRange = new AlphaRange(particleSystem);
+particleSystem.modules.push(alphaRange);
 
 const alphaOverLifeTimeModifier = new AlphaOverLifetime(particleSystem);
 alphaOverLifeTimeModifier.easing = EasingFunctions.linear;
