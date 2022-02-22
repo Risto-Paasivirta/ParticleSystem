@@ -15,7 +15,8 @@ const particleSystem = new ParticleSystem();
 const renderer = new Renderer(document.body, particleSystem);
 
 const lifetimeRange = new LifeTimeRange(particleSystem);
-lifetimeRange.lifetime = { min: 5, max: 10 };
+lifetimeRange.min = 5;
+lifetimeRange.max = 15;
 particleSystem.modules.push(lifetimeRange);
 
 const destructor = new LifeTimeDestructor(particleSystem);

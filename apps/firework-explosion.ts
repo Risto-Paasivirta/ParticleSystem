@@ -20,9 +20,10 @@ const generator = new PointGenerator(particleSystem);
 generator.interval = 0;
 particleSystem.modules.push(generator);
 
-const initializer = new LifeTimeRange(particleSystem);
-initializer.lifetime = { min: 1.0, max: 2.5 };
-particleSystem.modules.push(initializer);
+const lifetime = new LifeTimeRange(particleSystem);
+lifetime.min = 1.0;
+lifetime.max = 2.5;
+particleSystem.modules.push(lifetime);
 
 const modifier = new RandomAngleVelocity(particleSystem);
 particleSystem.modules.push(modifier);
