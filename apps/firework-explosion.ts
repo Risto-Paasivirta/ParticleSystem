@@ -25,8 +25,8 @@ lifetime.min = 1.0;
 lifetime.max = 2.5;
 particleSystem.modules.push(lifetime);
 
-const modifier = new RandomAngleVelocity(particleSystem);
-particleSystem.modules.push(modifier);
+const velocity = new RandomAngleVelocity(particleSystem);
+particleSystem.modules.push(velocity);
 
 const deacceleration = new DeaccelerationOverLifetime(particleSystem);
 particleSystem.modules.push(deacceleration);
