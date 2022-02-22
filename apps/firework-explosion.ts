@@ -41,7 +41,7 @@ const explodeAt = (x: number, y: number) => {
     generator.position.x = x;
     generator.position.y = y;
     for (let i = 0; i < 1000; i += 1) {
-        generator.createParticle();
+        generator.generateParticle();
     }
 };
 
