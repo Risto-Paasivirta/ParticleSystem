@@ -1,7 +1,7 @@
 import { Range } from "../types";
 import { Module } from "../module";
 import { Particle } from "../particle";
-import { lerp } from "utilities";
+import { lerp } from "core/utilities";
 
 export class RandomVelocity extends Module {
     randomX: Range = { min: 100, max: 100 };
