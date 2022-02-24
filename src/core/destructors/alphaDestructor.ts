@@ -1,3 +1,4 @@
+import { ModuleObject } from "core/particleSystem";
 import { Module } from "../module";
 /**
  * `Module` that destroys all particles whose color alpha value is less or equal to 0
@@ -11,5 +12,13 @@ export class AlphaDestructor extends Module {
                 this.parentSystem.destroyParticle(particle);
             }
         }
+    }
+
+    /**
+     * Wrap the properties of the module into a JSON containing only primitive JavaScript data types
+     * (such as numbers, strings, etc.) that can be serialized into strings natively.
+     */
+    toObject(): ModuleObject {
+        throw new Error("Unimplemented method");
     }
 }

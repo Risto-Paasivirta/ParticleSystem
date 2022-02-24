@@ -1,4 +1,4 @@
-import { ParticleSystem } from "core/particleSystem";
+import { ModuleObject, ParticleSystem } from "core/particleSystem";
 import { Shape } from "core/shapes/shape";
 import { Module } from "../module";
 
@@ -36,5 +36,13 @@ export class OutsideBoundsDestructor extends Module {
                 this.parentSystem.destroyParticle(particle);
             }
         }
+    }
+
+    /**
+     * Wrap the properties of the module into a JSON containing only primitive JavaScript data types
+     * (such as numbers, strings, etc.) that can be serialized into strings natively.
+     */
+    toObject(): ModuleObject {
+        throw new Error("Unimplemented method");
     }
 }

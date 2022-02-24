@@ -1,6 +1,7 @@
 import { Position } from "../types";
 import { Particle } from "../particle";
 import { ParticleGenerator } from "./generator";
+import { ModuleObject } from "core/particleSystem";
 
 // NOTE: Ideally we would have a class for `CircleGenerator`, where user could configure whether to generate particles inside the circle or along the exterior.
 // `generator.onlyExterior = true` or something like this.
@@ -39,5 +40,13 @@ export class CircleExteriorGenerator extends ParticleGenerator {
         this.nextParticleAngle += this.angleStep;
 
         this.parentSystem.addParticle(particle);
+    }
+
+    /**
+     * Wrap the properties of the module into a JSON containing only primitive JavaScript data types
+     * (such as numbers, strings, etc.) that can be serialized into strings natively.
+     */
+    toObject(): ModuleObject {
+        throw new Error("Unimplemented method");
     }
 }

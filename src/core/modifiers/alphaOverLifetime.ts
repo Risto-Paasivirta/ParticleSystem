@@ -1,4 +1,5 @@
 import { EasingFunction, EasingFunctions } from "core/easing";
+import { ModuleObject } from "core/particleSystem";
 import { Module } from "../module";
 
 /**
@@ -25,5 +26,13 @@ export class AlphaOverLifetime extends Module {
             const alpha = 1 - this.easing(particle.timeLived / particle.lifeTime);
             particle.alpha = alpha;
         }
+    }
+
+    /**
+     * Wrap the properties of the module into a JSON containing only primitive JavaScript data types
+     * (such as numbers, strings, etc.) that can be serialized into strings natively.
+     */
+    toObject(): ModuleObject {
+        throw new Error("Unimplemented method");
     }
 }

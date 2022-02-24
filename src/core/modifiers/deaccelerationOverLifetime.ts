@@ -1,5 +1,6 @@
 import { EasingFunction, EasingFunctions } from "core/easing";
 import { Particle } from "core/particle";
+import { ModuleObject } from "core/particleSystem";
 import { Velocity } from "core/types";
 import { vec2 } from "core/utilities";
 import { Module } from "../module";
@@ -58,5 +59,13 @@ export class DeaccelerationOverLifetime extends Module {
             particle.velocity.x -= deacceleration.x;
             particle.velocity.y -= deacceleration.y;
         }
+    }
+
+    /**
+     * Wrap the properties of the module into a JSON containing only primitive JavaScript data types
+     * (such as numbers, strings, etc.) that can be serialized into strings natively.
+     */
+    toObject(): ModuleObject {
+        throw new Error("Unimplemented method");
     }
 }

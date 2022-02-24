@@ -2,6 +2,7 @@ import { Module } from "../module";
 import { Particle } from "../particle";
 import { Range } from "../types";
 import { randomInRange } from "core/utilities";
+import { ModuleObject } from "core/particleSystem";
 
 /**
  * Module which overrides `Particle.color.a` property from a configurable random value range.
@@ -27,4 +28,12 @@ export class AlphaRange extends Module {
     handleParticleAdd = (particle: Particle): void => {
         particle.alpha = randomInRange(this.min, this.max);
     };
+
+    /**
+     * Wrap the properties of the module into a JSON containing only primitive JavaScript data types
+     * (such as numbers, strings, etc.) that can be serialized into strings natively.
+     */
+    toObject(): ModuleObject {
+        throw new Error("Unimplemented method");
+    }
 }
