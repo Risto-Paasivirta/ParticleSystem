@@ -3,9 +3,9 @@ import { Shape } from "core/shapes/shape";
 import { Module } from "../module";
 
 /**
- * `Module` that destroys all particles whose center location is outside a generic _boundary_.
+ * `Module` that destroys all particles whose center location is outside generic bounds.
  *
- * Boundary must be specified when the module is created and can be modified during run-time with `boundary` property.
+ * Bounds must be specified when the module is created and can be modified during run-time with `bounds` property.
  *
  * ```ts
  *  // Example usage
@@ -17,22 +17,22 @@ import { Module } from "../module";
  */
 export class OutsideBoundsDestructor extends Module {
     /**
-     * Particles outside this boundary are destroyed.
+     * Particles outside these bounds are destroyed.
      *
      * Shapes can be selected via `Shapes` export.
      */
-    boundary: Shape;
+    bounds: Shape;
 
     constructor(parentSystem: ParticleSystem, boundary: Shape) {
         super(parentSystem);
-        this.boundary = boundary;
+        this.bounds = boundary;
     }
 
     update(dt: number): void {
         const len = this.parentSystem.particles.length;
         for (let i = 0; i < len; i += 1) {
             const particle = this.parentSystem.particles[i];
-            if (!this.boundary.containsPosition(particle.position)) {
+            if (!this.bounds.containsPosition(particle.position)) {
                 this.parentSystem.destroyParticle(particle);
             }
         }

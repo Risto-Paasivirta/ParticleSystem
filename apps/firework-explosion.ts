@@ -20,12 +20,13 @@ const generator = new PointGenerator(particleSystem);
 generator.interval = 0;
 particleSystem.modules.push(generator);
 
-const initializer = new LifeTimeRange(particleSystem);
-initializer.lifetime = { min: 1.0, max: 2.5 };
-particleSystem.modules.push(initializer);
+const lifetime = new LifeTimeRange(particleSystem);
+lifetime.min = 1.0;
+lifetime.max = 2.5;
+particleSystem.modules.push(lifetime);
 
-const modifier = new RandomAngleVelocity(particleSystem);
-particleSystem.modules.push(modifier);
+const velocity = new RandomAngleVelocity(particleSystem);
+particleSystem.modules.push(velocity);
 
 const deacceleration = new DeaccelerationOverLifetime(particleSystem);
 particleSystem.modules.push(deacceleration);
@@ -41,7 +42,7 @@ const explodeAt = (x: number, y: number) => {
     generator.position.x = x;
     generator.position.y = y;
     for (let i = 0; i < 1000; i += 1) {
-        generator.createParticle();
+        generator.generateParticle();
     }
 };
 

@@ -10,11 +10,13 @@ import { randomInRange } from "core/utilities";
  */
 export class AlphaRange extends Module {
     /**
-     * Value ranges for `Particle.color.a`.
-     *
      * Should be a number in range [0, 1] where 1 is fully opaque and 0 is completely invisible.
      */
-    alphaRange: Range = { min: 0, max: 1 };
+    min = 0;
+    /**
+     * Should be a number in range [0, 1] where 1 is fully opaque and 0 is completely invisible.
+     */
+    max = 1;
 
     init(): void {
         this.active = false; //not used in update
@@ -23,6 +25,6 @@ export class AlphaRange extends Module {
     }
 
     handleParticleAdd = (particle: Particle): void => {
-        particle.alpha = randomInRange(this.alphaRange.min, this.alphaRange.max);
+        particle.alpha = randomInRange(this.min, this.max);
     };
 }

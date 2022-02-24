@@ -1,6 +1,6 @@
 import { Position } from "../types";
-import { Module } from "../module";
 import { Particle } from "../particle";
+import { ParticleGenerator } from "./generator";
 
 // NOTE: Ideally we would have a class for `CircleGenerator`, where user could configure whether to generate particles inside the circle or along the exterior.
 // `generator.onlyExterior = true` or something like this.
@@ -10,10 +10,7 @@ import { Particle } from "../particle";
  *
  * Each particle is generated next to each other, so that when particles are regularly generated they move around the circle.
  */
-export class CircleExteriorGenerator extends Module {
-    interval = 0.1;
-    private _timer = 0;
-
+export class CircleExteriorGenerator extends ParticleGenerator {
     /**
      * Center location of the circle.
      */
@@ -35,21 +32,7 @@ export class CircleExteriorGenerator extends Module {
      */
     angleStep = 0.5;
 
-    update(dt: number): void {
-        //avoid infinite loop
-        if (this.interval <= 0) {
-            return;
-        }
-
-        this._timer += dt;
-
-        while (this._timer >= this.interval) {
-            this._timer -= this.interval;
-            this.createParticle();
-        }
-    }
-
-    createParticle() {
+    generateParticle(): void {
         const particle = new Particle();
         particle.position.x = this.center.x + Math.cos(this.nextParticleAngle) * this.radius;
         particle.position.y = this.center.y + Math.sin(this.nextParticleAngle) * this.radius;

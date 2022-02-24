@@ -19,9 +19,10 @@ generator.position.x = window.innerWidth / 2;
 generator.position.y = window.innerHeight / 2;
 particleSystem.modules.push(generator);
 
-const initializer = new LifeTimeRange(particleSystem);
-initializer.lifetime = { min: 0.1, max: 1 };
-particleSystem.modules.push(initializer);
+const lifetime = new LifeTimeRange(particleSystem);
+lifetime.min = 0.1;
+lifetime.max = 1;
+particleSystem.modules.push(lifetime);
 
 const modifier = new RandomVelocity(particleSystem);
 modifier.randomX = { min: -150, max: 150 };

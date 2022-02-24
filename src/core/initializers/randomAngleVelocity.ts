@@ -1,19 +1,19 @@
-import { Range } from "../types";
 import { Module } from "../module";
 import { Particle } from "../particle";
 import { randomInRange } from "core/utilities";
 
 /**
- * Module that assigns a random angular velocity to each particle.
- *
- * Angular velocity means selecting a random angle [0, 360] deg,
- * and then randomizing a velocity along that direction.
+ * Module that assigns a random velocity to each particle along a random direction.
  */
 export class RandomAngleVelocity extends Module {
     /**
-     * Configure random range of velocities.
+     * Minimum velocity
      */
-    velocityRange: Range = { min: 0, max: 100 };
+    min = 0;
+    /**
+     * Maximum velocity
+     */
+    max = 100;
 
     init(): void {
         this.parentSystem.addParticleListeners.push(this.handleParticleAdd);
@@ -21,7 +21,7 @@ export class RandomAngleVelocity extends Module {
 
     handleParticleAdd = (particle: Particle): void => {
         const angleRad = Math.random() * 2 * Math.PI;
-        const velocity = randomInRange(this.velocityRange.min, this.velocityRange.max);
+        const velocity = randomInRange(this.min, this.max);
         particle.velocity.x = Math.cos(angleRad) * velocity;
         particle.velocity.y = Math.sin(angleRad) * velocity;
     };
