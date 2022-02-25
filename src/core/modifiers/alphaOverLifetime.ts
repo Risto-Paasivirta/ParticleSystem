@@ -1,5 +1,7 @@
 import { EasingFunction, EasingFunctions } from "core/easing";
-import { ModuleObject } from "core/particleSystem";
+import { moduleToObject, objectToModule, moduleTypeRegistry } from "core/moduleTypeRegistry";
+import { ModuleObject, ParticleSystem } from "core/particleSystem";
+import { clamp } from "core/utilities";
 import { Module } from "../module";
 
 /**
@@ -23,7 +25,7 @@ export class AlphaOverLifetime extends Module {
         const len = particles.length;
         for (let i = 0; i < len; i += 1) {
             const particle = particles[i];
-            const alpha = 1 - this.easing(particle.timeLived / particle.lifeTime);
+            const alpha = 1 - this.easing(clamp(particle.timeLived / particle.lifeTime, 0, 1));
             particle.alpha = alpha;
         }
     }
@@ -33,6 +35,18 @@ export class AlphaOverLifetime extends Module {
      * (such as numbers, strings, etc.) that can be serialized into strings natively.
      */
     toObject(): ModuleObject {
-        throw new Error("Unimplemented method");
+        // TODO: easing is not a serializable data type, this will not work out of the box !
+        return moduleToObject(AlphaOverLifetime, ["easing"], this);
     }
+
+    static fromObject(particleSystem: ParticleSystem, object: ModuleObject): AlphaOverLifetime {
+        return objectToModule(AlphaOverLifetime, ["easing"], object, particleSystem);
+    }
+
+    /**
+     * Serializable identifier for the module.
+     *
+     * This must be unique between all existing Modules in the library.
+     */
+    static moduleTypeId = "AlphaOverLifetime";
 }

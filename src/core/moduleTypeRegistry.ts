@@ -1,3 +1,15 @@
+import { AlphaDestructor } from "./destructors/alphaDestructor";
+import { LifeTimeDestructor } from "./destructors/lifeTimeDestructor";
+import { OutsideBoundsDestructor } from "./destructors/outsideBoundsDestructor";
+import { CircleExteriorGenerator } from "./generators/circleExteriorGenerator";
+import { PointGenerator } from "./generators/pointGenerator";
+import { AlphaRange } from "./initializers/alphaRange";
+import { LifeTimeRange } from "./initializers/lifeTimeRange";
+import { RandomAngleVelocity } from "./initializers/randomAngleVelocity";
+import { RandomVelocity } from "./initializers/randomVelocity";
+import { AlphaOverLifetime } from "./modifiers/alphaOverLifetime";
+import { DeaccelerationOverLifetime } from "./modifiers/deaccelerationOverLifetime";
+import { Gravity } from "./modifiers/gravity";
 import { Module } from "./module";
 import { ModuleObject, ParticleSystem } from "./particleSystem";
 
@@ -18,7 +30,20 @@ interface ModuleTypeReference {
 /**
  * TODO
  */
-export const moduleTypeRegistry: ModuleTypeReference[] = [];
+export const moduleTypeRegistry: ModuleTypeReference[] = [
+    AlphaDestructor,
+    LifeTimeDestructor,
+    OutsideBoundsDestructor,
+    CircleExteriorGenerator,
+    PointGenerator,
+    AlphaRange,
+    LifeTimeRange,
+    RandomAngleVelocity,
+    RandomVelocity,
+    AlphaOverLifetime,
+    DeaccelerationOverLifetime,
+    Gravity,
+];
 
 /**
  * TODO
@@ -54,7 +79,7 @@ export const objectToModule = <
         const value = object[property];
         if (!value) {
             // This probably means that the module was saved with a different library version than the active one.
-            console.warn(`${moduleType.moduleTypeId} property could not be loaded: "${property}"`);
+            console.warn(`Missing module property ${moduleType.moduleTypeId}: "${property}"`);
             return;
         }
         module[property] = value as ModuleInstanceType[typeof property];

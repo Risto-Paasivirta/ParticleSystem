@@ -27,10 +27,8 @@ modifier.randomX = { min: -100, max: 100 };
 modifier.randomY = { min: -100, max: 100 };
 particleSystem.modules.push(modifier);
 
-const destructor = new OutsideBoundsDestructor(
-    particleSystem,
-    Shapes.Triangle({ x: 100, y: 400 }, { x: 300, y: 400 }, { x: 200, y: 0 }),
-);
+const destructor = new OutsideBoundsDestructor(particleSystem);
+destructor.bounds = Shapes.Triangle({ x: 100, y: 400 }, { x: 300, y: 400 }, { x: 200, y: 0 });
 particleSystem.modules.push(destructor);
 
 const loader = PIXI.Loader.shared;

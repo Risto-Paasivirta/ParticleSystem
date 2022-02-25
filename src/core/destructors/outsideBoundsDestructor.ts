@@ -1,3 +1,4 @@
+import { moduleToObject, objectToModule, moduleTypeRegistry } from "core/moduleTypeRegistry";
 import { ModuleObject, ParticleSystem } from "core/particleSystem";
 import { Shape } from "core/shapes/shape";
 import { Module } from "../module";
@@ -21,15 +22,17 @@ export class OutsideBoundsDestructor extends Module {
      *
      * Shapes can be selected via `Shapes` export.
      */
-    bounds: Shape;
+    bounds?: Shape;
 
-    constructor(parentSystem: ParticleSystem, boundary: Shape) {
+    constructor(parentSystem: ParticleSystem) {
         super(parentSystem);
-        this.bounds = boundary;
     }
 
     update(dt: number): void {
         const len = this.parentSystem.particles.length;
+        if (!this.bounds) {
+            return;
+        }
         for (let i = 0; i < len; i += 1) {
             const particle = this.parentSystem.particles[i];
             if (!this.bounds.containsPosition(particle.position)) {
@@ -43,6 +46,18 @@ export class OutsideBoundsDestructor extends Module {
      * (such as numbers, strings, etc.) that can be serialized into strings natively.
      */
     toObject(): ModuleObject {
-        throw new Error("Unimplemented method");
+        // TODO: 'bounds' are not a primitive data type, this will not work out of the box !
+        return moduleToObject(OutsideBoundsDestructor, ["bounds"], this);
     }
+
+    static fromObject(particleSystem: ParticleSystem, object: ModuleObject): OutsideBoundsDestructor {
+        return objectToModule(OutsideBoundsDestructor, ["bounds"], object, particleSystem);
+    }
+
+    /**
+     * Serializable identifier for the module.
+     *
+     * This must be unique between all existing Modules in the library.
+     */
+    static moduleTypeId = "OutsideBoundsDestructor";
 }

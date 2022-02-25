@@ -1,7 +1,8 @@
 import { Position } from "../types";
 import { Particle } from "../particle";
 import { ParticleGenerator } from "./generator";
-import { ModuleObject } from "core/particleSystem";
+import { ModuleObject, ParticleSystem } from "core/particleSystem";
+import { moduleToObject, objectToModule, moduleTypeRegistry } from "core/moduleTypeRegistry";
 
 // NOTE: Ideally we would have a class for `CircleGenerator`, where user could configure whether to generate particles inside the circle or along the exterior.
 // `generator.onlyExterior = true` or something like this.
@@ -47,6 +48,22 @@ export class CircleExteriorGenerator extends ParticleGenerator {
      * (such as numbers, strings, etc.) that can be serialized into strings natively.
      */
     toObject(): ModuleObject {
-        throw new Error("Unimplemented method");
+        return moduleToObject(CircleExteriorGenerator, ["center", "radius", "nextParticleAngle", "angleStep"], this);
     }
+
+    static fromObject(particleSystem: ParticleSystem, object: ModuleObject): CircleExteriorGenerator {
+        return objectToModule(
+            CircleExteriorGenerator,
+            ["center", "radius", "nextParticleAngle", "angleStep"],
+            object,
+            particleSystem,
+        );
+    }
+
+    /**
+     * Serializable identifier for the module.
+     *
+     * This must be unique between all existing Modules in the library.
+     */
+    static moduleTypeId = "CircleExteriorGenerator";
 }

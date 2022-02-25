@@ -32,10 +32,3 @@ export class LifeTimeDestructor extends Module {
      */
     static moduleTypeId = "LifeTimeDestructor";
 }
-
-/**
- * Include the Module in a registry containing all Module types in the library.
- *
- * This is necessary for loading modules from objects.
- */
-moduleTypeRegistry.push(LifeTimeDestructor);

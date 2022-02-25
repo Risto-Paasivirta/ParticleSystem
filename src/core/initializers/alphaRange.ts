@@ -2,7 +2,8 @@ import { Module } from "../module";
 import { Particle } from "../particle";
 import { Range } from "../types";
 import { randomInRange } from "core/utilities";
-import { ModuleObject } from "core/particleSystem";
+import { ModuleObject, ParticleSystem } from "core/particleSystem";
+import { moduleToObject, objectToModule, moduleTypeRegistry } from "core/moduleTypeRegistry";
 
 /**
  * Module which overrides `Particle.color.a` property from a configurable random value range.
@@ -34,6 +35,17 @@ export class AlphaRange extends Module {
      * (such as numbers, strings, etc.) that can be serialized into strings natively.
      */
     toObject(): ModuleObject {
-        throw new Error("Unimplemented method");
+        return moduleToObject(AlphaRange, ["min", "max"], this);
     }
+
+    static fromObject(particleSystem: ParticleSystem, object: ModuleObject): AlphaRange {
+        return objectToModule(AlphaRange, ["min", "max"], object, particleSystem);
+    }
+
+    /**
+     * Serializable identifier for the module.
+     *
+     * This must be unique between all existing Modules in the library.
+     */
+    static moduleTypeId = "AlphaRange";
 }

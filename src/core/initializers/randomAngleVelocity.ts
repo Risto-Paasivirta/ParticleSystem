@@ -1,7 +1,8 @@
 import { Module } from "../module";
 import { Particle } from "../particle";
 import { randomInRange } from "core/utilities";
-import { ModuleObject } from "core/particleSystem";
+import { ModuleObject, ParticleSystem } from "core/particleSystem";
+import { moduleToObject, objectToModule, moduleTypeRegistry } from "core/moduleTypeRegistry";
 
 /**
  * Module that assigns a random velocity to each particle along a random direction.
@@ -32,6 +33,17 @@ export class RandomAngleVelocity extends Module {
      * (such as numbers, strings, etc.) that can be serialized into strings natively.
      */
     toObject(): ModuleObject {
-        throw new Error("Unimplemented method");
+        return moduleToObject(RandomAngleVelocity, ["min", "max"], this);
     }
+
+    static fromObject(particleSystem: ParticleSystem, object: ModuleObject): RandomAngleVelocity {
+        return objectToModule(RandomAngleVelocity, ["min", "max"], object, particleSystem);
+    }
+
+    /**
+     * Serializable identifier for the module.
+     *
+     * This must be unique between all existing Modules in the library.
+     */
+    static moduleTypeId = "RandomAngleVelocity";
 }
