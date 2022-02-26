@@ -1,24 +1,27 @@
 # Lightweight Particle System for TypeScript with example PIXI.js integration
+
 We could really use a catchy name ^^
 
-## Get Started
+## Development
 
-Clone the repository
-After you have cloned the repository just open the PowerShell in the project folder and run:
+1. Install all the dependencies.
 
-"npm i" 
-To install the node js packages.
+    ```
+    npm install
+    ```
 
-"npm run dev" 
-To run the real time test environment. The web page should get automatically refreshed when you modify the code.
+2. Run internal applications located in "./apps" folder.
 
-If you are getting a warning or error message make sure you have the latest node.js installed.
-You can check which version you have by typing "node" in shell. I am running v16.13.2
+    Open _CMD/Terminal_ to serve example applications and watch changes in the `./apps` and `./src` folder.
+
+    ```
+    npm start
+    ```
 
 ## Commands
 
 -   `npm run build` - starts build procedure
--   `npm run start` - start watching for files and open's server on localhost:8080
+-   `npm run start` - starts development server, watching for files changes and automatically refreshes the webpage
 -   `npm run test` - run tests
 -   `npm run code-coverage` - generate code coverage report
 -   `npm run code-style-check` - run's eslint and prettier check on your code
@@ -26,6 +29,7 @@ You can check which version you have by typing "node" in shell. I am running v16
 For vscode users - ctrl ( or ⌘ ) + shift + b will run the watch build as its set as default vscode task
 
 ## License:
+
 MIT-license
 
 ## 3rd Party Credits
