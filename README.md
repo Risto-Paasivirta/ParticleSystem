@@ -20,13 +20,8 @@ We could really use a catchy name ^^
 
 ## Commands
 
--   `npm run build` - starts build procedure
 -   `npm run start` - starts development server, watching for files changes and automatically refreshes the webpage
--   `npm run test` - run tests
--   `npm run code-coverage` - generate code coverage report
--   `npm run code-style-check` - run's eslint and prettier check on your code
-
-For vscode users - ctrl ( or ⌘ ) + shift + b will run the watch build as its set as default vscode task
+-   `npm run lint` - runs code style tests
 
 ## License:
 
