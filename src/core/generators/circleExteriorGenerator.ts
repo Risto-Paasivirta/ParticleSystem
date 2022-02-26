@@ -2,7 +2,7 @@ import { Position } from "../types";
 import { Particle } from "../particle";
 import { ParticleGenerator } from "./generator";
 import { ModuleObject, ParticleSystem } from "core/particleSystem";
-import { loadSerializedProperty, deserializePrimitiveDataType } from "core/moduleTypeRegistry";
+import { loadSerializedProperty, deserializePrimitiveDataType } from "core/moduleSerialization";
 
 // NOTE: Ideally we would have a class for `CircleGenerator`, where user could configure whether to generate particles inside the circle or along the exterior.
 // `generator.onlyExterior = true` or something like this.

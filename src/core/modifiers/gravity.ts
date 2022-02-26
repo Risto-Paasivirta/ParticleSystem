@@ -1,4 +1,4 @@
-import { deserializePrimitiveDataType, loadSerializedProperty } from "core/moduleTypeRegistry";
+import { deserializePrimitiveDataType, loadSerializedProperty } from "core/moduleSerialization";
 import { ModuleObject, ParticleSystem } from "core/particleSystem";
 import { Module } from "../module";
 

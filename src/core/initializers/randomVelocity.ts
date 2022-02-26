@@ -3,7 +3,7 @@ import { Module } from "../module";
 import { Particle } from "../particle";
 import { lerp } from "core/utilities";
 import { ModuleObject, ParticleSystem } from "core/particleSystem";
-import { deserializePrimitiveDataType, loadSerializedProperty } from "core/moduleTypeRegistry";
+import { deserializePrimitiveDataType, loadSerializedProperty } from "core/moduleSerialization";
 
 export class RandomVelocity extends Module {
     randomX: Range = { min: 100, max: 100 };

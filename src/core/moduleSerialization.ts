@@ -11,26 +11,12 @@ import { AlphaOverLifetime } from "./modifiers/alphaOverLifetime";
 import { DeaccelerationOverLifetime } from "./modifiers/deaccelerationOverLifetime";
 import { Gravity } from "./modifiers/gravity";
 import { Module } from "./module";
-import { ModuleObject, ParticleSystem } from "./particleSystem";
-
-// TODO: Rename to serialization
+import { ParticleSystem } from "./particleSystem";
 
 /**
- * TODO
- */
-interface ModuleTypeReference {
-    /**
-     * Serializable identifier for the module.
-     *
-     * This must be unique between all existing Modules in the library.
-     */
-    moduleTypeId: string;
-
-    fromObject(particleSystem: ParticleSystem, object: object): Module;
-}
-
-/**
- * TODO
+ * This list should contain all Modules in the library.
+ *
+ * It is required for deserializing Modules from JS objects.
  */
 export const moduleTypeRegistry: ModuleTypeReference[] = [
     AlphaDestructor,
@@ -46,6 +32,17 @@ export const moduleTypeRegistry: ModuleTypeReference[] = [
     DeaccelerationOverLifetime,
     Gravity,
 ];
+
+interface ModuleTypeReference {
+    /**
+     * Serializable identifier for the module.
+     *
+     * This must be unique between all existing Modules in the library.
+     */
+    moduleTypeId: string;
+
+    fromObject(particleSystem: ParticleSystem, object: object): Module;
+}
 
 export const loadSerializedProperty = <
     ModuleType extends ModuleTypeReference,
@@ -73,6 +70,18 @@ export const loadSerializedProperty = <
     module[key] = deserializedValue;
 };
 
+/**
+ * Function for satisfying types when deserializing a primitive data type.
+ *
+ * Examples of primitive data types:
+ * - `property = 1.0`
+ * - `property = 'hello'`
+ * - `property = { x: 1.0, something: 'text' }`
+ * - `property = [ 0.0, 1.0 ]`
+ *
+ * @param serializedPrimitiveDataType
+ * @returns
+ */
 export const deserializePrimitiveDataType = <T>(serializedPrimitiveDataType: unknown): T => {
     return serializedPrimitiveDataType as T;
 };

@@ -2,7 +2,7 @@ import { Position } from "../types";
 import { Particle } from "../particle";
 import { ParticleGenerator } from "./generator";
 import { ModuleObject, ParticleSystem } from "core/particleSystem";
-import { deserializePrimitiveDataType, loadSerializedProperty } from "core/moduleTypeRegistry";
+import { deserializePrimitiveDataType, loadSerializedProperty } from "core/moduleSerialization";
 
 export class PointGenerator extends ParticleGenerator {
     position: Position = { x: 0, y: 0 };

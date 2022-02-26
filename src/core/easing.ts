@@ -60,6 +60,9 @@ export const EasingFunctions = {
     }) as EasingFunction,
 };
 
+/**
+ * Serialize easing function to a primitive data type that can be later deserialized.
+ */
 export const serializeEasing = (easingFunction: EasingFunction): unknown => {
     const entry = Object.entries(EasingFunctions).find((entry) => entry[1] === easingFunction);
     if (!entry) {
@@ -69,6 +72,9 @@ export const serializeEasing = (easingFunction: EasingFunction): unknown => {
     return entry[0];
 };
 
+/**
+ * Deserialize an easing function that was serialized using `serializeEasing`.
+ */
 export const deserializeEasing = (serializedEasing: unknown): EasingFunction | undefined => {
     if (typeof serializedEasing !== "string") return undefined;
     const easingFunction = Object.entries(EasingFunctions).find((entry) => entry[0] === serializedEasing);

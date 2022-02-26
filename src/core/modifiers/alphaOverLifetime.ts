@@ -1,5 +1,5 @@
 import { deserializeEasing, EasingFunction, EasingFunctions, serializeEasing } from "core/easing";
-import { loadSerializedProperty } from "core/moduleTypeRegistry";
+import { loadSerializedProperty } from "core/moduleSerialization";
 import { ModuleObject, ParticleSystem } from "core/particleSystem";
 import { clamp } from "core/utilities";
 import { Module } from "../module";

@@ -2,7 +2,7 @@ import { Module } from "../module";
 import { Particle } from "../particle";
 import { randomInRange } from "core/utilities";
 import { ModuleObject, ParticleSystem } from "core/particleSystem";
-import { deserializePrimitiveDataType, loadSerializedProperty } from "core/moduleTypeRegistry";
+import { deserializePrimitiveDataType, loadSerializedProperty } from "core/moduleSerialization";
 
 /**
  * Module that assigns a random velocity to each particle along a random direction.

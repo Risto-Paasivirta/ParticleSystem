@@ -1,4 +1,4 @@
-import { loadSerializedProperty } from "core/moduleTypeRegistry";
+import { loadSerializedProperty } from "core/moduleSerialization";
 import { ModuleObject, ParticleSystem } from "core/particleSystem";
 import { Shape, serializeShape, deserializeShape, shapeContainsPosition } from "core/shapes/shape";
 import { Module } from "../module";

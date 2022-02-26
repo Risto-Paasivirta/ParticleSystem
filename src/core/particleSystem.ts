@@ -1,5 +1,5 @@
 import { Module } from "./module";
-import { moduleTypeRegistry } from "./moduleTypeRegistry";
+import { moduleTypeRegistry } from "./moduleSerialization";
 import { Particle } from "./particle";
 
 export class ParticleSystem {

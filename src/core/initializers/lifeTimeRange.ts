@@ -2,7 +2,7 @@ import { Module } from "../module";
 import { Particle } from "../particle";
 import { lerp } from "core/utilities";
 import { ModuleObject, ParticleSystem } from "core/particleSystem";
-import { loadSerializedProperty, deserializePrimitiveDataType } from "core/moduleTypeRegistry";
+import { loadSerializedProperty, deserializePrimitiveDataType } from "core/moduleSerialization";
 
 export class LifeTimeRange extends Module {
     min = 1.5;

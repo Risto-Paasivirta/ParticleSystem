@@ -2,7 +2,7 @@ import { Module } from "../module";
 import { Particle } from "../particle";
 import { randomInRange } from "core/utilities";
 import { ModuleObject, ParticleSystem } from "core/particleSystem";
-import { loadSerializedProperty, deserializePrimitiveDataType } from "core/moduleTypeRegistry";
+import { loadSerializedProperty, deserializePrimitiveDataType } from "core/moduleSerialization";
 
 /**
  * Module which overrides `Particle.color.a` property from a configurable random value range.
