@@ -2,7 +2,7 @@ import { Position } from "../types";
 import { Particle } from "../particle";
 import { ParticleGenerator } from "./generator";
 import { ModuleObject, ParticleSystem } from "core/particleSystem";
-import { moduleTypeRegistry, moduleToObject, objectToModule } from "core/moduleTypeRegistry";
+import { deserializePrimitiveDataType, loadSerializedProperty } from "core/moduleTypeRegistry";
 
 export class PointGenerator extends ParticleGenerator {
     position: Position = { x: 0, y: 0 };
@@ -20,11 +20,18 @@ export class PointGenerator extends ParticleGenerator {
      * (such as numbers, strings, etc.) that can be serialized into strings natively.
      */
     toObject(): ModuleObject {
-        return moduleToObject(PointGenerator, ["interval", "position"], this);
+        return {
+            moduleTypeId: PointGenerator.moduleTypeId,
+            interval: this.interval,
+            position: this.position,
+        };
     }
 
     static fromObject(particleSystem: ParticleSystem, object: ModuleObject): PointGenerator {
-        return objectToModule(PointGenerator, ["interval", "position"], object, particleSystem);
+        const module = new PointGenerator(particleSystem);
+        loadSerializedProperty(object, PointGenerator, module, "interval", deserializePrimitiveDataType);
+        loadSerializedProperty(object, PointGenerator, module, "position", deserializePrimitiveDataType);
+        return module;
     }
 
     /**

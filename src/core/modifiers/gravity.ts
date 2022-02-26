@@ -1,4 +1,4 @@
-import { moduleToObject, objectToModule, moduleTypeRegistry } from "core/moduleTypeRegistry";
+import { deserializePrimitiveDataType, loadSerializedProperty } from "core/moduleTypeRegistry";
 import { ModuleObject, ParticleSystem } from "core/particleSystem";
 import { Module } from "../module";
 
@@ -16,12 +16,16 @@ export class Gravity extends Module {
      * (such as numbers, strings, etc.) that can be serialized into strings natively.
      */
     toObject(): ModuleObject {
-        // TODO: easing is not a serializable data type, this will not work out of the box !
-        return moduleToObject(Gravity, ["strength"], this);
+        return {
+            moduleTypeId: Gravity.moduleTypeId,
+            strength: this.strength,
+        };
     }
 
     static fromObject(particleSystem: ParticleSystem, object: ModuleObject): Gravity {
-        return objectToModule(Gravity, ["strength"], object, particleSystem);
+        const module = new Gravity(particleSystem);
+        loadSerializedProperty(object, Gravity, module, "strength", deserializePrimitiveDataType);
+        return module;
     }
 
     /**

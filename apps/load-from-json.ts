@@ -26,12 +26,11 @@ const particleSystem = ParticleSystem.fromObject({
         },
         {
             moduleTypeId: "AlphaOverLifetime",
-        },
-        {
-            moduleTypeId: "AlphaDestructor",
+            easing: "linear",
         },
     ],
 });
+console.log(particleSystem);
 const renderer = new Renderer(document.body, particleSystem);
 
 const loader = PIXI.Loader.shared;

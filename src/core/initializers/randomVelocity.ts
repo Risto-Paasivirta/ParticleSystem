@@ -3,7 +3,7 @@ import { Module } from "../module";
 import { Particle } from "../particle";
 import { lerp } from "core/utilities";
 import { ModuleObject, ParticleSystem } from "core/particleSystem";
-import { moduleToObject, moduleTypeRegistry, objectToModule } from "core/moduleTypeRegistry";
+import { deserializePrimitiveDataType, loadSerializedProperty } from "core/moduleTypeRegistry";
 
 export class RandomVelocity extends Module {
     randomX: Range = { min: 100, max: 100 };
@@ -23,11 +23,18 @@ export class RandomVelocity extends Module {
      * (such as numbers, strings, etc.) that can be serialized into strings natively.
      */
     toObject(): ModuleObject {
-        return moduleToObject(RandomVelocity, ["randomX", "randomY"], this);
+        return {
+            moduleTypeId: RandomVelocity.moduleTypeId,
+            randomX: this.randomX,
+            randomY: this.randomY,
+        };
     }
 
     static fromObject(particleSystem: ParticleSystem, object: ModuleObject): RandomVelocity {
-        return objectToModule(RandomVelocity, ["randomX", "randomY"], object, particleSystem);
+        const module = new RandomVelocity(particleSystem);
+        loadSerializedProperty(object, RandomVelocity, module, "randomX", deserializePrimitiveDataType);
+        loadSerializedProperty(object, RandomVelocity, module, "randomY", deserializePrimitiveDataType);
+        return module;
     }
 
     /**

@@ -2,7 +2,7 @@ import { Module } from "../module";
 import { Particle } from "../particle";
 import { randomInRange } from "core/utilities";
 import { ModuleObject, ParticleSystem } from "core/particleSystem";
-import { moduleToObject, objectToModule, moduleTypeRegistry } from "core/moduleTypeRegistry";
+import { deserializePrimitiveDataType, loadSerializedProperty } from "core/moduleTypeRegistry";
 
 /**
  * Module that assigns a random velocity to each particle along a random direction.
@@ -33,11 +33,18 @@ export class RandomAngleVelocity extends Module {
      * (such as numbers, strings, etc.) that can be serialized into strings natively.
      */
     toObject(): ModuleObject {
-        return moduleToObject(RandomAngleVelocity, ["min", "max"], this);
+        return {
+            moduleTypeId: RandomAngleVelocity.moduleTypeId,
+            min: this.min,
+            max: this.max,
+        };
     }
 
     static fromObject(particleSystem: ParticleSystem, object: ModuleObject): RandomAngleVelocity {
-        return objectToModule(RandomAngleVelocity, ["min", "max"], object, particleSystem);
+        const module = new RandomAngleVelocity(particleSystem);
+        loadSerializedProperty(object, RandomAngleVelocity, module, "min", deserializePrimitiveDataType);
+        loadSerializedProperty(object, RandomAngleVelocity, module, "max", deserializePrimitiveDataType);
+        return module;
     }
 
     /**

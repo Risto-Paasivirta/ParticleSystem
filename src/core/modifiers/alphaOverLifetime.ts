@@ -1,5 +1,5 @@
-import { EasingFunction, EasingFunctions } from "core/easing";
-import { moduleToObject, objectToModule, moduleTypeRegistry } from "core/moduleTypeRegistry";
+import { deserializeEasing, EasingFunction, EasingFunctions, serializeEasing } from "core/easing";
+import { loadSerializedProperty } from "core/moduleTypeRegistry";
 import { ModuleObject, ParticleSystem } from "core/particleSystem";
 import { clamp } from "core/utilities";
 import { Module } from "../module";
@@ -35,12 +35,16 @@ export class AlphaOverLifetime extends Module {
      * (such as numbers, strings, etc.) that can be serialized into strings natively.
      */
     toObject(): ModuleObject {
-        // TODO: easing is not a serializable data type, this will not work out of the box !
-        return moduleToObject(AlphaOverLifetime, ["easing"], this);
+        return {
+            moduleTypeId: AlphaOverLifetime.moduleTypeId,
+            easing: serializeEasing(this.easing),
+        };
     }
 
     static fromObject(particleSystem: ParticleSystem, object: ModuleObject): AlphaOverLifetime {
-        return objectToModule(AlphaOverLifetime, ["easing"], object, particleSystem);
+        const module = new AlphaOverLifetime(particleSystem);
+        loadSerializedProperty(object, AlphaOverLifetime, module, "easing", deserializeEasing);
+        return module;
     }
 
     /**

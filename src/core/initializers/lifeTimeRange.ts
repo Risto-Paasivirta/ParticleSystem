@@ -2,7 +2,7 @@ import { Module } from "../module";
 import { Particle } from "../particle";
 import { lerp } from "core/utilities";
 import { ModuleObject, ParticleSystem } from "core/particleSystem";
-import { moduleToObject, moduleTypeRegistry, objectToModule } from "core/moduleTypeRegistry";
+import { loadSerializedProperty, deserializePrimitiveDataType } from "core/moduleTypeRegistry";
 
 export class LifeTimeRange extends Module {
     min = 1.5;
@@ -23,11 +23,18 @@ export class LifeTimeRange extends Module {
      * (such as numbers, strings, etc.) that can be serialized into strings natively.
      */
     toObject(): ModuleObject {
-        return moduleToObject(LifeTimeRange, ["min", "max"], this);
+        return {
+            moduleTypeId: LifeTimeRange.moduleTypeId,
+            min: this.min,
+            max: this.max,
+        };
     }
 
     static fromObject(particleSystem: ParticleSystem, object: ModuleObject): LifeTimeRange {
-        return objectToModule(LifeTimeRange, ["min", "max"], object, particleSystem);
+        const module = new LifeTimeRange(particleSystem);
+        loadSerializedProperty(object, LifeTimeRange, module, "min", deserializePrimitiveDataType);
+        loadSerializedProperty(object, LifeTimeRange, module, "max", deserializePrimitiveDataType);
+        return module;
     }
 
     /**

@@ -1,9 +1,8 @@
 import { Module } from "../module";
 import { Particle } from "../particle";
-import { Range } from "../types";
 import { randomInRange } from "core/utilities";
 import { ModuleObject, ParticleSystem } from "core/particleSystem";
-import { moduleToObject, objectToModule, moduleTypeRegistry } from "core/moduleTypeRegistry";
+import { loadSerializedProperty, deserializePrimitiveDataType } from "core/moduleTypeRegistry";
 
 /**
  * Module which overrides `Particle.color.a` property from a configurable random value range.
@@ -35,11 +34,18 @@ export class AlphaRange extends Module {
      * (such as numbers, strings, etc.) that can be serialized into strings natively.
      */
     toObject(): ModuleObject {
-        return moduleToObject(AlphaRange, ["min", "max"], this);
+        return {
+            moduleTypeId: AlphaRange.moduleTypeId,
+            min: this.min,
+            max: this.max,
+        };
     }
 
     static fromObject(particleSystem: ParticleSystem, object: ModuleObject): AlphaRange {
-        return objectToModule(AlphaRange, ["min", "max"], object, particleSystem);
+        const module = new AlphaRange(particleSystem);
+        loadSerializedProperty(object, AlphaRange, module, "min", deserializePrimitiveDataType);
+        loadSerializedProperty(object, AlphaRange, module, "max", deserializePrimitiveDataType);
+        return module;
     }
 
     /**

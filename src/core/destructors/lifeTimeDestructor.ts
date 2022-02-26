@@ -1,4 +1,3 @@
-import { moduleToObject, moduleTypeRegistry, objectToModule } from "core/moduleTypeRegistry";
 import { ModuleObject, ParticleSystem } from "core/particleSystem";
 import { Module } from "../module";
 
@@ -18,11 +17,14 @@ export class LifeTimeDestructor extends Module {
      * (such as numbers, strings, etc.) that can be serialized into strings natively.
      */
     toObject(): ModuleObject {
-        return moduleToObject(LifeTimeDestructor, [], this);
+        return {
+            moduleTypeId: LifeTimeDestructor.moduleTypeId,
+        };
     }
 
     static fromObject(particleSystem: ParticleSystem, object: ModuleObject): LifeTimeDestructor {
-        return objectToModule(LifeTimeDestructor, [], object, particleSystem);
+        const module = new LifeTimeDestructor(particleSystem);
+        return module;
     }
 
     /**

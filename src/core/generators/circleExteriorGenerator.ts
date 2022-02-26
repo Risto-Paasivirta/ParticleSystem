@@ -2,7 +2,7 @@ import { Position } from "../types";
 import { Particle } from "../particle";
 import { ParticleGenerator } from "./generator";
 import { ModuleObject, ParticleSystem } from "core/particleSystem";
-import { moduleToObject, objectToModule, moduleTypeRegistry } from "core/moduleTypeRegistry";
+import { loadSerializedProperty, deserializePrimitiveDataType } from "core/moduleTypeRegistry";
 
 // NOTE: Ideally we would have a class for `CircleGenerator`, where user could configure whether to generate particles inside the circle or along the exterior.
 // `generator.onlyExterior = true` or something like this.
@@ -48,16 +48,28 @@ export class CircleExteriorGenerator extends ParticleGenerator {
      * (such as numbers, strings, etc.) that can be serialized into strings natively.
      */
     toObject(): ModuleObject {
-        return moduleToObject(CircleExteriorGenerator, ["center", "radius", "nextParticleAngle", "angleStep"], this);
+        return {
+            moduleTypeId: CircleExteriorGenerator.moduleTypeId,
+            center: this.center,
+            radius: this.radius,
+            nextParticleAngle: this.nextParticleAngle,
+            angleStep: this.angleStep,
+        };
     }
 
     static fromObject(particleSystem: ParticleSystem, object: ModuleObject): CircleExteriorGenerator {
-        return objectToModule(
-            CircleExteriorGenerator,
-            ["center", "radius", "nextParticleAngle", "angleStep"],
+        const module = new CircleExteriorGenerator(particleSystem);
+        loadSerializedProperty(object, CircleExteriorGenerator, module, "center", deserializePrimitiveDataType);
+        loadSerializedProperty(object, CircleExteriorGenerator, module, "radius", deserializePrimitiveDataType);
+        loadSerializedProperty(
             object,
-            particleSystem,
+            CircleExteriorGenerator,
+            module,
+            "nextParticleAngle",
+            deserializePrimitiveDataType,
         );
+        loadSerializedProperty(object, CircleExteriorGenerator, module, "angleStep", deserializePrimitiveDataType);
+        return module;
     }
 
     /**

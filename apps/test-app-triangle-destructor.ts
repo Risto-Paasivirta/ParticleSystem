@@ -5,7 +5,6 @@ import { RandomVelocity } from "core/initializers/randomVelocity";
 import { LifeTimeRange } from "core/initializers/lifeTimeRange";
 import { Renderer } from "renderer/renderer";
 import { OutsideBoundsDestructor } from "core/destructors/outsideBoundsDestructor";
-import { Shapes } from "core/shapes/shapes";
 
 document.body.style.margin = "0px 0px";
 document.body.style.width = "100vw";
@@ -28,7 +27,12 @@ modifier.randomY = { min: -100, max: 100 };
 particleSystem.modules.push(modifier);
 
 const destructor = new OutsideBoundsDestructor(particleSystem);
-destructor.bounds = Shapes.Triangle({ x: 100, y: 400 }, { x: 300, y: 400 }, { x: 200, y: 0 });
+destructor.bounds = {
+    type: "triangle",
+    v1: { x: 100, y: 400 },
+    v2: { x: 300, y: 400 },
+    v3: { x: 200, y: 0 },
+};
 particleSystem.modules.push(destructor);
 
 const loader = PIXI.Loader.shared;
@@ -37,3 +41,5 @@ loader.onComplete.once(() => {
     renderer.setEffectTextures(PIXI.utils.TextureCache["circle_01.png"]);
 });
 loader.load();
+
+console.log(particleSystem.toObject());

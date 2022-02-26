@@ -1,5 +1,5 @@
-import { EasingFunction, EasingFunctions } from "core/easing";
-import { moduleToObject, objectToModule, moduleTypeRegistry } from "core/moduleTypeRegistry";
+import { deserializeEasing, EasingFunction, EasingFunctions } from "core/easing";
+import { loadSerializedProperty } from "core/moduleTypeRegistry";
 import { Particle } from "core/particle";
 import { ModuleObject, ParticleSystem } from "core/particleSystem";
 import { Velocity } from "core/types";
@@ -67,12 +67,16 @@ export class DeaccelerationOverLifetime extends Module {
      * (such as numbers, strings, etc.) that can be serialized into strings natively.
      */
     toObject(): ModuleObject {
-        // TODO: easing is not a serializable data type, this will not work out of the box !
-        return moduleToObject(DeaccelerationOverLifetime, ["easing"], this);
+        return {
+            moduleTypeId: DeaccelerationOverLifetime.moduleTypeId,
+            easing: deserializeEasing(this.easing),
+        };
     }
 
     static fromObject(particleSystem: ParticleSystem, object: ModuleObject): DeaccelerationOverLifetime {
-        return objectToModule(DeaccelerationOverLifetime, ["easing"], object, particleSystem);
+        const module = new DeaccelerationOverLifetime(particleSystem);
+        loadSerializedProperty(object, DeaccelerationOverLifetime, module, "easing", deserializeEasing);
+        return module;
     }
 
     /**

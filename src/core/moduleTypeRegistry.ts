@@ -13,6 +13,8 @@ import { Gravity } from "./modifiers/gravity";
 import { Module } from "./module";
 import { ModuleObject, ParticleSystem } from "./particleSystem";
 
+// TODO: Rename to serialization
+
 /**
  * TODO
  */
@@ -45,44 +47,32 @@ export const moduleTypeRegistry: ModuleTypeReference[] = [
     Gravity,
 ];
 
-/**
- * TODO
- */
-export const moduleToObject = <ModuleType extends ModuleTypeReference, ModuleInstanceType>(
+export const loadSerializedProperty = <
+    ModuleType extends ModuleTypeReference,
+    ModuleInstanceType,
+    PropertyKey extends keyof ModuleInstanceType,
+>(
+    object: object,
     moduleType: ModuleType,
-    savedProperties: Array<keyof ModuleInstanceType>,
     module: ModuleInstanceType,
-): ModuleObject => {
-    const obj: ModuleObject = {
-        moduleTypeId: moduleType.moduleTypeId,
-    };
-    savedProperties.forEach((property) => {
-        obj[property] = module[property];
-    });
-    return obj;
+    key: PropertyKey,
+    deserializeValue: (value: unknown) => ModuleInstanceType[typeof key] | undefined,
+): void => {
+    const value = object[key as keyof object];
+    if (!value) {
+        console.warn(`Missing module property ${moduleType.moduleTypeId}: "${key}"`);
+        return;
+    }
+
+    const deserializedValue = deserializeValue(value);
+    if (deserializedValue === undefined) {
+        console.warn(`Module property could not be deserialized ${moduleType.moduleTypeId}: "${key}"`);
+        return;
+    }
+
+    module[key] = deserializedValue;
 };
 
-/**
- * TODO
- */
-export const objectToModule = <
-    ModuleType extends ModuleTypeReference & { new (particleSystem: ParticleSystem): ModuleInstanceType },
-    ModuleInstanceType,
->(
-    moduleType: ModuleType,
-    loadedProperties: Array<keyof ModuleInstanceType>,
-    object: ModuleObject,
-    particleSystem: ParticleSystem,
-): ModuleInstanceType => {
-    const module = new moduleType(particleSystem);
-    loadedProperties.forEach((property) => {
-        const value = object[property];
-        if (!value) {
-            // This probably means that the module was saved with a different library version than the active one.
-            console.warn(`Missing module property ${moduleType.moduleTypeId}: "${property}"`);
-            return;
-        }
-        module[property] = value as ModuleInstanceType[typeof property];
-    });
-    return module;
+export const deserializePrimitiveDataType = <T>(serializedPrimitiveDataType: unknown): T => {
+    return serializedPrimitiveDataType as T;
 };

@@ -1,26 +1,26 @@
-import { moduleToObject, objectToModule, moduleTypeRegistry } from "core/moduleTypeRegistry";
+import { loadSerializedProperty } from "core/moduleTypeRegistry";
 import { ModuleObject, ParticleSystem } from "core/particleSystem";
-import { Shape } from "core/shapes/shape";
+import { Shape, serializeShape, deserializeShape, shapeContainsPosition } from "core/shapes/shape";
 import { Module } from "../module";
 
 /**
  * `Module` that destroys all particles whose center location is outside generic bounds.
  *
- * Bounds must be specified when the module is created and can be modified during run-time with `bounds` property.
- *
  * ```ts
  *  // Example usage
- *  const destructor = new OutsideBoundsDestructor(
- *      particleSystem,
- *      Shapes.Triangle({ x: 100, y: 400 }, { x: 300, y: 400 }, { x: 200, y: 0 }),
- *  );
+ *  const destructor = new OutsideBoundsDestructor(particleSystem);
+ *  destructor.bounds = {
+ *      type: "triangle",
+ *      v1: { x: 100, y: 400 },
+ *      v2: { x: 300, y: 400 },
+ *      v3: { x: 200, y: 0 },
+ *  };
+ *  particleSystem.modules.push(destructor);
  * ```
  */
 export class OutsideBoundsDestructor extends Module {
     /**
      * Particles outside these bounds are destroyed.
-     *
-     * Shapes can be selected via `Shapes` export.
      */
     bounds?: Shape;
 
@@ -35,7 +35,7 @@ export class OutsideBoundsDestructor extends Module {
         }
         for (let i = 0; i < len; i += 1) {
             const particle = this.parentSystem.particles[i];
-            if (!this.bounds.containsPosition(particle.position)) {
+            if (!shapeContainsPosition(this.bounds, particle.position)) {
                 this.parentSystem.destroyParticle(particle);
             }
         }
@@ -46,12 +46,16 @@ export class OutsideBoundsDestructor extends Module {
      * (such as numbers, strings, etc.) that can be serialized into strings natively.
      */
     toObject(): ModuleObject {
-        // TODO: 'bounds' are not a primitive data type, this will not work out of the box !
-        return moduleToObject(OutsideBoundsDestructor, ["bounds"], this);
+        return {
+            moduleTypeId: OutsideBoundsDestructor.moduleTypeId,
+            bounds: this.bounds && serializeShape(this.bounds),
+        };
     }
 
     static fromObject(particleSystem: ParticleSystem, object: ModuleObject): OutsideBoundsDestructor {
-        return objectToModule(OutsideBoundsDestructor, ["bounds"], object, particleSystem);
+        const module = new OutsideBoundsDestructor(particleSystem);
+        loadSerializedProperty(object, OutsideBoundsDestructor, module, "bounds", deserializeShape);
+        return module;
     }
 
     /**
