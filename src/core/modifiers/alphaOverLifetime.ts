@@ -1,4 +1,4 @@
-import { EasingFunction, EasingFunctions } from "core/easing";
+import { EasingFunction, EasingFunctions } from "../easing";
 import { Module } from "../module";
 
 /**

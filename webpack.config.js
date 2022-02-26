@@ -14,7 +14,9 @@ const getFiles = (src, ext, files = []) => {
     list.forEach((el) => {
         const pathEl = path.join(src, el).replace(/\\/g, "/");
         if (fs.statSync(pathEl).isDirectory()) {
-            getFiles(pathEl, ext, files);
+            if (!pathEl.includes("helpers")) {
+                getFiles(pathEl, ext, files);
+            }
         } else if (el.includes(ext)) {
             files.push([pathEl, el.split(ext)[0]]);
         }
@@ -31,6 +33,15 @@ const entry = appsFiles.reduce((obj, [filePath, name]) => {
 module.exports = {
     entry,
     resolve: {
+        alias: {
+            /**
+             * with the alias we can mimic the usage of the library like it would be in real application
+             * `import {ParticleSystem} from 'XXX`
+             *
+             * TODO: define the name of the library here
+             */
+            "@": path.resolve(__dirname, "./src/"),
+        },
         extensions: [".ts", "..."],
         plugins: [new TsconfigPathsPlugin()],
     },

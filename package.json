@@ -5,8 +5,7 @@
     "browserslist": "> 0.25%, not dead",
     "scripts": {
         "build": "webpack",
-        "start": "webpack-dev-server",
-        "dev": "npm run start",
+        "start": "webpack serve",
         "ci:build-dev": "npm run build",
         "ci:code-style": "npm run lint",
         "lint": "npx eslint ./src/**/*.ts",

@@ -1,5 +1,5 @@
-import { Particle } from "core/particle";
-import { ParticleSystem } from "core/particleSystem";
+import { Particle } from "@/core/particle";
+import { ParticleSystem } from "@/core/particleSystem";
 import * as PIXI from "pixi.js";
 
 /**

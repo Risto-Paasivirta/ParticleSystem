@@ -6,7 +6,10 @@
         "moduleResolution": "node",
         "strict": true,
         "noEmitOnError": true,
-        "baseUrl": "src"
+        "baseUrl": "./",
+        "paths": {
+            "@/*":["./src/*"]
+        }
     },
     "include": ["src/**/*.ts", "apps/**/*.ts"]
 }

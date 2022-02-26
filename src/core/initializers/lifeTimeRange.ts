@@ -1,6 +1,6 @@
 import { Module } from "../module";
 import { Particle } from "../particle";
-import { lerp } from "core/utilities";
+import { lerp } from "../utilities";
 
 export class LifeTimeRange extends Module {
     min = 1.5;

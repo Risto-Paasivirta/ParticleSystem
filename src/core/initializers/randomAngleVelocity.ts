@@ -1,6 +1,6 @@
 import { Module } from "../module";
 import { Particle } from "../particle";
-import { randomInRange } from "core/utilities";
+import { randomInRange } from "../utilities";
 
 /**
  * Module that assigns a random velocity to each particle along a random direction.

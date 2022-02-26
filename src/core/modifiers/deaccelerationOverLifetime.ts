@@ -1,7 +1,7 @@
-import { EasingFunction, EasingFunctions } from "core/easing";
-import { Particle } from "core/particle";
-import { Velocity } from "core/types";
-import { vec2 } from "core/utilities";
+import { EasingFunction, EasingFunctions } from "../easing";
+import { Particle } from "../particle";
+import { Velocity } from "../types";
+import { vec2 } from "../utilities";
 import { Module } from "../module";
 
 type ParticleWithInitialVelocity = Particle & {

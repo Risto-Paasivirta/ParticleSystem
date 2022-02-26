@@ -1,10 +1,10 @@
 import * as PIXI from "pixi.js";
-import { ParticleSystem } from "core/particleSystem";
-import { PointGenerator } from "core/generators/pointGenerator";
-import { RandomVelocity } from "core/initializers/randomVelocity";
-import { LifeTimeDestructor } from "core/destructors/lifeTimeDestructor";
-import { LifeTimeRange } from "core/initializers/lifeTimeRange";
-import { Renderer } from "renderer/renderer";
+import { ParticleSystem } from "@/core/particleSystem";
+import { PointGenerator } from "@/core/generators/pointGenerator";
+import { RandomVelocity } from "@/core/initializers/randomVelocity";
+import { LifeTimeDestructor } from "@/core/destructors/lifeTimeDestructor";
+import { LifeTimeRange } from "@/core/initializers/lifeTimeRange";
+import { Renderer } from "./helpers/renderer/renderer";
 
 document.body.style.margin = "0px 0px";
 document.body.style.width = "100vw";
