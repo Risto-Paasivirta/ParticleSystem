@@ -12,7 +12,6 @@
         "build-entry": "gulp cleanEntry && gulp buildEntry",
         "test": "npx jest"
     },
-    "author": "jkanchelov",
     "license": "MIT",
     "dependencies": {
         "@pixi/layers": "^1.0.11",
