@@ -12,6 +12,7 @@ document.body.style.width = "100vw";
 document.body.style.height = "100vh";
 
 const particleSystem = new ParticleSystem();
+const renderer = new Renderer(document.body, particleSystem);
 
 const lifetimeRange = new LifeTimeRange(particleSystem);
 lifetimeRange.min = 5;
@@ -30,33 +31,23 @@ randomVelocity.randomX = { min: -20, max: 20 };
 randomVelocity.randomY = { min: -20, max: 20 };
 particleSystem.modules.push(randomVelocity);
 
-setTimeout(() => {
-    const obj = particleSystem.toObject();
-    console.log(obj);
+// NOTE: This SHOULD be done in a module.
+// "color over lifetime"
+const alpha = 1;
+setInterval(() => {
+    particleSystem.particles.forEach((particle) => {
+        const cycle = 5000;
+        const asd = performance.now() % (cycle * 2);
+        const lerpFactor = asd < cycle ? asd / cycle : 1 - (asd - cycle) / cycle;
+        particle.scale = 0.4;
+        particle.alpha = alpha;
+        particle.color = lerpColor({ r: 1, g: 0, b: 0 }, { r: 0, g: 1, b: 0 }, lerpFactor);
+    });
+}, 1000 / 60);
 
-    setTimeout(() => {
-        const loadParticleSystem = ParticleSystem.fromObject(obj);
-        const renderer = new Renderer(document.body, loadParticleSystem);
-
-        // NOTE: This SHOULD be done in a module.
-        // "color over lifetime"
-        const alpha = 1;
-        setInterval(() => {
-            loadParticleSystem.particles.forEach((particle) => {
-                const cycle = 5000;
-                const asd = performance.now() % (cycle * 2);
-                const lerpFactor = asd < cycle ? asd / cycle : 1 - (asd - cycle) / cycle;
-                particle.scale = 0.4;
-                particle.alpha = alpha;
-                particle.color = lerpColor({ r: 1, g: 0, b: 0 }, { r: 0, g: 1, b: 0 }, lerpFactor);
-            });
-        }, 1000 / 60);
-
-        const loader = PIXI.Loader.shared;
-        loader.add("spritesheet", "./assets/kenney_particlePack.json");
-        loader.onComplete.once(() => {
-            renderer.setEffectTextures(PIXI.utils.TextureCache["circle_05.png"]);
-        });
-        loader.load();
-    }, 1000);
-}, 1000);
+const loader = PIXI.Loader.shared;
+loader.add("spritesheet", "./assets/kenney_particlePack.json");
+loader.onComplete.once(() => {
+    renderer.setEffectTextures(PIXI.utils.TextureCache["circle_05.png"]);
+});
+loader.load();
