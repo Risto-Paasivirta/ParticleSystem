@@ -1,4 +1,5 @@
 import { Particle } from "core/particle";
+import { ParticleEffect } from "core/particleEffect";
 import { ParticleSystem } from "core/particleSystem";
 import * as PIXI from "pixi.js";
 
@@ -31,8 +32,8 @@ export class Renderer {
 
         this.unusedSprites = [];
         this.activeSprites = new Map();
-        particleSystem.addParticleListeners.push(this.handleParticleAdd);
-        particleSystem.destroyParticleListeners.push(this.handleParticleDestroy);
+        particleSystem.effects.forEach(this.registerParticleEffect);
+        particleSystem.addParticleEffectListeners.push(this.registerParticleEffect);
 
         this.setupUpdateRenderLoop();
     }
@@ -41,6 +42,7 @@ export class Renderer {
 
     // #region User API
 
+    // TODO: Should allow setting textures for given particle effect!
     /**
      * Set particle textures.
      *
@@ -61,11 +63,19 @@ export class Renderer {
     // #region Internal logic
 
     /**
+     * Function that is called whenever a new particle effect is registed in the particle system.
+     */
+    private registerParticleEffect = (effect: ParticleEffect) => {
+        effect.addParticleListeners.push((particle) => this.handleParticleAdd(effect, particle));
+        effect.destroyParticleListeners.push((particle) => this.handleParticleDestroy(effect, particle));
+    };
+
+    /**
      * Function that is called whenever a new particle is added to the particle system.
      *
      * Prepares a PIXI sprite for rendering the particle.
      */
-    private handleParticleAdd = (particle: Particle) => {
+    private handleParticleAdd = (effect: ParticleEffect, particle: Particle) => {
         // Get sprite for rendering particle.
         let sprite = this.unusedSprites.pop();
         if (!sprite) {
@@ -91,7 +101,7 @@ export class Renderer {
      *
      * Removes the PIXI sprite that was used to render the particle.
      */
-    private handleParticleDestroy = (particle: Particle) => {
+    private handleParticleDestroy = (effect: ParticleEffect, particle: Particle) => {
         // Get sprite that is used to render the destroyed particle.
         const sprite = this.activeSprites.get(particle);
         if (sprite) {

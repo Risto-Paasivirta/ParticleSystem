@@ -13,29 +13,30 @@ document.body.style.height = "100vh";
 
 const particleSystem = new ParticleSystem();
 const renderer = new Renderer(document.body, particleSystem);
+const effect = particleSystem.addParticleEffect();
 
-const lifetimeRange = new LifeTimeRange(particleSystem);
+const lifetimeRange = new LifeTimeRange(effect);
 lifetimeRange.min = 5;
 lifetimeRange.max = 15;
-particleSystem.modules.push(lifetimeRange);
+effect.modules.push(lifetimeRange);
 
-const destructor = new LifeTimeDestructor(particleSystem);
-particleSystem.modules.push(destructor);
+const destructor = new LifeTimeDestructor(effect);
+effect.modules.push(destructor);
 
-const generator = new PointGenerator(particleSystem);
+const generator = new PointGenerator(effect);
 generator.position = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
-particleSystem.modules.push(generator);
+effect.modules.push(generator);
 
-const randomVelocity = new RandomVelocity(particleSystem);
+const randomVelocity = new RandomVelocity(effect);
 randomVelocity.randomX = { min: -20, max: 20 };
 randomVelocity.randomY = { min: -20, max: 20 };
-particleSystem.modules.push(randomVelocity);
+effect.modules.push(randomVelocity);
 
 // NOTE: This SHOULD be done in a module.
 // "color over lifetime"
 const alpha = 1;
 setInterval(() => {
-    particleSystem.particles.forEach((particle) => {
+    effect.particles.forEach((particle) => {
         const cycle = 5000;
         const asd = performance.now() % (cycle * 2);
         const lerpFactor = asd < cycle ? asd / cycle : 1 - (asd - cycle) / cycle;

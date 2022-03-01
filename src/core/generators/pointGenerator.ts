@@ -10,6 +10,6 @@ export class PointGenerator extends ParticleGenerator {
         particle.position.x = this.position.x;
         particle.position.y = this.position.y;
 
-        this.parentSystem.addParticle(particle);
+        this.particleEffect.addParticle(particle);
     }
 }

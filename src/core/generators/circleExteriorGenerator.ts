@@ -38,6 +38,6 @@ export class CircleExteriorGenerator extends ParticleGenerator {
         particle.position.y = this.center.y + Math.sin(this.nextParticleAngle) * this.radius;
         this.nextParticleAngle += this.angleStep;
 
-        this.parentSystem.addParticle(particle);
+        this.particleEffect.addParticle(particle);
     }
 }

@@ -9,7 +9,7 @@ export class LifeTimeRange extends Module {
     init(): void {
         this.active = false; //not used in update
 
-        this.parentSystem.addParticleListeners.push(this.handleParticleAdd);
+        this.particleEffect.addParticleListeners.push(this.handleParticleAdd);
     }
 
     handleParticleAdd = (particle: Particle): void => {

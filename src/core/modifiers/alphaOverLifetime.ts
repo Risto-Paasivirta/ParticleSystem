@@ -18,7 +18,7 @@ export class AlphaOverLifetime extends Module {
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     update(dt: number): void {
-        const particles = this.parentSystem.particles;
+        const particles = this.particleEffect.particles;
         const len = particles.length;
         for (let i = 0; i < len; i += 1) {
             const particle = particles[i];

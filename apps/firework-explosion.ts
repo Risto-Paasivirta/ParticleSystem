@@ -15,28 +15,29 @@ document.body.style.height = "100vh";
 
 const particleSystem = new ParticleSystem();
 const renderer = new Renderer(document.body, particleSystem);
+const effect = particleSystem.addParticleEffect();
 
-const generator = new PointGenerator(particleSystem);
+const generator = new PointGenerator(effect);
 generator.interval = 0;
-particleSystem.modules.push(generator);
+effect.modules.push(generator);
 
-const lifetime = new LifeTimeRange(particleSystem);
+const lifetime = new LifeTimeRange(effect);
 lifetime.min = 1.0;
 lifetime.max = 2.5;
-particleSystem.modules.push(lifetime);
+effect.modules.push(lifetime);
 
-const velocity = new RandomAngleVelocity(particleSystem);
-particleSystem.modules.push(velocity);
+const velocity = new RandomAngleVelocity(effect);
+effect.modules.push(velocity);
 
-const deacceleration = new DeaccelerationOverLifetime(particleSystem);
-particleSystem.modules.push(deacceleration);
+const deacceleration = new DeaccelerationOverLifetime(effect);
+effect.modules.push(deacceleration);
 
-const alpha = new AlphaOverLifetime(particleSystem);
+const alpha = new AlphaOverLifetime(effect);
 alpha.easing = EasingFunctions.easeOutCirc;
-particleSystem.modules.push(alpha);
+effect.modules.push(alpha);
 
-const destructor = new LifeTimeDestructor(particleSystem);
-particleSystem.modules.push(destructor);
+const destructor = new LifeTimeDestructor(effect);
+effect.modules.push(destructor);
 
 const explodeAt = (x: number, y: number) => {
     generator.position.x = x;

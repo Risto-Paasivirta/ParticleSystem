@@ -13,21 +13,23 @@ document.body.style.height = "100vh";
 const particleSystem = new ParticleSystem();
 const renderer = new Renderer(document.body, particleSystem);
 
-const generator = new PointGenerator(particleSystem);
+const effect = particleSystem.addParticleEffect();
+
+const generator = new PointGenerator(effect);
 generator.position = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
-particleSystem.modules.push(generator);
+effect.modules.push(generator);
 
-const initializer = new LifeTimeRange(particleSystem);
-particleSystem.modules.push(initializer);
+const initializer = new LifeTimeRange(effect);
+effect.modules.push(initializer);
 
-const randomVelocity = new RandomVelocity(particleSystem);
+const randomVelocity = new RandomVelocity(effect);
 randomVelocity.randomX = { min: -50, max: 50 };
 randomVelocity.randomY = { min: -100, max: -100 };
-particleSystem.modules.push(randomVelocity);
+effect.modules.push(randomVelocity);
 
-const gravity = new Gravity(particleSystem);
+const gravity = new Gravity(effect);
 gravity.strength = 0.2;
-particleSystem.modules.push(gravity);
+effect.modules.push(gravity);
 
 const loader = PIXI.Loader.shared;
 loader.add("spritesheet", "./assets/kenney_particlePack.json");

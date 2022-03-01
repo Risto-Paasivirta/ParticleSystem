@@ -14,27 +14,28 @@ document.body.style.height = "100vh";
 
 const particleSystem = new ParticleSystem();
 const renderer = new Renderer(document.body, particleSystem);
+const effect = particleSystem.addParticleEffect();
 
-const generator = new PointGenerator(particleSystem);
+const generator = new PointGenerator(effect);
 generator.position.x = window.innerWidth / 2;
 generator.position.y = window.innerHeight / 2;
 
-particleSystem.modules.push(generator);
+effect.modules.push(generator);
 
-const alphaRange = new AlphaRange(particleSystem);
-particleSystem.modules.push(alphaRange);
+const alphaRange = new AlphaRange(effect);
+effect.modules.push(alphaRange);
 
-const alphaOverLifeTimeModifier = new AlphaOverLifetime(particleSystem);
+const alphaOverLifeTimeModifier = new AlphaOverLifetime(effect);
 alphaOverLifeTimeModifier.easing = EasingFunctions.linear;
-particleSystem.modules.push(alphaOverLifeTimeModifier);
+effect.modules.push(alphaOverLifeTimeModifier);
 
-const randomVelocityModifier = new RandomVelocity(particleSystem);
+const randomVelocityModifier = new RandomVelocity(effect);
 randomVelocityModifier.randomX = { min: -100, max: 100 };
 randomVelocityModifier.randomY = { min: -100, max: 100 };
-particleSystem.modules.push(randomVelocityModifier);
+effect.modules.push(randomVelocityModifier);
 
-const destructor = new AlphaDestructor(particleSystem);
-particleSystem.modules.push(destructor);
+const destructor = new AlphaDestructor(effect);
+effect.modules.push(destructor);
 
 const loader = PIXI.Loader.shared;
 loader.add("spritesheet", "./assets/kenney_particlePack.json");
