@@ -34,6 +34,6 @@ effect.modules.push(gravity);
 const loader = PIXI.Loader.shared;
 loader.add("spritesheet", "./assets/kenney_particlePack.json");
 loader.onComplete.once(() => {
-    renderer.setEffectTextures(PIXI.utils.TextureCache["circle_05.png"]);
+    renderer.setEffectTextures(effect, PIXI.utils.TextureCache["circle_05.png"]);
 });
 loader.load();

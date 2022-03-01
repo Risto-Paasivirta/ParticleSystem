@@ -19,7 +19,7 @@ export class Renderer {
      *
      * When there are multiple textures, each particle will use a random one.
      */
-    private textures: PIXI.Texture[] | undefined;
+    private effectTextures: Map<ParticleEffect, PIXI.Texture[]> = new Map();
 
     constructor(container: HTMLElement, particleSystem: ParticleSystem) {
         this.container = container;
@@ -42,9 +42,8 @@ export class Renderer {
 
     // #region User API
 
-    // TODO: Should allow setting textures for given particle effect!
     /**
-     * Set particle textures.
+     * Set particle textures of a specific particle effect.
      *
      * Particle graphics are loaded in user code, using Pixie JS.
      *
@@ -54,8 +53,8 @@ export class Renderer {
      *
      * @param   textures    Any amount of PIXI textures.
      */
-    public setEffectTextures(...textures: PIXI.Texture[]): void {
-        this.textures = textures;
+    public setEffectTextures(particleEffect: ParticleEffect, ...textures: PIXI.Texture[]): void {
+        this.effectTextures.set(particleEffect, textures);
     }
 
     // #endregion
@@ -88,9 +87,10 @@ export class Renderer {
         }
         // Prepare sprite for rendering.
         sprite.visible = true;
-        if (this.textures) {
+        const effectTextures = this.effectTextures.get(effect);
+        if (effectTextures) {
             // Assign sprite texture.
-            sprite.texture = this.textures[Math.round(Math.random() * (this.textures.length - 1))];
+            sprite.texture = effectTextures[Math.round(Math.random() * (effectTextures.length - 1))];
         }
         // Save the relation between the particle and sprite.
         this.activeSprites.set(particle, sprite);

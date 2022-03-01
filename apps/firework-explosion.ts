@@ -62,6 +62,7 @@ const loader = PIXI.Loader.shared;
 loader.add("spritesheet", "./assets/kenney_particlePack.json");
 loader.onComplete.once(() => {
     renderer.setEffectTextures(
+        effect,
         PIXI.utils.TextureCache["light_01.png"],
         PIXI.utils.TextureCache["light_02.png"],
         PIXI.utils.TextureCache["light_03.png"],
