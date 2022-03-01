@@ -32,8 +32,8 @@ export class Renderer {
 
         this.unusedSprites = [];
         this.activeSprites = new Map();
-        particleSystem.effects.forEach(this.registerParticleEffect);
-        particleSystem.addParticleEffectListeners.push(this.registerParticleEffect);
+        particleSystem.effects.forEach((effect) => this.registerParticleEffect(effect));
+        particleSystem.addParticleEffectListeners.push((effect) => this.registerParticleEffect(effect));
 
         this.setupUpdateRenderLoop();
     }
@@ -136,16 +136,8 @@ export class Renderer {
      * Right now, this is automatically handled by renderer, meaning that testing apps should consider with updating particle system or rendering frames.
      */
     private setupUpdateRenderLoop() {
-        let isFirstFrame = true;
-
         this.app.ticker.add(() => {
             const dt = this.app.ticker.elapsedMS / 1000;
-
-            if (isFirstFrame) {
-                // Initialize particle system.
-                this.particleSystem.init();
-                isFirstFrame = false;
-            }
 
             // Update particle system.
             this.particleSystem.update(dt);

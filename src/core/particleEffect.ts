@@ -6,6 +6,7 @@ export class ParticleEffect {
     particleSystem: ParticleSystem;
     modules: Module[] = [];
     particles: Particle[] = [];
+    isInitialized = false;
 
     addParticleListeners: ((particle: Particle) => unknown)[] = [];
     destroyParticleListeners: ((particle: Particle) => unknown)[] = [];
