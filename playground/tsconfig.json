@@ -8,8 +8,8 @@
         "noEmitOnError": true,
         "baseUrl": "./",
         "paths": {
-            "@/*":["./src/*"]
+            "@/*":["../modular-particle-system/src/*"]
         }
     },
-    "include": ["src/**/*.ts", "apps/**/*.ts"]
+    "include": ["../modular-particle-system/src/**/*.ts", "apps/**/*.ts"]
 }

@@ -40,7 +40,7 @@ module.exports = {
              *
              * TODO: define the name of the library here
              */
-            "@": path.resolve(__dirname, "./src/"),
+            "@": path.resolve(__dirname, "../modular-particle-system/src/"),
         },
         extensions: [".ts", "..."],
         plugins: [new TsconfigPathsPlugin()],
