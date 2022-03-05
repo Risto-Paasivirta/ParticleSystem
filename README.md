@@ -33,7 +33,7 @@ The library is intended to be used via `NPM` with a custom integration to `PIXI.
 Install with:
 
 ```bash
-npm i modular-particle-system-test
+npm i modular-particle-system
 ```
 
 The library `NPM` version can be updated by editing the version number in `modular-particle-system/package.json` and using command `npm run release`
