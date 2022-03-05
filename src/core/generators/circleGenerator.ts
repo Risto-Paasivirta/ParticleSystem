@@ -10,7 +10,7 @@ import { ParticleGenerator } from "./generator";
  *
  * Each particle is generated next to each other, so that when particles are regularly generated they move around the circle.
  */
-export class CircleExteriorGenerator extends ParticleGenerator {
+export class CircleGenerator extends ParticleGenerator {
     /**
      * Center location of the circle.
      */
@@ -24,20 +24,19 @@ export class CircleExteriorGenerator extends ParticleGenerator {
      *
      * Unit is in _radians_.
      */
-    nextParticleAngle = 0;
+    nextParticleAngle = Math.random() * Math.PI * 2;
     /**
      * The angle that is incremented between each generated particle.
      *
      * Unit is in _radians_.
      */
-    angleStep = 0.5;
+    angleStep = 10;
 
     generateParticle(): void {
         const particle = new Particle();
-        particle.position.x = this.center.x + Math.cos(this.nextParticleAngle) * this.radius;
-        particle.position.y = this.center.y + Math.sin(this.nextParticleAngle) * this.radius;
+        particle.position.x = this.center.x + Math.cos(this.nextParticleAngle) * (this.radius * Math.random());
+        particle.position.y = this.center.y + Math.sin(this.nextParticleAngle) * (this.radius * Math.random());
         this.nextParticleAngle += this.angleStep;
-
         this.parentSystem.addParticle(particle);
     }
 }
