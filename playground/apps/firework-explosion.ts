@@ -1,12 +1,12 @@
 import * as PIXI from "pixi.js";
-import { ParticleSystem } from "@/core/particleSystem";
-import { PointGenerator } from "@/core/generators/pointGenerator";
-import { LifeTimeDestructor } from "@/core/destructors/lifeTimeDestructor";
-import { LifeTimeRange } from "@/core/initializers/lifeTimeRange";
-import { RandomAngleVelocity } from "@/core/initializers/randomAngleVelocity";
-import { DeaccelerationOverLifetime } from "@/core/modifiers/deaccelerationOverLifetime";
-import { AlphaOverLifetime } from "@/core/modifiers/alphaOverLifetime";
-import { EasingFunctions } from "@/core/easing";
+import { ParticleSystem } from "modular-particle-system/core/particleSystem";
+import { PointGenerator } from "modular-particle-system/core/generators/pointGenerator";
+import { LifeTimeDestructor } from "modular-particle-system/core/destructors/lifeTimeDestructor";
+import { LifeTimeRange } from "modular-particle-system/core/initializers/lifeTimeRange";
+import { RandomAngleVelocity } from "modular-particle-system/core/initializers/randomAngleVelocity";
+import { DeaccelerationOverLifetime } from "modular-particle-system/core/modifiers/deaccelerationOverLifetime";
+import { AlphaOverLifetime } from "modular-particle-system/core/modifiers/alphaOverLifetime";
+import { EasingFunctions } from "modular-particle-system/core/easing";
 import { Renderer } from "./helpers/renderer/renderer";
 
 document.body.style.margin = "0px 0px";
@@ -39,36 +39,36 @@ const destructor = new LifeTimeDestructor(particleSystem);
 particleSystem.modules.push(destructor);
 
 const explodeAt = (x: number, y: number) => {
-    generator.position.x = x;
-    generator.position.y = y;
-    for (let i = 0; i < 1000; i += 1) {
-        generator.generateParticle();
-    }
+  generator.position.x = x;
+  generator.position.y = y;
+  for (let i = 0; i < 1000; i += 1) {
+    generator.generateParticle();
+  }
 };
 
 setTimeout(() => {
+  explodeAt(window.innerWidth / 2, window.innerHeight / 2);
+  setInterval(() => {
     explodeAt(window.innerWidth / 2, window.innerHeight / 2);
-    setInterval(() => {
-        explodeAt(window.innerWidth / 2, window.innerHeight / 2);
-    }, 4000);
+  }, 4000);
 }, 1000);
 
 document.addEventListener("click", (e) => {
-    explodeAt(e.clientX, e.clientY);
+  explodeAt(e.clientX, e.clientY);
 });
 
 const loader = PIXI.Loader.shared;
 loader.add("spritesheet", "./assets/kenney_particlePack.json");
 loader.onComplete.once(() => {
-    renderer.setEffectTextures(
-        PIXI.utils.TextureCache["light_01.png"],
-        PIXI.utils.TextureCache["light_02.png"],
-        PIXI.utils.TextureCache["light_03.png"],
-        PIXI.utils.TextureCache["magic_01.png"],
-        PIXI.utils.TextureCache["magic_02.png"],
-        PIXI.utils.TextureCache["magic_03.png"],
-        PIXI.utils.TextureCache["magic_04.png"],
-        PIXI.utils.TextureCache["magic_05.png"],
-    );
+  renderer.setEffectTextures(
+    PIXI.utils.TextureCache["light_01.png"],
+    PIXI.utils.TextureCache["light_02.png"],
+    PIXI.utils.TextureCache["light_03.png"],
+    PIXI.utils.TextureCache["magic_01.png"],
+    PIXI.utils.TextureCache["magic_02.png"],
+    PIXI.utils.TextureCache["magic_03.png"],
+    PIXI.utils.TextureCache["magic_04.png"],
+    PIXI.utils.TextureCache["magic_05.png"]
+  );
 });
 loader.load();

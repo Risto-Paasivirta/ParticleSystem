@@ -1,10 +1,10 @@
 import * as PIXI from "pixi.js";
-import { ParticleSystem } from "@/core/particleSystem";
-import { PointGenerator } from "@/core/generators/pointGenerator";
-import { RandomVelocity } from "@/core/initializers/randomVelocity";
-import { LifeTimeRange } from "@/core/initializers/lifeTimeRange";
-import { OutsideBoundsDestructor } from "@/core/destructors/outsideBoundsDestructor";
-import { Shapes } from "@/core/shapes/shapes";
+import { ParticleSystem } from "modular-particle-system/core/particleSystem";
+import { PointGenerator } from "modular-particle-system/core/generators/pointGenerator";
+import { RandomVelocity } from "modular-particle-system/core/initializers/randomVelocity";
+import { LifeTimeRange } from "modular-particle-system/core/initializers/lifeTimeRange";
+import { OutsideBoundsDestructor } from "modular-particle-system/core/destructors/outsideBoundsDestructor";
+import { Shapes } from "modular-particle-system/core/shapes/shapes";
 import { Renderer } from "./helpers/renderer/renderer";
 
 document.body.style.margin = "0px 0px";
@@ -28,14 +28,14 @@ modifier.randomY = { min: -100, max: 100 };
 particleSystem.modules.push(modifier);
 
 const destructor = new OutsideBoundsDestructor(
-    particleSystem,
-    Shapes.Triangle({ x: 100, y: 400 }, { x: 300, y: 400 }, { x: 200, y: 0 }),
+  particleSystem,
+  Shapes.Triangle({ x: 100, y: 400 }, { x: 300, y: 400 }, { x: 200, y: 0 })
 );
 particleSystem.modules.push(destructor);
 
 const loader = PIXI.Loader.shared;
 loader.add("spritesheet", "./assets/kenney_particlePack.json");
 loader.onComplete.once(() => {
-    renderer.setEffectTextures(PIXI.utils.TextureCache["circle_01.png"]);
+  renderer.setEffectTextures(PIXI.utils.TextureCache["circle_01.png"]);
 });
 loader.load();

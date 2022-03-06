@@ -1,11 +1,11 @@
+import { AlphaDestructor } from "modular-particle-system/core/destructors/alphaDestructor";
+import { EasingFunctions } from "modular-particle-system/core/easing";
+import { PointGenerator } from "modular-particle-system/core/generators/pointGenerator";
+import { AlphaRange } from "modular-particle-system/core/initializers/alphaRange";
+import { RandomVelocity } from "modular-particle-system/core/initializers/randomVelocity";
+import { AlphaOverLifetime } from "modular-particle-system/core/modifiers/alphaOverLifetime";
+import { ParticleSystem } from "modular-particle-system/core/particleSystem";
 import * as PIXI from "pixi.js";
-import { ParticleSystem } from "@/core/particleSystem";
-import { PointGenerator } from "@/core/generators/pointGenerator";
-import { AlphaDestructor } from "@/core/destructors/alphaDestructor";
-import { AlphaRange } from "@/core/initializers/alphaRange";
-import { AlphaOverLifetime } from "@/core/modifiers/alphaOverLifetime";
-import { RandomVelocity } from "@/core/initializers/randomVelocity";
-import { EasingFunctions } from "@/core/easing";
 import { Renderer } from "./helpers/renderer/renderer";
 
 document.body.style.margin = "0px 0px";
@@ -39,17 +39,17 @@ particleSystem.modules.push(destructor);
 const loader = PIXI.Loader.shared;
 loader.add("spritesheet", "./assets/kenney_particlePack.json");
 loader.onComplete.once(() => {
-    renderer.setEffectTextures(
-        PIXI.utils.TextureCache["smoke_01.png"],
-        PIXI.utils.TextureCache["smoke_02.png"],
-        PIXI.utils.TextureCache["smoke_03.png"],
-        PIXI.utils.TextureCache["smoke_04.png"],
-        PIXI.utils.TextureCache["smoke_05.png"],
-        PIXI.utils.TextureCache["smoke_06.png"],
-        PIXI.utils.TextureCache["smoke_07.png"],
-        PIXI.utils.TextureCache["smoke_08.png"],
-        PIXI.utils.TextureCache["smoke_09.png"],
-        PIXI.utils.TextureCache["smoke_09.png"],
-    );
+  renderer.setEffectTextures(
+    PIXI.utils.TextureCache["smoke_01.png"],
+    PIXI.utils.TextureCache["smoke_02.png"],
+    PIXI.utils.TextureCache["smoke_03.png"],
+    PIXI.utils.TextureCache["smoke_04.png"],
+    PIXI.utils.TextureCache["smoke_05.png"],
+    PIXI.utils.TextureCache["smoke_06.png"],
+    PIXI.utils.TextureCache["smoke_07.png"],
+    PIXI.utils.TextureCache["smoke_08.png"],
+    PIXI.utils.TextureCache["smoke_09.png"],
+    PIXI.utils.TextureCache["smoke_09.png"]
+  );
 });
 loader.load();

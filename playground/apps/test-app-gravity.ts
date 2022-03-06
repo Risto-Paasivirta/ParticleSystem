@@ -1,9 +1,9 @@
 import * as PIXI from "pixi.js";
-import { ParticleSystem } from "@/core/particleSystem";
-import { PointGenerator } from "@/core/generators/pointGenerator";
-import { RandomVelocity } from "@/core/initializers/randomVelocity";
-import { LifeTimeRange } from "@/core/initializers/lifeTimeRange";
-import { Gravity } from "@/core/modifiers/gravity";
+import { ParticleSystem } from "modular-particle-system/core/particleSystem";
+import { PointGenerator } from "modular-particle-system/core/generators/pointGenerator";
+import { RandomVelocity } from "modular-particle-system/core/initializers/randomVelocity";
+import { LifeTimeRange } from "modular-particle-system/core/initializers/lifeTimeRange";
+import { Gravity } from "modular-particle-system/core/modifiers/gravity";
 import { Renderer } from "./helpers/renderer/renderer";
 
 document.body.style.margin = "0px 0px";
@@ -32,6 +32,6 @@ particleSystem.modules.push(gravity);
 const loader = PIXI.Loader.shared;
 loader.add("spritesheet", "./assets/kenney_particlePack.json");
 loader.onComplete.once(() => {
-    renderer.setEffectTextures(PIXI.utils.TextureCache["circle_05.png"]);
+  renderer.setEffectTextures(PIXI.utils.TextureCache["circle_05.png"]);
 });
 loader.load();

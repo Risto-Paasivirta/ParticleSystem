@@ -1,6 +1,6 @@
-import { Particle } from "@/core/particle";
-import { ParticleEffect } from "@/core/particleEffect";
-import { ParticleSystem } from "@/core/particleSystem";
+import { Particle } from "modular-particle-system/core/particle";
+import { ParticleEffect } from "modular-particle-system/core/particleEffect";
+import { ParticleSystem } from "modular-particle-system/core/particleSystem";
 import * as PIXI from "pixi.js";
 
 /**
