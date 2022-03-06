@@ -1,4 +1,5 @@
 import { EasingFunction, EasingFunctions } from "core/easing";
+import { clamp } from "core/utilities";
 import { Module } from "../module";
 
 /**
@@ -22,7 +23,7 @@ export class AlphaOverLifetime extends Module {
         const len = particles.length;
         for (let i = 0; i < len; i += 1) {
             const particle = particles[i];
-            const alpha = 1 - this.easing(particle.timeLived / particle.lifeTime);
+            const alpha = 1 - this.easing(clamp(particle.timeLived / particle.lifeTime, 0, 1));
             particle.alpha = alpha;
         }
     }
