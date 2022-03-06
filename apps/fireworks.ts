@@ -1,14 +1,12 @@
+import { AlphaDestructor } from "core/destructors/alphaDestructor";
+import { PointGenerator } from "core/generators/pointGenerator";
+import { LifeTimeRange } from "core/initializers/lifeTimeRange";
+import { RandomAngleVelocity } from "core/initializers/randomAngleVelocity";
+import { AlphaOverLifetime } from "core/modifiers/alphaOverLifetime";
+import { DeaccelerationOverLifetime } from "core/modifiers/deaccelerationOverLifetime";
+import { ParticleSystem } from "core/particleSystem";
 import * as PIXI from "pixi.js";
-import { ParticleSystem } from "@/core/particleSystem";
-import { PointGenerator } from "@/core/generators/pointGenerator";
-import { LifeTimeDestructor } from "@/core/destructors/lifeTimeDestructor";
-import { LifeTimeRange } from "@/core/initializers/lifeTimeRange";
-import { RandomAngleVelocity } from "@/core/initializers/randomAngleVelocity";
-import { DeaccelerationOverLifetime } from "@/core/modifiers/deaccelerationOverLifetime";
-import { AlphaOverLifetime } from "@/core/modifiers/alphaOverLifetime";
-import { EasingFunctions } from "@/core/easing";
-import { Renderer } from "./helpers/renderer/renderer";
-import { AlphaDestructor } from "@/core/destructors/alphaDestructor";
+import { Renderer } from "renderer/renderer";
 
 document.body.style.margin = "0px 0px";
 document.body.style.width = "100vw";
