@@ -1,5 +1,4 @@
 import { Particle } from "modular-particle-system/core/particle";
-import { ParticleEffect } from "modular-particle-system/core/particleEffect";
 import { ParticleSystem } from "modular-particle-system/core/particleSystem";
 import * as PIXI from "pixi.js";
 
@@ -19,7 +18,7 @@ export class Renderer {
    *
    * When there are multiple textures, each particle will use a random one.
    */
-  private effectTextures: Map<ParticleEffect, PIXI.Texture[]> = new Map();
+  private textures: PIXI.Texture[] | undefined;
 
   constructor(container: HTMLElement, particleSystem: ParticleSystem) {
     this.container = container;
@@ -32,12 +31,8 @@ export class Renderer {
 
     this.unusedSprites = [];
     this.activeSprites = new Map();
-    particleSystem.effects.forEach((effect) =>
-      this.registerParticleEffect(effect)
-    );
-    particleSystem.addParticleEffectListeners.push((effect) =>
-      this.registerParticleEffect(effect)
-    );
+    particleSystem.addParticleListeners.push(this.handleParticleAdd);
+    particleSystem.destroyParticleListeners.push(this.handleParticleDestroy);
 
     this.setupUpdateRenderLoop();
   }
@@ -47,7 +42,7 @@ export class Renderer {
   // #region User API
 
   /**
-   * Set particle textures of a specific particle effect.
+   * Set particle textures.
    *
    * Particle graphics are loaded in user code, using Pixie JS.
    *
@@ -57,11 +52,8 @@ export class Renderer {
    *
    * @param   textures    Any amount of PIXI textures.
    */
-  public setEffectTextures(
-    particleEffect: ParticleEffect,
-    ...textures: PIXI.Texture[]
-  ): void {
-    this.effectTextures.set(particleEffect, textures);
+  public setEffectTextures(...textures: PIXI.Texture[]): void {
+    this.textures = textures;
   }
 
   // #endregion
@@ -69,23 +61,11 @@ export class Renderer {
   // #region Internal logic
 
   /**
-   * Function that is called whenever a new particle effect is registed in the particle system.
-   */
-  private registerParticleEffect = (effect: ParticleEffect) => {
-    effect.addParticleListeners.push((particle) =>
-      this.handleParticleAdd(effect, particle)
-    );
-    effect.destroyParticleListeners.push((particle) =>
-      this.handleParticleDestroy(effect, particle)
-    );
-  };
-
-  /**
    * Function that is called whenever a new particle is added to the particle system.
    *
    * Prepares a PIXI sprite for rendering the particle.
    */
-  private handleParticleAdd = (effect: ParticleEffect, particle: Particle) => {
+  private handleParticleAdd = (particle: Particle) => {
     // Get sprite for rendering particle.
     let sprite = this.unusedSprites.pop();
     if (!sprite) {
@@ -98,11 +78,10 @@ export class Renderer {
     }
     // Prepare sprite for rendering.
     sprite.visible = true;
-    const effectTextures = this.effectTextures.get(effect);
-    if (effectTextures) {
+    if (this.textures) {
       // Assign sprite texture.
       sprite.texture =
-        effectTextures[Math.round(Math.random() * (effectTextures.length - 1))];
+        this.textures[Math.round(Math.random() * (this.textures.length - 1))];
     }
     // Save the relation between the particle and sprite.
     this.activeSprites.set(particle, sprite);
@@ -113,10 +92,7 @@ export class Renderer {
    *
    * Removes the PIXI sprite that was used to render the particle.
    */
-  private handleParticleDestroy = (
-    effect: ParticleEffect,
-    particle: Particle
-  ) => {
+  private handleParticleDestroy = (particle: Particle) => {
     // Get sprite that is used to render the destroyed particle.
     const sprite = this.activeSprites.get(particle);
     if (sprite) {
@@ -155,8 +131,16 @@ export class Renderer {
    * Right now, this is automatically handled by renderer, meaning that testing apps should consider with updating particle system or rendering frames.
    */
   private setupUpdateRenderLoop() {
+    let isFirstFrame = true;
+
     this.app.ticker.add(() => {
       const dt = this.app.ticker.elapsedMS / 1000;
+
+      if (isFirstFrame) {
+        // Initialize particle system.
+        this.particleSystem.init();
+        isFirstFrame = false;
+      }
 
       // Update particle system.
       this.particleSystem.update(dt);
