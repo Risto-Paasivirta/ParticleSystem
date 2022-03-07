@@ -12,8 +12,7 @@
         "release": "npm run release:build && cd release && npm publish",
         "release:build": "npm run release:clean && npm run compile && mkdir release && cp -r LICENSE README.md package.json dist/** release",
         "release:clean": "rm -rf release",
-        "ci:code-style": "npm run lint",
-        "build-entry": "gulp cleanEntry && gulp buildEntry"
+        "ci:code-style": "npm run lint"
     },
     "license": "MIT",
     "dependencies": {},
@@ -22,7 +21,6 @@
         "@typescript-eslint/eslint-plugin": "^5.10.2",
         "@typescript-eslint/parser": "^5.10.2",
         "eslint": "^8.8.0",
-        "gulp": "^4.0.2",
         "jest": "^27.4.7",
         "jest-canvas-mock": "^2.3.1",
         "prettier": "^2.5.1",
