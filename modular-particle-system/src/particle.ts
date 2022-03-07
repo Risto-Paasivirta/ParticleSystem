@@ -7,7 +7,7 @@ export class Particle {
     alpha = 1.0;
     rotation = 0;
     timeLived = 0;
-    lifeTime = 2;
+    lifeTim = 2;
     scale = 0.1;
     destroyed = false;
 }
