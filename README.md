@@ -42,13 +42,23 @@ cd `playground`
    npm start
    ```
 
-## Usage and publication
+## Installation and Usage
 
 The library can be installed via `NPM`:
 
 ```bash
 npm i modular-particle-system
 ```
+
+The library is published as _EcmaScript_ module, which means that it can be used with any module bundler, such as _WebPack_, _Parcel_, _Rollup_, etc.
+
+The syntax for importing parts of the library is as follows:
+
+```js
+import { ParticleSystem } from "modular-particle-system/particleSystem";
+```
+
+Usage examples can be inspired from the [development applications found in GitHub](https://github.com/Risto-Paasivirta/ParticleSystem/tree/master/playground/apps).
 
 ## License:
 
