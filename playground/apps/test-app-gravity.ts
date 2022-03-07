@@ -1,9 +1,9 @@
 import * as PIXI from "pixi.js";
-import { ParticleSystem } from "modular-particle-system/core/particleSystem";
-import { PointGenerator } from "modular-particle-system/core/generators/pointGenerator";
-import { RandomVelocity } from "modular-particle-system/core/initializers/randomVelocity";
-import { LifeTimeRange } from "modular-particle-system/core/initializers/lifeTimeRange";
-import { Gravity } from "modular-particle-system/core/modifiers/gravity";
+import { ParticleSystem } from "modular-particle-system/particleSystem";
+import { PointGenerator } from "modular-particle-system/generators/pointGenerator";
+import { RandomVelocity } from "modular-particle-system/initializers/randomVelocity";
+import { LifeTimeRange } from "modular-particle-system/initializers/lifeTimeRange";
+import { Gravity } from "modular-particle-system/modifiers/gravity";
 import { Renderer } from "./helpers/renderer/renderer";
 
 document.body.style.margin = "0px 0px";

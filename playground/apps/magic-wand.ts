@@ -1,9 +1,9 @@
 import * as PIXI from "pixi.js";
-import { ParticleSystem } from "modular-particle-system/core/particleSystem";
-import { PointGenerator } from "modular-particle-system/core/generators/pointGenerator";
-import { RandomVelocity } from "modular-particle-system/core/initializers/randomVelocity";
-import { LifeTimeDestructor } from "modular-particle-system/core/destructors/lifeTimeDestructor";
-import { LifeTimeRange } from "modular-particle-system/core/initializers/lifeTimeRange";
+import { ParticleSystem } from "modular-particle-system/particleSystem";
+import { PointGenerator } from "modular-particle-system/generators/pointGenerator";
+import { RandomVelocity } from "modular-particle-system/initializers/randomVelocity";
+import { LifeTimeDestructor } from "modular-particle-system/destructors/lifeTimeDestructor";
+import { LifeTimeRange } from "modular-particle-system/initializers/lifeTimeRange";
 import { Renderer } from "./helpers/renderer/renderer";
 
 document.body.style.margin = "0px 0px";

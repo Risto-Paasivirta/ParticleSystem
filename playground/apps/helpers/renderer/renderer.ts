@@ -1,5 +1,5 @@
-import { Particle } from "modular-particle-system/core/particle";
-import { ParticleSystem } from "modular-particle-system/core/particleSystem";
+import { Particle } from "modular-particle-system/particle";
+import { ParticleSystem } from "modular-particle-system/particleSystem";
 import * as PIXI from "pixi.js";
 
 /**

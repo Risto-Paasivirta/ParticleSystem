@@ -1,12 +1,12 @@
 import * as PIXI from "pixi.js";
-import { ParticleSystem } from "modular-particle-system/core/particleSystem";
-import { PointGenerator } from "modular-particle-system/core/generators/pointGenerator";
-import { LifeTimeDestructor } from "modular-particle-system/core/destructors/lifeTimeDestructor";
-import { LifeTimeRange } from "modular-particle-system/core/initializers/lifeTimeRange";
-import { RandomAngleVelocity } from "modular-particle-system/core/initializers/randomAngleVelocity";
-import { DeaccelerationOverLifetime } from "modular-particle-system/core/modifiers/deaccelerationOverLifetime";
-import { AlphaOverLifetime } from "modular-particle-system/core/modifiers/alphaOverLifetime";
-import { EasingFunctions } from "modular-particle-system/core/easing";
+import { ParticleSystem } from "modular-particle-system/particleSystem";
+import { PointGenerator } from "modular-particle-system/generators/pointGenerator";
+import { LifeTimeDestructor } from "modular-particle-system/destructors/lifeTimeDestructor";
+import { LifeTimeRange } from "modular-particle-system/initializers/lifeTimeRange";
+import { RandomAngleVelocity } from "modular-particle-system/initializers/randomAngleVelocity";
+import { DeaccelerationOverLifetime } from "modular-particle-system/modifiers/deaccelerationOverLifetime";
+import { AlphaOverLifetime } from "modular-particle-system/modifiers/alphaOverLifetime";
+import { EasingFunctions } from "modular-particle-system/easing";
 import { Renderer } from "./helpers/renderer/renderer";
 
 document.body.style.margin = "0px 0px";

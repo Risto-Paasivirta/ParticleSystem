@@ -1,10 +1,10 @@
-import { AlphaDestructor } from "modular-particle-system/core/destructors/alphaDestructor";
-import { EasingFunctions } from "modular-particle-system/core/easing";
-import { PointGenerator } from "modular-particle-system/core/generators/pointGenerator";
-import { AlphaRange } from "modular-particle-system/core/initializers/alphaRange";
-import { RandomVelocity } from "modular-particle-system/core/initializers/randomVelocity";
-import { AlphaOverLifetime } from "modular-particle-system/core/modifiers/alphaOverLifetime";
-import { ParticleSystem } from "modular-particle-system/core/particleSystem";
+import { AlphaDestructor } from "modular-particle-system/destructors/alphaDestructor";
+import { EasingFunctions } from "modular-particle-system/easing";
+import { PointGenerator } from "modular-particle-system/generators/pointGenerator";
+import { AlphaRange } from "modular-particle-system/initializers/alphaRange";
+import { RandomVelocity } from "modular-particle-system/initializers/randomVelocity";
+import { AlphaOverLifetime } from "modular-particle-system/modifiers/alphaOverLifetime";
+import { ParticleSystem } from "modular-particle-system/particleSystem";
 import * as PIXI from "pixi.js";
 import { Renderer } from "./helpers/renderer/renderer";
 
