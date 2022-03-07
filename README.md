@@ -16,7 +16,7 @@ By combining these functionally simple modules, a wide variety of behaviors can 
 This core package does NOT include any integration to a graphics framework.
 It is designed to be completely free of any usage restrictions regarding a particular framework.
 
-This repository does, however, include an [example integration with `PIXI.js`](https://github.com/Risto-Paasivirta/ParticleSystem/blob/nk/sketch-npm-publication/playground/apps/helpers/renderer/renderer.ts).
+This repository does, however, include an [example integration with `PIXI.js`](https://github.com/Risto-Paasivirta/ParticleSystem/tree/master/playground/apps/helpers/renderer/renderer.ts)
 It can be referenced to learn how the particle system can be integrated with a graphics framework.
 
 ## Repository structure
