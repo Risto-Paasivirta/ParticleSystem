@@ -1,6 +1,7 @@
-import { Module } from "../module";
+import { Module, ModuleObject } from "../module";
+import { loadSerializedProperty, deserializePrimitiveDataType } from "../moduleSerialization";
 import { Particle } from "../particle";
-import { Range } from "../types";
+import { ParticleEffect } from "../particleEffect";
 import { randomInRange } from "../utilities";
 
 /**
@@ -27,4 +28,30 @@ export class AlphaRange extends Module {
     handleParticleAdd = (particle: Particle): void => {
         particle.alpha = randomInRange(this.min, this.max);
     };
+
+    /**
+     * Wrap the properties of the module into a JSON containing only primitive JavaScript data types
+     * (such as numbers, strings, etc.) that can be serialized into strings natively.
+     */
+    toObject(): ModuleObject {
+        return {
+            moduleTypeId: AlphaRange.moduleTypeId,
+            min: this.min,
+            max: this.max,
+        };
+    }
+
+    static fromObject(particleEffect: ParticleEffect, object: ModuleObject): AlphaRange {
+        const module = new AlphaRange(particleEffect);
+        loadSerializedProperty(object, AlphaRange, module, "min", deserializePrimitiveDataType);
+        loadSerializedProperty(object, AlphaRange, module, "max", deserializePrimitiveDataType);
+        return module;
+    }
+
+    /**
+     * Serializable identifier for the module.
+     *
+     * This must be unique between all existing Modules in the library.
+     */
+    static moduleTypeId = "AlphaRange";
 }

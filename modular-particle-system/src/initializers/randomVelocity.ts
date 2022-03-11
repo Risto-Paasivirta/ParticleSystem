@@ -1,7 +1,9 @@
-import { Range } from "../types";
-import { Module } from "../module";
+import { Module, ModuleObject } from "../module";
+import { loadSerializedProperty, deserializePrimitiveDataType } from "../moduleSerialization";
 import { Particle } from "../particle";
+import { ParticleEffect } from "../particleEffect";
 import { lerp } from "../utilities";
+import { Range } from "../types";
 
 export class RandomVelocity extends Module {
     randomX: Range = { min: 100, max: 100 };
@@ -15,4 +17,30 @@ export class RandomVelocity extends Module {
         particle.velocity.x = lerp(this.randomX.min, this.randomX.max, Math.random());
         particle.velocity.y = lerp(this.randomY.min, this.randomY.max, Math.random());
     };
+
+    /**
+     * Wrap the properties of the module into a JSON containing only primitive JavaScript data types
+     * (such as numbers, strings, etc.) that can be serialized into strings natively.
+     */
+    toObject(): ModuleObject {
+        return {
+            moduleTypeId: RandomVelocity.moduleTypeId,
+            randomX: this.randomX,
+            randomY: this.randomY,
+        };
+    }
+
+    static fromObject(particleEffect: ParticleEffect, object: ModuleObject): RandomVelocity {
+        const module = new RandomVelocity(particleEffect);
+        loadSerializedProperty(object, RandomVelocity, module, "randomX", deserializePrimitiveDataType);
+        loadSerializedProperty(object, RandomVelocity, module, "randomY", deserializePrimitiveDataType);
+        return module;
+    }
+
+    /**
+     * Serializable identifier for the module.
+     *
+     * This must be unique between all existing Modules in the library.
+     */
+    static moduleTypeId = "RandomVelocity";
 }

@@ -1,9 +1,12 @@
-import { Position } from "../types";
-import { Particle } from "../particle";
-import { ParticleGenerator } from "./generator";
-
 // NOTE: Ideally we would have a class for `CircleGenerator`, where user could configure whether to generate particles inside the circle or along the exterior.
 // `generator.onlyExterior = true` or something like this.
+
+import { ModuleObject } from "../module";
+import { loadSerializedProperty, deserializePrimitiveDataType } from "../moduleSerialization";
+import { Particle } from "../particle";
+import { ParticleEffect } from "../particleEffect";
+import { Position } from "../types";
+import { ParticleGenerator } from "./generator";
 
 /**
  * Generator module that creates particles along the exterior of a circular area.
@@ -40,4 +43,40 @@ export class CircleExteriorGenerator extends ParticleGenerator {
 
         this.particleEffect.addParticle(particle);
     }
+
+    /**
+     * Wrap the properties of the module into a JSON containing only primitive JavaScript data types
+     * (such as numbers, strings, etc.) that can be serialized into strings natively.
+     */
+    toObject(): ModuleObject {
+        return {
+            moduleTypeId: CircleExteriorGenerator.moduleTypeId,
+            center: this.center,
+            radius: this.radius,
+            nextParticleAngle: this.nextParticleAngle,
+            angleStep: this.angleStep,
+        };
+    }
+
+    static fromObject(particleEffect: ParticleEffect, object: ModuleObject): CircleExteriorGenerator {
+        const module = new CircleExteriorGenerator(particleEffect);
+        loadSerializedProperty(object, CircleExteriorGenerator, module, "center", deserializePrimitiveDataType);
+        loadSerializedProperty(object, CircleExteriorGenerator, module, "radius", deserializePrimitiveDataType);
+        loadSerializedProperty(
+            object,
+            CircleExteriorGenerator,
+            module,
+            "nextParticleAngle",
+            deserializePrimitiveDataType,
+        );
+        loadSerializedProperty(object, CircleExteriorGenerator, module, "angleStep", deserializePrimitiveDataType);
+        return module;
+    }
+
+    /**
+     * Serializable identifier for the module.
+     *
+     * This must be unique between all existing Modules in the library.
+     */
+    static moduleTypeId = "CircleExteriorGenerator";
 }

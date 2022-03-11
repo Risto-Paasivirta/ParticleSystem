@@ -4,7 +4,6 @@ import { PointGenerator } from "modular-particle-system/generators/pointGenerato
 import { RandomVelocity } from "modular-particle-system/initializers/randomVelocity";
 import { LifeTimeRange } from "modular-particle-system/initializers/lifeTimeRange";
 import { OutsideBoundsDestructor } from "modular-particle-system/destructors/outsideBoundsDestructor";
-import { Shapes } from "modular-particle-system/shapes/shapes";
 import { Renderer } from "./helpers/renderer/renderer";
 
 document.body.style.margin = "0px 0px";
@@ -30,8 +29,11 @@ effect.modules.push(modifier);
 
 const destructor = new OutsideBoundsDestructor(
     effect,
-    Shapes.Triangle({ x: 100, y: 400 }, { x: 300, y: 400 }, { x: 200, y: 0 }),
 );
+destructor.bounds = {
+    type: 'triangle',
+    v1: { x: 100, y: 400 }, v2:{ x: 300, y: 400 }, v3:{ x: 200, y: 0 }
+}
 effect.modules.push(destructor);
 
 const loader = PIXI.Loader.shared;

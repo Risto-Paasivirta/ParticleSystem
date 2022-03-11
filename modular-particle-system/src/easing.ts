@@ -59,3 +59,24 @@ export const EasingFunctions = {
         return x === 0 ? 0 : x === 1 ? 1 : Math.pow(2, -10 * x) * Math.sin((x * 10 - 0.75) * c4) + 1;
     }) as EasingFunction,
 };
+
+/**
+ * Serialize easing function to a primitive data type that can be later deserialized.
+ */
+export const serializeEasing = (easingFunction: EasingFunction): unknown => {
+    const entry = Object.entries(EasingFunctions).find((entry) => entry[1] === easingFunction);
+    if (!entry) {
+        throw new Error(`serializeEasing supplied value is not an EasingFunction`);
+    }
+    // Return key in EasingFunctions. For example "linear", "easeOutElastic", etc.
+    return entry[0];
+};
+
+/**
+ * Deserialize an easing function that was serialized using `serializeEasing`.
+ */
+export const deserializeEasing = (serializedEasing: unknown): EasingFunction | undefined => {
+    if (typeof serializedEasing !== "string") return undefined;
+    const easingFunction = Object.entries(EasingFunctions).find((entry) => entry[0] === serializedEasing);
+    return easingFunction ? easingFunction[1] : undefined;
+};

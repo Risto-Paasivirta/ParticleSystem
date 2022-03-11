@@ -1,5 +1,7 @@
-import { Module } from "../module";
+import { Module, ModuleObject } from "../module";
+import { loadSerializedProperty, deserializePrimitiveDataType } from "../moduleSerialization";
 import { Particle } from "../particle";
+import { ParticleEffect } from "../particleEffect";
 import { randomInRange } from "../utilities";
 
 /**
@@ -25,4 +27,30 @@ export class RandomAngleVelocity extends Module {
         particle.velocity.x = Math.cos(angleRad) * velocity;
         particle.velocity.y = Math.sin(angleRad) * velocity;
     };
+
+    /**
+     * Wrap the properties of the module into a JSON containing only primitive JavaScript data types
+     * (such as numbers, strings, etc.) that can be serialized into strings natively.
+     */
+    toObject(): ModuleObject {
+        return {
+            moduleTypeId: RandomAngleVelocity.moduleTypeId,
+            min: this.min,
+            max: this.max,
+        };
+    }
+
+    static fromObject(particleEffect: ParticleEffect, object: ModuleObject): RandomAngleVelocity {
+        const module = new RandomAngleVelocity(particleEffect);
+        loadSerializedProperty(object, RandomAngleVelocity, module, "min", deserializePrimitiveDataType);
+        loadSerializedProperty(object, RandomAngleVelocity, module, "max", deserializePrimitiveDataType);
+        return module;
+    }
+
+    /**
+     * Serializable identifier for the module.
+     *
+     * This must be unique between all existing Modules in the library.
+     */
+    static moduleTypeId = "RandomAngleVelocity";
 }

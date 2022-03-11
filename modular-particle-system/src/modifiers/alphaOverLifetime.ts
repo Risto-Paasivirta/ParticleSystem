@@ -1,6 +1,8 @@
-import { EasingFunction, EasingFunctions } from "../easing";
+import { deserializeEasing, EasingFunction, EasingFunctions, serializeEasing } from "../easing";
+import { loadSerializedProperty } from "../moduleSerialization";
 import { clamp } from "../utilities";
-import { Module } from "../module";
+import { Module, ModuleObject } from "../module";
+import { ParticleEffect } from "../particleEffect";
 
 /**
  * Module that decays particles alpha over their lifetime.
@@ -27,4 +29,28 @@ export class AlphaOverLifetime extends Module {
             particle.alpha = alpha;
         }
     }
+
+    /**
+     * Wrap the properties of the module into a JSON containing only primitive JavaScript data types
+     * (such as numbers, strings, etc.) that can be serialized into strings natively.
+     */
+    toObject(): ModuleObject {
+        return {
+            moduleTypeId: AlphaOverLifetime.moduleTypeId,
+            easing: serializeEasing(this.easing),
+        };
+    }
+
+    static fromObject(particleEffect: ParticleEffect, object: ModuleObject): AlphaOverLifetime {
+        const module = new AlphaOverLifetime(particleEffect);
+        loadSerializedProperty(object, AlphaOverLifetime, module, "easing", deserializeEasing);
+        return module;
+    }
+
+    /**
+     * Serializable identifier for the module.
+     *
+     * This must be unique between all existing Modules in the library.
+     */
+    static moduleTypeId = "AlphaOverLifetime";
 }

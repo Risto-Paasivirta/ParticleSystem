@@ -8,4 +8,3 @@ export type Range = { min: number; max: number };
  * Colors are stored as RGB data structures with values in range [0, 1].
  */
 export type Color = { r: number; g: number; b: number };
-export type Shape = { x: number; y: number };

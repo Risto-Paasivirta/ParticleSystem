@@ -7,7 +7,6 @@
         "strict": true,
         "declaration": true,
         "noEmitOnError": true,
-        "baseUrl": "./",
         "outDir": "dist"
     },
     "include": ["src/**/*.ts"]

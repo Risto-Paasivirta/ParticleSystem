@@ -1,8 +1,10 @@
-import { EasingFunction, EasingFunctions } from "../easing";
+import { EasingFunction, EasingFunctions, deserializeEasing } from "../easing";
+import { Module, ModuleObject } from "../module";
+import { loadSerializedProperty } from "../moduleSerialization";
 import { Particle } from "../particle";
+import { ParticleEffect } from "../particleEffect";
 import { Velocity } from "../types";
 import { vec2 } from "../utilities";
-import { Module } from "../module";
 
 type ParticleWithInitialVelocity = Particle & {
     // TODO: In production these property names should be minimized for performance !
@@ -59,4 +61,28 @@ export class DeaccelerationOverLifetime extends Module {
             particle.velocity.y -= deacceleration.y;
         }
     }
+
+    /**
+     * Wrap the properties of the module into a JSON containing only primitive JavaScript data types
+     * (such as numbers, strings, etc.) that can be serialized into strings natively.
+     */
+    toObject(): ModuleObject {
+        return {
+            moduleTypeId: DeaccelerationOverLifetime.moduleTypeId,
+            easing: deserializeEasing(this.easing),
+        };
+    }
+
+    static fromObject(particleEffect: ParticleEffect, object: ModuleObject): DeaccelerationOverLifetime {
+        const module = new DeaccelerationOverLifetime(particleEffect);
+        loadSerializedProperty(object, DeaccelerationOverLifetime, module, "easing", deserializeEasing);
+        return module;
+    }
+
+    /**
+     * Serializable identifier for the module.
+     *
+     * This must be unique between all existing Modules in the library.
+     */
+    static moduleTypeId = "DeaccelerationOverLifetime";
 }
