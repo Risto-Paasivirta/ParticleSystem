@@ -2,6 +2,9 @@
 import { ParticleEffect } from "./particleEffect";
 
 export abstract class Module {
+    /**
+     * Modules with `active === true` will have frequent calls to `update()` method.
+     */
     active = true;
     particleEffect: ParticleEffect;
 
