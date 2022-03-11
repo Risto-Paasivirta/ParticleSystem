@@ -6,6 +6,7 @@ export class Particle {
     color: Color = { r: 1, g: 1, b: 1 };
     alpha = 1.0;
     rotation = 0;
+    rotationalVelocity = 0;
     timeLived = 0;
     lifeTime = 2;
     scale = 0.1;

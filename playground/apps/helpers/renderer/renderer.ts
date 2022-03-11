@@ -129,6 +129,7 @@ export class Renderer {
         particle.color.g,
         particle.color.b,
       ]);
+      sprite.rotation = particle.rotation
     });
   }
 
