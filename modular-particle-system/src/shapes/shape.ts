@@ -1,7 +1,8 @@
 import { Position } from "../types";
+import { Rectangle, rectangleLogic } from "./rectangle";
 import { Triangle, triangleLogic } from "./triangle";
 
-export type Shape = Triangle;
+export type Shape = Triangle | Rectangle;
 
 export const serializeShape = (shape: Shape): unknown => {
     // Shapes are just primitive data types, can be serialized as they are.
@@ -25,8 +26,9 @@ const selectShapeLogic = (shape: Shape): ShapeLogicImplementation<Shape> => {
     switch (shape.type) {
         case "triangle":
             return triangleLogic;
+        case "rectangle":
+            return rectangleLogic;
     }
-    throw new Error(`Unidentified shape ${shape.type}`);
 };
 
 /**
