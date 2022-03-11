@@ -6,6 +6,7 @@ import { PointGenerator } from "../generators/pointGenerator";
 import { AlphaRange } from "../initializers/alphaRange";
 import { LifeTimeRange } from "../initializers/lifeTimeRange";
 import { RandomAngleVelocity } from "../initializers/randomAngleVelocity";
+import { RandomColor } from "../initializers/randomColor";
 import { RandomVelocity } from "../initializers/randomVelocity";
 import { AlphaOverLifetime } from "../modifiers/alphaOverLifetime";
 import { DeaccelerationOverLifetime } from "../modifiers/deaccelerationOverLifetime";
@@ -31,6 +32,7 @@ export const moduleTypeRegistry: ModuleTypeReference[] = [
     AlphaOverLifetime,
     DeaccelerationOverLifetime,
     Gravity,
+    RandomColor,
 ];
 
 export interface ModuleTypeReference {
