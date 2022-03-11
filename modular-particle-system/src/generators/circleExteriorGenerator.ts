@@ -2,7 +2,7 @@
 // `generator.onlyExterior = true` or something like this.
 
 import { ModuleObject } from "../module";
-import { loadSerializedProperty, deserializePrimitiveDataType } from "../moduleSerialization";
+import { loadSerializedProperty, deserializePrimitiveDataType } from "../serialization/moduleSerialization";
 import { Particle } from "../particle";
 import { ParticleEffect } from "../particleEffect";
 import { Position } from "../types";

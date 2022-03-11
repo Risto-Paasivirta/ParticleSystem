@@ -1,6 +1,6 @@
 import { EasingFunction, EasingFunctions, deserializeEasing } from "../easing";
 import { Module, ModuleObject } from "../module";
-import { loadSerializedProperty } from "../moduleSerialization";
+import { loadSerializedProperty } from "../serialization/moduleSerialization";
 import { Particle } from "../particle";
 import { ParticleEffect } from "../particleEffect";
 import { Velocity } from "../types";

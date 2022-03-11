@@ -1,5 +1,5 @@
 import { Module, ModuleObject } from "../module";
-import { loadSerializedProperty, deserializePrimitiveDataType } from "../moduleSerialization";
+import { loadSerializedProperty, deserializePrimitiveDataType } from "../serialization/moduleSerialization";
 import { ParticleEffect } from "../particleEffect";
 
 export class Gravity extends Module {

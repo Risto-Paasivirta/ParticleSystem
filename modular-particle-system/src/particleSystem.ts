@@ -1,5 +1,5 @@
 import { ModuleObject } from "./module";
-import { moduleTypeRegistry } from "./moduleRegistry";
+import { moduleTypeRegistry } from "./serialization/moduleRegistry";
 import { ParticleEffect } from "./particleEffect";
 
 export class ParticleSystem {

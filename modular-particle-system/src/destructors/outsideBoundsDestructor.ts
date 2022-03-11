@@ -1,4 +1,4 @@
-import { loadSerializedProperty } from "../moduleSerialization";
+import { loadSerializedProperty } from "../serialization/moduleSerialization";
 import { deserializeShape, serializeShape, Shape, shapeContainsPosition } from "../shapes/shape";
 import { Module, ModuleObject } from "../module";
 import { ParticleEffect } from "../particleEffect";
