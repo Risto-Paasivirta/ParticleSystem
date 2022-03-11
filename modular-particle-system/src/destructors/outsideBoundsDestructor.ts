@@ -1,6 +1,6 @@
-import { ParticleSystem } from "../particleSystem";
 import { Shape } from "../shapes/shape";
 import { Module } from "../module";
+import { ParticleEffect } from "../particleEffect";
 
 /**
  * `Module` that destroys all particles whose center location is outside generic bounds.
@@ -23,17 +23,17 @@ export class OutsideBoundsDestructor extends Module {
      */
     bounds: Shape;
 
-    constructor(parentSystem: ParticleSystem, boundary: Shape) {
-        super(parentSystem);
+    constructor(particleEffect: ParticleEffect, boundary: Shape) {
+        super(particleEffect);
         this.bounds = boundary;
     }
 
     update(dt: number): void {
-        const len = this.parentSystem.particles.length;
+        const len = this.particleEffect.particles.length;
         for (let i = 0; i < len; i += 1) {
-            const particle = this.parentSystem.particles[i];
+            const particle = this.particleEffect.particles[i];
             if (!this.bounds.containsPosition(particle.position)) {
-                this.parentSystem.destroyParticle(particle);
+                this.particleEffect.destroyParticle(particle);
             }
         }
     }

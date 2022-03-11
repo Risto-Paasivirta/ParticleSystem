@@ -1,4 +1,5 @@
 import { Particle } from "modular-particle-system/particle";
+import { ParticleEffect } from "modular-particle-system/particleEffect";
 import { ParticleSystem } from "modular-particle-system/particleSystem";
 import * as PIXI from "pixi.js";
 
@@ -13,12 +14,12 @@ export class Renderer {
   public readonly unusedSprites: PIXI.Sprite[];
   public readonly activeSprites: Map<Particle, PIXI.Sprite>;
 
-  /**
-   * User configuration for textures used for rendering the particle system.
-   *
-   * When there are multiple textures, each particle will use a random one.
-   */
-  private textures: PIXI.Texture[] | undefined;
+    /**
+     * User configuration for textures used for rendering the particle system.
+     *
+     * When there are multiple textures, each particle will use a random one.
+     */
+     private effectTextures: Map<ParticleEffect, PIXI.Texture[]> = new Map();
 
   constructor(container: HTMLElement, particleSystem: ParticleSystem) {
     this.container = container;
@@ -31,8 +32,8 @@ export class Renderer {
 
     this.unusedSprites = [];
     this.activeSprites = new Map();
-    particleSystem.addParticleListeners.push(this.handleParticleAdd);
-    particleSystem.destroyParticleListeners.push(this.handleParticleDestroy);
+    particleSystem.effects.forEach((effect) => this.registerParticleEffect(effect));
+    particleSystem.addParticleEffectListeners.push((effect) => this.registerParticleEffect(effect));
 
     this.setupUpdateRenderLoop();
   }
@@ -41,50 +42,58 @@ export class Renderer {
 
   // #region User API
 
-  /**
-   * Set particle textures.
-   *
-   * Particle graphics are loaded in user code, using Pixie JS.
-   *
-   * If multiple textures are supplied, each particle will receive a random texture.
-   *
-   * This doesn't affect any particles that were created before calling the method.
-   *
-   * @param   textures    Any amount of PIXI textures.
-   */
-  public setEffectTextures(...textures: PIXI.Texture[]): void {
-    this.textures = textures;
+    /**
+     * Set particle textures of a specific particle effect.
+     *
+     * Particle graphics are loaded in user code, using Pixie JS.
+     *
+     * If multiple textures are supplied, each particle will receive a random texture.
+     *
+     * This doesn't affect any particles that were created before calling the method.
+     *
+     * @param   textures    Any amount of PIXI textures.
+     */
+     public setEffectTextures(particleEffect: ParticleEffect, ...textures: PIXI.Texture[]): void {
+      this.effectTextures.set(particleEffect, textures);
   }
 
   // #endregion
 
   // #region Internal logic
 
+    /**
+     * Function that is called whenever a new particle effect is registed in the particle system.
+     */
+     private registerParticleEffect = (effect: ParticleEffect) => {
+      effect.addParticleListeners.push((particle) => this.handleParticleAdd(effect, particle));
+      effect.destroyParticleListeners.push((particle) => this.handleParticleDestroy(effect, particle));
+  };
+
   /**
    * Function that is called whenever a new particle is added to the particle system.
    *
    * Prepares a PIXI sprite for rendering the particle.
    */
-  private handleParticleAdd = (particle: Particle) => {
-    // Get sprite for rendering particle.
-    let sprite = this.unusedSprites.pop();
-    if (!sprite) {
-      // No sprites, make a new one.
-      sprite = new PIXI.Sprite();
-      sprite.blendMode = PIXI.BLEND_MODES.ADD;
-      sprite.anchor.x = 0.5;
-      sprite.anchor.y = 0.5;
-      this.app.stage.addChild(sprite);
-    }
-    // Prepare sprite for rendering.
-    sprite.visible = true;
-    if (this.textures) {
-      // Assign sprite texture.
-      sprite.texture =
-        this.textures[Math.round(Math.random() * (this.textures.length - 1))];
-    }
-    // Save the relation between the particle and sprite.
-    this.activeSprites.set(particle, sprite);
+  private handleParticleAdd = (effect: ParticleEffect, particle: Particle) => {
+      // Get sprite for rendering particle.
+      let sprite = this.unusedSprites.pop();
+      if (!sprite) {
+          // No sprites, make a new one.
+          sprite = new PIXI.Sprite();
+          sprite.blendMode = PIXI.BLEND_MODES.ADD;
+          sprite.anchor.x = 0.5;
+          sprite.anchor.y = 0.5;
+          this.app.stage.addChild(sprite);
+      }
+      // Prepare sprite for rendering.
+      sprite.visible = true;
+      const effectTextures = this.effectTextures.get(effect);
+      if (effectTextures) {
+          // Assign sprite texture.
+          sprite.texture = effectTextures[Math.round(Math.random() * (effectTextures.length - 1))];
+      }
+      // Save the relation between the particle and sprite.
+      this.activeSprites.set(particle, sprite);
   };
 
   /**
@@ -92,17 +101,17 @@ export class Renderer {
    *
    * Removes the PIXI sprite that was used to render the particle.
    */
-  private handleParticleDestroy = (particle: Particle) => {
-    // Get sprite that is used to render the destroyed particle.
-    const sprite = this.activeSprites.get(particle);
-    if (sprite) {
-      // Remove sprite from rendering.
-      sprite.visible = false;
-      // Remove sprite and particle from list of active sprites.
-      this.activeSprites.delete(particle);
-      // Add sprite to list of unused sprites.
-      this.unusedSprites.push(sprite);
-    }
+  private handleParticleDestroy = (effect: ParticleEffect, particle: Particle) => {
+      // Get sprite that is used to render the destroyed particle.
+      const sprite = this.activeSprites.get(particle);
+      if (sprite) {
+          // Remove sprite from rendering.
+          sprite.visible = false;
+          // Remove sprite and particle from list of active sprites.
+          this.activeSprites.delete(particle);
+          // Add sprite to list of unused sprites.
+          this.unusedSprites.push(sprite);
+      }
   };
 
   /**
@@ -131,16 +140,8 @@ export class Renderer {
    * Right now, this is automatically handled by renderer, meaning that testing apps should consider with updating particle system or rendering frames.
    */
   private setupUpdateRenderLoop() {
-    let isFirstFrame = true;
-
     this.app.ticker.add(() => {
       const dt = this.app.ticker.elapsedMS / 1000;
-
-      if (isFirstFrame) {
-        // Initialize particle system.
-        this.particleSystem.init();
-        isFirstFrame = false;
-      }
 
       // Update particle system.
       this.particleSystem.update(dt);

@@ -15,60 +15,62 @@ document.body.style.height = "100vh";
 
 const particleSystem = new ParticleSystem();
 const renderer = new Renderer(document.body, particleSystem);
+const effect = particleSystem.addParticleEffect();
 
-const generator = new PointGenerator(particleSystem);
+const generator = new PointGenerator(effect);
 generator.interval = 0;
-particleSystem.modules.push(generator);
+effect.modules.push(generator);
 
-const lifetime = new LifeTimeRange(particleSystem);
+const lifetime = new LifeTimeRange(effect);
 lifetime.min = 1.0;
 lifetime.max = 2.5;
-particleSystem.modules.push(lifetime);
+effect.modules.push(lifetime);
 
-const velocity = new RandomAngleVelocity(particleSystem);
-particleSystem.modules.push(velocity);
+const velocity = new RandomAngleVelocity(effect);
+effect.modules.push(velocity);
 
-const deacceleration = new DeaccelerationOverLifetime(particleSystem);
-particleSystem.modules.push(deacceleration);
+const deacceleration = new DeaccelerationOverLifetime(effect);
+effect.modules.push(deacceleration);
 
-const alpha = new AlphaOverLifetime(particleSystem);
+const alpha = new AlphaOverLifetime(effect);
 alpha.easing = EasingFunctions.easeOutCirc;
-particleSystem.modules.push(alpha);
+effect.modules.push(alpha);
 
-const destructor = new LifeTimeDestructor(particleSystem);
-particleSystem.modules.push(destructor);
+const destructor = new LifeTimeDestructor(effect);
+effect.modules.push(destructor);
 
 const explodeAt = (x: number, y: number) => {
-  generator.position.x = x;
-  generator.position.y = y;
-  for (let i = 0; i < 1000; i += 1) {
-    generator.generateParticle();
-  }
+    generator.position.x = x;
+    generator.position.y = y;
+    for (let i = 0; i < 1000; i += 1) {
+        generator.generateParticle();
+    }
 };
 
 setTimeout(() => {
-  explodeAt(window.innerWidth / 2, window.innerHeight / 2);
-  setInterval(() => {
     explodeAt(window.innerWidth / 2, window.innerHeight / 2);
-  }, 4000);
+    setInterval(() => {
+        explodeAt(window.innerWidth / 2, window.innerHeight / 2);
+    }, 4000);
 }, 1000);
 
 document.addEventListener("click", (e) => {
-  explodeAt(e.clientX, e.clientY);
+    explodeAt(e.clientX, e.clientY);
 });
 
 const loader = PIXI.Loader.shared;
 loader.add("spritesheet", "./assets/kenney_particlePack.json");
 loader.onComplete.once(() => {
-  renderer.setEffectTextures(
-    PIXI.utils.TextureCache["light_01.png"],
-    PIXI.utils.TextureCache["light_02.png"],
-    PIXI.utils.TextureCache["light_03.png"],
-    PIXI.utils.TextureCache["magic_01.png"],
-    PIXI.utils.TextureCache["magic_02.png"],
-    PIXI.utils.TextureCache["magic_03.png"],
-    PIXI.utils.TextureCache["magic_04.png"],
-    PIXI.utils.TextureCache["magic_05.png"]
-  );
+    renderer.setEffectTextures(
+        effect,
+        PIXI.utils.TextureCache["light_01.png"],
+        PIXI.utils.TextureCache["light_02.png"],
+        PIXI.utils.TextureCache["light_03.png"],
+        PIXI.utils.TextureCache["magic_01.png"],
+        PIXI.utils.TextureCache["magic_02.png"],
+        PIXI.utils.TextureCache["magic_03.png"],
+        PIXI.utils.TextureCache["magic_04.png"],
+        PIXI.utils.TextureCache["magic_05.png"],
+    );
 });
 loader.load();

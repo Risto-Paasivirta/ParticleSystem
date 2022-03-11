@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import { ParticleSystem } from "./particleSystem";
+import { ParticleEffect } from "./particleEffect";
 
 export abstract class Module {
     active = true;
-    parentSystem: ParticleSystem;
+    particleEffect: ParticleEffect;
 
-    constructor(parentSystem: ParticleSystem) {
-        this.parentSystem = parentSystem;
+    constructor(particleEffect: ParticleEffect) {
+        this.particleEffect = particleEffect;
     }
 
     init(): void {}

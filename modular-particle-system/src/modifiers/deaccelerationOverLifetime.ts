@@ -31,7 +31,7 @@ export class DeaccelerationOverLifetime extends Module {
     easing: EasingFunction = EasingFunctions.easeOutSine;
 
     init(): void {
-        this.parentSystem.addParticleListeners.push(this.handleParticleAdd);
+        this.particleEffect.addParticleListeners.push(this.handleParticleAdd);
     }
 
     handleParticleAdd = (particle: ParticleWithInitialVelocity): void => {
@@ -43,7 +43,7 @@ export class DeaccelerationOverLifetime extends Module {
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     update(dt: number): void {
-        const particles = this.parentSystem.particles;
+        const particles = this.particleEffect.particles;
         const len = particles.length;
         for (let i = 0; i < len; i += 1) {
             const particle = particles[i] as ParticleWithInitialVelocity;

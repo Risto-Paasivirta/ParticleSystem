@@ -13,29 +13,30 @@ document.body.style.height = "100vh";
 
 const particleSystem = new ParticleSystem();
 const renderer = new Renderer(document.body, particleSystem);
+const effect = particleSystem.addParticleEffect();
 
-const generator = new PointGenerator(particleSystem);
+const generator = new PointGenerator(effect);
 generator.position = { x: 200, y: 200 };
 generator.interval = 0.01;
-particleSystem.modules.push(generator);
+effect.modules.push(generator);
 
-const initializer = new LifeTimeRange(particleSystem);
-particleSystem.modules.push(initializer);
+const initializer = new LifeTimeRange(effect);
+effect.modules.push(initializer);
 
-const modifier = new RandomVelocity(particleSystem);
+const modifier = new RandomVelocity(effect);
 modifier.randomX = { min: -100, max: 100 };
 modifier.randomY = { min: -100, max: 100 };
-particleSystem.modules.push(modifier);
+effect.modules.push(modifier);
 
 const destructor = new OutsideBoundsDestructor(
-  particleSystem,
-  Shapes.Triangle({ x: 100, y: 400 }, { x: 300, y: 400 }, { x: 200, y: 0 })
+    effect,
+    Shapes.Triangle({ x: 100, y: 400 }, { x: 300, y: 400 }, { x: 200, y: 0 }),
 );
-particleSystem.modules.push(destructor);
+effect.modules.push(destructor);
 
 const loader = PIXI.Loader.shared;
 loader.add("spritesheet", "./assets/kenney_particlePack.json");
 loader.onComplete.once(() => {
-  renderer.setEffectTextures(PIXI.utils.TextureCache["circle_01.png"]);
+    renderer.setEffectTextures(effect, PIXI.utils.TextureCache["circle_01.png"]);
 });
 loader.load();

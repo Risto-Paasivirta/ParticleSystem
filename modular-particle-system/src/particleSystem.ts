@@ -1,61 +1,32 @@
-import { Module } from "./module";
-import { Particle } from "./particle";
+import { ParticleEffect } from "./particleEffect";
 
 export class ParticleSystem {
-    modules: Module[] = [];
-    particles: Particle[] = [];
-
-    addParticleListeners: ((particle: Particle) => unknown)[] = [];
-    destroyParticleListeners: ((particle: Particle) => unknown)[] = [];
-
-    init(): void {
-        this.modules.forEach((module) => {
-            module.init();
-        });
-    }
+    effects: ParticleEffect[] = [];
+    addParticleEffectListeners: ((effect: ParticleEffect) => unknown)[] = [];
+    removeParticleEffectListeners: ((effect: ParticleEffect) => unknown)[] = [];
 
     update(dt: number) {
-        const len = this.particles.length;
-        for (let i = 0; i < len; i += 1) {
-            const particle = this.particles[i];
-            particle.timeLived += dt;
-            particle.position.x += particle.velocity.x * dt;
-            particle.position.y += particle.velocity.y * dt;
-        }
-
-        this.modules.forEach((module) => {
-            if (module.active) {
-                module.update(dt);
+        this.effects.forEach((effect) => {
+            if (!effect.isInitialized) {
+                effect.init();
+                effect.isInitialized = true;
             }
-        });
-
-        // Remove destroyed particles
-        for (let i = 0; i < this.particles.length; i += 1) {
-            const particle = this.particles[i];
-            if (particle.destroyed) {
-                this.particles.splice(i, 1);
-                i -= 1;
-            }
-        }
-    }
-
-    addParticle(particle: Particle) {
-        this.particles.push(particle);
-        this.addParticleListeners.forEach((clbk) => {
-            clbk(particle);
+            effect.update(dt);
         });
     }
 
-    /**
-     * Destroy a particle, removing it from further updates.
-     *
-     * This can be safely called while iterating over `particles`, the array is not modified immediately.
-     */
-    destroyParticle(particle: Particle) {
-        // Modifying particle arrays can be heavy, better mark particles that should be removed and modify array just once during update.
-        particle.destroyed = true;
-        this.destroyParticleListeners.forEach((clbk) => {
-            clbk(particle);
-        });
+    addParticleEffect(): ParticleEffect {
+        const particleEffect = new ParticleEffect(this);
+        this.effects.push(particleEffect);
+        this.addParticleEffectListeners.forEach((clbk) => clbk(particleEffect));
+        return particleEffect;
+    }
+
+    removeParticleEffect(particleEffect: ParticleEffect) {
+        const i = this.effects.indexOf(particleEffect);
+        if (i <= 0) {
+            this.effects.splice(i, 1);
+            this.removeParticleEffectListeners.forEach((clbk) => clbk(particleEffect));
+        }
     }
 }

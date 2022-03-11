@@ -8,7 +8,7 @@ export class RandomVelocity extends Module {
     randomY: Range = { min: -50, max: 50 };
 
     init(): void {
-        this.parentSystem.addParticleListeners.push(this.handleParticleAdd);
+        this.particleEffect.addParticleListeners.push(this.handleParticleAdd);
     }
 
     handleParticleAdd = (particle: Particle): void => {
