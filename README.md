@@ -60,7 +60,29 @@ import { ParticleSystem } from "modular-particle-system/particleSystem";
 
 Usage examples can be inspired from the [development applications found in GitHub](https://github.com/Risto-Paasivirta/ParticleSystem/tree/nk/singleplayer/playground/apps).
 
-### List of modules and their properties (cheatsheet)
+An alternative usage syntax is to load particle systems from `JSON` definition.
+This is semi-typed but the module IDs and properties have to be manually looked up from the cheat-sheet below.
+
+```ts
+const particleSystem = ParticleSystem.fromObject({
+  effects: [
+    {
+      modules: [
+        {
+          moduleTypeId: "PointGenerator",
+          position: { x: 100, y: 100 },
+          interval: 1,
+        },
+        {
+          moduleTypeId: "RandomColor",
+        },
+      ],
+    },
+  ],
+});
+```
+
+### List of modules and their properties (cheat-sheet)
 
 **Generators:**
 
