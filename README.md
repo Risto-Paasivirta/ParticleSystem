@@ -4,7 +4,7 @@ This README is displayed in the front page of GitHub page
 
 # Lightweight Particle System for TypeScript
 
-The `modular-particle-system` package is an absolutely minimized particle system (**42 kB!**).
+The `modular-particle-system` package is an absolutely minimized particle system (**79.2 kB!**).
 
 It is based around the idea of describing particle effects as combinations of different _modules_.
 
@@ -60,7 +60,29 @@ import { ParticleSystem } from "modular-particle-system/particleSystem";
 
 Usage examples can be inspired from the [development applications found in GitHub](https://github.com/Risto-Paasivirta/ParticleSystem/tree/nk/publish/playground/apps).
 
-### List of modules and their properties (cheatsheet)
+An alternative usage syntax is to load particle systems from `JSON` definition.
+This is semi-typed but the module IDs and properties have to be manually looked up from the cheat-sheet below.
+
+```ts
+const particleSystem = ParticleSystem.fromObject({
+  effects: [
+    {
+      modules: [
+        {
+          moduleTypeId: "PointGenerator",
+          position: { x: 100, y: 100 },
+          interval: 1,
+        },
+        {
+          moduleTypeId: "RandomColor",
+        },
+      ],
+    },
+  ],
+});
+```
+
+### List of modules and their properties (cheat-sheet)
 
 **Generators:**
 
