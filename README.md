@@ -4,7 +4,7 @@ This README is displayed in the front page of GitHub page
 
 # Lightweight Particle System for TypeScript
 
-The `modular-particle-system` package is an absolutely minimized particle system (**42 kB!**).
+The `modular-particle-system` package is an absolutely minimized particle system (**64.5 kB!**).
 
 It is based around the idea of describing particle effects as combinations of different _modules_.
 
