@@ -19,12 +19,12 @@ export class CircleEdgeGenerator extends ParticleGenerator {
     /**
      * Max Radius of the circle as pixels.
      */
-    outerRadius = 50;
+    outerRadius: number = 50;
     /**
      * /**
      * Min Radius of the circle as pixels.
      */
-    innerRadius = 40;
+    innerRadius: number = 40;
 
     generateParticle(): void {
         const particle = new Particle();

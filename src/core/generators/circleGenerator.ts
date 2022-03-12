@@ -18,7 +18,7 @@ export class CircleGenerator extends ParticleGenerator {
     /**
      * Radius of the circle as pixels.
      */
-    radius = 50;
+    radius: number = 50;
     /**
      * The angle at which the next particle will be generated at.
      *
