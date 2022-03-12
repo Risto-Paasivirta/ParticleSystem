@@ -31,6 +31,7 @@ export class ParticleEffect {
             particle.timeLived += dt;
             particle.position.x += particle.velocity.x * dt;
             particle.position.y += particle.velocity.y * dt;
+            particle.rotation += particle.rotationalVelocity * dt;
         }
 
         this.modules.forEach((module) => {

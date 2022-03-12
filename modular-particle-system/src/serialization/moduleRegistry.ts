@@ -8,6 +8,7 @@ import { LifeTimeRange } from "../initializers/lifeTimeRange";
 import { RandomAngleVelocity } from "../initializers/randomAngleVelocity";
 import { RandomScale } from "../initializers/randomScale";
 import { RandomColor } from "../initializers/randomColor";
+import { RandomRotationalVelocity } from "../initializers/randomRotationalVelocity";
 import { RandomVelocity } from "../initializers/randomVelocity";
 import { AlphaOverLifetime } from "../modifiers/alphaOverLifetime";
 import { DeaccelerationOverLifetime } from "../modifiers/deaccelerationOverLifetime";
@@ -35,6 +36,7 @@ export const moduleTypeRegistry: ModuleTypeReference[] = [
     Gravity,
     RandomScale,
     RandomColor,
+    RandomRotationalVelocity,
 ];
 
 export interface ModuleTypeReference {
