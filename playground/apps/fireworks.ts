@@ -9,6 +9,7 @@ import { AlphaOverLifetime } from "modular-particle-system/modifiers/alphaOverLi
 import { EasingFunctions } from "modular-particle-system/easing";
 import { Renderer } from "./helpers/renderer/renderer";
 import { AlphaDestructor } from "modular-particle-system/destructors/alphaDestructor";
+import { RandomColor } from "modular-particle-system/initializers/randomColor";
 
 document.body.style.margin = "0px 0px";
 document.body.style.width = "100vw";
@@ -33,6 +34,12 @@ const Firework = (x: number) => {
         effect.modules.push(alpha);
         const destructor = new AlphaDestructor(effect);
         effect.modules.push(destructor);
+        const color = new RandomColor(effect)
+        color.palette = [
+            {r: 1,g: 0.8, b: 0},
+            {r: 1,g: 0.2, b: 0}
+        ]
+        effect.modules.push(color)
         return { effect, generator };
     })();
 
@@ -55,6 +62,12 @@ const Firework = (x: number) => {
         effect.modules.push(alpha);
         const destructor = new AlphaDestructor(effect);
         effect.modules.push(destructor);
+        const color = new RandomColor(effect)
+        color.palette = [
+            {r: 1,g: 0.8, b: 0},
+            {r: 1,g: 0.2, b: 0}
+        ]
+        effect.modules.push(color)
         return { effect, generator };
     })();
 
