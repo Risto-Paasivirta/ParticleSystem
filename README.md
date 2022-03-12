@@ -60,6 +60,120 @@ import { ParticleSystem } from "modular-particle-system/particleSystem";
 
 Usage examples can be inspired from the [development applications found in GitHub](https://github.com/Risto-Paasivirta/ParticleSystem/tree/master/playground/apps).
 
+### List of modules and their properties (cheatsheet)
+
+**Generators:**
+
+<details><summary>PointGenerator</summary>
+
+   - `interval: number`
+   - `position: Position`
+
+</details>
+
+<details><summary>ShapeGenerator</summary>
+
+   - `interval: number`
+   - `shape: Shape`
+
+</details>
+
+<details><summary>CircleExteriorGenerator</summary>
+
+   - `interval: number`
+   - `center: Position`
+   - `radius: number`
+   - `nextParticleAngle: number`
+   - `angleStep: number`
+
+</details>
+
+**Initializers:**
+
+<details><summary>AlphaRange</summary>
+
+   - `min: number`
+   - `max: number`
+
+</details>
+
+<details><summary>LifetimeRange</summary>
+
+   - `min: number`
+   - `max: number`
+
+</details>
+
+<details><summary>RandomAngleVelocity</summary>
+
+   - `min: number`
+   - `max: number`
+
+</details>
+
+<details><summary>RandomColor</summary>
+
+   - `palette: Color[]`
+
+</details>
+
+<details><summary>RandomRotationalVelocity</summary>
+
+   - `min: number`
+   - `max: number`
+
+</details>
+
+<details><summary>RandomScale</summary>
+
+   - `min: number`
+   - `max: number`
+
+</details>
+
+<details><summary>RandomVelocity</summary>
+
+   - `randomX: Range`
+   - `randomY: Range`
+
+</details>
+
+**Modifiers:**
+
+<details><summary>AlphaOverLifetime</summary>
+
+   - `easing: EasingFunction`
+
+</details>
+
+<details><summary>DeaccelerationOverLifetime</summary>
+
+   - `easing: EasingFunction`
+
+</details>
+
+<details><summary>Gravity</summary>
+
+   - `strength: number`
+
+</details>
+
+**Destructors:**
+
+<details><summary>AlphaDestructor</summary>
+
+</details>
+
+<details><summary>LifetimeDestructor</summary>
+
+</details>
+
+<details><summary>OutsideBoundsDestructor</summary>
+
+   - `bounds: Shape`
+
+</details>
+
 ## License:
 
 MIT-license
