@@ -16,7 +16,7 @@ By combining these functionally simple modules, a wide variety of behaviors can 
 This core package does NOT include any integration to a graphics framework.
 It is designed to be completely free of any usage restrictions regarding a particular framework.
 
-This repository does, however, include an [example integration with `PIXI.js`](https://github.com/Risto-Paasivirta/ParticleSystem/tree/master/playground/apps/helpers/renderer/renderer.ts)
+This repository does, however, include an [example integration with `PIXI.js`](https://github.com/Risto-Paasivirta/ParticleSystem/tree/nk/singleplayer/playground/apps/helpers/renderer/renderer.ts)
 It can be referenced to learn how the particle system can be integrated with a graphics framework.
 
 ## Repository structure
@@ -58,7 +58,121 @@ The syntax for importing parts of the library is as follows:
 import { ParticleSystem } from "modular-particle-system/particleSystem";
 ```
 
-Usage examples can be inspired from the [development applications found in GitHub](https://github.com/Risto-Paasivirta/ParticleSystem/tree/master/playground/apps).
+Usage examples can be inspired from the [development applications found in GitHub](https://github.com/Risto-Paasivirta/ParticleSystem/tree/nk/singleplayer/playground/apps).
+
+### List of modules and their properties (cheatsheet)
+
+**Generators:**
+
+<details><summary>PointGenerator</summary>
+
+   - `interval: number`
+   - `position: Position`
+
+</details>
+
+<details><summary>ShapeGenerator</summary>
+
+   - `interval: number`
+   - `shape: Shape`
+
+</details>
+
+<details><summary>CircleExteriorGenerator</summary>
+
+   - `interval: number`
+   - `center: Position`
+   - `radius: number`
+   - `nextParticleAngle: number`
+   - `angleStep: number`
+
+</details>
+
+**Initializers:**
+
+<details><summary>AlphaRange</summary>
+
+   - `min: number`
+   - `max: number`
+
+</details>
+
+<details><summary>LifetimeRange</summary>
+
+   - `min: number`
+   - `max: number`
+
+</details>
+
+<details><summary>RandomAngleVelocity</summary>
+
+   - `min: number`
+   - `max: number`
+
+</details>
+
+<details><summary>RandomColor</summary>
+
+   - `palette: Color[]`
+
+</details>
+
+<details><summary>RandomRotationalVelocity</summary>
+
+   - `min: number`
+   - `max: number`
+
+</details>
+
+<details><summary>RandomScale</summary>
+
+   - `min: number`
+   - `max: number`
+
+</details>
+
+<details><summary>RandomVelocity</summary>
+
+   - `randomX: Range`
+   - `randomY: Range`
+
+</details>
+
+**Modifiers:**
+
+<details><summary>AlphaOverLifetime</summary>
+
+   - `easing: EasingFunction`
+
+</details>
+
+<details><summary>DeaccelerationOverLifetime</summary>
+
+   - `easing: EasingFunction`
+
+</details>
+
+<details><summary>Gravity</summary>
+
+   - `strength: number`
+
+</details>
+
+**Destructors:**
+
+<details><summary>AlphaDestructor</summary>
+
+</details>
+
+<details><summary>LifetimeDestructor</summary>
+
+</details>
+
+<details><summary>OutsideBoundsDestructor</summary>
+
+   - `bounds: Shape`
+
+</details>
 
 ## License:
 
