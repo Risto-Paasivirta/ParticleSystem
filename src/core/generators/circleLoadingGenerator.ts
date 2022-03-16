@@ -10,7 +10,7 @@ import { ParticleGenerator } from "./generator";
  *
  * Each particle is generated next to each other, so that when particles are regularly generated they move around the circle.
  */
-export class CircleExteriorGenerator extends ParticleGenerator {
+export class CircleLoadingGenerator extends ParticleGenerator {
     /**
      * Center location of the circle.
      */
@@ -18,7 +18,7 @@ export class CircleExteriorGenerator extends ParticleGenerator {
     /**
      * Radius of the circle as pixels.
      */
-    radius = 50;
+    radius: number = 50;
     /**
      * The angle at which the next particle will be generated at.
      *
