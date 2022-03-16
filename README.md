@@ -16,7 +16,7 @@ By combining these functionally simple modules, a wide variety of behaviors can 
 This core package does NOT include any integration to a graphics framework.
 It is designed to be completely free of any usage restrictions regarding a particular framework.
 
-This repository does, however, include an [example integration with `PIXI.js`](https://github.com/Risto-Paasivirta/ParticleSystem/tree/nk/publish/playground/apps/helpers/renderer/renderer.ts)
+This repository does, however, include an [example integration with `PIXI.js`](https://github.com/Risto-Paasivirta/ParticleSystem/tree/master/playground/apps/helpers/renderer/renderer.ts)
 It can be referenced to learn how the particle system can be integrated with a graphics framework.
 
 ## Repository structure
@@ -58,7 +58,7 @@ The syntax for importing parts of the library is as follows:
 import { ParticleSystem } from "modular-particle-system/particleSystem";
 ```
 
-Usage examples can be inspired from the [development applications found in GitHub](https://github.com/Risto-Paasivirta/ParticleSystem/tree/nk/publish/playground/apps).
+Usage examples can be inspired from the [development applications found in GitHub](https://github.com/Risto-Paasivirta/ParticleSystem/tree/master/playground/apps).
 
 An alternative usage syntax is to load particle systems from `JSON` definition.
 This is semi-typed but the module IDs and properties have to be manually looked up from the cheat-sheet below.
@@ -88,25 +88,25 @@ const particleSystem = ParticleSystem.fromObject({
 
 <details><summary>PointGenerator</summary>
 
-   - `interval: number`
-   - `position: Position`
+- `interval: number`
+- `position: Position`
 
 </details>
 
 <details><summary>ShapeGenerator</summary>
 
-   - `interval: number`
-   - `shape: Shape`
+- `interval: number`
+- `shape: Shape`
 
 </details>
 
 <details><summary>CircleExteriorGenerator</summary>
 
-   - `interval: number`
-   - `center: Position`
-   - `radius: number`
-   - `nextParticleAngle: number`
-   - `angleStep: number`
+- `interval: number`
+- `center: Position`
+- `radius: number`
+- `nextParticleAngle: number`
+- `angleStep: number`
 
 </details>
 
@@ -114,49 +114,49 @@ const particleSystem = ParticleSystem.fromObject({
 
 <details><summary>AlphaRange</summary>
 
-   - `min: number`
-   - `max: number`
+- `min: number`
+- `max: number`
 
 </details>
 
 <details><summary>LifetimeRange</summary>
 
-   - `min: number`
-   - `max: number`
+- `min: number`
+- `max: number`
 
 </details>
 
 <details><summary>RandomAngleVelocity</summary>
 
-   - `min: number`
-   - `max: number`
+- `min: number`
+- `max: number`
 
 </details>
 
 <details><summary>RandomColor</summary>
 
-   - `palette: Color[]`
+- `palette: Color[]`
 
 </details>
 
 <details><summary>RandomRotationalVelocity</summary>
 
-   - `min: number`
-   - `max: number`
+- `min: number`
+- `max: number`
 
 </details>
 
 <details><summary>RandomScale</summary>
 
-   - `min: number`
-   - `max: number`
+- `min: number`
+- `max: number`
 
 </details>
 
 <details><summary>RandomVelocity</summary>
 
-   - `randomX: Range`
-   - `randomY: Range`
+- `randomX: Range`
+- `randomY: Range`
 
 </details>
 
@@ -164,19 +164,19 @@ const particleSystem = ParticleSystem.fromObject({
 
 <details><summary>AlphaOverLifetime</summary>
 
-   - `easing: EasingFunction`
+- `easing: EasingFunction`
 
 </details>
 
 <details><summary>DeaccelerationOverLifetime</summary>
 
-   - `easing: EasingFunction`
+- `easing: EasingFunction`
 
 </details>
 
 <details><summary>Gravity</summary>
 
-   - `strength: number`
+- `strength: number`
 
 </details>
 
@@ -192,7 +192,7 @@ const particleSystem = ParticleSystem.fromObject({
 
 <details><summary>OutsideBoundsDestructor</summary>
 
-   - `bounds: Shape`
+- `bounds: Shape`
 
 </details>
 
