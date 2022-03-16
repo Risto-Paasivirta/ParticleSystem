@@ -15,6 +15,8 @@ import { DeaccelerationOverLifetime } from "../modifiers/deaccelerationOverLifet
 import { Gravity } from "../modifiers/gravity";
 import { Module } from "../module";
 import { ParticleEffect } from "../particleEffect";
+import { CircleGenerator } from "../generators/circleGenerator";
+import { CircleLoadingGenerator } from "../generators/circleLoadingGenerator";
 
 /**
  * This list should contain all Modules in the library.
@@ -37,6 +39,9 @@ export const moduleTypeRegistry: ModuleTypeReference[] = [
     RandomScale,
     RandomColor,
     RandomRotationalVelocity,
+    CircleGenerator,
+    CircleExteriorGenerator,
+    CircleLoadingGenerator,
 ];
 
 export interface ModuleTypeReference {
