@@ -100,7 +100,19 @@ const particleSystem = ParticleSystem.fromObject({
 
 </details>
 
+<details><summary>CircleGenerator</summary>
+
+TODO
+
+</details>
+
 <details><summary>CircleExteriorGenerator</summary>
+
+TODO
+
+</details>
+
+<details><summary>CircleLoadingGenerator</summary>
 
 - `interval: number`
 - `center: Position`
