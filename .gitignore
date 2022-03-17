@@ -4,3 +4,5 @@ dist/*
 .cache
 .env
 entry.ts
+dist
+release
