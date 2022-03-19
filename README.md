@@ -13,6 +13,10 @@ For example, there is a module which randomizes the color of particles.
 Or a module that assigns a random velocity to particles, and so on...
 By combining these functionally simple modules, a wide variety of behaviors can be achieved.
 
+**Interact with the particle system in an online editor playground at the URL below:**
+
+[Online Playground](https://risto-paasivirta.github.io/ParticleSystem/)
+
 This core package does NOT include any integration to a graphics framework.
 It is designed to be completely free of any usage restrictions regarding a particular framework.
 
