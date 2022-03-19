@@ -28,6 +28,11 @@
             padding: 10px;
         }
 
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
         body {
             background-color: black;
             font-family: "Lucida Console", "Courier New", monospace;
@@ -42,16 +47,23 @@
 
     <script src="" async defer></script>
     <div class="grid-container">
-        <div>
+       <!-- <div>
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/The.Matrix.glmatrix.2.png/800px-The.Matrix.glmatrix.2.png">
             <br>
             <a href="url">effect</a>
-        </div>
-        <% for(var i = 0; i < apps.length; i++){ %>
+        </div>-->
+       <!-- <% for(var i = 0; i < apps.length; i++){ %>
             <div>
                 <img src="media/alpha-color.gif">
                 <br>
                 <a href="<%= apps[i] %>"><%= apps[i] %></a>
+            </div>
+        <% } %> -->
+        <% for(var i = 0; i < titles.length; i++){ %>
+            <div>
+                <img src="media/<%= titles[i] %>.gif">
+                <br>
+                <a href="<%= titles[i] %>.html"><%= titles[i] %></a>
             </div>
         <% } %>
     </div>

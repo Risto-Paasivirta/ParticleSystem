@@ -99,6 +99,12 @@ module.exports = {
             ? `${srcTo.slice(1, srcTo.length - 1).join("/")}/${name}.html`
             : `${name}.html`;
         }),
+        titles: appsFiles.map(([src, name]) => {
+          const srcTo = src.split("/");
+          return srcTo.length > 2
+            ? `${srcTo.slice(1, srcTo.length - 1).join("/")}/${name}`
+            : `${name}`;
+        }),
       },
       filename: "index.html",
       template: "./index-template.html",
