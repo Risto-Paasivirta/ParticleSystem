@@ -1,0 +1,13 @@
+.effectsConfigurationPanel {
+  background-color: red;
+  width: 200px;
+  overflow: auto;
+  padding-right: 4px;
+}
+.effectsConfigurationPanel-titleEffects {
+}
+.effectsConfigurationPanel-effect {
+  background-color: green;
+}
+.effectsConfigurationPanel-titleEffect {
+}

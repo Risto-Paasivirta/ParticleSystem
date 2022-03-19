@@ -1,0 +1,10 @@
+.projectToolbar {
+  background-color: green;
+  height: 24px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.projectToolbar-button {
+  cursor: pointer;
+}

@@ -1,0 +1,17 @@
+.module {
+  background-color: blue;
+  padding-left: 18px;
+}
+.module-title-layout {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.module-title {
+}
+.module-remove {
+  margin-right: 4px;
+}
+.module-properties {
+  padding-left: 18px;
+}
