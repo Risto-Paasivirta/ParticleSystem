@@ -15,9 +15,7 @@
     <style>
         .grid-container {
             display: grid;
-            grid-template-columns: auto auto auto auto;
-            gap: 10px;
-            padding: 10px;
+            grid-template-columns: auto auto auto;
         }
 
         .grid-container>div {
@@ -33,9 +31,27 @@
             height: auto;
         }
 
+        h1 {
+            text-align: center;
+            font-size: 22px;
+            color: white;
+        }
+
+        p {
+            text-align: center;
+            font-size: 14px;
+            color: white;
+        }
+
         body {
             background-color: black;
             font-family: "Lucida Console", "Courier New", monospace;
+            display: flex;
+            flex-direction: column;
+            height: unset;
+            min-height: 100%;
+            margin: auto;
+            position: relative;
         }
     </style>
 </head>
@@ -46,6 +62,9 @@
         <![endif]-->
 
     <script src="" async defer></script>
+    <header role="banner">
+        <h1>Sepia Games Particle System Effects</h1>
+    </header>
     <div class="grid-container">
        <!-- <div>
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/The.Matrix.glmatrix.2.png/800px-The.Matrix.glmatrix.2.png">
@@ -62,11 +81,13 @@
         <% for(var i = 0; i < titles.length; i++){ %>
             <div>
                 <img src="media/<%= titles[i] %>.gif">
-                <br>
                 <a href="<%= titles[i] %>.html"><%= titles[i] %></a>
             </div>
         <% } %>
     </div>
+    <footer role="contentinfo">
+        <p>MadeByPlanB - 2022</p>
+    </footer>
 </body>
 
 </html>
