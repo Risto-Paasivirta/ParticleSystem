@@ -5,6 +5,20 @@ import { ParticleEffect } from "../particleEffect";
 import { Position } from "../types";
 import { ParticleGenerator } from "./generator";
 
+/**
+ * @moduleProperties
+ * interval {
+ *      @tooltip        TODO
+ *      @type           Number
+ *      @min            0
+ *      @step           0.01
+ *      @defaultValue   0.1
+ * }
+ * position {
+ *      @tooltip        TODO
+ *      @type           Position
+ * }
+ */
 export class PointGenerator extends ParticleGenerator {
     position: Position = { x: 0, y: 0 };
 
