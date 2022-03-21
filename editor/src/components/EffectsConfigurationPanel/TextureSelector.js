@@ -13,16 +13,16 @@ const TextureSelector = (props) => {
         updateTextures([selectedTextureName]);
       }}
     >
-      {Object.entries(availableTextures).map(
-        ([textureName, textureValue], iTexture) => (
+      {Object.entries(availableTextures)
+        .sort((a, b) => a[0].localeCompare(b[0]))
+        .map(([textureName, textureValue], iTexture) => (
           <option
             className="textureSelector-option"
             key={`texture-${iTexture}`}
           >
             {textureName}
           </option>
-        )
-      )}
+        ))}
     </select>
   );
 };

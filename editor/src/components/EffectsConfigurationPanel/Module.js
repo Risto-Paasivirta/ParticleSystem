@@ -17,7 +17,23 @@ const Module = (props) => {
   return (
     <div className="module">
       <div className="module-title-layout">
-        <span className="module-title">{module.moduleTypeId}</span>
+        <select
+          className="module-typeDropdown"
+          value={module.moduleTypeId}
+          onChange={(e) => {
+            const value = e.target.value;
+            const updatedModule = { moduleTypeId: value };
+            updateModule(updatedModule);
+          }}
+        >
+          {particleModules
+            .sort((a, b) => a.moduleTypeId.localeCompare(b.moduleTypeId))
+            .map((moduleType, i) => (
+              <option value={moduleType.moduleTypeId} key={`module-${i}`}>
+                {moduleType.moduleTypeId}
+              </option>
+            ))}
+        </select>
         <span className="module-remove">-</span>
       </div>
       <div className="module-properties">
