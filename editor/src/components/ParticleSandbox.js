@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "./ParticleSandbox.css";
 import * as PIXI from "pixi.js";
 import { ParticleSystem } from "modular-particle-system/particleSystem";
+import { globalStateContext } from "./Editor";
 
 const ParticleSandbox = (props) => {
   const { effects } = props;
+  const { availableTextures } = useContext(globalStateContext);
+  console.log("RENDER PARTICLE SANDBOX", effects);
 
   const particleSystem = ParticleSystem.fromObject({
     effects,
@@ -18,23 +21,17 @@ const ParticleSandbox = (props) => {
     container.appendChild(app.view);
     // #region PIXI Renderer
 
-    const loader = PIXI.Loader.shared;
-    if (!loader.resources.spritesheet) {
-      loader.add("spritesheet", "sprites/seepia_particles.json");
-      loader.load();
-    }
-
     const unusedSprites = [];
     const activeSprites = new Map();
-    const registerParticleEffect = (effect) => {
-      effect.addParticleListeners.push((particle) =>
-        handleParticleAdd(effect, particle)
+    const registerParticleEffect = (particleEffect, effectInfo) => {
+      particleEffect.addParticleListeners.push((particle) =>
+        handleParticleAdd(effectInfo, particle)
       );
-      effect.destroyParticleListeners.push((particle) =>
+      particleEffect.destroyParticleListeners.push((particle) =>
         handleParticleDestroy(particle)
       );
     };
-    const handleParticleAdd = (effect, particle) => {
+    const handleParticleAdd = (effectInfo, particle) => {
       // Get sprite for rendering particle.
       let sprite = unusedSprites.pop();
       if (!sprite) {
@@ -48,13 +45,13 @@ const ParticleSandbox = (props) => {
       // Prepare sprite for rendering.
       sprite.visible = true;
 
-      const availableTextures = Object.keys(
-        loader.resources?.spritesheet?.textures || {}
-      );
-      const texture = availableTextures[0];
-      if (texture) {
-        sprite.texture = PIXI.utils.TextureCache[texture];
-      }
+      const effectTextureNames = effectInfo.textures;
+      const particleTextureName =
+        effectTextureNames[
+          Math.round(Math.random() * (effectTextureNames.length - 1))
+        ];
+      const texture = availableTextures[particleTextureName];
+      sprite.texture = texture;
 
       // Save the relation between the particle and sprite.
       activeSprites.set(particle, sprite);
@@ -96,7 +93,6 @@ const ParticleSandbox = (props) => {
 
     return () => {
       app.destroy(true);
-      loader.destroy();
     };
   }, []);
 
@@ -107,7 +103,10 @@ const ParticleSandbox = (props) => {
     const { app, updateRendering, registerParticleEffect, reset } = renderer;
 
     reset();
-    particleSystem.effects.forEach((effect) => registerParticleEffect(effect));
+    const particleEffects = particleSystem.effects;
+    particleEffects.forEach((particleEffect, i) =>
+      registerParticleEffect(particleEffect, effects[i])
+    );
 
     const update = () => {
       const dt = app.ticker.elapsedMS / 1000;

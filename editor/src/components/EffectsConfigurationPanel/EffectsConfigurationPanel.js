@@ -16,7 +16,7 @@ const EffectsConfigurationPanel = (props) => {
           nKey={`effect${iEffect}`}
           updateEffect={(updatedEffect) => {
             const updatedEffects = [...effects];
-            effects[iEffect] = updatedEffect;
+            updatedEffects[iEffect] = updatedEffect;
             updateEffects(updatedEffects);
           }}
         />

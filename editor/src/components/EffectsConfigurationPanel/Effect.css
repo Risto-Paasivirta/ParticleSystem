@@ -1,4 +1,8 @@
 .effect {
+    background-color: blue;
 }
 .effect-title {
+}
+.effect-properties {
+  padding-left: 18px;
 }

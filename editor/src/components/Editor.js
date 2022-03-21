@@ -3,15 +3,21 @@ import EffectsConfigurationPanel from "./EffectsConfigurationPanel/EffectsConfig
 import ProjectToolbar from "./ProjectToolbar";
 import ParticleSandbox from "./ParticleSandbox";
 import "./Editor.css";
+import * as PIXI from "pixi.js";
 
 const globalState = {
   particleModules: [],
+  /**
+   * Object where key = name of sprite and value = PIXI.js Texture
+   */
+  availableTextures: {},
 };
 export const globalStateContext = createContext(globalState);
 
 const Editor = (props) => {
   const [effects, setEffects] = useState([
     {
+      textures: ["generic/ball.png"],
       modules: [
         {
           moduleTypeId: "PointGenerator",
@@ -29,6 +35,11 @@ const Editor = (props) => {
         {
           moduleTypeId: "LifeTimeRange",
         },
+        {
+          moduleTypeId: "RandomScale",
+          min: 0.3,
+          max: 0.5,
+        },
       ],
     },
   ]);
@@ -36,13 +47,46 @@ const Editor = (props) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("config.particleModules.json")
+    // Load config files.
+    const promiseParticleModules = fetch("config.particleModules.json")
       .then((r) => r.json())
       .then((particleModules) => {
         console.log("loaded particle modules");
         globalState.particleModules = particleModules;
-        setLoading(false);
       });
+
+    const promiseSpriteSheets = fetch("config.spritesheets.json")
+      .then((r) => r.json())
+      .then((spriteSheetNames) => {
+        console.log("loaded spritesheet names");
+        const loader = PIXI.Loader.shared;
+        if (!loader.resources.spritesheet) {
+          spriteSheetNames.forEach((name) => {
+            loader.add(name, `sprites/${name}`);
+          });
+          loader.load();
+
+          return new Promise((resolve) => {
+            loader.onComplete.once((_, resources) => {
+              console.log("loaded spritesheets");
+              const availableTexturesList = Object.values(resources).map(
+                (resource) => resource.textures
+              );
+              const availableTextures = availableTexturesList.reduce(
+                (prev, cur) => ({ ...prev, ...cur }),
+                {}
+              );
+
+              globalState.availableTextures = availableTextures;
+              resolve();
+            });
+          });
+        }
+      });
+
+    Promise.all([promiseParticleModules, promiseSpriteSheets]).then((_) => {
+      setLoading(false);
+    });
   }, []);
 
   return loading ? (

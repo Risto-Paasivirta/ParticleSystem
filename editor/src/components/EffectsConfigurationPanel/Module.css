@@ -1,6 +1,5 @@
 .module {
-  background-color: blue;
-  padding-left: 18px;
+  background-color: green;
 }
 .module-title-layout {
   display: flex;
