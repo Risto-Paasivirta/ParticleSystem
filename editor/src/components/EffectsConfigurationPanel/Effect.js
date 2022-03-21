@@ -15,7 +15,6 @@ const Effect = (props) => {
         <TextureSelector
           updateTextures={(updatedTextures) => {
             const updatedEffect = { ...effect, textures: updatedTextures };
-            console.log("UPDATE EFFECT", updatedEffect);
             updateEffect(updatedEffect);
           }}
         />

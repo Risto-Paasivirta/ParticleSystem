@@ -7,7 +7,6 @@ import { globalStateContext } from "./Editor";
 const ParticleSandbox = (props) => {
   const { effects } = props;
   const { availableTextures } = useContext(globalStateContext);
-  console.log("RENDER PARTICLE SANDBOX", effects);
 
   const particleSystem = ParticleSystem.fromObject({
     effects,
