@@ -15,6 +15,7 @@ export class Gravity extends Module {
      *
      * Can be set to a location to pull towards that location with varying strength
      * based on how close the particle is to the location (closer = stronger pull).
+     * The pull behavior can be further configured with properties: `maxPullStrengthDistance`, `maxPullStrengthMultiplier`, `minPullStrengthDistance` and `minPullStrengthMultiplier`
      */
     center: Position | undefined;
 
