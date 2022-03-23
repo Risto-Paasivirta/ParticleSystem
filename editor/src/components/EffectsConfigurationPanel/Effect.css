@@ -2,7 +2,21 @@
   display: flex;
   flex-direction: column;
 }
+.effect-titleDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
 .effect-title {
+}
+.effect-remove {
+  width: 18px;
+  height: 18px;
+  background-image: url(../../assets/delete-button.png);
+  background-size: cover;
+  cursor: pointer;
+  margin-right: 4px;
 }
 .effect-properties {
   padding-left: 18px;
@@ -14,6 +28,7 @@
   flex-direction: row;
   height: 100%;
   align-items: center;
+  cursor: pointer;
 }
 .effect-addModule {
   height: 80%;

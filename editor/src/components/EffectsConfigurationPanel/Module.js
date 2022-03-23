@@ -4,7 +4,7 @@ import { globalStateContext } from "../Editor";
 import ModuleProperty from "./ModuleProperty/ModuleProperty";
 
 const Module = (props) => {
-  const { module, nKey, updateModule } = props;
+  const { module, nKey, updateModule, removeModule } = props;
   const { particleModules } = useContext(globalStateContext);
 
   const moduleInfo = particleModules.find(
@@ -34,7 +34,7 @@ const Module = (props) => {
               </option>
             ))}
         </select>
-        <div className="module-remove"></div>
+        <div className="module-remove" onClick={() => removeModule()}></div>
       </div>
       <div className="module-properties">
         {Object.entries(moduleInfo.properties).map(

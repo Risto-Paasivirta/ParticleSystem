@@ -16,6 +16,7 @@
   height: 18px;
   background-image: url(../../assets/delete-button.png);
   background-size: cover;
+  cursor: pointer;
 }
 .module-properties {
   padding-left: 18px;
