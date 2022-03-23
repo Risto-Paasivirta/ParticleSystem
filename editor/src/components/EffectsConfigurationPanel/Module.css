@@ -1,19 +1,24 @@
 .module {
-  background-color: green;
+  display: flex;
+  flex-direction: column;
 }
 .module-title-layout {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-}
-.module-title {
+  align-items: center;
 }
 .module-typeDropdown {
-  
+  width: calc(200px - 8px - 18px - 8px - 18px);
 }
 .module-remove {
-  margin-right: 4px;
+  width: 18px;
+  height: 18px;
+  background-image: url(../../assets/delete-button.png);
+  background-size: cover;
 }
 .module-properties {
   padding-left: 18px;
+  display: flex;
+  flex-direction: column;
 }

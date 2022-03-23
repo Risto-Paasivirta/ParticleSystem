@@ -7,7 +7,7 @@ const TextureSelector = (props) => {
   const { availableTextures } = useContext(globalStateContext);
   return (
     <select
-      className="textureSelector-dropdown"
+      className="textureSelector-dropdown field"
       onChange={(e) => {
         const selectedTextureName = e.target.value;
         updateTextures([selectedTextureName]);

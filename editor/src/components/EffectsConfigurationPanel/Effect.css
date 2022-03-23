@@ -1,8 +1,24 @@
 .effect {
-    background-color: blue;
+  display: flex;
+  flex-direction: column;
 }
 .effect-title {
 }
 .effect-properties {
   padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+}
+.effect-addModuleDiv {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  align-items: center;
+}
+.effect-addModule {
+  height: 80%;
+  aspect-ratio: 1;
+  background-image: url(../../assets/round-add-button.png);
+  background-size: contain;
+  margin-right: 4px;
 }

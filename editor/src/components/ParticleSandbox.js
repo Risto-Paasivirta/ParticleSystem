@@ -18,6 +18,7 @@ const ParticleSandbox = (props) => {
     const container = document.getElementById("particleSandbox");
     const app = new PIXI.Application({ resizeTo: container });
     container.appendChild(app.view);
+    app.view.height = container.clientHeight;
     // #region PIXI Renderer
 
     const unusedSprites = [];

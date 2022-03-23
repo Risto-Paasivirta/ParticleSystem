@@ -6,7 +6,7 @@ const NumberProperty = (props) => {
   const { tooltip, defaultValue, min, max, step } = propertyInfo;
 
   return (
-    <div className="number-layout">
+    <div className="number-layout field">
       <span className="number-name" title={tooltip}>
         {name}
       </span>

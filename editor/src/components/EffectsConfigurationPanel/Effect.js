@@ -18,6 +18,10 @@ const Effect = (props) => {
             updateEffect(updatedEffect);
           }}
         />
+        <div className="effect-addModuleDiv field">
+          <div className="effect-addModule"></div>
+          <span>Add module</span>
+        </div>
         {effect.modules.map((module, iModule) => (
           <Module
             module={module}

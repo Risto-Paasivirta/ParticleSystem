@@ -16,7 +16,7 @@ const Module = (props) => {
 
   return (
     <div className="module">
-      <div className="module-title-layout">
+      <div className="module-title-layout field">
         <select
           className="module-typeDropdown"
           value={module.moduleTypeId}
@@ -34,7 +34,7 @@ const Module = (props) => {
               </option>
             ))}
         </select>
-        <span className="module-remove">-</span>
+        <div className="module-remove"></div>
       </div>
       <div className="module-properties">
         {Object.entries(moduleInfo.properties).map(

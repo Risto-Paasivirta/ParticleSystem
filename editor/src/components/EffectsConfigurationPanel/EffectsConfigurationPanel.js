@@ -7,6 +7,10 @@ const EffectsConfigurationPanel = (props) => {
 
   return (
     <div className="effectsConfigurationPanel">
+      <div className="effectsConfigurationPanel-addDiv field">
+        <div className="effectsConfigurationPanel-add"></div>
+        Add effect
+      </div>
       <span className="effectsConfigurationPanel-titleEffects"></span>
       {effects.map((effect, iEffect) => (
         <Effect
