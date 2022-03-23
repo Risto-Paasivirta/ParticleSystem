@@ -82,6 +82,11 @@ Slider("Gravity", 0, 1000, 0, (value) => {
   downGravity.strength = value;
 });
 
+document.addEventListener("mousemove", (e) => {
+  if (e.shiftKey || e.ctrlKey)
+  gravity.center = { x: e.clientX, y: e.clientY }
+});
+
 const loader = PIXI.Loader.shared;
 loader.add("spritesheet", "./assets/kenney_particlePack.json");
 loader.onComplete.once(() => {
