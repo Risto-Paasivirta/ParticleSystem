@@ -18,7 +18,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "prepare": "node readParticleModulesConfig.js"
+    "prepare": "cd ../modular-particle-system && npm i && npm run compile && cd ../editor && node readParticleModulesConfig.js"
   },
   "eslintConfig": {
     "extends": [
