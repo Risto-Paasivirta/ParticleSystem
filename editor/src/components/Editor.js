@@ -28,17 +28,22 @@ const Editor = (props) => {
         },
         {
           moduleTypeId: "RandomAngleVelocity",
+          min: 50,
+          max: 100,
         },
         {
-          moduleTypeId: "LifeTimeDestructor",
+          moduleTypeId: "RandomScale",
+          min: 0.5,
+          max: 0.8,
+        },
+        {
+          moduleTypeId: "RandomColor",
         },
         {
           moduleTypeId: "LifeTimeRange",
         },
         {
-          moduleTypeId: "RandomScale",
-          min: 0.3,
-          max: 0.5,
+          moduleTypeId: "AlphaOverLifetime",
         },
       ],
     },
