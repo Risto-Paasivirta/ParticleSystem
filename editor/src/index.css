@@ -34,6 +34,7 @@ footer {
   border-radius: 0px;
   padding-left: 4px;
   padding-right: 4px;
+  align-items: center;
 }
 
 select {

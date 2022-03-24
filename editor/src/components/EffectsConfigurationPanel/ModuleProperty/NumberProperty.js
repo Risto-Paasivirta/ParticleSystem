@@ -2,7 +2,7 @@ import React from "react";
 import "./NumberProperty.css";
 
 const NumberProperty = (props) => {
-  const { name, propertyInfo, nKey, onChange } = props;
+  const { name, propertyInfo, onChange } = props;
   const { tooltip, defaultValue, min, max, step } = propertyInfo;
 
   return (
