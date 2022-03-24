@@ -12,7 +12,7 @@ export const loadSerializedProperty = <
     deserializeValue: (value: unknown) => ModuleInstanceType[typeof key] | undefined,
 ): void => {
     const value = object[key as keyof object];
-    if (!value) {
+    if (value === undefined) {
         console.warn(`Missing module property ${moduleType.moduleTypeId}: "${key}"`);
         return;
     }
