@@ -45,6 +45,7 @@ const Effect = (props) => {
           <Module
             module={module}
             key={`${nKey}_module${iModule}`}
+            nKey={`${nKey}_module${iModule}`}
             updateModule={(updatedModule) => {
               const updatedEffect = { ...effect };
               updatedEffect.modules[iModule] = updatedModule;

@@ -12,6 +12,7 @@ const TextureSelector = (props) => {
         const selectedTextureName = e.target.value;
         updateTextures([selectedTextureName]);
       }}
+      value={selectedTextures[0]}
     >
       {Object.entries(availableTextures)
         .sort((a, b) => a[0].localeCompare(b[0]))
@@ -19,7 +20,6 @@ const TextureSelector = (props) => {
           <option
             className="textureSelector-option"
             key={`texture-${iTexture}`}
-            selected={selectedTextures.includes(textureName)}
           >
             {textureName}
           </option>

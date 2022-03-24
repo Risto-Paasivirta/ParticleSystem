@@ -8,6 +8,7 @@ const ParticleSandbox = (props) => {
   const { effects } = props;
   const { availableTextures } = useContext(globalStateContext);
 
+  // TODO: Should disable warnings from ParticleSystem deserialization
   const particleSystem = ParticleSystem.fromObject({
     effects,
   });
@@ -118,7 +119,7 @@ const ParticleSandbox = (props) => {
     return () => {
       app.ticker?.remove(update);
     };
-  }, [particleSystem, renderer]);
+  }, [particleSystem, effects, renderer]);
 
   return <div className="particleSandbox" id="particleSandbox"></div>;
 };
