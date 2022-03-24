@@ -15,7 +15,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "PUBLIC_URL=https://risto-paasivirta.github.io/ParticleSystem react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "prepare": "cd ../modular-particle-system && npm i && npm run compile && cd ../editor && node readParticleModulesConfig.js",
