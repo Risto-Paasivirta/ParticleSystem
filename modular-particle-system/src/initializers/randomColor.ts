@@ -20,6 +20,12 @@ import { lerpColor } from "../utilities";
  *      { r: 0, g: 1, b: 0 }
  *  ]
  * ```
+ *
+ * @moduleProperties
+ * palette {
+ *      @tooltip        TODO
+ *      @type           Color[]
+ * }
  */
 export class RandomColor extends Module {
     palette: Color[] = [

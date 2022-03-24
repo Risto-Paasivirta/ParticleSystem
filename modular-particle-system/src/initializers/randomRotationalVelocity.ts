@@ -9,6 +9,20 @@ import { lerp } from "../utilities";
  * This causes the particle to continuously rotate with a static speed along its lifetime.
  *
  * Rotational velocity range can be customized with `min` and `max` properties.
+ *
+ * @moduleProperties
+ * min {
+ *      @tooltip        TODO
+ *      @type           Number
+ *      @step           0.25
+ *      @defaultValue   -5.0
+ * }
+ * max {
+ *      @tooltip        TODO
+ *      @type           Number
+ *      @step           0.25
+ *      @defaultValue   5.0
+ * }
  */
 export class RandomRotationalVelocity extends Module {
     /**

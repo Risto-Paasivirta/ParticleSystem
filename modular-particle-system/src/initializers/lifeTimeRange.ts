@@ -9,12 +9,14 @@ import { lerp } from "../utilities";
  * min {
  *      @tooltip        TODO
  *      @type           Number
+ *      @min            0.0
  *      @step           0.5
  *      @defaultValue   1.0
  * }
  * max {
  *      @tooltip        TODO
  *      @type           Number
+ *      @min            0.0
  *      @step           0.5
  *      @defaultValue   5.0
  * }

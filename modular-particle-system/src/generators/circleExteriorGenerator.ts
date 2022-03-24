@@ -12,6 +12,38 @@ import { ParticleGenerator } from "./generator";
  * Generator module that creates particles along the exterior of a circular area.
  *
  * Each particle is generated next to each other, so that when particles are regularly generated they move around the circle.
+ *
+ * @moduleProperties
+ * interval {
+ *      @tooltip        TODO
+ *      @type           Number
+ *      @min            0
+ *      @step           0.01
+ *      @defaultValue   0.1
+ * }
+ * center {
+ *      @tooltip        TODO
+ *      @type           Position
+ * }
+ * radius {
+ *      @tooltip        TODO
+ *      @type           Number
+ *      @defaultValue   50
+ *      @min            0
+ *      @step           10
+ * }
+ * nextParticleAngle {
+ *      @tooltip        TODO
+ *      @type           Number
+ *      @defaultValue   0
+ *      @step           0.1
+ * }
+ * angleStep {
+ *      @tooltip        TODO
+ *      @type           Number
+ *      @defaultValue   0.5
+ *      @step           0.1
+ * }
  */
 export class CircleExteriorGenerator extends ParticleGenerator {
     /**

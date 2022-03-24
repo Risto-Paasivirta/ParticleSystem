@@ -8,6 +8,22 @@ import { lerp } from "../utilities";
  * Module that assigns a random scale to each particle upon its creation.
  *
  * Scale range can be customized with properties: `min` and `max`.
+ *
+ * @moduleProperties
+ * min {
+ *      @tooltip        TODO
+ *      @type           Number
+ *      @min            0
+ *      @step           0.1
+ *      @defaultValue   0.5
+ * }
+ * max {
+ *      @tooltip        TODO
+ *      @type           Number
+ *      @min            0
+ *      @step           0.1
+ *      @defaultValue   1.5
+ * }
  */
 export class RandomScale extends Module {
     min = 0.5;

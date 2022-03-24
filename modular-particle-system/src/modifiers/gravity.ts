@@ -2,6 +2,15 @@ import { Module, ModuleObject } from "../module";
 import { loadSerializedProperty, deserializePrimitiveDataType } from "../serialization/moduleSerialization";
 import { ParticleEffect } from "../particleEffect";
 
+/**
+ * @moduleProperties
+ * strength {
+ *      @tooltip        TODO
+ *      @type           Number
+ *      @step           0.1
+ *      @defaultValue   0.2
+ * }
+ */
 export class Gravity extends Module {
     strength = 0.2;
 

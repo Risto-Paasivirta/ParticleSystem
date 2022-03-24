@@ -18,6 +18,19 @@ import { deserializeShape, getRandomPositionInsideShape, serializeShape, Shape }
  *      v2: { x: 300, y: 500 }
  *  }
  * ```
+ *
+ * @moduleProperties
+ * interval {
+ *      @tooltip        TODO
+ *      @type           Number
+ *      @min            0
+ *      @step           0.01
+ *      @defaultValue   0.1
+ * }
+ * shape {
+ *      @tooltip        TODO
+ *      @type           Shape
+ * }
  */
 export class ShapeGenerator extends ParticleGenerator {
     shape?: Shape;

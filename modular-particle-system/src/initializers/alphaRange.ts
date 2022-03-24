@@ -7,7 +7,25 @@ import { randomInRange } from "../utilities";
 /**
  * Module which overrides `Particle.color.a` property from a configurable random value range.
  *
- * Range can be configured with `alphaRange` property.
+ * Range can be configured with `min` and `max` properties.
+ *
+ * @moduleProperties
+ * min {
+ *      @tooltip        TODO
+ *      @type           Number
+ *      @min            0
+ *      @max            1
+ *      @step           0.1
+ *      @defaultValue   0
+ * }
+ * max {
+ *      @tooltip        TODO
+ *      @type           Number
+ *      @min            0
+ *      @max            1
+ *      @step           0.1
+ *      @defaultValue   1
+ * }
  */
 export class AlphaRange extends Module {
     /**
