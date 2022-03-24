@@ -2,8 +2,8 @@ import React from "react";
 import "./NumberProperty.css";
 
 const NumberProperty = (props) => {
-  const { name, propertyInfo, onChange } = props;
-  const { tooltip, defaultValue, min, max, step } = propertyInfo;
+  const { value, name, propertyInfo, onChange } = props;
+  const { tooltip, min, max, step } = propertyInfo;
 
   return (
     <div className="number-layout field">
@@ -13,18 +13,18 @@ const NumberProperty = (props) => {
       <input
         className="number-field"
         type={"number"}
-        defaultValue={defaultValue}
+        value={value}
         min={min}
         max={max}
         step={step}
         onChange={(e) => {
-          let value;
+          let newValue;
           try {
-            value = Number(e.target.value);
+            newValue = Number(e.target.value);
           } catch (e) {
             console.warn(`NumberProperty could not parse Number`);
           }
-          onChange(value);
+          onChange(newValue);
         }}
       ></input>
     </div>

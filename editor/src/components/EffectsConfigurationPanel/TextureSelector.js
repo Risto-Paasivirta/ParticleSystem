@@ -3,7 +3,7 @@ import "./TextureSelector.css";
 import { globalStateContext } from "../Editor";
 
 const TextureSelector = (props) => {
-  const { updateTextures } = props;
+  const { selectedTextures, updateTextures } = props;
   const { availableTextures } = useContext(globalStateContext);
   return (
     <select
@@ -19,6 +19,7 @@ const TextureSelector = (props) => {
           <option
             className="textureSelector-option"
             key={`texture-${iTexture}`}
+            selected={selectedTextures.includes(textureName)}
           >
             {textureName}
           </option>

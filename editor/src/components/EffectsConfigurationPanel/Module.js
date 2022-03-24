@@ -41,6 +41,7 @@ const Module = (props) => {
           ([key, propertyInfo], iProperty) => (
             <ModuleProperty
               name={key}
+              value={module[key] || propertyInfo.defaultValue}
               propertyInfo={propertyInfo}
               key={`${nKey}_property${iProperty}`}
               nKey={`${nKey}_property${iProperty}`}
