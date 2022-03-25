@@ -18,7 +18,7 @@
     "build": "PUBLIC_URL=https://risto-paasivirta.github.io/ParticleSystem react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "prepare": "cd ../modular-particle-system && npm i && npm run compile && cd ../editor && node readParticleModulesConfig.js",
+    "prepare": "cd ../modular-particle-system && npm i && npm run compile && cd ../editor && node readCoreLibraryVersion.js",
     "deploy": "npm run build && gh-pages -d build"
   },
   "eslintConfig": {

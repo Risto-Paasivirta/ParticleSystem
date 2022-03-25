@@ -23,4 +23,4 @@ yarn-debug.log*
 yarn-error.log*
 
 # Automatically generated file!
-public/config.particleModules.json
+public/config.modularParticleSystem.json

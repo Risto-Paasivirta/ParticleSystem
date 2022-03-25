@@ -24,10 +24,11 @@ const Editor = (props) => {
 
   useEffect(() => {
     // Load config files.
-    const promiseParticleModules = fetch("config.particleModules.json")
+    const promiseCoreLibraryConfig = fetch("config.modularParticleSystem.json")
       .then((r) => r.json())
-      .then((particleModules) => {
-        console.log("loaded particle modules");
+      .then((coreLibraryConfig) => {
+        console.log("loaded core library config");
+        const { particleModules } = coreLibraryConfig;
         globalState.particleModules = particleModules;
 
         setEffects(
@@ -67,7 +68,7 @@ const Editor = (props) => {
         }
       });
 
-    Promise.all([promiseParticleModules, promiseSpriteSheets]).then((_) => {
+    Promise.all([promiseCoreLibraryConfig, promiseSpriteSheets]).then((_) => {
       setLoading(false);
     });
   }, []);
