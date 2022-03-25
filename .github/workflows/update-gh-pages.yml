@@ -6,8 +6,7 @@ name: Update GitHub Pages
 on:
   push:
     branches:
-      - main  # Set a branch name to trigger deployment
-      - nk/proto-editor   # TODO: Remove after confirmed to work
+      - master # Set a branch name to trigger deployment
   pull_request:
 
   # Allows you to run this workflow manually from the Actions tab
