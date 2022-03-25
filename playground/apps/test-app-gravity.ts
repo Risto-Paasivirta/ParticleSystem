@@ -26,7 +26,6 @@ const initializer = new LifeTimeRange(effect);
 effect.modules.push(initializer);
 
 const gravity = new Gravity(effect);
-gravity.strength = 0.2;
 effect.modules.push(gravity);
 
 const destructor = new OutsideBoundsDestructor(effect)
