@@ -73,9 +73,24 @@ const readModules = () => {
   return particleModules;
 };
 
+const readEasingFunctions = () => {
+  const easingFunctionsTypeDef = fs
+    .readFileSync(path.resolve(pathModularParticleSystem, "easing.d.ts"))
+    .toString();
+  const regexpEasingFunctionNames =
+    /@easingFunction(.|\n|\r)*?\s+(.*):\s?EasingFunction/g;
+  const matchEasingFunctionNames = Array.from(
+    easingFunctionsTypeDef.matchAll(regexpEasingFunctionNames)
+  );
+  const easingFunctionNames = matchEasingFunctionNames.map((match) => match[2]);
+  return easingFunctionNames;
+};
+
 const particleModules = readModules();
+const easingFunctions = readEasingFunctions();
 const config = {
   particleModules,
+  easingFunctions,
 };
 
 fs.writeFileSync(

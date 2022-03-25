@@ -14,37 +14,47 @@ export type EasingFunction = (x: number) => number;
  */
 export const EasingFunctions = {
     /**
-     *
+     * @easingFunction
      */
     linear: ((x: number) => {
         return x;
     }) as EasingFunction,
     /**
      * https://easings.net/#easeOutSine
+     *
+     * @easingFunction
      */
     easeOutSine: ((x: number) => {
         return Math.sin((x * Math.PI) / 2);
     }) as EasingFunction,
     /**
      * https://easings.net/#easeOutCubic
+     *
+     * @easingFunction
      */
     easeOutCubic: ((x: number) => {
         return 1 - Math.pow(1 - x, 3);
     }) as EasingFunction,
     /**
      * https://easings.net/#easeOutExpo
+     *
+     * @easingFunction
      */
     easeOutExpo: ((x: number) => {
         return x === 1 ? 1 : 1 - Math.pow(2, -10 * x);
     }) as EasingFunction,
     /**
      * https://easings.net/#easeOutCirc
+     *
+     * @easingFunction
      */
     easeOutCirc: ((x: number) => {
         return Math.sqrt(1 - Math.pow(x - 1, 2));
     }) as EasingFunction,
     /**
      * https://easings.net/#easeOutBack
+     *
+     * @easingFunction
      */
     easeOutBack: ((x: number) => {
         const c1 = 1.70158;
@@ -53,6 +63,8 @@ export const EasingFunctions = {
     }) as EasingFunction,
     /**
      * https://easings.net/#easeOutElastic
+     *
+     * @easingFunction
      */
     easeOutElastic: ((x: number) => {
         const c4 = (2 * Math.PI) / 3;
