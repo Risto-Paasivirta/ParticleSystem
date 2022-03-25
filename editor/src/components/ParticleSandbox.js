@@ -17,7 +17,10 @@ const ParticleSandbox = (props) => {
 
   useEffect(() => {
     const container = document.getElementById("particleSandbox");
-    const app = new PIXI.Application({ resizeTo: container });
+    const app = new PIXI.Application({
+      resizeTo: container,
+      backgroundAlpha: 0,
+    });
     container.appendChild(app.view);
     app.view.height = container.clientHeight;
     // #region PIXI Renderer
@@ -121,7 +124,21 @@ const ParticleSandbox = (props) => {
     };
   }, [particleSystem, effects, renderer]);
 
-  return <div className="particleSandbox" id="particleSandbox"></div>;
+  return (
+    <div className="particleSandbox">
+      <div className="particleSandbox-gridColumns">
+        {new Array(10).fill(0).map((_, i) => (
+          <div className="particleSandbox-gridColumn" key={`col${i}`}></div>
+        ))}
+      </div>
+      <div className="particleSandbox-gridRows">
+        {new Array(10).fill(0).map((_, i) => (
+          <div className="particleSandbox-gridRow" key={`col${i}`}></div>
+        ))}
+      </div>
+      <div className="particleSandbox-canvas" id="particleSandbox"></div>
+    </div>
+  );
 };
 
 export default ParticleSandbox;
