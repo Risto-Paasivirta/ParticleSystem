@@ -6,6 +6,20 @@ import { randomInRange } from "../utilities";
 
 /**
  * Module that assigns a random velocity to each particle along a random direction.
+ *
+ * @module
+ * min {
+ *      @tooltip        TODO
+ *      @type           Number
+ *      @step           10
+ *      @defaultValue   0
+ * }
+ * max {
+ *      @tooltip        TODO
+ *      @type           Number
+ *      @step           10
+ *      @defaultValue   100
+ * }
  */
 export class RandomAngleVelocity extends Module {
     /**

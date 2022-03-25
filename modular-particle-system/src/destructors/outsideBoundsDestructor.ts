@@ -17,6 +17,12 @@ import { ParticleEffect } from "../particleEffect";
  *  };
  *  particleSystem.modules.push(destructor);
  * ```
+ *
+ * @module
+ * bounds {
+ *      @tooltip        TODO
+ *      @type           Shape
+ * }
  */
 export class OutsideBoundsDestructor extends Module {
     /**

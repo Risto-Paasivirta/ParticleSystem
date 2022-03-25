@@ -7,6 +7,33 @@ import { loadSerializedProperty, deserializePrimitiveDataType } from "../seriali
 
 /**
  * Generator module that creates particles along the exterior of a circular area.
+ *
+ * @module
+ * interval {
+ *      @tooltip        TODO
+ *      @type           Number
+ *      @min            0
+ *      @step           0.01
+ *      @defaultValue   0.1
+ * }
+ * center {
+ *      @tooltip        TODO
+ *      @type           Position
+ * }
+ * outerRadius {
+ *      @tooltip        TODO
+ *      @type           Number
+ *      @defaultValue   50
+ *      @min            0
+ *      @step           10
+ * }
+ * innerRadius {
+ *      @tooltip        TODO
+ *      @type           Number
+ *      @defaultValue   40
+ *      @min            0
+ *      @step           10
+ * }
  */
 export class CircleEdgeGenerator extends ParticleGenerator {
     /**

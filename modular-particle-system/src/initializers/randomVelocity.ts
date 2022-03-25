@@ -5,6 +5,17 @@ import { ParticleEffect } from "../particleEffect";
 import { lerp } from "../utilities";
 import { Range } from "../types";
 
+/**
+ * @module
+ * randomX {
+ *      @tooltip        TODO
+ *      @type           Range
+ * }
+ * randomY {
+ *      @tooltip        TODO
+ *      @type           Range
+ * }
+ */
 export class RandomVelocity extends Module {
     randomX: Range = { min: 100, max: 100 };
     randomY: Range = { min: -50, max: 50 };

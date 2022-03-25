@@ -23,6 +23,12 @@ type ParticleWithInitialVelocity = Particle & {
  * Deacceleration animation can be customized with `easing` property.
  *
  * This module modifies `Particle.velocity` property, but does not reassign it so this can be combined with other modules which affect particle velocity.
+ *
+ * @module
+ * easing {
+ *      @tooltip        TODO
+ *      @type           EasingFunction
+ * }
  */
 export class DeaccelerationOverLifetime extends Module {
     /**

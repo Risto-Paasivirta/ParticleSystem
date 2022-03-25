@@ -1,0 +1,12 @@
+.easingFunction-div {
+  display: flex;
+  flex-direction: row;
+}
+.easingFunction-name {
+}
+.easingFunction-dropdown {
+  position: absolute;
+  right: 0px;
+}
+.easingFunction-option {
+}

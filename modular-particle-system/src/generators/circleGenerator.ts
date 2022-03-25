@@ -7,6 +7,26 @@ import { loadSerializedProperty, deserializePrimitiveDataType } from "../seriali
 
 /**
  * Generator module that creates particles at random inside a circular area.
+ *
+ * @module
+ * interval {
+ *      @tooltip        TODO
+ *      @type           Number
+ *      @min            0
+ *      @step           0.01
+ *      @defaultValue   0.1
+ * }
+ * center {
+ *      @tooltip        TODO
+ *      @type           Position
+ * }
+ * radius {
+ *      @tooltip        TODO
+ *      @type           Number
+ *      @defaultValue   50
+ *      @min            0
+ *      @step           10
+ * }
  */
 export class CircleGenerator extends ParticleGenerator {
     /**

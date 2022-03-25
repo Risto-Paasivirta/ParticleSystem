@@ -1,0 +1,25 @@
+.module {
+  display: flex;
+  flex-direction: column;
+}
+.module-title-layout {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.module-typeDropdown {
+  width: calc(200px - 8px - 18px - 8px - 18px);
+}
+.module-remove {
+  width: 18px;
+  height: 18px;
+  background-image: url(../../assets/delete-button.png);
+  background-size: cover;
+  cursor: pointer;
+}
+.module-properties {
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+}

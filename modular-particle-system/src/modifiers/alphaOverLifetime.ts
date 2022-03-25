@@ -10,6 +10,12 @@ import { ParticleEffect } from "../particleEffect";
  * Alpha animation can be customized with `easing` property.
  *
  * This module modifies `Particle.alpha` property and can not be combined with any other modifier that does so.
+ *
+ * @module
+ * easing {
+ *      @tooltip        TODO
+ *      @type           EasingFunction
+ * }
  */
 export class AlphaOverLifetime extends Module {
     /**

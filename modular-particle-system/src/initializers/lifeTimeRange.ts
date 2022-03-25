@@ -4,6 +4,23 @@ import { Particle } from "../particle";
 import { ParticleEffect } from "../particleEffect";
 import { lerp } from "../utilities";
 
+/**
+ * @module
+ * min {
+ *      @tooltip        TODO
+ *      @type           Number
+ *      @min            0.0
+ *      @step           0.5
+ *      @defaultValue   1.0
+ * }
+ * max {
+ *      @tooltip        TODO
+ *      @type           Number
+ *      @min            0.0
+ *      @step           0.5
+ *      @defaultValue   5.0
+ * }
+ */
 export class LifeTimeRange extends Module {
     min = 1.5;
     max = 2.5;
