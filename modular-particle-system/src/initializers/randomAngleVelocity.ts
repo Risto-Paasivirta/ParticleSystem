@@ -7,7 +7,7 @@ import { randomInRange } from "../utilities";
 /**
  * Module that assigns a random velocity to each particle along a random direction.
  *
- * @moduleProperties
+ * @module
  * min {
  *      @tooltip        TODO
  *      @type           Number

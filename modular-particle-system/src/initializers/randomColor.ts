@@ -21,7 +21,7 @@ import { lerpColor } from "../utilities";
  *  ]
  * ```
  *
- * @moduleProperties
+ * @module
  * palette {
  *      @tooltip        TODO
  *      @type           Color[]

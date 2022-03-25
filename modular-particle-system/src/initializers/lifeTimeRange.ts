@@ -5,7 +5,7 @@ import { ParticleEffect } from "../particleEffect";
 import { lerp } from "../utilities";
 
 /**
- * @moduleProperties
+ * @module
  * min {
  *      @tooltip        TODO
  *      @type           Number

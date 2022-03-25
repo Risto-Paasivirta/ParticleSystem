@@ -3,7 +3,7 @@ import { loadSerializedProperty, deserializePrimitiveDataType } from "../seriali
 import { ParticleEffect } from "../particleEffect";
 
 /**
- * @moduleProperties
+ * @module
  * strength {
  *      @tooltip        TODO
  *      @type           Number

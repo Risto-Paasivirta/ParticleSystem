@@ -24,7 +24,7 @@ type ParticleWithInitialVelocity = Particle & {
  *
  * This module modifies `Particle.velocity` property, but does not reassign it so this can be combined with other modules which affect particle velocity.
  *
- * @moduleProperties
+ * @module
  * easing {
  *      @tooltip        TODO
  *      @type           EasingFunction

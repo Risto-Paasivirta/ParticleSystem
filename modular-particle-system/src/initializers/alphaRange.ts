@@ -9,7 +9,7 @@ import { randomInRange } from "../utilities";
  *
  * Range can be configured with `min` and `max` properties.
  *
- * @moduleProperties
+ * @module
  * min {
  *      @tooltip        TODO
  *      @type           Number

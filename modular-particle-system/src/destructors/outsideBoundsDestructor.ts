@@ -18,7 +18,7 @@ import { ParticleEffect } from "../particleEffect";
  *  particleSystem.modules.push(destructor);
  * ```
  *
- * @moduleProperties
+ * @module
  * bounds {
  *      @tooltip        TODO
  *      @type           Shape

@@ -6,7 +6,7 @@ import { lerp } from "../utilities";
 import { Range } from "../types";
 
 /**
- * @moduleProperties
+ * @module
  * randomX {
  *      @tooltip        TODO
  *      @type           Range

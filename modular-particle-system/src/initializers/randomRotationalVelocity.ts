@@ -10,7 +10,7 @@ import { lerp } from "../utilities";
  *
  * Rotational velocity range can be customized with `min` and `max` properties.
  *
- * @moduleProperties
+ * @module
  * min {
  *      @tooltip        TODO
  *      @type           Number

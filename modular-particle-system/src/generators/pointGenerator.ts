@@ -6,7 +6,7 @@ import { Position } from "../types";
 import { ParticleGenerator } from "./generator";
 
 /**
- * @moduleProperties
+ * @module
  * interval {
  *      @tooltip        TODO
  *      @type           Number
