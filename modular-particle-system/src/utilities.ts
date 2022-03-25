@@ -35,6 +35,23 @@ export const vec2 = {
     multiply: (a: Position, b: number): Position => {
         return { x: a.x * b, y: a.y * b };
     },
+    /**
+     * Get length of vector.
+     * @param v     Vector
+     * @return      Length of vector
+     */
+    length: (v: Position): number => {
+        return Math.sqrt(v.x ** 2 + v.y ** 2);
+    },
+    /**
+     * Get normalized vector.
+     * @param v     Vector
+     * @returns     Normalized vector (same direction but length = 1).
+     */
+    normalize: (v: Position): Position => {
+        const length = vec2.length(v);
+        return length === 0 ? { x: 0, y: 0 } : { x: v.x / length, y: v.y / length };
+    },
 };
 
 /**
