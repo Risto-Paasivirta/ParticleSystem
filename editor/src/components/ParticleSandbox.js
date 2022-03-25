@@ -8,12 +8,9 @@ const ParticleSandbox = (props) => {
   const { effects } = props;
   const { availableTextures } = useContext(globalStateContext);
 
-  // TODO: Should disable warnings from ParticleSystem deserialization
-  const particleSystem = ParticleSystem.fromObject({
-    effects,
-  });
-
   const [renderer, setRenderer] = useState(undefined);
+
+  const [devNoteState, setDevNoteState] = useState(false);
 
   useEffect(() => {
     const container = document.getElementById("particleSandbox");
@@ -98,7 +95,7 @@ const ParticleSandbox = (props) => {
     return () => {
       app.destroy(true);
     };
-  }, []);
+  }, [availableTextures]);
 
   useEffect(() => {
     if (!renderer) {
@@ -107,6 +104,11 @@ const ParticleSandbox = (props) => {
     const { app, updateRendering, registerParticleEffect, reset } = renderer;
 
     reset();
+
+    // TODO: Should disable warnings from ParticleSystem deserialization
+    const particleSystem = ParticleSystem.fromObject({
+      effects,
+    });
     const particleEffects = particleSystem.effects;
     particleEffects.forEach((particleEffect, i) =>
       registerParticleEffect(particleEffect, effects[i])
@@ -122,7 +124,14 @@ const ParticleSandbox = (props) => {
     return () => {
       app.ticker?.remove(update);
     };
-  }, [particleSystem, effects, renderer]);
+  }, [effects, renderer]);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setDevNoteState(true);
+    }, 2000);
+    return () => clearTimeout(timeout);
+  }, []);
 
   return (
     <div className="particleSandbox">
@@ -137,6 +146,17 @@ const ParticleSandbox = (props) => {
         ))}
       </div>
       <div className="particleSandbox-canvas" id="particleSandbox"></div>
+      <div
+        className={`particleSandbox-devNotification ${
+          devNoteState ? "particleSandbox-devNotification-active" : ""
+        }`}
+        onClick={() => setDevNoteState(false)}
+      >
+        <p>
+          <b>Work in progress!</b>
+        </p>
+        <p>Some features are still unimplemented.</p>
+      </div>
     </div>
   );
 };
