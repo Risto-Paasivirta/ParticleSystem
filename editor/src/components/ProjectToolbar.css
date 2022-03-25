@@ -1,9 +1,33 @@
 .projectToolbar {
   height: 24px;
   display: flex;
+  flex-direction: column;
+  border-bottom: solid 1px;
+}
+.projectToolbar-gap {
+  height: 4px;
+}
+.projectToolBar-buttons {
+  font-size: 100%;
+  display: flex;
   flex-direction: row;
   justify-content: space-evenly;
 }
-.projectToolbar-button {
+.projectToolbar-buttonDiv {
   cursor: pointer;
+  flex-grow: 1;
+  text-align: center;
+  border-right: solid 1px;
+}
+.projectToolbar-restart {
+}
+.projectToolbar-loadPreset {
+  text-decoration: line-through;
+  cursor: default;
+}
+.projectToolbar-saveToFile {
+}
+.projectToolbar-loadFromFile {
+  text-decoration: line-through;
+  cursor: default;
 }

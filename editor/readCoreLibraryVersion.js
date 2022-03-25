@@ -97,3 +97,7 @@ fs.writeFileSync(
   "public/config.modularParticleSystem.json",
   JSON.stringify(config)
 );
+
+console.log(
+  `Successfully created editor/public/config.modularParticleSystem.json !`
+);

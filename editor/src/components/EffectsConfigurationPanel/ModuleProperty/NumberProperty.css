@@ -1,10 +1,11 @@
 .number-layout {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
 }
 .number-name {
 }
 .number-field {
+  position: absolute;
+  right: 0px;
   width: 40px;
 }

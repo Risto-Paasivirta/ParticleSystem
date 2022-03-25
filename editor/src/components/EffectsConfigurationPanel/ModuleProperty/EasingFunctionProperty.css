@@ -1,11 +1,12 @@
 .easingFunction-div {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
 }
 .easingFunction-name {
 }
 .easingFunction-dropdown {
+  position: absolute;
+  right: 0px;
 }
 .easingFunction-option {
 }

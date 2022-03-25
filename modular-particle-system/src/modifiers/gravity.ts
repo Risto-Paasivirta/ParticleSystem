@@ -12,6 +12,34 @@ import { clamp, lerp, vec2 } from "../utilities";
  *      @step           0.1
  *      @defaultValue   0.2
  * }
+ * center {
+ *      @tooltip        TODO
+ *      @type           Position
+ * }
+ * minPullStrengthMultiplier {
+ *      @tooltip        TODO
+ *      @type           Number
+ *      @step           0.1
+ *      @defaultValue   0.2
+ * }
+ * maxPullStrengthMultiplier {
+ *      @tooltip        TODO
+ *      @type           Number
+ *      @step           0.1
+ *      @defaultValue   1.0
+ * }
+ * minPullStrengthDistance {
+ *      @tooltip        TODO
+ *      @type           Number
+ *      @step           50
+ *      @defaultValue   500
+ * }
+ * maxPullStrengthDistance {
+ *      @tooltip        TODO
+ *      @type           Number
+ *      @step           50
+ *      @defaultValue   100
+ * }
  */
 export class Gravity extends Module {
     strength = 100.0;

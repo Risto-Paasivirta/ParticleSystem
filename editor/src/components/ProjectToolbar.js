@@ -5,14 +5,34 @@ const ProjectToolbar = (props) => {
   const { restart, saveToFile } = props;
   return (
     <div className="projectToolbar">
-      <span className="projectToolbar-button" onClick={() => restart()}>
-        Restart
-      </span>
-      <span className="projectToolbar-button">Load preset</span>
-      <span className="projectToolbar-button" onClick={() => saveToFile()}>
-        Save to file
-      </span>
-      <span className="projectToolbar-button">Load from file</span>
+      <div className="projectToolbar-gap"></div>
+      <div className="projectToolBar-buttons">
+        <div
+          className="projectToolbar-buttonDiv projectToolbar-restart"
+          onClick={() => restart()}
+        >
+          <span className="projectToolbar-button">Restart</span>
+        </div>
+        <div
+          className="projectToolbar-buttonDiv projectToolbar-saveToFile"
+          onClick={() => saveToFile()}
+        >
+          <span className="projectToolbar-button">Save to file</span>
+        </div>
+        <div
+          className="projectToolbar-buttonDiv projectToolbar-loadPreset"
+          onClick={() => {}}
+        >
+          <span className="projectToolbar-button">Load preset</span>
+        </div>
+        <div
+          className="projectToolbar-buttonDiv projectToolbar-loadFromFile"
+          onClick={() => {}}
+        >
+          <span className="projectToolbar-button">Load from file</span>
+        </div>
+      </div>
+      <div className="projectToolbar-gap"></div>
     </div>
   );
 };

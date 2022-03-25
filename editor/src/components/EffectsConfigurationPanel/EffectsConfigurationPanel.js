@@ -41,6 +41,7 @@ const EffectsConfigurationPanel = (props) => {
           }}
         />
       ))}
+      <div className="effectsConfigurationPanel-footer"></div>
     </div>
   );
 };
