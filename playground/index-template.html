@@ -1,14 +1,94 @@
 <!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <title><%= htmlWebpackPlugin.options.title %></title>
-    </head>
-    <body>
-        <ul>
-            <% for(var i = 0; i < apps.length; i++){ %>
-            <li><a href="<%= apps[i] %>"><%= apps[i] %></a></li>
-            <% } %>
-        </ul>
-    </body>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Seepia Games Particle System Effects</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+    <style>
+        .grid-container {
+            display: grid;
+            grid-template-columns: auto auto auto;
+        }
+
+        .grid-container>div {
+            background-color: rgba(255, 255, 255, 0.8);
+            border: 1px solid black;
+            text-align: center;
+            font-size: 30px;
+            padding: 10px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 22px;
+            color: white;
+        }
+
+        p {
+            text-align: center;
+            font-size: 14px;
+            color: white;
+        }
+
+        body {
+            background-color: black;
+            font-family: "Lucida Console", "Courier New", monospace;
+            display: flex;
+            flex-direction: column;
+            height: unset;
+            min-height: 100%;
+            margin: auto;
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+    <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+    <script src="" async defer></script>
+    <header role="banner">
+        <h1>Seepia Games Particle System Effects</h1>
+    </header>
+    <div class="grid-container">
+       <!-- <div>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/The.Matrix.glmatrix.2.png/800px-The.Matrix.glmatrix.2.png">
+            <br>
+            <a href="url">effect</a>
+        </div>-->
+       <!-- <% for(var i = 0; i < apps.length; i++){ %>
+            <div>
+                <img src="media/alpha-color.gif">
+                <br>
+                <a href="<%= apps[i] %>"><%= apps[i] %></a>
+            </div>
+        <% } %> -->
+        <% for(var i = 0; i < titles.length; i++){ %>
+            <div>
+                <img src="media/<%= titles[i] %>.gif">
+                <br>
+                <a href="<%= titles[i] %>.html"><%= titles[i] %></a>
+            </div>
+        <% } %>
+    </div>
+    <footer role="contentinfo">
+        <p>MadeByPlanB - 2022</p>
+    </footer>
+</body>
+
 </html>
