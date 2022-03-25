@@ -8,7 +8,9 @@ Additionally features:
 
 # Notes
 
-- Module data structures are described in `public/config.particleModules.json`
-  - This file is automatically configured when `npm i` is run in `editor` project.
-  - The generation logic is defined in `readParticleModulesConfig.js`
-  - The content originates from `modular-particle-system` source code using custom `@module` documentation format.
+- All available Modules and property fields in the editor originate from custom documentation in the core library `modular-particle-system`.
+  - The custom documentation is indicated by any of below tags:
+    - `@module`
+    - `@easingFunction`
+  - This documentation is automatically parsed into a configuration file (`public/config.modularParticleSystem.json`), whenever `npm i` is run in `editor` project.
+    - The generation logic is defined in `readCoreLibraryVersion.js` script.
