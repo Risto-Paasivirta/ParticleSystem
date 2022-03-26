@@ -1,5 +1,5 @@
 .projectToolbar {
-  height: 24px;
+  height: 50px;
   display: flex;
   flex-direction: column;
   border-bottom: solid 1px;
@@ -12,12 +12,24 @@
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  height: 50px;
+}
+.projectToolbar-button {
+  /* background: #ddd; */
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .projectToolbar-buttonDiv {
   cursor: pointer;
   flex-grow: 1;
   text-align: center;
   border-right: solid 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .projectToolbar-restart {
 }
