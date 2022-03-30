@@ -138,6 +138,9 @@ const defaultParticleSystemConf = [
       {
         moduleTypeId: "AlphaOverLifetime",
       },
+      {
+        moduleTypeId: "LifeTimeDestructor",
+      },
     ],
   },
 ];
