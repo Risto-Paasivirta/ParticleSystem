@@ -49,7 +49,7 @@ import {
  */
 export class ShapeGenerator extends ParticleGenerator {
     shape?: Shape;
-    edgesOnly?: boolean;
+    edgesOnly = false;
 
     generateParticle() {
         const particle = new Particle();
