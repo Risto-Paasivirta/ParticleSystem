@@ -51,15 +51,9 @@ export const triangleLogic: ShapeLogicImplementation<Triangle> = {
         const has_pos = d1 > 0 || d2 > 0 || d3 > 0;
         return !(has_neg && has_pos);
     },
-
-    /*
-    how to get unbiased random point along the edge?
-
-    you must calculate the length of each side and normalize them so each side is a proportion from one
-    lets say side1 is 0.3, side2 is 0.2 and side3 is 0.5 after normalization
-    then you take a random value between zero and one to see where in edge the randomized point lies
-    using inverse linear interpolation (if the random value is between 0.0 and 0.3 it lies somewhere along the side1)
-    */
+    getRandomEdgePosition: function (shape: Triangle): Position {
+        throw new Error("Function not implemented.");
+    },
 };
 
 /**

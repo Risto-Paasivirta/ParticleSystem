@@ -1,10 +1,9 @@
-import { RectangleGenerator } from 'modular-particle-system/generators/rectangleGenerator';
 import { ParticleSystem } from 'modular-particle-system/particleSystem';
 import { Renderer } from './helpers/renderer/renderer';
 import * as PIXI from "pixi.js";
-import { RectangleEdgeGenerator } from 'modular-particle-system/generators/rectangleEdgeGenerator';
 import { LifeTimeRange } from 'modular-particle-system/initializers/lifeTimeRange';
 import { LifeTimeDestructor } from 'modular-particle-system/destructors/lifeTimeDestructor';
+import { ShapeGenerator } from 'modular-particle-system/generators/shapeGenerator';
 
 document.body.style.margin = "0px 0px";
 document.body.style.width = "100vw";
@@ -13,33 +12,22 @@ document.body.style.height = "100vh";
 const particleSystem = new ParticleSystem();
 const renderer = new Renderer(document.body, particleSystem);
 const effect = particleSystem.addParticleEffect();
-
-const rectangleGenerator = new RectangleGenerator(effect)
-rectangleGenerator.width = 400;
-rectangleGenerator.height = 100;
-const margin = 50;
-
-rectangleGenerator.startPosition = {
-	x: window.innerWidth / 2 - rectangleGenerator.width - margin, 
-	y: window.innerHeight / 2 - rectangleGenerator.height / 2
+const rectangleGenerator = new ShapeGenerator(effect)
+rectangleGenerator.shape = {
+    type: 'rectangle',
+    v1: { x: window.innerWidth / 2 - 300, y: window.innerHeight / 2 - 50 },
+    v2: { x: window.innerWidth / 2 - 100, y: window.innerHeight / 2 + 50 }
 }
-
-console.log(rectangleGenerator.startPosition)
-
 effect.modules.push(rectangleGenerator);
 
-const rectangleEdgeGenerator = new RectangleEdgeGenerator(effect);
-rectangleEdgeGenerator.width = 400;
-rectangleEdgeGenerator.height = 100;
-
-rectangleEdgeGenerator.startPosition = {
-	x: window.innerWidth / 2 + margin, 
-	y: window.innerHeight / 2 - rectangleEdgeGenerator.height / 2
+const rectangleEdgeGenerator = new ShapeGenerator(effect);
+rectangleEdgeGenerator.shape = {
+    type: 'rectangle',
+    v1: { x: window.innerWidth / 2 + 300, y: window.innerHeight / 2 - 50 },
+    v2: { x: window.innerWidth / 2 + 100, y: window.innerHeight / 2 + 50 }
 }
-console.log(rectangleEdgeGenerator.startPosition)
-
-
-effect.modules.push(rectangleEdgeGenerator);
+rectangleEdgeGenerator.edgesOnly = true;
+effect.modules.push(rectangleEdgeGenerator)
 
 const lifetime = new LifeTimeRange(effect);
 lifetime.min = 1.0;
