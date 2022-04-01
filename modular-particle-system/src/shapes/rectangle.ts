@@ -24,6 +24,9 @@ export const rectangleLogic: ShapeLogicImplementation<Rectangle> = {
      * @returns Random position on the Shape edges
      */
     getRandomEdgePosition: function (shape: Rectangle): Position {
+        // NOTE: This implementation does not achieve uniform random distribution!
+        // For some use cases it would be crucial to improve on that.
+
         const side = Math.round(Math.random() * 4);
         /*   _____1______
 			|			|
