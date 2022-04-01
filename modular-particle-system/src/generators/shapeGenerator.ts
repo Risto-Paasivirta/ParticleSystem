@@ -41,6 +41,10 @@ import {
  * bursts {
  *      @tooltip        TODO
  *      @type           Burst[]
+ * edgesOnly {
+ *      @tooltip        TODO
+ *      @type           Boolean
+ *      @defaultValue   false
  * }
  */
 export class ShapeGenerator extends ParticleGenerator {
