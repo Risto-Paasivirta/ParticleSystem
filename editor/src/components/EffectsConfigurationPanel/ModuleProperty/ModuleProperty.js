@@ -6,6 +6,7 @@ import RangeProperty from "./RangeProperty";
 import ColorPaletteProperty from "./ColorPaletteProperty";
 import EasingFunctionProperty from "./EasingFunctionProperty";
 import ShapeProperty from "./ShapeProperty";
+import BurstListProperty from "./BurstListProperty";
 
 const ModuleProperty = (props) => {
   const { propertyInfo, nKey } = props;
@@ -23,6 +24,8 @@ const ModuleProperty = (props) => {
       return <EasingFunctionProperty {...props} key={nKey} />;
     case "Shape":
       return <ShapeProperty {...props} key={nKey} />;
+    case "Burst[]":
+      return <BurstListProperty {...props} key={nKey} />;
     default:
       throw new Error(
         `Unidentified module property type: ${propertyInfo.type}`

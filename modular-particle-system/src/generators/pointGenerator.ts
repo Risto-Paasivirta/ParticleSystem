@@ -18,6 +18,10 @@ import { ParticleGenerator } from "./generator";
  *      @tooltip        TODO
  *      @type           Position
  * }
+ * bursts {
+ *      @tooltip        TODO
+ *      @type           Burst[]
+ * }
  */
 export class PointGenerator extends ParticleGenerator {
     position: Position = { x: 0, y: 0 };
