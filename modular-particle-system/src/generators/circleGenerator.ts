@@ -27,6 +27,10 @@ import { loadSerializedProperty, deserializePrimitiveDataType } from "../seriali
  *      @min            0
  *      @step           10
  * }
+ * bursts {
+ *      @tooltip        TODO
+ *      @type           Burst[]
+ * }
  */
 export class CircleGenerator extends ParticleGenerator {
     /**
