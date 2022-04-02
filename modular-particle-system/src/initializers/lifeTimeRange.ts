@@ -6,6 +6,7 @@ import { lerp } from "../utilities";
 
 /**
  * @module
+ * @category    Initializer
  * min {
  *      @tooltip        TODO
  *      @type           Number

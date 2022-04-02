@@ -12,6 +12,7 @@ import { ParticleEffect } from "../particleEffect";
  * This module modifies `Particle.alpha` property and can not be combined with any other modifier that does so.
  *
  * @module
+ * @category    Modifier
  * easing {
  *      @tooltip        TODO
  *      @type           EasingFunction

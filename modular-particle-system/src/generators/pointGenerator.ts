@@ -7,6 +7,7 @@ import { ParticleGenerator } from "./generator";
 
 /**
  * @module
+ * @category    Generator
  * interval {
  *      @tooltip        TODO
  *      @type           Number

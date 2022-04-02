@@ -3,6 +3,9 @@ import { ParticleEffect } from "../particleEffect";
 
 /**
  * `Module` that destroys all particles whose color alpha value is less or equal to 0
+ *
+ * @module
+ * @category    Destructor
  */
 export class AlphaDestructor extends Module {
     update(dt: number): void {
