@@ -71,6 +71,8 @@ export class PathGenerator extends ParticleGenerator {
         padding?: number,
         between?: boolean,
     ): Position {
+        // NOTE: This implementation does not achieve uniform random distribution!
+
         const newPosition: Position = { x: 0, y: 0 };
         if (padding) {
             let yPadding;
