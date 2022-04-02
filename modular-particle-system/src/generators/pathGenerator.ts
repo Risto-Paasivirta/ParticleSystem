@@ -6,6 +6,51 @@ import { ModuleObject } from "../module";
 import { ParticleEffect } from "../particleEffect";
 import { loadSerializedProperty, deserializePrimitiveDataType } from "../serialization/moduleSerialization";
 
+/**
+ * Generator module that creates particles at random inside a circular area.
+ *
+ * @module
+ * interval {
+ *      @tooltip        TODO
+ *      @type           Number
+ *      @min            0
+ *      @step           0.01
+ *      @defaultValue   0.1
+ * }
+ * p1 {
+ *      @tooltip        TODO
+ *      @type           Position
+ * }
+ * p2 {
+ *      @tooltip        TODO
+ *      @type           Position
+ * }
+ * p3 {
+ *      @tooltip        TODO
+ *      @type           Position
+ * }
+ * p4 {
+ *      @tooltip        TODO
+ *      @type           Position
+ * }
+ * p5 {
+ *      @tooltip        TODO
+ *      @type           Position
+ * }
+ * p6 {
+ *      @tooltip        TODO
+ *      @type           Position
+ * }
+ * padding {
+ *      @tooltip        TODO
+ *      @type           Number
+ * }
+ * between {
+ *      @tooltip        TODO
+ *      @type           Boolean
+ * }
+ */
+
 export class PathGenerator extends ParticleGenerator {
     p1: Position = { x: 0, y: 0 };
     p2: Position = { x: 0, y: 0 };
@@ -129,6 +174,7 @@ export class PathGenerator extends ParticleGenerator {
     toObject(): ModuleObject {
         return {
             moduleTypeId: PathGenerator.moduleTypeId,
+            interval: this.interval,
             p1: this.p1,
             p2: this.p2,
             p3: this.p3,
@@ -142,6 +188,7 @@ export class PathGenerator extends ParticleGenerator {
 
     static fromObject(particleEffect: ParticleEffect, object: ModuleObject): PathGenerator {
         const module = new PathGenerator(particleEffect);
+        loadSerializedProperty(object, PathGenerator, module, "interval", deserializePrimitiveDataType);
         loadSerializedProperty(object, PathGenerator, module, "p1", deserializePrimitiveDataType);
         loadSerializedProperty(object, PathGenerator, module, "p2", deserializePrimitiveDataType);
         loadSerializedProperty(object, PathGenerator, module, "p3", deserializePrimitiveDataType);
