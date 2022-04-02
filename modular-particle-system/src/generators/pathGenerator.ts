@@ -7,7 +7,7 @@ import { ParticleEffect } from "../particleEffect";
 import { loadSerializedProperty, deserializePrimitiveDataType } from "../serialization/moduleSerialization";
 
 /**
- * Generator module that creates particles at random inside a circular area.
+ * Generator module that creates in a path.
  *
  * @module
  * interval {
