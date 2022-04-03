@@ -31,6 +31,10 @@ import { deserializeShape, getRandomPositionInsideShape, serializeShape, Shape }
  *      @tooltip        TODO
  *      @type           Shape
  * }
+ * bursts {
+ *      @tooltip        TODO
+ *      @type           Burst[]
+ * }
  */
 export class ShapeGenerator extends ParticleGenerator {
     shape?: Shape;
