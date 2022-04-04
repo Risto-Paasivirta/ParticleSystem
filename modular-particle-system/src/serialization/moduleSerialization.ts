@@ -10,16 +10,18 @@ export const loadSerializedProperty = <
     module: ModuleInstanceType,
     key: PropertyKey,
     deserializeValue: (value: unknown) => ModuleInstanceType[typeof key] | undefined,
+    hideWarnings: boolean,
 ): void => {
     const value = object[key as keyof object];
     if (value === undefined) {
-        console.warn(`Missing module property ${moduleType.moduleTypeId}: "${key}"`);
+        if (!hideWarnings) console.warn(`Missing module property ${moduleType.moduleTypeId}: "${key}"`);
         return;
     }
 
     const deserializedValue = deserializeValue(value);
     if (deserializedValue === undefined) {
-        console.warn(`Module property could not be deserialized ${moduleType.moduleTypeId}: "${key}"`);
+        if (!hideWarnings)
+            console.warn(`Module property could not be deserialized ${moduleType.moduleTypeId}: "${key}"`);
         return;
     }
 

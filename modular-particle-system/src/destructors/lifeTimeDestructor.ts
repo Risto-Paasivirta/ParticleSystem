@@ -22,7 +22,7 @@ export class LifeTimeDestructor extends Module {
         };
     }
 
-    static fromObject(particleEffect: ParticleEffect, object: ModuleObject): LifeTimeDestructor {
+    static fromObject(particleEffect: ParticleEffect, object: ModuleObject, hideWarnings: boolean): LifeTimeDestructor {
         const module = new LifeTimeDestructor(particleEffect);
         return module;
     }

@@ -55,18 +55,44 @@ export class CircleLoadingGenerator extends ParticleGenerator {
         };
     }
 
-    static fromObject(particleEffect: ParticleEffect, object: ModuleObject): CircleLoadingGenerator {
+    static fromObject(
+        particleEffect: ParticleEffect,
+        object: ModuleObject,
+        hideWarnings: boolean,
+    ): CircleLoadingGenerator {
         const module = new CircleLoadingGenerator(particleEffect);
-        loadSerializedProperty(object, CircleLoadingGenerator, module, "interval", deserializePrimitiveDataType);
-        loadSerializedProperty(object, CircleLoadingGenerator, module, "center", deserializePrimitiveDataType);
+        loadSerializedProperty(
+            object,
+            CircleLoadingGenerator,
+            module,
+            "interval",
+            deserializePrimitiveDataType,
+            hideWarnings,
+        );
+        loadSerializedProperty(
+            object,
+            CircleLoadingGenerator,
+            module,
+            "center",
+            deserializePrimitiveDataType,
+            hideWarnings,
+        );
         loadSerializedProperty(
             object,
             CircleLoadingGenerator,
             module,
             "nextParticleAngle",
             deserializePrimitiveDataType,
+            hideWarnings,
         );
-        loadSerializedProperty(object, CircleLoadingGenerator, module, "angleStep", deserializePrimitiveDataType);
+        loadSerializedProperty(
+            object,
+            CircleLoadingGenerator,
+            module,
+            "angleStep",
+            deserializePrimitiveDataType,
+            hideWarnings,
+        );
         return module;
     }
 

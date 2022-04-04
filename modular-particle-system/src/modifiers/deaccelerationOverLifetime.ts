@@ -79,9 +79,13 @@ export class DeaccelerationOverLifetime extends Module {
         };
     }
 
-    static fromObject(particleEffect: ParticleEffect, object: ModuleObject): DeaccelerationOverLifetime {
+    static fromObject(
+        particleEffect: ParticleEffect,
+        object: ModuleObject,
+        hideWarnings: boolean,
+    ): DeaccelerationOverLifetime {
         const module = new DeaccelerationOverLifetime(particleEffect);
-        loadSerializedProperty(object, DeaccelerationOverLifetime, module, "easing", deserializeEasing);
+        loadSerializedProperty(object, DeaccelerationOverLifetime, module, "easing", deserializeEasing, hideWarnings);
         return module;
     }
 

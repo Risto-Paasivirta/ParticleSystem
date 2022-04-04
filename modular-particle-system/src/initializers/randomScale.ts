@@ -50,10 +50,10 @@ export class RandomScale extends Module {
         };
     }
 
-    static fromObject(particleEffect: ParticleEffect, object: ModuleObject): RandomScale {
+    static fromObject(particleEffect: ParticleEffect, object: ModuleObject, hideWarnings: boolean): RandomScale {
         const module = new RandomScale(particleEffect);
-        loadSerializedProperty(object, RandomScale, module, "min", deserializePrimitiveDataType);
-        loadSerializedProperty(object, RandomScale, module, "max", deserializePrimitiveDataType);
+        loadSerializedProperty(object, RandomScale, module, "min", deserializePrimitiveDataType, hideWarnings);
+        loadSerializedProperty(object, RandomScale, module, "max", deserializePrimitiveDataType, hideWarnings);
         return module;
     }
 

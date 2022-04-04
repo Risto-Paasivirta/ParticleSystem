@@ -55,10 +55,28 @@ export class RandomRotationalVelocity extends Module {
         };
     }
 
-    static fromObject(particleEffect: ParticleEffect, object: ModuleObject): RandomRotationalVelocity {
+    static fromObject(
+        particleEffect: ParticleEffect,
+        object: ModuleObject,
+        hideWarnings: boolean,
+    ): RandomRotationalVelocity {
         const module = new RandomRotationalVelocity(particleEffect);
-        loadSerializedProperty(object, RandomRotationalVelocity, module, "min", deserializePrimitiveDataType);
-        loadSerializedProperty(object, RandomRotationalVelocity, module, "max", deserializePrimitiveDataType);
+        loadSerializedProperty(
+            object,
+            RandomRotationalVelocity,
+            module,
+            "min",
+            deserializePrimitiveDataType,
+            hideWarnings,
+        );
+        loadSerializedProperty(
+            object,
+            RandomRotationalVelocity,
+            module,
+            "max",
+            deserializePrimitiveDataType,
+            hideWarnings,
+        );
         return module;
     }
 
