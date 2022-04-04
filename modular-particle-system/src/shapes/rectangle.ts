@@ -1,4 +1,5 @@
 import { Position } from "../types";
+import { randomInRange } from "../utilities";
 import { ShapeLogicImplementation } from "./shape";
 
 export interface Rectangle {
@@ -24,41 +25,33 @@ export const rectangleLogic: ShapeLogicImplementation<Rectangle> = {
      * @returns Random position on the Shape edges
      */
     getRandomEdgePosition: function (shape: Rectangle): Position {
-        // NOTE: This implementation does not achieve uniform random distribution!
-        // For some use cases it would be crucial to improve on that.
+        const width = Math.abs(shape.v1.x - shape.v2.x);
+        const height = Math.abs(shape.v1.y - shape.v2.y);
+        const edgeLength = width * 2 + height * 2;
 
-        const side = Math.round(Math.random() * 4);
-        /*   _____1______
-			|			|
-		  0 |			| 2
-			|_____3_____|
-		*/
-        switch (side) {
-            case 0:
-                return {
-                    x: shape.v1.x,
-                    y: shape.v1.y + Math.random() * (shape.v2.y - shape.v1.y),
-                };
-            case 1:
-                return {
-                    x: shape.v1.x + Math.random() * (shape.v2.x - shape.v1.x),
-                    y: shape.v1.y,
-                };
-            case 2:
-                return {
-                    x: shape.v2.x,
-                    y: shape.v1.y + Math.random() * (shape.v2.y - shape.v1.y),
-                };
-            case 3:
-                return {
-                    x: shape.v1.x + Math.random() * (shape.v2.x - shape.v1.x),
-                    y: shape.v2.y,
-                };
-            default:
-                return {
-                    x: shape.v1.x,
-                    y: shape.v1.y + Math.random() * (shape.v2.y - shape.v1.y),
-                };
+        const randomEdgeLength = randomInRange(0, edgeLength);
+
+        // going from bottom left counter-clockwise
+        if (randomEdgeLength < height) {
+            return {
+                x: shape.v1.x,
+                y: shape.v1.y + randomEdgeLength,
+            };
+        } else if (randomEdgeLength < width + height) {
+            return {
+                x: shape.v1.x + randomEdgeLength - height,
+                y: shape.v1.y + height,
+            };
+        } else if (randomEdgeLength < 2 * height + width) {
+            return {
+                x: shape.v1.x + width,
+                y: shape.v1.y + randomEdgeLength - (height + width),
+            };
+        } else {
+            return {
+                x: shape.v1.x + randomEdgeLength - (2 * height + width),
+                y: shape.v1.y,
+            };
         }
     },
 

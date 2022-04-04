@@ -15,16 +15,16 @@ const effect = particleSystem.addParticleEffect();
 const rectangleGenerator = new ShapeGenerator(effect)
 rectangleGenerator.shape = {
     type: 'rectangle',
-    v1: { x: window.innerWidth / 2 - 300, y: window.innerHeight / 2 - 50 },
-    v2: { x: window.innerWidth / 2 - 100, y: window.innerHeight / 2 + 50 }
+    v1: { x: window.innerWidth / 2 - 100, y: window.innerHeight / 2 - 50 },
+    v2: { x: window.innerWidth / 2 - 10, y: window.innerHeight / 2 + 50 }
 }
 effect.modules.push(rectangleGenerator);
 
 const rectangleEdgeGenerator = new ShapeGenerator(effect);
 rectangleEdgeGenerator.shape = {
     type: 'rectangle',
-    v1: { x: window.innerWidth / 2 + 300, y: window.innerHeight / 2 - 50 },
-    v2: { x: window.innerWidth / 2 + 100, y: window.innerHeight / 2 + 50 }
+    v1: { x: window.innerWidth / 2 + 100, y: window.innerHeight / 2 - 50 },
+    v2: { x: window.innerWidth / 2 + 10, y: window.innerHeight / 2 + 50 }
 }
 rectangleEdgeGenerator.edgesOnly = true;
 effect.modules.push(rectangleEdgeGenerator)
