@@ -11,10 +11,14 @@ import { Renderer } from "./helpers/renderer/renderer";
 document.body.style.margin = "0px 0px";
 document.body.style.width = "100vw";
 document.body.style.height = "100vh";
+const loader = PIXI.Loader.shared;
+loader.add("spritesheet", "./assets/kenney_particlePack.json");
+loader.load();
 
 const particleSystem = new ParticleSystem();
 const renderer = new Renderer(document.body, particleSystem);
 const effect = particleSystem.addParticleEffect();
+effect.sprites = ["circle_05.png"];
 
 const circleGenerator = new CircleGenerator(effect);
 circleGenerator.center = {
@@ -41,10 +45,3 @@ effect.modules.push(lifetime);
 
 const destructor = new LifeTimeDestructor(effect);
 effect.modules.push(destructor);
-
-const loader = PIXI.Loader.shared;
-loader.add("spritesheet", "./assets/kenney_particlePack.json");
-loader.onComplete.once(() => {
-  renderer.setEffectTextures(effect, PIXI.utils.TextureCache["circle_05.png"]);
-});
-loader.load();

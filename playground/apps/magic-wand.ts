@@ -9,10 +9,23 @@ import { Renderer } from "./helpers/renderer/renderer";
 document.body.style.margin = "0px 0px";
 document.body.style.width = "100vw";
 document.body.style.height = "100vh";
+const loader = PIXI.Loader.shared;
+loader.add("spritesheet", "./assets/kenney_particlePack.json");
+loader.load();
 
 const particleSystem = new ParticleSystem();
 const renderer = new Renderer(document.body, particleSystem);
 const effect = particleSystem.addParticleEffect();
+effect.sprites = [
+  "light_01.png",
+  "light_02.png",
+  "light_03.png",
+  "magic_01.png",
+  "magic_02.png",
+  "magic_03.png",
+  "magic_04.png",
+  "magic_05.png",
+];
 
 const generator = new PointGenerator(effect);
 generator.interval = 0.005;
@@ -37,20 +50,3 @@ document.addEventListener("mousemove", (e) => {
   generator.position.x = e.clientX;
   generator.position.y = e.clientY;
 });
-
-const loader = PIXI.Loader.shared;
-loader.add("spritesheet", "./assets/kenney_particlePack.json");
-loader.onComplete.once(() => {
-    renderer.setEffectTextures(
-        effect,
-        PIXI.utils.TextureCache["light_01.png"],
-        PIXI.utils.TextureCache["light_02.png"],
-        PIXI.utils.TextureCache["light_03.png"],
-        PIXI.utils.TextureCache["magic_01.png"],
-        PIXI.utils.TextureCache["magic_02.png"],
-        PIXI.utils.TextureCache["magic_03.png"],
-        PIXI.utils.TextureCache["magic_04.png"],
-        PIXI.utils.TextureCache["magic_05.png"],
-    );
-});
-loader.load();

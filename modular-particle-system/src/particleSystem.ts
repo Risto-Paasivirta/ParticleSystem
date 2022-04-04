@@ -39,6 +39,7 @@ export class ParticleSystem {
     toObject(): ParticleSystemObject {
         return {
             effects: this.effects.map((effect) => ({
+                sprites: effect.sprites,
                 modules: effect.modules.map((module) => module.toObject()),
             })),
         };
@@ -49,6 +50,7 @@ export class ParticleSystem {
         const effectObjects = object.effects;
         effectObjects.forEach((effectObject) => {
             const effect = particleSystem.addParticleEffect();
+            effect.sprites = effectObject.sprites;
             effectObject.modules?.forEach((moduleObject) => {
                 const moduleTypeReference = moduleTypeRegistry.find(
                     (moduleType) => moduleType.moduleTypeId === moduleObject.moduleTypeId,
@@ -68,5 +70,5 @@ export class ParticleSystem {
 }
 
 interface ParticleSystemObject {
-    effects: Array<{ modules: ModuleObject[] | undefined }>;
+    effects: Array<{ modules: ModuleObject[] | undefined; sprites: string[] }>;
 }

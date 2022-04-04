@@ -11,11 +11,16 @@ import { RandomColor } from "modular-particle-system/initializers/randomColor";
 document.body.style.margin = "0px 0px";
 document.body.style.width = "100vw";
 document.body.style.height = "100vh";
+const loader = PIXI.Loader.shared;
+loader.add("spritesheet", "./assets/kenney_particlePack.json");
+loader.load();
 
 const particleSystem = new ParticleSystem();
 const renderer = new Renderer(document.body, particleSystem);
 
 const effect = particleSystem.addParticleEffect();
+effect.sprites = ["circle_05.png"];
+
 const generator = new PointGenerator(effect);
 generator.interval = 0;
 generator.position = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
@@ -83,15 +88,10 @@ Slider("Gravity", 0, 1000, 0, (value) => {
 });
 
 document.addEventListener("mousemove", (e) => {
-  if (e.shiftKey || e.ctrlKey)
-  gravity.center = { x: e.clientX, y: e.clientY }
+  if (e.shiftKey || e.ctrlKey) gravity.center = { x: e.clientX, y: e.clientY };
 });
 
-const loader = PIXI.Loader.shared;
-loader.add("spritesheet", "./assets/kenney_particlePack.json");
 loader.onComplete.once(() => {
-  renderer.setEffectTextures(effect, PIXI.utils.TextureCache["circle_05.png"]);
-
   setTimeout(() => {
     new Array(100).fill(0).forEach((_) => generator.generateParticle());
   }, 1000);

@@ -9,18 +9,23 @@ import { OutsideBoundsDestructor } from "modular-particle-system/destructors/out
 document.body.style.margin = "0px 0px";
 document.body.style.width = "100vw";
 document.body.style.height = "100vh";
+const loader = PIXI.Loader.shared;
+loader.add("spritesheet", "./assets/kenney_particlePack.json");
+loader.load();
 
 const particleSystem = new ParticleSystem();
 const renderer = new Renderer(document.body, particleSystem);
 
 const effect = particleSystem.addParticleEffect();
-const generator = new ShapeGenerator(effect)
+effect.sprites = ["circle_05.png"];
+
+const generator = new ShapeGenerator(effect);
 generator.shape = {
-    type: 'rectangle',
-    v1: { x: 0, y: 0 },
-    v2: { x: window.innerWidth, y: 0 }
-}
-effect.modules.push(generator)
+  type: "rectangle",
+  v1: { x: 0, y: 0 },
+  v2: { x: window.innerWidth, y: 0 },
+};
+effect.modules.push(generator);
 
 const initializer = new LifeTimeRange(effect);
 effect.modules.push(initializer);
@@ -28,13 +33,10 @@ effect.modules.push(initializer);
 const gravity = new Gravity(effect);
 effect.modules.push(gravity);
 
-const destructor = new OutsideBoundsDestructor(effect)
-destructor.bounds = {type: 'rectangle', v1:{x:0,y:0},v2:{x:window.innerWidth, y:window.innerHeight}}
-effect.modules.push(destructor)
-
-const loader = PIXI.Loader.shared;
-loader.add("spritesheet", "./assets/kenney_particlePack.json");
-loader.onComplete.once(() => {
-    renderer.setEffectTextures(effect, PIXI.utils.TextureCache["circle_05.png"]);
-});
-loader.load();
+const destructor = new OutsideBoundsDestructor(effect);
+destructor.bounds = {
+  type: "rectangle",
+  v1: { x: 0, y: 0 },
+  v2: { x: window.innerWidth, y: window.innerHeight },
+};
+effect.modules.push(destructor);

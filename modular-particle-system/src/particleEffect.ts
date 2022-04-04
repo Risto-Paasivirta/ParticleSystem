@@ -8,6 +8,11 @@ export class ParticleEffect {
     particles: Particle[] = [];
     isInitialized = false;
 
+    /**
+     * List of _sprite_ names that are randomly assigned to particles of this effect.
+     */
+    sprites: string[] = [];
+
     addParticleListeners: ((particle: Particle) => unknown)[] = [];
     destroyParticleListeners: ((particle: Particle) => unknown)[] = [];
 
@@ -52,6 +57,12 @@ export class ParticleEffect {
 
     addParticle(particle: Particle) {
         this.particles.push(particle);
+
+        if (this.sprites.length > 0) {
+            // Assign particle sprite.
+            particle.sprite = this.sprites[Math.round(Math.random() * (this.sprites.length - 1))];
+        }
+
         this.addParticleListeners.forEach((clbk) => {
             clbk(particle);
         });
