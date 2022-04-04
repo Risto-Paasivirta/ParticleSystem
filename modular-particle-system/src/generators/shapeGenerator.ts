@@ -20,6 +20,7 @@ import { deserializeShape, getRandomPositionInsideShape, serializeShape, Shape }
  * ```
  *
  * @module
+ * @category    Generator
  * interval {
  *      @tooltip        TODO
  *      @type           Number
