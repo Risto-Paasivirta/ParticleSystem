@@ -16,7 +16,7 @@ loader.load();
 const particleSystem = new ParticleSystem();
 const renderer = new Renderer(document.body, particleSystem);
 const effect = particleSystem.addParticleEffect();
-effect.sprites = [
+effect.textures = [
   "light_01.png",
   "light_02.png",
   "light_03.png",

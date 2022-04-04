@@ -12,7 +12,7 @@ loader.load();
 const particleSystem = ParticleSystem.fromObject({
   effects: [
     {
-      sprites: [
+      textures: [
         "smoke_01.png",
         "smoke_02.png",
         "smoke_03.png",

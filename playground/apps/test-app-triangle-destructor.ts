@@ -16,7 +16,7 @@ loader.load();
 const particleSystem = new ParticleSystem();
 const renderer = new Renderer(document.body, particleSystem);
 const effect = particleSystem.addParticleEffect();
-effect.sprites = ["circle_01.png"];
+effect.textures = ["circle_01.png"];
 
 const generator = new PointGenerator(effect);
 generator.position = { x: 200, y: 200 };

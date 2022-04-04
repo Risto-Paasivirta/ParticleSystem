@@ -110,7 +110,7 @@ export class Renderer {
         particle.color.b,
       ]);
       sprite.rotation = particle.rotation;
-      sprite.texture = PIXI.utils.TextureCache[particle.sprite];
+      sprite.texture = PIXI.utils.TextureCache[particle.texture];
     });
   }
 

@@ -99,8 +99,8 @@ const Firework = (x: number) => {
   };
   step();
 
-  smoke.effect.sprites = ["generic/cloud_solid.png"];
-  explosion.effect.sprites = ["generic/cloud_solid.png"];
+  smoke.effect.textures = ["generic/cloud_solid.png"];
+  explosion.effect.textures = ["generic/cloud_solid.png"];
 };
 
 loader.onComplete.once(() => {

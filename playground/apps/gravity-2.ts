@@ -19,7 +19,7 @@ const particleSystem = new ParticleSystem();
 const renderer = new Renderer(document.body, particleSystem);
 
 const effect = particleSystem.addParticleEffect();
-effect.sprites = ["circle_05.png"];
+effect.textures = ["circle_05.png"];
 
 const generator = new PointGenerator(effect);
 generator.interval = 0;
