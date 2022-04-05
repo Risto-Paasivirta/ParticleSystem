@@ -41,6 +41,7 @@ import {
  * bursts {
  *      @tooltip        TODO
  *      @type           Burst[]
+ * }
  * edgesOnly {
  *      @tooltip        TODO
  *      @type           Boolean
