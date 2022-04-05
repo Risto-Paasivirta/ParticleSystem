@@ -10,6 +10,7 @@ import { randomInRange } from "../utilities";
  * Range can be configured with `min` and `max` properties.
  *
  * @module
+ * @category    Initializer
  * min {
  *      @tooltip        TODO
  *      @type           Number

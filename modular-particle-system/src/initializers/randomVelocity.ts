@@ -7,6 +7,7 @@ import { Range } from "../types";
 
 /**
  * @module
+ * @category    Initializer
  * randomX {
  *      @tooltip        TODO
  *      @type           Range

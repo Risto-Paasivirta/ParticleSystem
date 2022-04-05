@@ -19,6 +19,7 @@ import { ParticleEffect } from "../particleEffect";
  * ```
  *
  * @module
+ * @category    Destructor
  * bounds {
  *      @tooltip        TODO
  *      @type           Shape
