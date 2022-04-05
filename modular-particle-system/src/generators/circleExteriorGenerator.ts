@@ -14,6 +14,7 @@ import { ParticleGenerator } from "./generator";
  * Each particle is generated next to each other, so that when particles are regularly generated they move around the circle.
  *
  * @module
+ * @category    Generator
  * interval {
  *      @tooltip        TODO
  *      @type           Number

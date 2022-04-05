@@ -9,6 +9,9 @@ import { loadSerializedProperty, deserializePrimitiveDataType } from "../seriali
  * Generator module that creates particles along the exterior of a circular area.
  *
  * Each particle is generated next to each other, so that when particles are regularly generated they move around the circle.
+ *
+ * @module
+ * @category    Generator
  */
 export class CircleLoadingGenerator extends ParticleGenerator {
     /**

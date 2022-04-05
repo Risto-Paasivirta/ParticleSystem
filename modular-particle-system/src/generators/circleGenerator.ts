@@ -9,6 +9,7 @@ import { loadSerializedProperty, deserializePrimitiveDataType } from "../seriali
  * Generator module that creates particles at random inside a circular area.
  *
  * @module
+ * @category    Generator
  * interval {
  *      @tooltip        TODO
  *      @type           Number

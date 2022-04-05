@@ -6,6 +6,7 @@ import { clamp, lerp, vec2 } from "../utilities";
 
 /**
  * @module
+ * @category    Modifier
  * strength {
  *      @tooltip        TODO
  *      @type           Number

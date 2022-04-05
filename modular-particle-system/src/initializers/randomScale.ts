@@ -10,6 +10,7 @@ import { lerp } from "../utilities";
  * Scale range can be customized with properties: `min` and `max`.
  *
  * @module
+ * @category    Initializer
  * min {
  *      @tooltip        TODO
  *      @type           Number

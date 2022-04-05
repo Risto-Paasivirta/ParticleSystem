@@ -1,6 +1,10 @@
 import { Module, ModuleObject } from "../module";
 import { ParticleEffect } from "../particleEffect";
 
+/**
+ * @module
+ * @category    Destructor
+ */
 export class LifeTimeDestructor extends Module {
     update(dt: number): void {
         const len = this.particleEffect.particles.length;
