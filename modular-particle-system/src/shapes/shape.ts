@@ -18,6 +18,10 @@ export const getRandomPositionInsideShape = (shape: Shape): Position => {
     return selectShapeLogic(shape).getRandomPosition(shape);
 };
 
+export const getRandomPositionOnEdge = (shape: Shape): Position => {
+    return selectShapeLogic(shape).getRandomEdgePosition(shape);
+};
+
 export const shapeContainsPosition = (shape: Shape, position: Position): boolean => {
     return selectShapeLogic(shape).containsPosition(shape, position);
 };
@@ -48,6 +52,11 @@ export interface ShapeLogicImplementation<ShapeType> {
      */
     getRandomPosition(shape: ShapeType): Position;
 
+    /**
+     * Get random position on the Shape edges.
+     * @return      Random position within the Shape's edges.
+     */
+    getRandomEdgePosition(shape: ShapeType): Position;
     /**
      * Check whether a position is within the Shape or not.
      * @param   position    Position to check.

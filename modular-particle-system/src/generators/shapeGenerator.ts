@@ -3,7 +3,13 @@ import { loadSerializedProperty, deserializePrimitiveDataType } from "../seriali
 import { Particle } from "../particle";
 import { ParticleEffect } from "../particleEffect";
 import { ParticleGenerator } from "./generator";
-import { deserializeShape, getRandomPositionInsideShape, serializeShape, Shape } from "../shapes/shape";
+import {
+    deserializeShape,
+    getRandomPositionInsideShape,
+    getRandomPositionOnEdge,
+    serializeShape,
+    Shape,
+} from "../shapes/shape";
 
 /**
  * Module that can be used to generate particles with an initial position inside a generic _Shape_.
@@ -36,14 +42,24 @@ import { deserializeShape, getRandomPositionInsideShape, serializeShape, Shape }
  *      @tooltip        TODO
  *      @type           Burst[]
  * }
+ * edgesOnly {
+ *      @tooltip        TODO
+ *      @type           Boolean
+ *      @defaultValue   false
+ * }
  */
 export class ShapeGenerator extends ParticleGenerator {
     shape?: Shape;
+    edgesOnly = false;
 
     generateParticle() {
         const particle = new Particle();
         if (this.shape) {
-            particle.position = getRandomPositionInsideShape(this.shape);
+            if (this.edgesOnly) {
+                particle.position = getRandomPositionOnEdge(this.shape);
+            } else {
+                particle.position = getRandomPositionInsideShape(this.shape);
+            }
         }
         this.particleEffect.addParticle(particle);
     }
