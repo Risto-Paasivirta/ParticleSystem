@@ -73,6 +73,7 @@ export class ShapeGenerator extends ParticleGenerator {
             moduleTypeId: ShapeGenerator.moduleTypeId,
             interval: this.interval,
             shape: this.shape ? serializeShape(this.shape) : undefined,
+            edgesOnly: this.edgesOnly,
         };
     }
 
@@ -80,6 +81,7 @@ export class ShapeGenerator extends ParticleGenerator {
         const module = new ShapeGenerator(particleEffect);
         loadSerializedProperty(object, ShapeGenerator, module, "interval", deserializePrimitiveDataType, hideWarnings);
         loadSerializedProperty(object, ShapeGenerator, module, "shape", deserializeShape, hideWarnings);
+        loadSerializedProperty(object, ShapeGenerator, module, "edgesOnly", deserializePrimitiveDataType, hideWarnings);
         return module;
     }
 
