@@ -126,6 +126,12 @@ TODO
 
 </details>
 
+<details><summary>PathGenerator</summary>
+
+TODO
+
+</details>
+
 **Initializers:**
 
 <details><summary>AlphaRange</summary>
