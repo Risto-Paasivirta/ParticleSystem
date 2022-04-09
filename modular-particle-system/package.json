@@ -1,6 +1,6 @@
 {
     "name": "modular-particle-system",
-    "version": "0.2.3",
+    "version": "0.2.4",
     "homepage": "https://github.com/Risto-Paasivirta/ParticleSystem",
     "description": "Modular particle system library",
     "browserslist": "> 0.25%, not dead",
@@ -11,7 +11,7 @@
         "compile": "npm run compile:clean && tsc && npm run test-minify",
         "compile:clean": "rm -rf dist",
         "release": "npm run release:build && cd release && npm publish",
-        "release:build": "npm run release:clean && npm run compile && mkdir release && cp -r LICENSE README.md package.json dist/** release",
+        "release:build": "npm run release:clean && npm run compile && mkdir release && cp -r LICENSE README.md CHANGELOG.md package.json dist/** release",
         "release:clean": "rm -rf release",
         "test-minify": "rm -rf min && node test-minify.js",
         "ci:code-style": "npm run lint"

@@ -32,6 +32,12 @@ effect.textures = [
 
 const generator = new PointGenerator(effect);
 generator.interval = 0;
+generator.position = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+generator.bursts = [
+  { time: 1.0, count: 100 },
+  { time: 2.0, count: 500 },
+  { time: 4.0, count: 5000 },
+];
 effect.modules.push(generator);
 
 const lifetime = new LifeTimeRange(effect);
@@ -51,22 +57,3 @@ effect.modules.push(alpha);
 
 const destructor = new LifeTimeDestructor(effect);
 effect.modules.push(destructor);
-
-const explodeAt = (x: number, y: number) => {
-  generator.position.x = x;
-  generator.position.y = y;
-  for (let i = 0; i < 1000; i += 1) {
-    generator.generateParticle();
-  }
-};
-
-setTimeout(() => {
-  explodeAt(window.innerWidth / 2, window.innerHeight / 2);
-  setInterval(() => {
-    explodeAt(window.innerWidth / 2, window.innerHeight / 2);
-  }, 4000);
-}, 1000);
-
-document.addEventListener("click", (e) => {
-  explodeAt(e.clientX, e.clientY);
-});

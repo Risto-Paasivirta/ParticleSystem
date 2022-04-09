@@ -14,6 +14,7 @@ import { ParticleGenerator } from "./generator";
  * Each particle is generated next to each other, so that when particles are regularly generated they move around the circle.
  *
  * @module
+ * @category    Generator
  * interval {
  *      @tooltip        TODO
  *      @type           Number
@@ -43,6 +44,10 @@ import { ParticleGenerator } from "./generator";
  *      @type           Number
  *      @defaultValue   0.5
  *      @step           0.1
+ * }
+ * bursts {
+ *      @tooltip        TODO
+ *      @type           Burst[]
  * }
  */
 export class CircleExteriorGenerator extends ParticleGenerator {
@@ -90,18 +95,44 @@ export class CircleExteriorGenerator extends ParticleGenerator {
         };
     }
 
-    static fromObject(particleEffect: ParticleEffect, object: ModuleObject): CircleExteriorGenerator {
+    static fromObject(
+        particleEffect: ParticleEffect,
+        object: ModuleObject,
+        hideWarnings: boolean,
+    ): CircleExteriorGenerator {
         const module = new CircleExteriorGenerator(particleEffect);
-        loadSerializedProperty(object, CircleExteriorGenerator, module, "center", deserializePrimitiveDataType);
-        loadSerializedProperty(object, CircleExteriorGenerator, module, "radius", deserializePrimitiveDataType);
+        loadSerializedProperty(
+            object,
+            CircleExteriorGenerator,
+            module,
+            "center",
+            deserializePrimitiveDataType,
+            hideWarnings,
+        );
+        loadSerializedProperty(
+            object,
+            CircleExteriorGenerator,
+            module,
+            "radius",
+            deserializePrimitiveDataType,
+            hideWarnings,
+        );
         loadSerializedProperty(
             object,
             CircleExteriorGenerator,
             module,
             "nextParticleAngle",
             deserializePrimitiveDataType,
+            hideWarnings,
         );
-        loadSerializedProperty(object, CircleExteriorGenerator, module, "angleStep", deserializePrimitiveDataType);
+        loadSerializedProperty(
+            object,
+            CircleExteriorGenerator,
+            module,
+            "angleStep",
+            deserializePrimitiveDataType,
+            hideWarnings,
+        );
         return module;
     }
 
