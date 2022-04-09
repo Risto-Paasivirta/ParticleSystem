@@ -28,7 +28,7 @@ export class AlphaDestructor extends Module {
         };
     }
 
-    static fromObject(particleEffect: ParticleEffect, object: ModuleObject): AlphaDestructor {
+    static fromObject(particleEffect: ParticleEffect, object: ModuleObject, hideWarnings: boolean): AlphaDestructor {
         const module = new AlphaDestructor(particleEffect);
         return module;
     }

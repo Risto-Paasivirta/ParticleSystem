@@ -52,5 +52,5 @@ export interface ModuleTypeReference {
      */
     moduleTypeId: string;
 
-    fromObject(particleEffect: ParticleEffect, object: object): Module;
+    fromObject(particleEffect: ParticleEffect, object: object, hideWarnings: boolean): Module;
 }

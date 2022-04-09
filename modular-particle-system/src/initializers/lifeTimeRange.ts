@@ -48,10 +48,10 @@ export class LifeTimeRange extends Module {
         };
     }
 
-    static fromObject(particleEffect: ParticleEffect, object: ModuleObject): LifeTimeRange {
+    static fromObject(particleEffect: ParticleEffect, object: ModuleObject, hideWarnings: boolean): LifeTimeRange {
         const module = new LifeTimeRange(particleEffect);
-        loadSerializedProperty(object, LifeTimeRange, module, "min", deserializePrimitiveDataType);
-        loadSerializedProperty(object, LifeTimeRange, module, "max", deserializePrimitiveDataType);
+        loadSerializedProperty(object, LifeTimeRange, module, "min", deserializePrimitiveDataType, hideWarnings);
+        loadSerializedProperty(object, LifeTimeRange, module, "max", deserializePrimitiveDataType, hideWarnings);
         return module;
     }
 

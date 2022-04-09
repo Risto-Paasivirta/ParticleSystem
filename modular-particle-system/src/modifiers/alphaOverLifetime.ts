@@ -48,9 +48,9 @@ export class AlphaOverLifetime extends Module {
         };
     }
 
-    static fromObject(particleEffect: ParticleEffect, object: ModuleObject): AlphaOverLifetime {
+    static fromObject(particleEffect: ParticleEffect, object: ModuleObject, hideWarnings: boolean): AlphaOverLifetime {
         const module = new AlphaOverLifetime(particleEffect);
-        loadSerializedProperty(object, AlphaOverLifetime, module, "easing", deserializeEasing);
+        loadSerializedProperty(object, AlphaOverLifetime, module, "easing", deserializeEasing, hideWarnings);
         return module;
     }
 

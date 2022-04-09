@@ -45,7 +45,9 @@ export class ParticleSystem {
         };
     }
 
-    static fromObject(object: ParticleSystemObject): ParticleSystem {
+    static fromObject(object: ParticleSystemObject, options?: { hideWarnings?: boolean }): ParticleSystem {
+        const hideWarnings = options?.hideWarnings || false;
+
         const particleSystem = new ParticleSystem();
         const effectObjects = object.effects;
         effectObjects.forEach((effectObject) => {
@@ -57,11 +59,14 @@ export class ParticleSystem {
                 );
                 if (!moduleTypeReference) {
                     // The module type can't be identified. This probably means that the particle system was saved with a different library version than the active one.
-                    console.warn(`ParticleSystem.fromObject unidentified module type: "${moduleObject.moduleTypeId}"`);
+                    if (!hideWarnings)
+                        console.warn(
+                            `ParticleSystem.fromObject unidentified module type: "${moduleObject.moduleTypeId}"`,
+                        );
                     return;
                 }
 
-                const module = moduleTypeReference.fromObject(effect, moduleObject);
+                const module = moduleTypeReference.fromObject(effect, moduleObject, hideWarnings);
                 effect.modules.push(module);
             });
         });

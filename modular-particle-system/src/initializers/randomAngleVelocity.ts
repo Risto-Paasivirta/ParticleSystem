@@ -55,10 +55,14 @@ export class RandomAngleVelocity extends Module {
         };
     }
 
-    static fromObject(particleEffect: ParticleEffect, object: ModuleObject): RandomAngleVelocity {
+    static fromObject(
+        particleEffect: ParticleEffect,
+        object: ModuleObject,
+        hideWarnings: boolean,
+    ): RandomAngleVelocity {
         const module = new RandomAngleVelocity(particleEffect);
-        loadSerializedProperty(object, RandomAngleVelocity, module, "min", deserializePrimitiveDataType);
-        loadSerializedProperty(object, RandomAngleVelocity, module, "max", deserializePrimitiveDataType);
+        loadSerializedProperty(object, RandomAngleVelocity, module, "min", deserializePrimitiveDataType, hideWarnings);
+        loadSerializedProperty(object, RandomAngleVelocity, module, "max", deserializePrimitiveDataType, hideWarnings);
         return module;
     }
 
