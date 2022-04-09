@@ -49,7 +49,7 @@ import { loadSerializedProperty, deserializePrimitiveDataType } from "../seriali
  *      @tooltip        TODO
  *      @type           Number
  * }
- * between {
+ * edgesOnly {
  *      @tooltip        TODO
  *      @type           Boolean
  * }
@@ -63,9 +63,10 @@ export class PathGenerator extends ParticleGenerator {
     p5?: Position;
     p6?: Position;
     padding?: number;
-    between?: boolean;
+    edgesOnly = false;
 
     generatePosition(
+        edgesOnly: boolean,
         p1: Position,
         p2: Position,
         p3?: Position,
@@ -73,21 +74,13 @@ export class PathGenerator extends ParticleGenerator {
         p5?: Position,
         p6?: Position,
         padding?: number,
-        between?: boolean,
     ): Position {
         // NOTE: This implementation does not achieve uniform random distribution!
 
         const newPosition: Position = { x: 0, y: 0 };
         if (padding) {
-            let yPadding;
-            let xPadding;
-            if (between) {
-                yPadding = this.generatePadding(padding, between);
-                xPadding = this.generatePadding(padding, between);
-            } else {
-                yPadding = this.generatePadding(padding, false);
-                xPadding = this.generatePadding(padding, false);
-            }
+            const yPadding = this.generatePadding(padding, edgesOnly);
+            const xPadding = this.generatePadding(padding, edgesOnly);
             newPosition.x = newPosition.x + xPadding;
             newPosition.y = newPosition.y + yPadding;
         }
@@ -152,9 +145,9 @@ export class PathGenerator extends ParticleGenerator {
         return newPosition;
     }
 
-    generatePadding(padding: number, between: boolean) {
+    generatePadding(padding: number, edgesOnly: boolean) {
         let newPadding = padding;
-        if (between) {
+        if (!edgesOnly) {
             newPadding = lerp(0, padding, Math.random());
         }
         newPadding *= Math.round(Math.random()) ? 1 : -1;
@@ -164,6 +157,7 @@ export class PathGenerator extends ParticleGenerator {
     generateParticle() {
         const particle = new Particle();
         const position = this.generatePosition(
+            this.edgesOnly,
             this.p1,
             this.p2,
             this.p3,
@@ -171,7 +165,6 @@ export class PathGenerator extends ParticleGenerator {
             this.p5,
             this.p6,
             this.padding,
-            this.between,
         );
         particle.position.x = position.x;
         particle.position.y = position.y;
@@ -189,7 +182,7 @@ export class PathGenerator extends ParticleGenerator {
             p5: this.p5,
             p6: this.p6,
             padding: this.padding,
-            between: this.between,
+            edgesOnly: this.edgesOnly,
         };
     }
 
@@ -204,7 +197,7 @@ export class PathGenerator extends ParticleGenerator {
         loadSerializedProperty(object, PathGenerator, module, "p5", deserializePrimitiveDataType, hideWarnings);
         loadSerializedProperty(object, PathGenerator, module, "p6", deserializePrimitiveDataType, hideWarnings);
         loadSerializedProperty(object, PathGenerator, module, "padding", deserializePrimitiveDataType, hideWarnings);
-        loadSerializedProperty(object, PathGenerator, module, "between", deserializePrimitiveDataType, hideWarnings);
+        loadSerializedProperty(object, PathGenerator, module, "edgesOnly", deserializePrimitiveDataType, hideWarnings);
         return module;
     }
     /**

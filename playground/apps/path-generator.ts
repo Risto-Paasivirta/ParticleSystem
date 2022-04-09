@@ -14,14 +14,12 @@ const effect = particleSystem.addParticleEffect();
 effect.textures = ["circle_05.png"];
 
 const generator = new PathGenerator(effect);
-generator.p1 = { x: 1000, y: 300 };
-generator.p2 = { x: 1000, y: 500 };
-generator.p3 = { x: 500, y: 500 };
-generator.p4 = { x: 500, y: 800 };
-generator.p5 = { x: 300, y: 800 };
-generator.p6 = { x: 300, y: 1000 };
-generator.padding = 10;
-//generator.between = true;
+generator.p1 = { x: 100, y: 100 };
+generator.p2 = { x: 100, y: 300 };
+generator.p3 = { x: 300, y: 300 };
+generator.p4 = { x: 400, y: 400 };
+generator.padding = 0;
+generator.edgesOnly = true;
 effect.modules.push(generator);
 
 const initializer = new LifeTimeRange(effect);
