@@ -11,6 +11,7 @@ document.body.style.height = "100vh";
 const particleSystem = new ParticleSystem();
 const renderer = new Renderer(document.body, particleSystem);
 const effect = particleSystem.addParticleEffect();
+effect.textures = ["circle_05.png"];
 
 const generator = new PathGenerator(effect);
 generator.p1 = { x: 1000, y: 300 };
@@ -28,7 +29,4 @@ effect.modules.push(initializer);
 
 const loader = PIXI.Loader.shared;
 loader.add("spritesheet", "./assets/kenney_particlePack.json");
-loader.onComplete.once(() => {
-    renderer.setEffectTextures(effect, PIXI.utils.TextureCache["circle_05.png"]);
-});
 loader.load();

@@ -7,7 +7,7 @@ import { ParticleEffect } from "../particleEffect";
 import { loadSerializedProperty, deserializePrimitiveDataType } from "../serialization/moduleSerialization";
 
 /**
- * Generator module that creates in a path.
+ * Generator module that spawns particles at random locations along a path.
  *
  * @module
  * interval {
@@ -16,6 +16,10 @@ import { loadSerializedProperty, deserializePrimitiveDataType } from "../seriali
  *      @min            0
  *      @step           0.01
  *      @defaultValue   0.1
+ * }
+ * bursts {
+ *      @tooltip        TODO
+ *      @type           Burst[]
  * }
  * p1 {
  *      @tooltip        TODO
@@ -177,6 +181,7 @@ export class PathGenerator extends ParticleGenerator {
         return {
             moduleTypeId: PathGenerator.moduleTypeId,
             interval: this.interval,
+            bursts: this.bursts,
             p1: this.p1,
             p2: this.p2,
             p3: this.p3,
@@ -188,17 +193,18 @@ export class PathGenerator extends ParticleGenerator {
         };
     }
 
-    static fromObject(particleEffect: ParticleEffect, object: ModuleObject): PathGenerator {
+    static fromObject(particleEffect: ParticleEffect, object: ModuleObject, hideWarnings: boolean): PathGenerator {
         const module = new PathGenerator(particleEffect);
-        loadSerializedProperty(object, PathGenerator, module, "interval", deserializePrimitiveDataType);
-        loadSerializedProperty(object, PathGenerator, module, "p1", deserializePrimitiveDataType);
-        loadSerializedProperty(object, PathGenerator, module, "p2", deserializePrimitiveDataType);
-        loadSerializedProperty(object, PathGenerator, module, "p3", deserializePrimitiveDataType);
-        loadSerializedProperty(object, PathGenerator, module, "p4", deserializePrimitiveDataType);
-        loadSerializedProperty(object, PathGenerator, module, "p5", deserializePrimitiveDataType);
-        loadSerializedProperty(object, PathGenerator, module, "p6", deserializePrimitiveDataType);
-        loadSerializedProperty(object, PathGenerator, module, "padding", deserializePrimitiveDataType);
-        loadSerializedProperty(object, PathGenerator, module, "between", deserializePrimitiveDataType);
+        loadSerializedProperty(object, PathGenerator, module, "interval", deserializePrimitiveDataType, hideWarnings);
+        loadSerializedProperty(object, PathGenerator, module, "bursts", deserializePrimitiveDataType, hideWarnings);
+        loadSerializedProperty(object, PathGenerator, module, "p1", deserializePrimitiveDataType, hideWarnings);
+        loadSerializedProperty(object, PathGenerator, module, "p2", deserializePrimitiveDataType, hideWarnings);
+        loadSerializedProperty(object, PathGenerator, module, "p3", deserializePrimitiveDataType, hideWarnings);
+        loadSerializedProperty(object, PathGenerator, module, "p4", deserializePrimitiveDataType, hideWarnings);
+        loadSerializedProperty(object, PathGenerator, module, "p5", deserializePrimitiveDataType, hideWarnings);
+        loadSerializedProperty(object, PathGenerator, module, "p6", deserializePrimitiveDataType, hideWarnings);
+        loadSerializedProperty(object, PathGenerator, module, "padding", deserializePrimitiveDataType, hideWarnings);
+        loadSerializedProperty(object, PathGenerator, module, "between", deserializePrimitiveDataType, hideWarnings);
         return module;
     }
     /**
