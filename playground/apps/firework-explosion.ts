@@ -12,10 +12,23 @@ import { Renderer } from "./helpers/renderer/renderer";
 document.body.style.margin = "0px 0px";
 document.body.style.width = "100vw";
 document.body.style.height = "100vh";
+const loader = PIXI.Loader.shared;
+loader.add("spritesheet", "./assets/kenney_particlePack.json");
+loader.load();
 
 const particleSystem = new ParticleSystem();
 const renderer = new Renderer(document.body, particleSystem);
 const effect = particleSystem.addParticleEffect();
+effect.textures = [
+  "light_01.png",
+  "light_02.png",
+  "light_03.png",
+  "magic_01.png",
+  "magic_02.png",
+  "magic_03.png",
+  "magic_04.png",
+  "magic_05.png",
+];
 
 const generator = new PointGenerator(effect);
 generator.interval = 0;
@@ -40,37 +53,20 @@ const destructor = new LifeTimeDestructor(effect);
 effect.modules.push(destructor);
 
 const explodeAt = (x: number, y: number) => {
-    generator.position.x = x;
-    generator.position.y = y;
-    for (let i = 0; i < 1000; i += 1) {
-        generator.generateParticle();
-    }
+  generator.position.x = x;
+  generator.position.y = y;
+  for (let i = 0; i < 1000; i += 1) {
+    generator.generateParticle();
+  }
 };
 
 setTimeout(() => {
+  explodeAt(window.innerWidth / 2, window.innerHeight / 2);
+  setInterval(() => {
     explodeAt(window.innerWidth / 2, window.innerHeight / 2);
-    setInterval(() => {
-        explodeAt(window.innerWidth / 2, window.innerHeight / 2);
-    }, 4000);
+  }, 4000);
 }, 1000);
 
 document.addEventListener("click", (e) => {
-    explodeAt(e.clientX, e.clientY);
+  explodeAt(e.clientX, e.clientY);
 });
-
-const loader = PIXI.Loader.shared;
-loader.add("spritesheet", "./assets/kenney_particlePack.json");
-loader.onComplete.once(() => {
-    renderer.setEffectTextures(
-        effect,
-        PIXI.utils.TextureCache["light_01.png"],
-        PIXI.utils.TextureCache["light_02.png"],
-        PIXI.utils.TextureCache["light_03.png"],
-        PIXI.utils.TextureCache["magic_01.png"],
-        PIXI.utils.TextureCache["magic_02.png"],
-        PIXI.utils.TextureCache["magic_03.png"],
-        PIXI.utils.TextureCache["magic_04.png"],
-        PIXI.utils.TextureCache["magic_05.png"],
-    );
-});
-loader.load();

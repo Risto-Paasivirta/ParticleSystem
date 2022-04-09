@@ -1,12 +1,10 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import "./ParticleSandbox.css";
 import * as PIXI from "pixi.js";
 import { ParticleSystem } from "modular-particle-system/particleSystem";
-import { globalStateContext } from "./Editor";
 
 const ParticleSandbox = (props) => {
   const { effects } = props;
-  const { availableTextures } = useContext(globalStateContext);
 
   const [renderer, setRenderer] = useState(undefined);
 
@@ -46,14 +44,6 @@ const ParticleSandbox = (props) => {
       // Prepare sprite for rendering.
       sprite.visible = true;
 
-      const effectTextureNames = effectInfo.textures;
-      const particleTextureName =
-        effectTextureNames[
-          Math.round(Math.random() * (effectTextureNames.length - 1))
-        ];
-      const texture = availableTextures[particleTextureName];
-      sprite.texture = texture;
-
       // Save the relation between the particle and sprite.
       activeSprites.set(particle, sprite);
     };
@@ -82,6 +72,7 @@ const ParticleSandbox = (props) => {
           particle.color.b,
         ]);
         sprite.rotation = particle.rotation;
+        sprite.texture = PIXI.utils.TextureCache[particle.texture];
       });
     };
     const reset = () => {
@@ -95,7 +86,7 @@ const ParticleSandbox = (props) => {
     return () => {
       app.destroy(true);
     };
-  }, [availableTextures]);
+  }, []);
 
   useEffect(() => {
     if (!renderer) {

@@ -11,4 +11,5 @@ export class Particle {
     lifeTime = 2;
     scale = 0.1;
     destroyed = false;
+    texture = "";
 }
