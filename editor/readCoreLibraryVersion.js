@@ -5,8 +5,7 @@ const fs = require("fs");
 const path = require("path");
 
 const pathModularParticleSystem = path.resolve(
-  //   "node_modules/modular-particle-system/"
-  "../modular-particle-system/dist/"
+  "node_modules/modular-particle-system/"
 );
 
 const readModules = () => {

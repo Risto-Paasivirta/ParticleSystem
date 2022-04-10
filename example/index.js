@@ -9,6 +9,7 @@ import { ParticleSystem } from "modular-particle-system/particleSystem";
 const particleSystem = ParticleSystem.fromObject({
   effects: [
     {
+      textures: [],
       modules: [
         {
           moduleTypeId: "PointGenerator",
