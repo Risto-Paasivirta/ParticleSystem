@@ -213,6 +213,18 @@ TODO
 
 </details>
 
+## Known Issues
+
+### `modular-particle-system` package does not work with Webpack@5.x
+
+Current work around is to downgrade webpack version to 4.x.
+
+The issue exists due to package compiler not emitting proper ES6 format. Imports should have explicit file formats `../particleEffect.js` instead of ambiguous `../particleEffect`).
+
+### `modular-particle-system` package does not work with react-scripts@5.x
+
+Same issue as previous one.
+
 ## License:
 
 MIT-license
