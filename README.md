@@ -27,6 +27,7 @@ It can be referenced to learn how the particle system can be integrated with a g
 
 - `modular-particle-system`: The library itself
 - `playground`: A separate application for manually testing the library with an example integration with `PIXI.js`
+- `editor`: A separate application for presenting and experimenting with the library. Hosted in GitHub.
 
 ## Development
 
