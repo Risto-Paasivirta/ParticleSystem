@@ -22,6 +22,7 @@ import { lerpColor } from "../utilities";
  * ```
  *
  * @module
+ * @category    Initializer
  * palette {
  *      @tooltip        TODO
  *      @type           Color[]
@@ -59,9 +60,9 @@ export class RandomColor extends Module {
         };
     }
 
-    static fromObject(particleEffect: ParticleEffect, object: ModuleObject): RandomColor {
+    static fromObject(particleEffect: ParticleEffect, object: ModuleObject, hideWarnings: boolean): RandomColor {
         const module = new RandomColor(particleEffect);
-        loadSerializedProperty(object, RandomColor, module, "palette", deserializePrimitiveDataType);
+        loadSerializedProperty(object, RandomColor, module, "palette", deserializePrimitiveDataType, hideWarnings);
         return module;
     }
 

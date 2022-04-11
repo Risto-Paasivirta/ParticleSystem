@@ -6,6 +6,7 @@ import { clamp, lerp, vec2 } from "../utilities";
 
 /**
  * @module
+ * @category    Modifier
  * strength {
  *      @tooltip        TODO
  *      @type           Number
@@ -127,14 +128,42 @@ export class Gravity extends Module {
         };
     }
 
-    static fromObject(particleEffect: ParticleEffect, object: ModuleObject): Gravity {
+    static fromObject(particleEffect: ParticleEffect, object: ModuleObject, hideWarnings: boolean): Gravity {
         const module = new Gravity(particleEffect);
-        loadSerializedProperty(object, Gravity, module, "strength", deserializePrimitiveDataType);
-        loadSerializedProperty(object, Gravity, module, "center", deserializePrimitiveDataType);
-        loadSerializedProperty(object, Gravity, module, "maxPullStrengthDistance", deserializePrimitiveDataType);
-        loadSerializedProperty(object, Gravity, module, "maxPullStrengthMultiplier", deserializePrimitiveDataType);
-        loadSerializedProperty(object, Gravity, module, "minPullStrengthDistance", deserializePrimitiveDataType);
-        loadSerializedProperty(object, Gravity, module, "minPullStrengthMultiplier", deserializePrimitiveDataType);
+        loadSerializedProperty(object, Gravity, module, "strength", deserializePrimitiveDataType, hideWarnings);
+        loadSerializedProperty(object, Gravity, module, "center", deserializePrimitiveDataType, hideWarnings);
+        loadSerializedProperty(
+            object,
+            Gravity,
+            module,
+            "maxPullStrengthDistance",
+            deserializePrimitiveDataType,
+            hideWarnings,
+        );
+        loadSerializedProperty(
+            object,
+            Gravity,
+            module,
+            "maxPullStrengthMultiplier",
+            deserializePrimitiveDataType,
+            hideWarnings,
+        );
+        loadSerializedProperty(
+            object,
+            Gravity,
+            module,
+            "minPullStrengthDistance",
+            deserializePrimitiveDataType,
+            hideWarnings,
+        );
+        loadSerializedProperty(
+            object,
+            Gravity,
+            module,
+            "minPullStrengthMultiplier",
+            deserializePrimitiveDataType,
+            hideWarnings,
+        );
         return module;
     }
 

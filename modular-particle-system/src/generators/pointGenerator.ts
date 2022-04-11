@@ -7,6 +7,7 @@ import { ParticleGenerator } from "./generator";
 
 /**
  * @module
+ * @category    Generator
  * interval {
  *      @tooltip        TODO
  *      @type           Number
@@ -17,6 +18,10 @@ import { ParticleGenerator } from "./generator";
  * position {
  *      @tooltip        TODO
  *      @type           Position
+ * }
+ * bursts {
+ *      @tooltip        TODO
+ *      @type           Burst[]
  * }
  */
 export class PointGenerator extends ParticleGenerator {
@@ -42,10 +47,10 @@ export class PointGenerator extends ParticleGenerator {
         };
     }
 
-    static fromObject(particleEffect: ParticleEffect, object: ModuleObject): PointGenerator {
+    static fromObject(particleEffect: ParticleEffect, object: ModuleObject, hideWarnings: boolean): PointGenerator {
         const module = new PointGenerator(particleEffect);
-        loadSerializedProperty(object, PointGenerator, module, "interval", deserializePrimitiveDataType);
-        loadSerializedProperty(object, PointGenerator, module, "position", deserializePrimitiveDataType);
+        loadSerializedProperty(object, PointGenerator, module, "interval", deserializePrimitiveDataType, hideWarnings);
+        loadSerializedProperty(object, PointGenerator, module, "position", deserializePrimitiveDataType, hideWarnings);
         return module;
     }
 

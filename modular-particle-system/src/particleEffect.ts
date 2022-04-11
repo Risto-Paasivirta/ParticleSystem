@@ -8,6 +8,11 @@ export class ParticleEffect {
     particles: Particle[] = [];
     isInitialized = false;
 
+    /**
+     * List of texture names that are randomly assigned to particles of this effect.
+     */
+    textures: string[] = [];
+
     addParticleListeners: ((particle: Particle) => unknown)[] = [];
     destroyParticleListeners: ((particle: Particle) => unknown)[] = [];
 
@@ -52,6 +57,12 @@ export class ParticleEffect {
 
     addParticle(particle: Particle) {
         this.particles.push(particle);
+
+        if (this.textures.length > 0) {
+            // Assign particle texture.
+            particle.texture = this.textures[Math.round(Math.random() * (this.textures.length - 1))];
+        }
+
         this.addParticleListeners.forEach((clbk) => {
             clbk(particle);
         });

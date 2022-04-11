@@ -32,17 +32,17 @@ const Module = (props) => {
               // <option value={moduleType.moduleTypeId} key={`module-${i}`}>
               //   {moduleType.moduleTypeId}
               // </option>
-
-              // <optgroup label="Swedish Cars">
-              //   <option
-              //     className="textureSelector-option"
-              //     value={`texture-${iTexture}`}
-              //   >
-              //     {textureName.replace(".png", "")}
-              //   </option>
-              // </optgroup>
-
-              <optgroup label={moduleType.category}></optgroup>
+              <optgroup label={moduleType.category}>
+                <option value={moduleType.moduleTypeId} key={`module-${i}`}>
+                  {moduleType.moduleTypeId}
+                </option>
+                {/* <option
+                 className="textureSelector-option"
+                 value={`texture-${iTexture}`}
+               >
+                 {textureName.replace(".png", "")}
+               </option> */}
+              </optgroup>
             ))}
         </select>
         <div className="module-remove" onClick={() => removeModule()}></div>

@@ -6,11 +6,11 @@
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
-    "modular-particle-system": "^0.2.3",
+    "modular-particle-system": "file:../modular-particle-system/release",
     "pixi.js": "^6.2.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-scripts": "5.0.0",
+    "react-scripts": "^4.0.3",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -18,7 +18,8 @@
     "build": "PUBLIC_URL=https://risto-paasivirta.github.io/ParticleSystem react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "prepare": "cd ../modular-particle-system && npm i && npm run compile && cd ../editor && node readCoreLibraryVersion.js",
+    "preinstall": "cd ../modular-particle-system && npm i && npm run release:build",
+    "postinstall": "node readCoreLibraryVersion.js",
     "deploy": "npm run build && gh-pages -d build"
   },
   "eslintConfig": {

@@ -7,6 +7,7 @@ import { Range } from "../types";
 
 /**
  * @module
+ * @category    Initializer
  * randomX {
  *      @tooltip        TODO
  *      @type           Range
@@ -41,10 +42,10 @@ export class RandomVelocity extends Module {
         };
     }
 
-    static fromObject(particleEffect: ParticleEffect, object: ModuleObject): RandomVelocity {
+    static fromObject(particleEffect: ParticleEffect, object: ModuleObject, hideWarnings: boolean): RandomVelocity {
         const module = new RandomVelocity(particleEffect);
-        loadSerializedProperty(object, RandomVelocity, module, "randomX", deserializePrimitiveDataType);
-        loadSerializedProperty(object, RandomVelocity, module, "randomY", deserializePrimitiveDataType);
+        loadSerializedProperty(object, RandomVelocity, module, "randomX", deserializePrimitiveDataType, hideWarnings);
+        loadSerializedProperty(object, RandomVelocity, module, "randomY", deserializePrimitiveDataType, hideWarnings);
         return module;
     }
 

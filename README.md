@@ -4,7 +4,7 @@ This README is displayed in the front page of GitHub page
 
 # Lightweight Particle System for TypeScript
 
-The `modular-particle-system` package is an absolutely minimized particle system (**79.2 kB!**).
+The `modular-particle-system` package is an absolutely minimized particle system (**26.2 kB** minified!).
 
 It is based around the idea of describing particle effects as combinations of different _modules_.
 
@@ -27,6 +27,7 @@ It can be referenced to learn how the particle system can be integrated with a g
 
 - `modular-particle-system`: The library itself
 - `playground`: A separate application for manually testing the library with an example integration with `PIXI.js`
+- `editor`: A separate application for presenting and experimenting with the library. Hosted in GitHub.
 
 ## Development
 
@@ -211,6 +212,18 @@ TODO
 - `bounds: Shape`
 
 </details>
+
+## Known Issues
+
+### `modular-particle-system` package does not work with Webpack@5.x
+
+Current work around is to downgrade webpack version to 4.x.
+
+The issue exists due to package compiler not emitting proper ES6 format. Imports should have explicit file formats `../particleEffect.js` instead of ambiguous `../particleEffect`).
+
+### `modular-particle-system` package does not work with react-scripts@5.x
+
+Same issue as previous one.
 
 ## License:
 

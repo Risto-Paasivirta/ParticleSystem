@@ -9,6 +9,9 @@ import { loadSerializedProperty, deserializePrimitiveDataType } from "../seriali
  * Generator module that creates particles along the exterior of a circular area.
  *
  * Each particle is generated next to each other, so that when particles are regularly generated they move around the circle.
+ *
+ * @module
+ * @category    Generator
  */
 export class CircleLoadingGenerator extends ParticleGenerator {
     /**
@@ -55,18 +58,44 @@ export class CircleLoadingGenerator extends ParticleGenerator {
         };
     }
 
-    static fromObject(particleEffect: ParticleEffect, object: ModuleObject): CircleLoadingGenerator {
+    static fromObject(
+        particleEffect: ParticleEffect,
+        object: ModuleObject,
+        hideWarnings: boolean,
+    ): CircleLoadingGenerator {
         const module = new CircleLoadingGenerator(particleEffect);
-        loadSerializedProperty(object, CircleLoadingGenerator, module, "interval", deserializePrimitiveDataType);
-        loadSerializedProperty(object, CircleLoadingGenerator, module, "center", deserializePrimitiveDataType);
+        loadSerializedProperty(
+            object,
+            CircleLoadingGenerator,
+            module,
+            "interval",
+            deserializePrimitiveDataType,
+            hideWarnings,
+        );
+        loadSerializedProperty(
+            object,
+            CircleLoadingGenerator,
+            module,
+            "center",
+            deserializePrimitiveDataType,
+            hideWarnings,
+        );
         loadSerializedProperty(
             object,
             CircleLoadingGenerator,
             module,
             "nextParticleAngle",
             deserializePrimitiveDataType,
+            hideWarnings,
         );
-        loadSerializedProperty(object, CircleLoadingGenerator, module, "angleStep", deserializePrimitiveDataType);
+        loadSerializedProperty(
+            object,
+            CircleLoadingGenerator,
+            module,
+            "angleStep",
+            deserializePrimitiveDataType,
+            hideWarnings,
+        );
         return module;
     }
 

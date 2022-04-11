@@ -39,27 +39,34 @@ export class ParticleSystem {
     toObject(): ParticleSystemObject {
         return {
             effects: this.effects.map((effect) => ({
+                textures: effect.textures,
                 modules: effect.modules.map((module) => module.toObject()),
             })),
         };
     }
 
-    static fromObject(object: ParticleSystemObject): ParticleSystem {
+    static fromObject(object: ParticleSystemObject, options?: { hideWarnings?: boolean }): ParticleSystem {
+        const hideWarnings = options?.hideWarnings || false;
+
         const particleSystem = new ParticleSystem();
         const effectObjects = object.effects;
         effectObjects.forEach((effectObject) => {
             const effect = particleSystem.addParticleEffect();
+            effect.textures = effectObject.textures;
             effectObject.modules?.forEach((moduleObject) => {
                 const moduleTypeReference = moduleTypeRegistry.find(
                     (moduleType) => moduleType.moduleTypeId === moduleObject.moduleTypeId,
                 );
                 if (!moduleTypeReference) {
                     // The module type can't be identified. This probably means that the particle system was saved with a different library version than the active one.
-                    console.warn(`ParticleSystem.fromObject unidentified module type: "${moduleObject.moduleTypeId}"`);
+                    if (!hideWarnings)
+                        console.warn(
+                            `ParticleSystem.fromObject unidentified module type: "${moduleObject.moduleTypeId}"`,
+                        );
                     return;
                 }
 
-                const module = moduleTypeReference.fromObject(effect, moduleObject);
+                const module = moduleTypeReference.fromObject(effect, moduleObject, hideWarnings);
                 effect.modules.push(module);
             });
         });
@@ -68,5 +75,5 @@ export class ParticleSystem {
 }
 
 interface ParticleSystemObject {
-    effects: Array<{ modules: ModuleObject[] | undefined }>;
+    effects: Array<{ modules: ModuleObject[] | undefined; textures: string[] }>;
 }

@@ -5,8 +5,7 @@ const fs = require("fs");
 const path = require("path");
 
 const pathModularParticleSystem = path.resolve(
-  //   "node_modules/modular-particle-system/"
-  "../modular-particle-system/dist/"
+  "node_modules/modular-particle-system/"
 );
 
 const readModules = () => {
@@ -16,13 +15,15 @@ const readModules = () => {
     path.resolve(pathModularParticleSystem, "initializers/"),
     path.resolve(pathModularParticleSystem, "modifiers/"),
   ];
+  const moduleNameBlacklist = ["generator.d.ts"];
 
   const moduleFiles = modulePaths
     .map((modulePath) =>
       fs.readdirSync(modulePath).map((file) => path.resolve(modulePath, file))
     )
     .flat()
-    .filter((file) => file.endsWith("d.ts"));
+    .filter((file) => file.endsWith("d.ts"))
+    .filter((file) => !moduleNameBlacklist.includes(file));
 
   const particleModules = moduleFiles.map((moduleFile) => {
     const moduleTypeDef = fs.readFileSync(moduleFile).toString();
@@ -35,6 +36,7 @@ const readModules = () => {
     };
 
     const regexpModulePropertiesBlocks = /@module((.|\s)*?)\*\//g;
+    const regexpModuleInfoTags = /@(category)\s+(.*)/g;
     const regexpModulePropertyBlock = /([^ ]+)\s?{((.|\n|\r)*?)}/g;
     const regexpModulePropertyFields = /@([^ ]*)\s+([^\n\r]*)/g;
 
@@ -44,6 +46,18 @@ const readModules = () => {
 
     matchModulePropertiesBlocks.forEach((blockMatch) => {
       const block = blockMatch[1];
+
+      // Match module info tags (for example: "@category Modifier")
+      const matchModuleInfoTags = Array.from(
+        block.matchAll(regexpModuleInfoTags)
+      );
+      matchModuleInfoTags.forEach((moduleInfoTagMatch) => {
+        const infoTagName = moduleInfoTagMatch[1];
+        const infoTagValue = moduleInfoTagMatch[2];
+        moduleData[infoTagName] = infoTagValue;
+      });
+
+      // Match property blocks (for example: "easing { ... }")
       const matchModulePropertyBlock = Array.from(
         block.matchAll(regexpModulePropertyBlock)
       );
