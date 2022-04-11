@@ -28,6 +28,4 @@
 .projectToolbar-saveToFile {
 }
 .projectToolbar-loadFromFile {
-  text-decoration: line-through;
-  cursor: default;
 }

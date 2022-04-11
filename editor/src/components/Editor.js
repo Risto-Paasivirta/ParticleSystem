@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  useRef,
+} from "react";
 import EffectsConfigurationPanel from "./EffectsConfigurationPanel/EffectsConfigurationPanel";
 import ProjectToolbar from "./ProjectToolbar";
 import ParticleSandbox from "./ParticleSandbox";
@@ -75,6 +81,8 @@ const Editor = (props) => {
     });
   }, []);
 
+  const refLoadFileInput = useRef(null);
+
   return loading ? (
     <div className="editor-loading">Loading...</div>
   ) : (
@@ -86,9 +94,17 @@ const Editor = (props) => {
           }}
           saveToFile={() => {
             const particleSystemObject = {
-              effects: effects.map((effect) => ({ modules: effect.modules })),
+              effects: effects.map((effect) => ({
+                textures: effect.textures,
+                modules: effect.modules,
+              })),
             };
             downloadObject(particleSystemObject, "particleSystem.json");
+          }}
+          loadFromFile={() => {
+            const fileInput = refLoadFileInput.current;
+            if (!fileInput) return;
+            fileInput.click();
           }}
         />
         <div className="editor-workspace">
@@ -104,6 +120,21 @@ const Editor = (props) => {
           />
         </div>
       </div>
+      <input
+        className="editor-fileInput"
+        type={"file"}
+        ref={refLoadFileInput}
+        accept={".json"}
+        onChange={async (e) => {
+          try {
+            const file = e.target.files[0];
+            const loadedParticleSystem = await new Response(file).json();
+            setEffects(loadedParticleSystem.effects);
+          } catch (e) {
+            alert(`Unexpected error while loading file.\n${e.message}`);
+          }
+        }}
+      />
     </globalStateContext.Provider>
   );
 };

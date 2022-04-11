@@ -2,7 +2,7 @@ import React from "react";
 import "./ProjectToolbar.css";
 
 const ProjectToolbar = (props) => {
-  const { restart, saveToFile } = props;
+  const { restart, saveToFile, loadFromFile } = props;
   return (
     <div className="projectToolbar">
       <div className="projectToolbar-gap"></div>
@@ -27,7 +27,7 @@ const ProjectToolbar = (props) => {
         </div>
         <div
           className="projectToolbar-buttonDiv projectToolbar-loadFromFile"
-          onClick={() => {}}
+          onClick={() => loadFromFile()}
         >
           <span className="projectToolbar-button">Load from file</span>
         </div>
