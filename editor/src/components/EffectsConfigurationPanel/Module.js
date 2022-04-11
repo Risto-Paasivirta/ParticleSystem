@@ -29,9 +29,20 @@ const Module = (props) => {
           {particleModules
             .sort((a, b) => a.moduleTypeId.localeCompare(b.moduleTypeId))
             .map((moduleType, i) => (
-              <option value={moduleType.moduleTypeId} key={`module-${i}`}>
-                {moduleType.moduleTypeId}
-              </option>
+              // <option value={moduleType.moduleTypeId} key={`module-${i}`}>
+              //   {moduleType.moduleTypeId}
+              // </option>
+
+              // <optgroup label="Swedish Cars">
+              //   <option
+              //     className="textureSelector-option"
+              //     value={`texture-${iTexture}`}
+              //   >
+              //     {textureName.replace(".png", "")}
+              //   </option>
+              // </optgroup>
+
+              <optgroup label={moduleType.category}></optgroup>
             ))}
         </select>
         <div className="module-remove" onClick={() => removeModule()}></div>
