@@ -25,6 +25,7 @@ import { ParticleGenerator } from "./generator";
  * center {
  *      @tooltip        TODO
  *      @type           Position
+ *      @defaultValue   { "x": 0, "y": 0 }
  * }
  * radius {
  *      @tooltip        TODO

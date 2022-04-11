@@ -20,6 +20,7 @@ import { loadSerializedProperty, deserializePrimitiveDataType } from "../seriali
  * center {
  *      @tooltip        TODO
  *      @type           Position
+ *      @defaultValue   { "x": 0, "y": 0 }
  * }
  * radius {
  *      @tooltip        TODO

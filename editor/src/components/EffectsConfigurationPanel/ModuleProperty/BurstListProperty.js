@@ -118,7 +118,7 @@ const BurstListProperty = (props) => {
           onClick={() => {
             const newValue = [
               ...value,
-              { time: 0, count: 10, repeat: undefined },
+              { time: 0, count: 20, repeat: undefined },
             ];
             onChange(newValue);
           }}

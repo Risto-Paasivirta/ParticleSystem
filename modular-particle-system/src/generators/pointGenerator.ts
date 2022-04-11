@@ -18,6 +18,7 @@ import { ParticleGenerator } from "./generator";
  * position {
  *      @tooltip        TODO
  *      @type           Position
+ *      @defaultValue   { "x": 0, "y": 0 }
  * }
  * bursts {
  *      @tooltip        TODO

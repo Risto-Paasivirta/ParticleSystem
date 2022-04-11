@@ -114,7 +114,6 @@ const defaultParticleSystemConf = [
     modules: [
       {
         moduleTypeId: "PointGenerator",
-        position: { x: 0, y: 0 },
       },
       {
         moduleTypeId: "RandomAngleVelocity",
@@ -183,7 +182,8 @@ const loadParticleEffectDefaults = (effect, particleModulesInfo) => {
             );
         } else if (
           propertyInfo.type === "Range" ||
-          propertyInfo.type === "Burst[]"
+          propertyInfo.type === "Burst[]" ||
+          propertyInfo.type === "Position"
         ) {
           try {
             defaultValue = JSON.parse(defaultValue);
