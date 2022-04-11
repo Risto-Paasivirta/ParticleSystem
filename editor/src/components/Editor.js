@@ -176,6 +176,8 @@ const loadParticleEffectDefaults = (effect, particleModulesInfo) => {
           } catch (e) {
             console.error(`Number defaultValue parsing error ${defaultValue}`);
           }
+        } else if (propertyInfo.type === "Boolean") {
+          defaultValue = defaultValue.toLowerCase() === "true" ? true : false;
         } else {
           throw new Error(`Unhandled defaultValue type: ${propertyInfo.type}`);
         }
