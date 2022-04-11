@@ -45,3 +45,7 @@ select {
 input {
   border: none;
 }
+
+th {
+  font-weight: normal;
+}
