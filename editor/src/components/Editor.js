@@ -19,6 +19,7 @@ const globalState = {
    * Object where key = name of sprite and value = PIXI.js Texture
    */
   availableTextures: {},
+  presetEffects: [],
 };
 export const globalStateContext = createContext(globalState);
 
@@ -76,7 +77,18 @@ const Editor = (props) => {
         }
       });
 
-    Promise.all([promiseCoreLibraryConfig, promiseSpriteSheets]).then((_) => {
+    const promisePresetEffects = fetch("config.presetParticleEffects.json")
+      .then((r) => r.json())
+      .then((presetEffects) => {
+        console.log("loaded preset effects");
+        globalState.presetEffects = presetEffects;
+      });
+
+    Promise.all([
+      promiseCoreLibraryConfig,
+      promiseSpriteSheets,
+      promisePresetEffects,
+    ]).then((_) => {
       setLoading(false);
     });
   }, []);
@@ -100,6 +112,9 @@ const Editor = (props) => {
               })),
             };
             downloadObject(particleSystemObject, "particleSystem.json");
+          }}
+          loadPreset={(particleSystemData) => {
+            setEffects(particleSystemData.effects);
           }}
           loadFromFile={() => {
             const fileInput = refLoadFileInput.current;

@@ -22,8 +22,53 @@
 .projectToolbar-restart {
 }
 .projectToolbar-loadPreset {
-  text-decoration: line-through;
+}
+.projectToolbar-preset-container {
+  width: 100%;
+  position: absolute;
+  top: 24px;
+  left: 0px;
+  background-color: white;
+  z-index: 9999;
+  transition: height 0.3s;
+  height: 0px;
+  display: flex;
+  flex-direction: column;
   cursor: default;
+}
+.projectToolbar-preset-container-visible {
+  height: 100px;
+  padding: 4px;
+  box-sizing: border-box;
+  border: 1px solid black;
+  border-top: none;
+}
+.projectToolBar-preset-item {
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 12px;
+  cursor: pointer;
+  background-color: white;
+  transition: background-color 0.3s;
+  margin-bottom: 4px;
+}
+.projectToolBar-preset-item:hover {
+  background-color: rgb(220, 220, 220);
+}
+.projectToolBar-preset-thumbnail {
+  height: 100%;
+  aspect-ratio: 1;
+  background-size: cover;
+  border-radius: 50%;
+  margin-right: 8px;
+  transition: border-radius 0.3s;
+}
+.projectToolBar-preset-item:hover > .projectToolBar-preset-thumbnail {
+  border-radius: 25%;
+}
+.projectToolBar-preset-label {
 }
 .projectToolbar-saveToFile {
 }
