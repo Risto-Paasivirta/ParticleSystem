@@ -48,6 +48,7 @@ import { ParticleGenerator } from "./generator";
  * bursts {
  *      @tooltip        TODO
  *      @type           Burst[]
+ *      @defaultValue   []
  * }
  */
 export class CircleExteriorGenerator extends ParticleGenerator {

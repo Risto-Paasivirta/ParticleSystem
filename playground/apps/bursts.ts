@@ -36,7 +36,7 @@ generator.position = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
 generator.bursts = [
   { time: 1.0, count: 100 },
   { time: 2.0, count: 500 },
-  { time: 4.0, count: 5000 },
+  { time: 4.0, count: 5000, repeat: 3.5 },
 ];
 effect.modules.push(generator);
 

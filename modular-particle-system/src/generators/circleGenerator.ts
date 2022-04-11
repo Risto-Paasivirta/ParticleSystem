@@ -31,6 +31,7 @@ import { loadSerializedProperty, deserializePrimitiveDataType } from "../seriali
  * bursts {
  *      @tooltip        TODO
  *      @type           Burst[]
+ *      @defaultValue   []
  * }
  */
 export class CircleGenerator extends ParticleGenerator {
@@ -60,6 +61,7 @@ export class CircleGenerator extends ParticleGenerator {
         return {
             moduleTypeId: CircleGenerator.moduleTypeId,
             interval: this.interval,
+            bursts: this.bursts,
             center: this.center,
             radius: this.radius,
         };

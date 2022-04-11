@@ -41,6 +41,7 @@ import {
  * bursts {
  *      @tooltip        TODO
  *      @type           Burst[]
+ *      @defaultValue   []
  * }
  * edgesOnly {
  *      @tooltip        TODO
@@ -72,6 +73,7 @@ export class ShapeGenerator extends ParticleGenerator {
         return {
             moduleTypeId: ShapeGenerator.moduleTypeId,
             interval: this.interval,
+            bursts: this.bursts,
             shape: this.shape ? serializeShape(this.shape) : undefined,
             edgesOnly: this.edgesOnly,
         };
