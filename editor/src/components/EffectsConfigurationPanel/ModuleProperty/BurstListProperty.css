@@ -1,5 +1,33 @@
 .burstListProperty-div {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: baseline !important;
+  height: unset !important;
+}
+.burstListProperty-nested-div {
+  padding-left: 18px;
+  width: calc(100% - 18px);
+  position: relative;
+}
+.burstListProperty-table {
+  width: 100%;
+  font-size: 10px;
+  text-align: left;
+}
+.burstListProperty-number-field {
+  width: 100%;
+  font-size: inherit;
+}
+.burstListProperty-add-burst {
+  height: 14px;
+  width: 14px;
+  background-image: url(../../../assets/round-add-button.png);
+  background-size: contain;
+  margin-right: 4px;
+}
+.burstListProperty-remove-burst {
+  height: 14px;
+  width: 14px;
+  background-image: url(../../../assets/delete-button.png);
+  background-size: contain;
 }

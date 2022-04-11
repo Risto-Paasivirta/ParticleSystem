@@ -31,8 +31,8 @@
   cursor: pointer;
 }
 .effect-addModule {
-  height: 80%;
-  aspect-ratio: 1;
+  height: 18px;
+  width: 18px;
   background-image: url(../../assets/round-add-button.png);
   background-size: contain;
   margin-right: 4px;
