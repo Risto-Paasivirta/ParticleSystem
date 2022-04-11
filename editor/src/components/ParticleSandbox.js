@@ -100,10 +100,12 @@ const ParticleSandbox = (props) => {
 
     reset();
 
-    // TODO: Should disable warnings from ParticleSystem deserialization
-    const particleSystem = ParticleSystem.fromObject({
-      effects,
-    });
+    const particleSystem = ParticleSystem.fromObject(
+      {
+        effects,
+      },
+      { hideWarnings: true }
+    );
     const particleEffects = particleSystem.effects;
     particleEffects.forEach((particleEffect, i) =>
       registerParticleEffect(particleEffect, effects[i])

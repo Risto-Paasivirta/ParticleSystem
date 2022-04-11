@@ -175,6 +175,12 @@ const loadParticleEffectDefaults = (effect, particleModulesInfo) => {
           }
         } else if (propertyInfo.type === "Boolean") {
           defaultValue = defaultValue.toLowerCase() === "true" ? true : false;
+        } else if (propertyInfo.type === "EasingFunction") {
+          // Load default value as string
+          if (typeof defaultValue !== "string")
+            throw new Error(
+              `defaultValue parsing error ${propertyInfo.type} (${defaultValue})`
+            );
         } else if (
           propertyInfo.type === "Range" ||
           propertyInfo.type === "Burst[]"
