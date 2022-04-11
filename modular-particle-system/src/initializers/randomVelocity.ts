@@ -11,15 +11,19 @@ import { Range } from "../types";
  * randomX {
  *      @tooltip        TODO
  *      @type           Range
+ *      @defaultValue   { "min": -100, "max": 100 }
+ *      @step           10
  * }
  * randomY {
  *      @tooltip        TODO
  *      @type           Range
+ *      @defaultValue   { "min": -100, "max": 100 }
+ *      @step           10
  * }
  */
 export class RandomVelocity extends Module {
-    randomX: Range = { min: 100, max: 100 };
-    randomY: Range = { min: -50, max: 50 };
+    randomX: Range = { min: -100, max: 100 };
+    randomY: Range = { min: -100, max: 100 };
 
     init(): void {
         this.particleEffect.addParticleListeners.push(this.handleParticleAdd);

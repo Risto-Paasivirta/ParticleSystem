@@ -37,7 +37,7 @@ const readModules = () => {
 
     const regexpModulePropertiesBlocks = /@module((.|\s)*?)\*\//g;
     const regexpModuleInfoTags = /@(category)\s+(.*)/g;
-    const regexpModulePropertyBlock = /([^ ]+)\s?{((.|\n|\r)*?)}/g;
+    const regexpModulePropertyBlock = /([^ ]+)\s?{((.|\n|\r)*?)\*\s+}/g;
     const regexpModulePropertyFields = /@([^ ]*)\s+([^\n\r]*)/g;
 
     const matchModulePropertiesBlocks = Array.from(

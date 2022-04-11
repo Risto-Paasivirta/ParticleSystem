@@ -178,6 +178,12 @@ const loadParticleEffectDefaults = (effect, particleModulesInfo) => {
           }
         } else if (propertyInfo.type === "Boolean") {
           defaultValue = defaultValue.toLowerCase() === "true" ? true : false;
+        } else if (propertyInfo.type === "Range") {
+          try {
+            defaultValue = JSON.parse(defaultValue);
+          } catch (e) {
+            console.error(`Range defaultValue parsing error ${defaultValue}`);
+          }
         } else {
           throw new Error(`Unhandled defaultValue type: ${propertyInfo.type}`);
         }
