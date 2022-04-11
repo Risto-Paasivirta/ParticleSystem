@@ -114,10 +114,7 @@ const defaultParticleSystemConf = [
     modules: [
       {
         moduleTypeId: "PointGenerator",
-        position: {
-          x: (window.innerWidth - 200) / 2,
-          y: (window.innerHeight - 24) / 2,
-        },
+        position: { x: 0, y: 0 },
       },
       {
         moduleTypeId: "RandomAngleVelocity",
