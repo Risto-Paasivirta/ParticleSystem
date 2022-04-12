@@ -29,6 +29,7 @@ type ParticleWithInitialVelocity = Particle & {
  * easing {
  *      @tooltip        TODO
  *      @type           EasingFunction
+ *      @defaultValue   easeOutSine
  * }
  */
 export class DeaccelerationOverLifetime extends Module {

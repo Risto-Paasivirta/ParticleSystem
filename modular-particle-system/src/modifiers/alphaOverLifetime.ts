@@ -16,6 +16,7 @@ import { ParticleEffect } from "../particleEffect";
  * easing {
  *      @tooltip        TODO
  *      @type           EasingFunction
+ *      @defaultValue   easeOutSine
  * }
  */
 export class AlphaOverLifetime extends Module {

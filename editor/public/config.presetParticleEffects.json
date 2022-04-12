@@ -1,0 +1,112 @@
+[
+  {
+    "label": "Cloud Bursts",
+    "thumbnail": "cloud_bursts.png",
+    "data": {
+      "effects": [
+        {
+          "textures": ["generic/cloud_solid.png"],
+          "modules": [
+            {
+              "moduleTypeId": "PointGenerator",
+              "interval": 0,
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "bursts": [
+                {
+                  "time": 0,
+                  "count": 10,
+                  "repeat": 1
+                }
+              ]
+            },
+            {
+              "moduleTypeId": "RandomAngleVelocity",
+              "min": 50,
+              "max": 100
+            },
+            {
+              "moduleTypeId": "RandomScale",
+              "min": 0.1,
+              "max": 0.2
+            },
+            {
+              "moduleTypeId": "RandomColor"
+            },
+            {
+              "moduleTypeId": "LifeTimeRange",
+              "min": 1,
+              "max": 5
+            },
+            {
+              "moduleTypeId": "AlphaOverLifetime",
+              "easing": "easeOutSine"
+            },
+            {
+              "moduleTypeId": "LifeTimeDestructor"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "label": "Volcano",
+    "thumbnail": "volcano.png",
+    "data": {
+      "effects": [
+        {
+          "textures": ["generic/ball.png"],
+          "modules": [
+            {
+              "moduleTypeId": "Gravity",
+              "strength": 500,
+              "minPullStrengthMultiplier": 0.2,
+              "maxPullStrengthMultiplier": 1,
+              "minPullStrengthDistance": 500,
+              "maxPullStrengthDistance": 100
+            },
+            {
+              "moduleTypeId": "PointGenerator",
+              "interval": 0.01,
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "bursts": []
+            },
+            {
+              "moduleTypeId": "RandomVelocity",
+              "randomX": {
+                "min": -90,
+                "max": 90
+              },
+              "randomY": {
+                "min": -1000,
+                "max": -500
+              }
+            },
+            {
+              "moduleTypeId": "RandomScale",
+              "min": 0.1,
+              "max": 0.3
+            },
+            {
+              "moduleTypeId": "RandomColor"
+            },
+            {
+              "moduleTypeId": "LifeTimeRange",
+              "min": 10,
+              "max": 10
+            },
+            {
+              "moduleTypeId": "LifeTimeDestructor"
+            }
+          ]
+        }
+      ]
+    }
+  }
+]

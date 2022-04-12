@@ -52,6 +52,7 @@ export class CircleLoadingGenerator extends ParticleGenerator {
         return {
             moduleTypeId: CircleLoadingGenerator.moduleTypeId,
             interval: this.interval,
+            bursts: this.bursts,
             center: this.center,
             nextParticleAngle: this.nextParticleAngle,
             angleStep: this.angleStep,

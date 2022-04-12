@@ -60,9 +60,13 @@ const ParticleSandbox = (props) => {
       }
     };
     const updateRendering = () => {
+      const width = app.view.width;
+      const height = app.view.height;
+      const center = { x: width / 2, y: height / 2 };
+
       activeSprites.forEach((sprite, particle) => {
-        sprite.x = particle.position.x;
-        sprite.y = particle.position.y;
+        sprite.x = center.x + particle.position.x;
+        sprite.y = center.y + particle.position.y;
         sprite.scale.x = particle.scale;
         sprite.scale.y = particle.scale;
         sprite.alpha = particle.alpha;
@@ -96,10 +100,12 @@ const ParticleSandbox = (props) => {
 
     reset();
 
-    // TODO: Should disable warnings from ParticleSystem deserialization
-    const particleSystem = ParticleSystem.fromObject({
-      effects,
-    });
+    const particleSystem = ParticleSystem.fromObject(
+      {
+        effects,
+      },
+      { hideWarnings: true }
+    );
     const particleEffects = particleSystem.effects;
     particleEffects.forEach((particleEffect, i) =>
       registerParticleEffect(particleEffect, effects[i])
