@@ -14,6 +14,10 @@ const Module = (props) => {
     throw new Error(`Unidentified module: ${module.moduleTypeId}`);
   }
 
+  const moduleCategories = Array.from(
+    new Set(particleModules.map((moduleType) => moduleType.category))
+  ).filter((item) => item !== undefined);
+
   return (
     <div className="module">
       <div className="module-title-layout field">
@@ -26,22 +30,19 @@ const Module = (props) => {
             updateModule(updatedModule);
           }}
         >
-          {particleModules
-            .sort((a, b) => a.moduleTypeId.localeCompare(b.moduleTypeId))
-            .map((moduleType, i) => (
-              // <option value={moduleType.moduleTypeId} key={`module-${i}`}>
-              //   {moduleType.moduleTypeId}
-              // </option>
-              <optgroup label={moduleType.category}>
-                <option value={moduleType.moduleTypeId} key={`module-${i}`}>
-                  {moduleType.moduleTypeId}
-                </option>
-                {/* <option
-                 className="textureSelector-option"
-                 value={`texture-${iTexture}`}
-               >
-                 {textureName.replace(".png", "")}
-               </option> */}
+          {moduleCategories
+            .sort((a, b) => a.localeCompare(b))
+            .map((moduleCategory, i) => (
+              <optgroup label={moduleCategory} key={`module-${i}`}>
+                {particleModules
+                  .filter(
+                    (moduleType) => moduleType.category === moduleCategory
+                  )
+                  .map((moduleType, i2) => (
+                    <option value={moduleType.moduleTypeId}>
+                      {moduleType.moduleTypeId}
+                    </option>
+                  ))}
               </optgroup>
             ))}
         </select>
