@@ -9,6 +9,7 @@ import { loadSerializedProperty, deserializePrimitiveDataType } from "../seriali
  * Generator module that creates particles along the exterior of a circular area.
  *
  * @module
+ * @category    Generator
  * interval {
  *      @tooltip        TODO
  *      @type           Number
@@ -19,6 +20,7 @@ import { loadSerializedProperty, deserializePrimitiveDataType } from "../seriali
  * center {
  *      @tooltip        TODO
  *      @type           Position
+ *      @defaultValue   { "x": 0, "y": 0 }
  * }
  * outerRadius {
  *      @tooltip        TODO
@@ -33,6 +35,11 @@ import { loadSerializedProperty, deserializePrimitiveDataType } from "../seriali
  *      @defaultValue   40
  *      @min            0
  *      @step           10
+ * }
+ * bursts {
+ *      @tooltip        TODO
+ *      @type           Burst[]
+ *      @defaultValue   []
  * }
  */
 export class CircleEdgeGenerator extends ParticleGenerator {
@@ -71,18 +78,51 @@ export class CircleEdgeGenerator extends ParticleGenerator {
         return {
             moduleTypeId: CircleEdgeGenerator.moduleTypeId,
             interval: this.interval,
+            bursts: this.bursts,
             center: this.center,
             outerRadius: this.outerRadius,
             innerRadius: this.innerRadius,
         };
     }
 
-    static fromObject(particleEffect: ParticleEffect, object: ModuleObject): CircleEdgeGenerator {
+    static fromObject(
+        particleEffect: ParticleEffect,
+        object: ModuleObject,
+        hideWarnings: boolean,
+    ): CircleEdgeGenerator {
         const module = new CircleEdgeGenerator(particleEffect);
-        loadSerializedProperty(object, CircleEdgeGenerator, module, "interval", deserializePrimitiveDataType);
-        loadSerializedProperty(object, CircleEdgeGenerator, module, "center", deserializePrimitiveDataType);
-        loadSerializedProperty(object, CircleEdgeGenerator, module, "outerRadius", deserializePrimitiveDataType);
-        loadSerializedProperty(object, CircleEdgeGenerator, module, "innerRadius", deserializePrimitiveDataType);
+        loadSerializedProperty(
+            object,
+            CircleEdgeGenerator,
+            module,
+            "interval",
+            deserializePrimitiveDataType,
+            hideWarnings,
+        );
+        loadSerializedProperty(
+            object,
+            CircleEdgeGenerator,
+            module,
+            "center",
+            deserializePrimitiveDataType,
+            hideWarnings,
+        );
+        loadSerializedProperty(
+            object,
+            CircleEdgeGenerator,
+            module,
+            "outerRadius",
+            deserializePrimitiveDataType,
+            hideWarnings,
+        );
+        loadSerializedProperty(
+            object,
+            CircleEdgeGenerator,
+            module,
+            "innerRadius",
+            deserializePrimitiveDataType,
+            hideWarnings,
+        );
         return module;
     }
 

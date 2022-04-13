@@ -10,6 +10,7 @@ import { randomInRange } from "../utilities";
  * Range can be configured with `min` and `max` properties.
  *
  * @module
+ * @category    Initializer
  * min {
  *      @tooltip        TODO
  *      @type           Number
@@ -59,10 +60,10 @@ export class AlphaRange extends Module {
         };
     }
 
-    static fromObject(particleEffect: ParticleEffect, object: ModuleObject): AlphaRange {
+    static fromObject(particleEffect: ParticleEffect, object: ModuleObject, hideWarnings: boolean): AlphaRange {
         const module = new AlphaRange(particleEffect);
-        loadSerializedProperty(object, AlphaRange, module, "min", deserializePrimitiveDataType);
-        loadSerializedProperty(object, AlphaRange, module, "max", deserializePrimitiveDataType);
+        loadSerializedProperty(object, AlphaRange, module, "min", deserializePrimitiveDataType, hideWarnings);
+        loadSerializedProperty(object, AlphaRange, module, "max", deserializePrimitiveDataType, hideWarnings);
         return module;
     }
 

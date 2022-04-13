@@ -7,18 +7,23 @@ import { Range } from "../types";
 
 /**
  * @module
+ * @category    Initializer
  * randomX {
  *      @tooltip        TODO
  *      @type           Range
+ *      @defaultValue   { "min": -100, "max": 100 }
+ *      @step           10
  * }
  * randomY {
  *      @tooltip        TODO
  *      @type           Range
+ *      @defaultValue   { "min": -100, "max": 100 }
+ *      @step           10
  * }
  */
 export class RandomVelocity extends Module {
-    randomX: Range = { min: 100, max: 100 };
-    randomY: Range = { min: -50, max: 50 };
+    randomX: Range = { min: -100, max: 100 };
+    randomY: Range = { min: -100, max: 100 };
 
     init(): void {
         this.particleEffect.addParticleListeners.push(this.handleParticleAdd);
@@ -41,10 +46,10 @@ export class RandomVelocity extends Module {
         };
     }
 
-    static fromObject(particleEffect: ParticleEffect, object: ModuleObject): RandomVelocity {
+    static fromObject(particleEffect: ParticleEffect, object: ModuleObject, hideWarnings: boolean): RandomVelocity {
         const module = new RandomVelocity(particleEffect);
-        loadSerializedProperty(object, RandomVelocity, module, "randomX", deserializePrimitiveDataType);
-        loadSerializedProperty(object, RandomVelocity, module, "randomY", deserializePrimitiveDataType);
+        loadSerializedProperty(object, RandomVelocity, module, "randomX", deserializePrimitiveDataType, hideWarnings);
+        loadSerializedProperty(object, RandomVelocity, module, "randomY", deserializePrimitiveDataType, hideWarnings);
         return module;
     }
 

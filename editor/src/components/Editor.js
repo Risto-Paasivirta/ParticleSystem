@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  useRef,
+} from "react";
 import EffectsConfigurationPanel from "./EffectsConfigurationPanel/EffectsConfigurationPanel";
 import ProjectToolbar from "./ProjectToolbar";
 import ParticleSandbox from "./ParticleSandbox";
@@ -13,6 +19,7 @@ const globalState = {
    * Object where key = name of sprite and value = PIXI.js Texture
    */
   availableTextures: {},
+  presetEffects: [],
 };
 export const globalStateContext = createContext(globalState);
 
@@ -70,10 +77,23 @@ const Editor = (props) => {
         }
       });
 
-    Promise.all([promiseCoreLibraryConfig, promiseSpriteSheets]).then((_) => {
+    const promisePresetEffects = fetch("config.presetParticleEffects.json")
+      .then((r) => r.json())
+      .then((presetEffects) => {
+        console.log("loaded preset effects");
+        globalState.presetEffects = presetEffects;
+      });
+
+    Promise.all([
+      promiseCoreLibraryConfig,
+      promiseSpriteSheets,
+      promisePresetEffects,
+    ]).then((_) => {
       setLoading(false);
     });
   }, []);
+
+  const refLoadFileInput = useRef(null);
 
   return loading ? (
     <div className="editor-loading">Loading...</div>
@@ -86,9 +106,20 @@ const Editor = (props) => {
           }}
           saveToFile={() => {
             const particleSystemObject = {
-              effects: effects.map((effect) => ({ modules: effect.modules })),
+              effects: effects.map((effect) => ({
+                textures: effect.textures,
+                modules: effect.modules,
+              })),
             };
             downloadObject(particleSystemObject, "particleSystem.json");
+          }}
+          loadPreset={(particleSystemData) => {
+            setEffects(particleSystemData.effects);
+          }}
+          loadFromFile={() => {
+            const fileInput = refLoadFileInput.current;
+            if (!fileInput) return;
+            fileInput.click();
           }}
         />
         <div className="editor-workspace">
@@ -104,6 +135,21 @@ const Editor = (props) => {
           />
         </div>
       </div>
+      <input
+        className="editor-fileInput"
+        type={"file"}
+        ref={refLoadFileInput}
+        accept={".json"}
+        onChange={async (e) => {
+          try {
+            const file = e.target.files[0];
+            const loadedParticleSystem = await new Response(file).json();
+            setEffects(loadedParticleSystem.effects);
+          } catch (e) {
+            alert(`Unexpected error while loading file.\n${e.message}`);
+          }
+        }}
+      />
     </globalStateContext.Provider>
   );
 };
@@ -114,10 +160,6 @@ const defaultParticleSystemConf = [
     modules: [
       {
         moduleTypeId: "PointGenerator",
-        position: {
-          x: (window.innerWidth - 200) / 2,
-          y: (window.innerHeight - 24) / 2,
-        },
       },
       {
         moduleTypeId: "RandomAngleVelocity",
@@ -175,6 +217,26 @@ const loadParticleEffectDefaults = (effect, particleModulesInfo) => {
             defaultValue = Number(defaultValue);
           } catch (e) {
             console.error(`Number defaultValue parsing error ${defaultValue}`);
+          }
+        } else if (propertyInfo.type === "Boolean") {
+          defaultValue = defaultValue.toLowerCase() === "true" ? true : false;
+        } else if (propertyInfo.type === "EasingFunction") {
+          // Load default value as string
+          if (typeof defaultValue !== "string")
+            throw new Error(
+              `defaultValue parsing error ${propertyInfo.type} (${defaultValue})`
+            );
+        } else if (
+          propertyInfo.type === "Range" ||
+          propertyInfo.type === "Burst[]" ||
+          propertyInfo.type === "Position"
+        ) {
+          try {
+            defaultValue = JSON.parse(defaultValue);
+          } catch (e) {
+            console.error(
+              `defaultValue parsing error ${propertyInfo.type} (${defaultValue})`
+            );
           }
         } else {
           throw new Error(`Unhandled defaultValue type: ${propertyInfo.type}`);

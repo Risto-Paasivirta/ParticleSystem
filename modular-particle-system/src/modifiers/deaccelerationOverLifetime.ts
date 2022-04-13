@@ -25,9 +25,11 @@ type ParticleWithInitialVelocity = Particle & {
  * This module modifies `Particle.velocity` property, but does not reassign it so this can be combined with other modules which affect particle velocity.
  *
  * @module
+ * @category    Modifier
  * easing {
  *      @tooltip        TODO
  *      @type           EasingFunction
+ *      @defaultValue   easeOutSine
  * }
  */
 export class DeaccelerationOverLifetime extends Module {
@@ -79,9 +81,13 @@ export class DeaccelerationOverLifetime extends Module {
         };
     }
 
-    static fromObject(particleEffect: ParticleEffect, object: ModuleObject): DeaccelerationOverLifetime {
+    static fromObject(
+        particleEffect: ParticleEffect,
+        object: ModuleObject,
+        hideWarnings: boolean,
+    ): DeaccelerationOverLifetime {
         const module = new DeaccelerationOverLifetime(particleEffect);
-        loadSerializedProperty(object, DeaccelerationOverLifetime, module, "easing", deserializeEasing);
+        loadSerializedProperty(object, DeaccelerationOverLifetime, module, "easing", deserializeEasing, hideWarnings);
         return module;
     }
 

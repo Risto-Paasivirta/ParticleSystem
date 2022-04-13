@@ -10,10 +10,14 @@ import { Renderer } from "./helpers/renderer/renderer";
 document.body.style.margin = "0px 0px";
 document.body.style.width = "100vw";
 document.body.style.height = "100vh";
+const loader = PIXI.Loader.shared;
+loader.add("spritesheet", "./assets/kenney_particlePack.json");
+loader.load();
 
 const particleSystem = new ParticleSystem();
 const renderer = new Renderer(document.body, particleSystem);
 const effect = particleSystem.addParticleEffect();
+effect.textures = ["circle_05.png"];
 
 const lifetimeRange = new LifeTimeRange(effect);
 lifetimeRange.min = 5;
@@ -36,19 +40,16 @@ effect.modules.push(randomVelocity);
 // "color over lifetime"
 const alpha = 1;
 setInterval(() => {
-    effect.particles.forEach((particle) => {
-        const cycle = 5000;
-        const asd = performance.now() % (cycle * 2);
-        const lerpFactor = asd < cycle ? asd / cycle : 1 - (asd - cycle) / cycle;
-        particle.scale = 0.4;
-        particle.alpha = alpha;
-        particle.color = lerpColor({ r: 1, g: 0, b: 0 }, { r: 0, g: 1, b: 0 }, lerpFactor);
-    });
+  effect.particles.forEach((particle) => {
+    const cycle = 5000;
+    const asd = performance.now() % (cycle * 2);
+    const lerpFactor = asd < cycle ? asd / cycle : 1 - (asd - cycle) / cycle;
+    particle.scale = 0.4;
+    particle.alpha = alpha;
+    particle.color = lerpColor(
+      { r: 1, g: 0, b: 0 },
+      { r: 0, g: 1, b: 0 },
+      lerpFactor
+    );
+  });
 }, 1000 / 60);
-
-const loader = PIXI.Loader.shared;
-loader.add("spritesheet", "./assets/kenney_particlePack.json");
-loader.onComplete.once(() => {
-    renderer.setEffectTextures(effect, PIXI.utils.TextureCache["circle_05.png"]);
-});
-loader.load();

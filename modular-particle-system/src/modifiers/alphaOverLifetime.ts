@@ -12,9 +12,11 @@ import { ParticleEffect } from "../particleEffect";
  * This module modifies `Particle.alpha` property and can not be combined with any other modifier that does so.
  *
  * @module
+ * @category    Modifier
  * easing {
  *      @tooltip        TODO
  *      @type           EasingFunction
+ *      @defaultValue   easeOutSine
  * }
  */
 export class AlphaOverLifetime extends Module {
@@ -47,9 +49,9 @@ export class AlphaOverLifetime extends Module {
         };
     }
 
-    static fromObject(particleEffect: ParticleEffect, object: ModuleObject): AlphaOverLifetime {
+    static fromObject(particleEffect: ParticleEffect, object: ModuleObject, hideWarnings: boolean): AlphaOverLifetime {
         const module = new AlphaOverLifetime(particleEffect);
-        loadSerializedProperty(object, AlphaOverLifetime, module, "easing", deserializeEasing);
+        loadSerializedProperty(object, AlphaOverLifetime, module, "easing", deserializeEasing, hideWarnings);
         return module;
     }
 

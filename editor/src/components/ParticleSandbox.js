@@ -1,12 +1,10 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import "./ParticleSandbox.css";
 import * as PIXI from "pixi.js";
 import { ParticleSystem } from "modular-particle-system/particleSystem";
-import { globalStateContext } from "./Editor";
 
 const ParticleSandbox = (props) => {
   const { effects } = props;
-  const { availableTextures } = useContext(globalStateContext);
 
   const [renderer, setRenderer] = useState(undefined);
 
@@ -46,14 +44,6 @@ const ParticleSandbox = (props) => {
       // Prepare sprite for rendering.
       sprite.visible = true;
 
-      const effectTextureNames = effectInfo.textures;
-      const particleTextureName =
-        effectTextureNames[
-          Math.round(Math.random() * (effectTextureNames.length - 1))
-        ];
-      const texture = availableTextures[particleTextureName];
-      sprite.texture = texture;
-
       // Save the relation between the particle and sprite.
       activeSprites.set(particle, sprite);
     };
@@ -70,9 +60,13 @@ const ParticleSandbox = (props) => {
       }
     };
     const updateRendering = () => {
+      const width = app.view.width;
+      const height = app.view.height;
+      const center = { x: width / 2, y: height / 2 };
+
       activeSprites.forEach((sprite, particle) => {
-        sprite.x = particle.position.x;
-        sprite.y = particle.position.y;
+        sprite.x = center.x + particle.position.x;
+        sprite.y = center.y + particle.position.y;
         sprite.scale.x = particle.scale;
         sprite.scale.y = particle.scale;
         sprite.alpha = particle.alpha;
@@ -82,6 +76,7 @@ const ParticleSandbox = (props) => {
           particle.color.b,
         ]);
         sprite.rotation = particle.rotation;
+        sprite.texture = PIXI.utils.TextureCache[particle.texture];
       });
     };
     const reset = () => {
@@ -95,7 +90,7 @@ const ParticleSandbox = (props) => {
     return () => {
       app.destroy(true);
     };
-  }, [availableTextures]);
+  }, []);
 
   useEffect(() => {
     if (!renderer) {
@@ -105,10 +100,12 @@ const ParticleSandbox = (props) => {
 
     reset();
 
-    // TODO: Should disable warnings from ParticleSystem deserialization
-    const particleSystem = ParticleSystem.fromObject({
-      effects,
-    });
+    const particleSystem = ParticleSystem.fromObject(
+      {
+        effects,
+      },
+      { hideWarnings: true }
+    );
     const particleEffects = particleSystem.effects;
     particleEffects.forEach((particleEffect, i) =>
       registerParticleEffect(particleEffect, effects[i])

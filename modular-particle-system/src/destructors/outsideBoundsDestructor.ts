@@ -19,6 +19,7 @@ import { ParticleEffect } from "../particleEffect";
  * ```
  *
  * @module
+ * @category    Destructor
  * bounds {
  *      @tooltip        TODO
  *      @type           Shape
@@ -54,9 +55,13 @@ export class OutsideBoundsDestructor extends Module {
         };
     }
 
-    static fromObject(particleEffect: ParticleEffect, object: ModuleObject): OutsideBoundsDestructor {
+    static fromObject(
+        particleEffect: ParticleEffect,
+        object: ModuleObject,
+        hideWarnings: boolean,
+    ): OutsideBoundsDestructor {
         const module = new OutsideBoundsDestructor(particleEffect);
-        loadSerializedProperty(object, OutsideBoundsDestructor, module, "bounds", deserializeShape);
+        loadSerializedProperty(object, OutsideBoundsDestructor, module, "bounds", deserializeShape, hideWarnings);
         return module;
     }
 

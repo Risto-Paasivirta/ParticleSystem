@@ -3,6 +3,9 @@ import { ParticleEffect } from "../particleEffect";
 
 /**
  * `Module` that destroys all particles whose color alpha value is less or equal to 0
+ *
+ * @module
+ * @category    Destructor
  */
 export class AlphaDestructor extends Module {
     update(dt: number): void {
@@ -25,7 +28,7 @@ export class AlphaDestructor extends Module {
         };
     }
 
-    static fromObject(particleEffect: ParticleEffect, object: ModuleObject): AlphaDestructor {
+    static fromObject(particleEffect: ParticleEffect, object: ModuleObject, hideWarnings: boolean): AlphaDestructor {
         const module = new AlphaDestructor(particleEffect);
         return module;
     }

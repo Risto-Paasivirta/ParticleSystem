@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import "./ProjectToolbar.css";
+import { globalStateContext } from "./Editor";
 
 const ProjectToolbar = (props) => {
-  const { restart, saveToFile } = props;
+  const { restart, saveToFile, loadFromFile, loadPreset } = props;
+
+  const { presetEffects } = useContext(globalStateContext);
+
+  const [presetsVisible, setPresetsVisible] = useState(false);
+
   return (
     <div className="projectToolbar">
       <div className="projectToolbar-gap"></div>
@@ -21,13 +27,44 @@ const ProjectToolbar = (props) => {
         </div>
         <div
           className="projectToolbar-buttonDiv projectToolbar-loadPreset"
-          onClick={() => {}}
+          onClick={() => {
+            setPresetsVisible(!presetsVisible);
+          }}
         >
           <span className="projectToolbar-button">Load preset</span>
+          <div
+            className={`projectToolbar-preset-container${
+              presetsVisible ? " projectToolbar-preset-container-visible" : ""
+            }`}
+          >
+            {presetsVisible &&
+              presetEffects.map((presetEffect, i) => (
+                <div
+                  className="projectToolBar-preset-item"
+                  key={`preset-${i}`}
+                  onClick={() => {
+                    loadPreset(presetEffect.data);
+                    setPresetsVisible(false);
+                  }}
+                >
+                  <div
+                    className="projectToolBar-preset-thumbnail"
+                    style={{
+                      backgroundImage:
+                        presetEffect.thumbnail &&
+                        `url(presetThumbnails/${presetEffect.thumbnail})`,
+                    }}
+                  />
+                  <span className="projectToolBar-preset-label">
+                    {presetEffect.label}
+                  </span>
+                </div>
+              ))}
+          </div>
         </div>
         <div
           className="projectToolbar-buttonDiv projectToolbar-loadFromFile"
-          onClick={() => {}}
+          onClick={() => loadFromFile()}
         >
           <span className="projectToolbar-button">Load from file</span>
         </div>

@@ -9,6 +9,7 @@ import { loadSerializedProperty, deserializePrimitiveDataType } from "../seriali
  * Generator module that creates particles at random inside a circular area.
  *
  * @module
+ * @category    Generator
  * interval {
  *      @tooltip        TODO
  *      @type           Number
@@ -19,6 +20,7 @@ import { loadSerializedProperty, deserializePrimitiveDataType } from "../seriali
  * center {
  *      @tooltip        TODO
  *      @type           Position
+ *      @defaultValue   { "x": 0, "y": 0 }
  * }
  * radius {
  *      @tooltip        TODO
@@ -26,6 +28,11 @@ import { loadSerializedProperty, deserializePrimitiveDataType } from "../seriali
  *      @defaultValue   50
  *      @min            0
  *      @step           10
+ * }
+ * bursts {
+ *      @tooltip        TODO
+ *      @type           Burst[]
+ *      @defaultValue   []
  * }
  */
 export class CircleGenerator extends ParticleGenerator {
@@ -55,16 +62,17 @@ export class CircleGenerator extends ParticleGenerator {
         return {
             moduleTypeId: CircleGenerator.moduleTypeId,
             interval: this.interval,
+            bursts: this.bursts,
             center: this.center,
             radius: this.radius,
         };
     }
 
-    static fromObject(particleEffect: ParticleEffect, object: ModuleObject): CircleGenerator {
+    static fromObject(particleEffect: ParticleEffect, object: ModuleObject, hideWarnings: boolean): CircleGenerator {
         const module = new CircleGenerator(particleEffect);
-        loadSerializedProperty(object, CircleGenerator, module, "interval", deserializePrimitiveDataType);
-        loadSerializedProperty(object, CircleGenerator, module, "center", deserializePrimitiveDataType);
-        loadSerializedProperty(object, CircleGenerator, module, "radius", deserializePrimitiveDataType);
+        loadSerializedProperty(object, CircleGenerator, module, "interval", deserializePrimitiveDataType, hideWarnings);
+        loadSerializedProperty(object, CircleGenerator, module, "center", deserializePrimitiveDataType, hideWarnings);
+        loadSerializedProperty(object, CircleGenerator, module, "radius", deserializePrimitiveDataType, hideWarnings);
         return module;
     }
 
