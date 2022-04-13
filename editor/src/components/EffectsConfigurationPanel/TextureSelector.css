@@ -1,2 +1,5 @@
-.textureSelector-dropdown {}
-.textureSelector-option {}
+.textureSelector-dropdown {
+  cursor: pointer;
+}
+.textureSelector-option {
+}

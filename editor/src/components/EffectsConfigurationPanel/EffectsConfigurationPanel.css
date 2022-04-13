@@ -1,14 +1,14 @@
 .effectsConfigurationPanel {
-  width: 200px;
+  width: 268px;
   height: 100%;
   overflow-y: auto;
-  padding-left: 4px;
-  padding-right: 4px;
+  padding-left: 10px;
+  padding-right: 10px;
   margin-top: 1px;
-
-  /* Hide scrollbar for IE, Edge and Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  z-index: 9999999999999999;
+  background: #fff;
 }
 /* Hide scrollbar for Chrome, Safari and Opera */
 .effectsConfigurationPanel::-webkit-scrollbar {
