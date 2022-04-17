@@ -2,12 +2,51 @@ import React from "react";
 import "./PositionProperty.css";
 
 const PositionProperty = (props) => {
-  const { name, propertyInfo, onChange } = props;
+  const { value, name, onChange } = props;
 
   return (
-    <div className="position-div field">
-      <span>{name}</span>
-      <span>Position*</span>
+    <div className="field position-div">
+      <span title={name}>{name}</span>
+      <div className="position-child-div">
+        <span>X</span>
+        <input
+          className="position-number-field"
+          type={"number"}
+          value={value.x}
+          min={-500}
+          max={500}
+          step={10}
+          onChange={(e) => {
+            let newValue;
+            try {
+              newValue = Number(e.target.value);
+            } catch (e) {
+              console.warn(`positionProperty could not parse Number (min)`);
+            }
+            onChange({ x: newValue, y: value.y});
+          }}
+        ></input>
+      </div>
+      <div className="position-child-div">
+        <span>Y</span>
+        <input
+          className="position-number-field"
+          type={"number"}
+          value={value.y}
+          min={-500}
+          max={500}
+          step={10}
+          onChange={(e) => {
+            let newValue;
+            try {
+              newValue = Number(e.target.value);
+            } catch (e) {
+              console.warn(`positionProperty could not parse Number (max)`);
+            }
+            onChange({ x: value.x, y: newValue });
+          }}
+        ></input>
+      </div>
     </div>
   );
 };
