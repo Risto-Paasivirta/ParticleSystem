@@ -7,10 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.0] - 2022-04-18
+
 ### Added
 
 -   Added optional `repeat` property to all generators `bursts` properties.
+
     -   Can be used to make bursts repeat indefinitely.
+
+### Fixed
+
+-   Fixed package not working with Webpack v.5.x or CRA v.5.x due to package not being properly ES formatted.
 
 ## [1.0.0] - 2022-04-10
 
