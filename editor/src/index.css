@@ -44,6 +44,15 @@ select {
 
 input {
   border: none;
+  text-align: end;
+}
+
+td > input {
+  text-align: start;
+}
+
+table {
+  border-spacing: 0px;
 }
 
 th {

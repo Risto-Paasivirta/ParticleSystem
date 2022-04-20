@@ -11,9 +11,11 @@
   justify-content: space-between;
   position: relative;
   width: calc(100% - 18px);
+  font-size: 10px;
 }
 .position-number-field {
   position: absolute;
   right: 0px;
   width: 44px;
+  font-size: inherit;
 }

@@ -13,8 +13,6 @@ const PositionProperty = (props) => {
           className="position-number-field"
           type={"number"}
           value={value.x}
-          min={-500}
-          max={500}
           step={10}
           onChange={(e) => {
             let newValue;
@@ -23,7 +21,7 @@ const PositionProperty = (props) => {
             } catch (e) {
               console.warn(`positionProperty could not parse Number (min)`);
             }
-            onChange({ x: newValue, y: value.y});
+            onChange({ x: newValue, y: value.y });
           }}
         ></input>
       </div>
@@ -33,8 +31,6 @@ const PositionProperty = (props) => {
           className="position-number-field"
           type={"number"}
           value={value.y}
-          min={-500}
-          max={500}
           step={10}
           onChange={(e) => {
             let newValue;
