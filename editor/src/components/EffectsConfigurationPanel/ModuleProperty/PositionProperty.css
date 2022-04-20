@@ -1,5 +1,21 @@
 .position-div {
   display: flex;
+  flex-direction: column;
+  height: 50px !important;
+  align-items: baseline !important;
+}
+.position-child-div {
+  padding-left: 18px;
+  display: flex;
   flex-direction: row;
   justify-content: space-between;
+  position: relative;
+  width: calc(100% - 18px);
+  font-size: 10px;
+}
+.position-number-field {
+  position: absolute;
+  right: 0px;
+  width: 44px;
+  font-size: inherit;
 }

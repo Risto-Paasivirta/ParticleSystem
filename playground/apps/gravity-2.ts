@@ -7,6 +7,7 @@ import { RandomScale } from "modular-particle-system/initializers/randomScale";
 import { PointGenerator } from "modular-particle-system/generators/pointGenerator";
 import { RandomAngleVelocity } from "modular-particle-system/initializers/randomAngleVelocity";
 import { RandomColor } from "modular-particle-system/initializers/randomColor";
+import { GravityWithCenter } from "modular-particle-system/modifiers/gravityWithCenter";
 
 document.body.style.margin = "0px 0px";
 document.body.style.width = "100vw";
@@ -34,7 +35,7 @@ effect.modules.push(velocity);
 const initializer = new LifeTimeRange(effect);
 effect.modules.push(initializer);
 
-const gravity = new Gravity(effect);
+const gravity = new GravityWithCenter(effect);
 gravity.center = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
 effect.modules.push(gravity);
 
