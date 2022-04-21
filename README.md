@@ -213,6 +213,17 @@ TODO
 
 </details>
 
+### Adding a new application to the playground with a sample GIF
+
+The playground is used to make test applications for new modifiers, generators, etc. It needs to be placed under `playground\apps\name.ts` to add a new application. The file's name is essential since it is used to name the application on the playground page. To demonstrate the application with a GIF, the GIF needs to be placed under `playground\public\media\name.gif`. When successful, the playground automatically adds it based on the applications under apps and searches for a GIF named the same way as the application
+
+E.g.
+
+`playground\public\media\magic-wand.gif` <br>
+`playground\apps\magic-wand.ts`
+
+The playground forces all GIFs to be 400px x 300px so to get the best quality the original GIF should be 400px x 300px.
+
 ## Known Issues
 
 ### `modular-particle-system` package does not work with Webpack@5.x
