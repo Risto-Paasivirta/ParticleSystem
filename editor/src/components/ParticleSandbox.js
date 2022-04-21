@@ -146,6 +146,7 @@ const ParticleSandbox = (props) => {
         <p>
           <b>Work in progress!</b>
         </p>
+        <p>Particle Count:100</p>
         <p>Some features are still unimplemented.</p>
       </div>
     </div>
