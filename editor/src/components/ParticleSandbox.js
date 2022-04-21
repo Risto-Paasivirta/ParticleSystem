@@ -12,6 +12,8 @@ const ParticleSandbox = (props) => {
 
   const [visibleParticlesCount, setVisibleParticlesCount] = useState(0);
 
+  const [runTime, setRunTime] = useState(0);
+
   useEffect(() => {
     const container = document.getElementById("particleSandbox");
     const app = new PIXI.Application({
@@ -114,8 +116,11 @@ const ParticleSandbox = (props) => {
       registerParticleEffect(particleEffect, effects[i])
     );
 
+    let runTimeCounter = 0;
     const update = () => {
       const dt = app.ticker.elapsedMS / 1000;
+      runTimeCounter += dt;
+      setRunTime(runTimeCounter);
       particleSystem.update(dt);
       updateRendering();
 
@@ -152,17 +157,9 @@ const ParticleSandbox = (props) => {
         ))}
       </div>
       <div className="particleSandbox-canvas" id="particleSandbox"></div>
-      <div
-        className={`particleSandbox-count  ${
-          devNoteState ? "particleSandbox-devNotification-active" : ""
-        }`}
-        onClick={() => setDevNoteState(false)}
-      >
-        <p>
-          {visibleParticlesCount}
-          <b> particles</b>
-        </p>
-        <p></p>
+      <div className={`particleSandbox-stats`}>
+        <span>{`Run time ${runTime.toFixed(2)}`}</span>
+        <span>{`Particles ${visibleParticlesCount}`}</span>
       </div>
 
       <div
