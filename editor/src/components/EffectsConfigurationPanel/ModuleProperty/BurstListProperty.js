@@ -21,7 +21,7 @@ const BurstListProperty = (props) => {
               {value
                 .sort((a, b) => a.time - b.time)
                 .map((burst, i) => (
-                  <tr key={`row-${i}`}>
+                  <tr key={`burst-row-${i}`}>
                     <td>
                       <input
                         className="burstListProperty-number-field"
