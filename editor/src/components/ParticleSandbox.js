@@ -10,6 +10,8 @@ const ParticleSandbox = (props) => {
 
   const [devNoteState, setDevNoteState] = useState(false);
 
+  const [visibleParticlesCount, setVisibleParticlesCount] = useState(0);
+
   useEffect(() => {
     const container = document.getElementById("particleSandbox");
     const app = new PIXI.Application({
@@ -107,6 +109,7 @@ const ParticleSandbox = (props) => {
       { hideWarnings: true }
     );
     const particleEffects = particleSystem.effects;
+
     particleEffects.forEach((particleEffect, i) =>
       registerParticleEffect(particleEffect, effects[i])
     );
@@ -115,6 +118,12 @@ const ParticleSandbox = (props) => {
       const dt = app.ticker.elapsedMS / 1000;
       particleSystem.update(dt);
       updateRendering();
+
+      const particlesCount = particleEffects.reduce(
+        (prev, cur) => prev + cur.particles.length,
+        0
+      );
+      setVisibleParticlesCount(particlesCount);
     };
     app.ticker?.add(update);
 
@@ -151,6 +160,7 @@ const ParticleSandbox = (props) => {
       >
         <p>
           <b>Work in progress!</b>
+          {visibleParticlesCount}
         </p>
         <p>Some features are still unimplemented.</p>
       </div>
