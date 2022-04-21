@@ -153,6 +153,19 @@ const ParticleSandbox = (props) => {
       </div>
       <div className="particleSandbox-canvas" id="particleSandbox"></div>
       <div
+        className={`particleSandbox-count  ${
+          devNoteState ? "particleSandbox-devNotification-active" : ""
+        }`}
+        onClick={() => setDevNoteState(false)}
+      >
+        <p>
+          {visibleParticlesCount}
+          <b> particles</b>
+        </p>
+        <p></p>
+      </div>
+
+      <div
         className={`particleSandbox-devNotification ${
           devNoteState ? "particleSandbox-devNotification-active" : ""
         }`}
@@ -160,7 +173,6 @@ const ParticleSandbox = (props) => {
       >
         <p>
           <b>Work in progress!</b>
-          {visibleParticlesCount}
         </p>
         <p>Some features are still unimplemented.</p>
       </div>

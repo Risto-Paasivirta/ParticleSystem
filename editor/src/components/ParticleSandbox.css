@@ -40,6 +40,22 @@
   font-size: 12px;
   text-align: center;
 }
+.particleSandbox-count {
+  width: 120px;
+  height: 50px;
+  position: absolute;
+  right: 8px;
+  top: 0px;
+  transition: height 2s;
+  font-size: 12px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  white-space: pre-line;
+  color: white;
+}
+
 .particleSandbox-devNotification-active {
   height: 80px;
   cursor: pointer;
