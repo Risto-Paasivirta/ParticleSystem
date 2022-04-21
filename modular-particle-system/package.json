@@ -1,6 +1,6 @@
 {
     "name": "modular-particle-system",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "homepage": "https://github.com/Risto-Paasivirta/ParticleSystem",
     "description": "Modular particle system library",
     "browserslist": "> 0.25%, not dead",
@@ -8,7 +8,7 @@
     "scripts": {
         "lint": "npx eslint ./src/**/*.ts",
         "test": "npx jest",
-        "compile": "npm run compile:clean && tsc && npm run test-minify",
+        "compile": "npm run compile:clean && tsc && tsc-esm dist/**/*.js && npm run test-minify",
         "compile:clean": "rm -rf dist",
         "release": "npm run release:build && cd release && npm publish",
         "release:build": "npm run release:clean && npm run compile && mkdir release && cp -r LICENSE README.md CHANGELOG.md package.json dist/** release",
@@ -32,6 +32,7 @@
         "rimraf": "^3.0.2",
         "through2": "^2.0.5",
         "ts-jest": "^27.1.3",
+        "tsc-esm": "^1.0.4",
         "typescript": "^4.5.5",
         "uglify-js": "^3.15.3",
         "vinyl": "^2.2.1"
