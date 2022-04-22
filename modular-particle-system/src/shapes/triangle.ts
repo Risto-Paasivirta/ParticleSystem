@@ -1,6 +1,9 @@
 import { Position } from "../types";
 import { ShapeLogicImplementation } from "./shape";
 
+/**
+ * @shape
+ */
 export interface Triangle {
     type: "triangle";
     v1: Position;

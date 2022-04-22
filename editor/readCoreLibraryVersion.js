@@ -100,11 +100,47 @@ const readEasingFunctions = () => {
   return easingFunctionNames;
 };
 
+const readShapes = () => {
+  const shapeSrcFilesPath = path.resolve(pathModularParticleSystem, "shapes/");
+  const shapeSrcFilePaths = fs
+    .readdirSync(shapeSrcFilesPath)
+    .map((file) => path.resolve(shapeSrcFilesPath, file))
+    .filter((path) => path.endsWith("d.ts"));
+
+  const regexpShapeBlocks = /@shape(.|\n|\r)*?}/g;
+  const regexpShapeBlockProperties = /([^\s]*)\s?:\s+([^\s]*);/g;
+  const shapes = [];
+  shapeSrcFilePaths.forEach((shapeSrcFilePath) => {
+    const shapeSrc = fs.readFileSync(shapeSrcFilePath).toString();
+    const shapeBlocks = Array.from(shapeSrc.matchAll(regexpShapeBlocks));
+    shapeBlocks.forEach((shapeBlock) => {
+      const shapeBlockSrc = shapeBlock[0];
+      const propertiesMatch = Array.from(
+        shapeBlockSrc.matchAll(regexpShapeBlockProperties)
+      );
+      const shapeData = {};
+      propertiesMatch.forEach((property) => {
+        const key = property[1];
+        const value = property[2].replaceAll('"', "");
+        shapeData[key] = value;
+      });
+      if (!("type" in shapeData)) {
+        console.warn(`Detected shape tag but found no 'type' property`);
+        return;
+      }
+      shapes.push(shapeData);
+    });
+  });
+  return shapes;
+};
+
 const particleModules = readModules();
 const easingFunctions = readEasingFunctions();
+const shapes = readShapes();
 const config = {
   particleModules,
   easingFunctions,
+  shapes,
 };
 
 fs.writeFileSync(
