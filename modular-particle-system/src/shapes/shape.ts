@@ -1,8 +1,9 @@
 import { Position } from "../types";
+import { Circle, circleLogic } from "./circle";
 import { Rectangle, rectangleLogic } from "./rectangle";
 import { Triangle, triangleLogic } from "./triangle";
 
-export type Shape = Triangle | Rectangle;
+export type Shape = Triangle | Rectangle | Circle;
 
 export const serializeShape = (shape: Shape): unknown => {
     // Shapes are just primitive data types, can be serialized as they are.
@@ -32,6 +33,8 @@ const selectShapeLogic = (shape: Shape): ShapeLogicImplementation<Shape> => {
             return triangleLogic;
         case "rectangle":
             return rectangleLogic;
+        case "circle":
+            return circleLogic;
     }
 };
 
