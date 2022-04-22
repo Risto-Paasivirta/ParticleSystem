@@ -23,30 +23,6 @@ It is designed to be completely free of any usage restrictions regarding a parti
 This repository does, however, include an [example integration with `PIXI.js`](https://github.com/Risto-Paasivirta/ParticleSystem/tree/master/playground/apps/helpers/renderer/renderer.ts)
 It can be referenced to learn how the particle system can be integrated with a graphics framework.
 
-## Repository structure
-
-- `modular-particle-system`: The library itself
-- `playground`: A separate application for manually testing the library with an example integration with `PIXI.js`
-- `editor`: A separate application for presenting and experimenting with the library. Hosted in GitHub.
-
-## Development
-
-cd `playground`
-
-1. Install all the dependencies.
-
-   ```
-   npm install
-   ```
-
-2. Run internal applications located in "./apps" folder.
-
-   Open _CMD/Terminal_ to serve example applications and watch changes in the `./apps` and `module-particle-system/src` folder.
-
-   ```
-   npm start
-   ```
-
 ## Installation and Usage
 
 The library can be installed via `NPM`:
@@ -213,23 +189,10 @@ TODO
 
 </details>
 
-## Known Issues
+## Development
 
-### `modular-particle-system` package does not work with Webpack@5.x
-
-Current work around is to downgrade webpack version to 4.x.
-
-The issue exists due to package compiler not emitting proper ES6 format. Imports should have explicit file formats `../particleEffect.js` instead of ambiguous `../particleEffect`).
-
-### `modular-particle-system` package does not work with react-scripts@5.x
-
-Same issue as previous one.
+See separate README for development instructions [here](https://github.com/Risto-Paasivirta/ParticleSystem/blob/master/README.md).
 
 ## License:
 
 MIT-license
-
-## 3rd Party Credits
-
-Based on boilerplate template by [Yordan Kanchelov](https://github.com/yordan-kanchelov/pixi-typescript-boilerplate)
-Beginner friendly template for pixi.js with [Webpack](https://webpack.js.org/)
