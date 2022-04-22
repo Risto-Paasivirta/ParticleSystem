@@ -12,6 +12,38 @@ import { loadSerializedProperty, deserializePrimitiveDataType } from "../seriali
  *
  * @module
  * @category    Generator
+ * interval {
+ *      @tooltip        TODO
+ *      @type           Number
+ *      @min            0
+ *      @step           0.01
+ *      @defaultValue   0.1
+ * }
+ * center {
+ *      @tooltip        TODO
+ *      @type           Position
+ *      @defaultValue   { "x": 0, "y": 0 }
+ * }
+ * bursts {
+ *      @tooltip        TODO
+ *      @type           Burst[]
+ *      @defaultValue   []
+ * }
+ * radius {
+ *      @tooltip        TODO
+ *      @type           Number
+ *      @defaultValue   50
+ * }
+ * nextParticleAngle {
+ *      @tooltip        TODO
+ *      @type           Number
+ *      @defaultValue   0
+ * }
+ * angleStep {
+ *      @tooltip        Radians
+ *      @type           Number
+ *      @defaultValue   0.5
+ * }
  */
 export class CircleLoadingGenerator extends ParticleGenerator {
     /**
@@ -54,6 +86,7 @@ export class CircleLoadingGenerator extends ParticleGenerator {
             interval: this.interval,
             bursts: this.bursts,
             center: this.center,
+            radius: this.radius,
             nextParticleAngle: this.nextParticleAngle,
             angleStep: this.angleStep,
         };
@@ -77,7 +110,23 @@ export class CircleLoadingGenerator extends ParticleGenerator {
             object,
             CircleLoadingGenerator,
             module,
+            "bursts",
+            deserializePrimitiveDataType,
+            hideWarnings,
+        );
+        loadSerializedProperty(
+            object,
+            CircleLoadingGenerator,
+            module,
             "center",
+            deserializePrimitiveDataType,
+            hideWarnings,
+        );
+        loadSerializedProperty(
+            object,
+            CircleLoadingGenerator,
+            module,
+            "radius",
             deserializePrimitiveDataType,
             hideWarnings,
         );

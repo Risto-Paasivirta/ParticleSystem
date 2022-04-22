@@ -1,8 +1,7 @@
 // Test application
 import { LifeTimeDestructor } from "modular-particle-system/destructors/lifeTimeDestructor";
-import { CircleEdgeGenerator } from "modular-particle-system/generators/circleEdgeGenerator";
-import { CircleGenerator } from "modular-particle-system/generators/circleGenerator";
 import { CircleLoadingGenerator } from "modular-particle-system/generators/circleLoadingGenerator";
+import { ShapeGenerator } from "modular-particle-system/generators/shapeGenerator";
 import { LifeTimeRange } from "modular-particle-system/initializers/lifeTimeRange";
 import { ParticleSystem } from "modular-particle-system/particleSystem";
 import * as PIXI from "pixi.js";
@@ -20,15 +19,24 @@ const renderer = new Renderer(document.body, particleSystem);
 const effect = particleSystem.addParticleEffect();
 effect.textures = ["circle_05.png"];
 
-const circleGenerator = new CircleGenerator(effect);
-circleGenerator.center = {
-  x: window.innerWidth / 2,
-  y: window.innerHeight / 2,
+const circleGenerator = new ShapeGenerator(effect);
+circleGenerator.shape = {
+  type: "circle",
+  center: {
+    x: window.innerWidth / 2,
+    y: window.innerHeight / 2,
+  },
+  radius: 50,
 };
 effect.modules.push(circleGenerator);
 
-const edgeGenerator = new CircleEdgeGenerator(effect);
-edgeGenerator.center = { x: window.innerWidth / 4, y: window.innerHeight / 2 };
+const edgeGenerator = new ShapeGenerator(effect);
+edgeGenerator.shape = {
+  type: "circle",
+  center: { x: window.innerWidth / 4, y: window.innerHeight / 2 },
+  radius: 50,
+};
+edgeGenerator.edgesOnly = true;
 effect.modules.push(edgeGenerator);
 
 const loadingGenerator = new CircleLoadingGenerator(effect);
