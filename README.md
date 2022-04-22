@@ -191,7 +191,7 @@ TODO
 
 ## Development
 
-See separate README for development instructions [here](https://github.com/Risto-Paasivirta/ParticleSystem/blob/master/README.md).
+See separate README for development instructions [here](https://github.com/Risto-Paasivirta/ParticleSystem/blob/master/README-dev.md).
 
 ## License:
 
