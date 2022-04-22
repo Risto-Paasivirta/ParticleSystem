@@ -21,11 +21,19 @@ import { lerpColor } from "../utilities";
  *  ]
  * ```
  *
+ * Color interpolation can be disabled by setting `interpolate` to `false`.
+ *
  * @module
  * @category    Initializer
  * palette {
  *      @tooltip        TODO
  *      @type           Color[]
+ *      @defaultValue   [{ "r": 1, "g": 0, "b": 0 }, { "r": 0, "g": 1, "b": 0 }, { "r": 0, "g": 0, "b": 1 }]
+ * }
+ * interpolate {
+ *      @tooltip        TODO
+ *      @type           Boolean
+ *      @defaultValue   true
  * }
  */
 export class RandomColor extends Module {
@@ -33,8 +41,9 @@ export class RandomColor extends Module {
         { r: 1, g: 0, b: 0 },
         { r: 0, g: 1, b: 0 },
         { r: 0, g: 0, b: 1 },
-        { r: 1, g: 0, b: 0 },
     ];
+
+    interpolate = true;
 
     init(): void {
         this.particleEffect.addParticleListeners.push(this.handleParticleAdd);
@@ -42,11 +51,15 @@ export class RandomColor extends Module {
     }
 
     handleParticleAdd = (particle: Particle): void => {
-        const randomPalettePosition = Math.random() * (this.palette.length - 1);
-        const iPaletteStart = Math.floor(randomPalettePosition);
-        const colorA = this.palette[iPaletteStart];
-        const colorB = this.palette[iPaletteStart + 1];
-        particle.color = lerpColor(colorA, colorB, randomPalettePosition - iPaletteStart);
+        if (this.interpolate && this.palette.length >= 2) {
+            const randomPalettePosition = Math.random() * (this.palette.length - 1);
+            const iPaletteStart = Math.floor(randomPalettePosition);
+            const colorA = this.palette[iPaletteStart];
+            const colorB = this.palette[iPaletteStart + 1];
+            particle.color = lerpColor(colorA, colorB, randomPalettePosition - iPaletteStart);
+        } else if (this.palette.length >= 1) {
+            particle.color = this.palette[Math.round(Math.random() * (this.palette.length - 1))];
+        }
     };
 
     /**
@@ -57,12 +70,14 @@ export class RandomColor extends Module {
         return {
             moduleTypeId: RandomColor.moduleTypeId,
             palette: this.palette,
+            interpolate: this.interpolate,
         };
     }
 
     static fromObject(particleEffect: ParticleEffect, object: ModuleObject, hideWarnings: boolean): RandomColor {
         const module = new RandomColor(particleEffect);
         loadSerializedProperty(object, RandomColor, module, "palette", deserializePrimitiveDataType, hideWarnings);
+        loadSerializedProperty(object, RandomColor, module, "interpolate", deserializePrimitiveDataType, hideWarnings);
         return module;
     }
 

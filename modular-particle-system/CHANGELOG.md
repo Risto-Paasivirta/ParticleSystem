@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 -   Added `GravityWithCenter` modifier.
+-   Added `RandomColor.interpolate` property.
 
 ### Changed
 
@@ -27,6 +28,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 -   Fixed package not working with Webpack v.5.x or CRA v.5.x due to package not being properly ES formatted.
+-   Fixed `RandomColor` crashing if `palette.length` was 1 or less.
 
 ## [1.0.0] - 2022-04-10
 

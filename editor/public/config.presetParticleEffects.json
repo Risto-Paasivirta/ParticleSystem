@@ -33,7 +33,25 @@
               "max": 0.2
             },
             {
-              "moduleTypeId": "RandomColor"
+              "moduleTypeId": "RandomColor",
+              "palette": [
+                {
+                  "r": 1,
+                  "g": 0,
+                  "b": 0
+                },
+                {
+                  "r": 0,
+                  "g": 1,
+                  "b": 0
+                },
+                {
+                  "r": 0,
+                  "g": 0,
+                  "b": 1
+                }
+              ],
+              "interpolate": true
             },
             {
               "moduleTypeId": "LifeTimeRange",
@@ -58,7 +76,9 @@
     "data": {
       "effects": [
         {
-          "textures": ["generic/ball.png"],
+          "textures": [
+            "generic/ball.png"
+          ],
           "modules": [
             {
               "moduleTypeId": "Gravity",
@@ -94,7 +114,20 @@
               "max": 0.3
             },
             {
-              "moduleTypeId": "RandomColor"
+              "moduleTypeId": "RandomColor",
+              "palette": [
+                {
+                  "r": 1,
+                  "g": 0,
+                  "b": 0
+                },
+                {
+                  "r": 1,
+                  "g": 1,
+                  "b": 0
+                }
+              ],
+              "interpolate": true
             },
             {
               "moduleTypeId": "LifeTimeRange",
