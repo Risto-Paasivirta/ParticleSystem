@@ -23,7 +23,15 @@ const readModules = () => {
     )
     .flat()
     .filter((file) => file.endsWith("d.ts"))
-    .filter((file) => !moduleNameBlacklist.includes(file));
+    .filter(
+      (file) =>
+        undefined ===
+        moduleNameBlacklist.find((blackListedName) =>
+          file.endsWith(blackListedName)
+        )
+    );
+
+  console.log(moduleFiles);
 
   const particleModules = moduleFiles.map((moduleFile) => {
     const moduleTypeDef = fs.readFileSync(moduleFile).toString();
