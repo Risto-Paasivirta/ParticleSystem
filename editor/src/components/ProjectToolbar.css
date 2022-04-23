@@ -54,6 +54,7 @@
   box-sizing: border-box;
   border: 1px solid black;
   border-top: none;
+  z-index: 1001;
 }
 .projectToolBar-preset-item {
   height: 40px;
