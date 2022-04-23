@@ -59,6 +59,20 @@ const Effect = (props) => {
               );
               updateEffect(updatedEffect);
             }}
+            moveModuleUp={() => {
+              if (iModule <= 0) return;
+              const updatedEffect = { ...effect };
+              updatedEffect.modules.splice(iModule, 1);
+              updatedEffect.modules.splice(iModule - 1, 0, module);
+              updateEffect(updatedEffect);
+            }}
+            moveModuleDown={() => {
+              if (iModule >= effect.modules.length - 1) return;
+              const updatedEffect = { ...effect };
+              updatedEffect.modules.splice(iModule, 1);
+              updatedEffect.modules.splice(iModule + 1, 0, module);
+              updateEffect(updatedEffect);
+            }}
           />
         ))}
       </div>

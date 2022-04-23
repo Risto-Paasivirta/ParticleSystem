@@ -4,7 +4,14 @@ import { globalStateContext } from "../Editor";
 import ModuleProperty from "./ModuleProperty/ModuleProperty";
 
 const Module = (props) => {
-  const { module, nKey, updateModule, removeModule } = props;
+  const {
+    module,
+    nKey,
+    updateModule,
+    removeModule,
+    moveModuleUp,
+    moveModuleDown,
+  } = props;
   const { particleModules } = useContext(globalStateContext);
 
   const moduleInfo = particleModules.find(
@@ -34,6 +41,22 @@ const Module = (props) => {
               </option>
             ))}
         </select>
+        <div className="module-moveContainer">
+          <div
+            className="module-move module-moveUp"
+            title="Move module up"
+            onClick={() => {
+              moveModuleUp();
+            }}
+          ></div>
+          <div
+            className="module-move module-moveDown"
+            title="Move module down"
+            onClick={() => {
+              moveModuleDown();
+            }}
+          ></div>
+        </div>
         <div className="module-remove" onClick={() => removeModule()}></div>
       </div>
       <div className="module-properties">
