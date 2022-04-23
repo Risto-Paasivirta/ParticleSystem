@@ -8,8 +8,6 @@ const ParticleSandbox = (props) => {
 
   const [renderer, setRenderer] = useState(undefined);
 
-  const [devNoteState, setDevNoteState] = useState(false);
-
   useEffect(() => {
     const container = document.getElementById("particleSandbox");
     const app = new PIXI.Application({
@@ -123,13 +121,6 @@ const ParticleSandbox = (props) => {
     };
   }, [effects, renderer]);
 
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setDevNoteState(true);
-    }, 2000);
-    return () => clearTimeout(timeout);
-  }, []);
-
   return (
     <div className="particleSandbox">
       <div className="particleSandbox-gridColumns">
@@ -143,17 +134,6 @@ const ParticleSandbox = (props) => {
         ))}
       </div>
       <div className="particleSandbox-canvas" id="particleSandbox"></div>
-      <div
-        className={`particleSandbox-devNotification ${
-          devNoteState ? "particleSandbox-devNotification-active" : ""
-        }`}
-        onClick={() => setDevNoteState(false)}
-      >
-        <p>
-          <b>Work in progress!</b>
-        </p>
-        <p>Some features are still unimplemented.</p>
-      </div>
     </div>
   );
 };
