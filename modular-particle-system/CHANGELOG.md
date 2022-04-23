@@ -20,6 +20,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     -   These were separated to their own module `GravityWithCenter`.
 -   `CircleGenerator` and `CircleExteriorGenerator`, use `ShapeGenerator` instead.
 
+### Fixed
+
+-   `AlphaOverLifetime` not working together with `AlphaRange`
+
 ## [1.1.0] - 2022-04-18
 
 ### Added

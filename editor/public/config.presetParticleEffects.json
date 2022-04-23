@@ -23,6 +23,11 @@
               ]
             },
             {
+              "moduleTypeId": "RandomRotation",
+              "min": 0,
+              "max": 6.2832
+            },
+            {
               "moduleTypeId": "RandomAngleVelocity",
               "min": 50,
               "max": 100
@@ -76,9 +81,7 @@
     "data": {
       "effects": [
         {
-          "textures": [
-            "generic/ball.png"
-          ],
+          "textures": ["generic/ball.png"],
           "modules": [
             {
               "moduleTypeId": "Gravity",
@@ -133,6 +136,78 @@
               "moduleTypeId": "LifeTimeRange",
               "min": 10,
               "max": 10
+            },
+            {
+              "moduleTypeId": "LifeTimeDestructor"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "label": "Doctor Strange",
+    "thumbnail": "doctor_strange.png",
+    "data": {
+      "effects": [
+        {
+          "textures": ["generic/ball.png"],
+          "modules": [
+            {
+              "moduleTypeId": "Gravity",
+              "strength": 100
+            },
+            {
+              "moduleTypeId": "CircleLoadingGenerator",
+              "interval": 0.008,
+              "center": {
+                "x": 0,
+                "y": 0
+              },
+              "bursts": [],
+              "radius": 100,
+              "nextParticleAngle": 0,
+              "angleStep": 0.1
+            },
+            {
+              "moduleTypeId": "AlphaRange",
+              "min": 0.5,
+              "max": 0.7
+            },
+            {
+              "moduleTypeId": "RandomAngleVelocity",
+              "min": 0,
+              "max": 40
+            },
+            {
+              "moduleTypeId": "RandomScale",
+              "min": 0.5,
+              "max": 0.8
+            },
+            {
+              "moduleTypeId": "RandomColor",
+              "palette": [
+                {
+                  "r": 1,
+                  "g": 0,
+                  "b": 0
+                },
+                {
+                  "r": 1,
+                  "g": 1,
+                  "b": 0
+                }
+              ],
+              "interpolate": true
+            },
+            {
+              "moduleTypeId": "LifeTimeRange",
+              "min": 2,
+              "max": 2
+            },
+            {
+              "moduleTypeId": "AlphaOverLifetime",
+              "easing": "easeOutSine"
             },
             {
               "moduleTypeId": "LifeTimeDestructor"
