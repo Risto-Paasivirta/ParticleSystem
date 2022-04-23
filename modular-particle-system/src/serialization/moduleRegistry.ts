@@ -17,6 +17,7 @@ import { ParticleEffect } from "../particleEffect";
 import { CircleLoadingGenerator } from "../generators/circleLoadingGenerator";
 import { ShapeGenerator } from "../generators/shapeGenerator";
 import { GravityWithCenter } from "../modifiers/gravityWithCenter";
+import { RandomRotation } from "../initializers/randomRotation";
 
 /**
  * This list should contain all Modules in the library.
@@ -41,6 +42,7 @@ export const moduleTypeRegistry: ModuleTypeReference[] = [
     CircleLoadingGenerator,
     ShapeGenerator,
     GravityWithCenter,
+    RandomRotation,
 ];
 
 export interface ModuleTypeReference {
