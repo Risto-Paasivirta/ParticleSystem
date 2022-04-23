@@ -49,12 +49,15 @@
   cursor: default;
 }
 .projectToolbar-preset-container-visible {
-  height: 100px;
+  min-height: 100px;
+  height: fit-content;
+  max-height: 40vh;
   padding: 4px;
   box-sizing: border-box;
   border: 1px solid black;
   border-top: none;
   z-index: 1001;
+  overflow-y: auto;
 }
 .projectToolBar-preset-item {
   height: 40px;

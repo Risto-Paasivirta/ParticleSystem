@@ -8,8 +8,6 @@ const ParticleSandbox = (props) => {
 
   const [renderer, setRenderer] = useState(undefined);
 
-  const [devNoteState, setDevNoteState] = useState(false);
-
   const [visibleParticlesCount, setVisibleParticlesCount] = useState(0);
 
   const [runTime, setRunTime] = useState(0);
@@ -137,13 +135,6 @@ const ParticleSandbox = (props) => {
     };
   }, [effects, renderer]);
 
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setDevNoteState(true);
-    }, 2000);
-    return () => clearTimeout(timeout);
-  }, []);
-
   return (
     <div className="particleSandbox">
       <div className="particleSandbox-gridColumns">
@@ -160,18 +151,6 @@ const ParticleSandbox = (props) => {
       <div className={`particleSandbox-stats`}>
         <span>{`Run time ${runTime.toFixed(2)}`}</span>
         <span>{`Particles ${visibleParticlesCount}`}</span>
-      </div>
-
-      <div
-        className={`particleSandbox-devNotification ${
-          devNoteState ? "particleSandbox-devNotification-active" : ""
-        }`}
-        onClick={() => setDevNoteState(false)}
-      >
-        <p>
-          <b>Work in progress!</b>
-        </p>
-        <p>Some features are still unimplemented.</p>
       </div>
     </div>
   );
