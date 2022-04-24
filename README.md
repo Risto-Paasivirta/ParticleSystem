@@ -212,16 +212,16 @@ Destroys particles which lifetime value is more or equal to particle lifetime.
 
 **EasingFunctions:**
 
-<details><summary>Easing Functions to use with AlphaOverLifeTime and DeaccelerationOverLifetime </summary>
+<details><summary>Easing Functions to use with AlphaOverLifetime and DeaccelerationOverLifetime </summary>
 
-- `easing: linear`
-- `easing: easeOutSine`
-- `easing: easeOutCubic`
-- `easing: easeOutExpo`
-- `easing: easeOutCirc`
-- `easing: easeOutBack`  
-- `easing: easeElastic`
-  These are based on mathematical formulas that can be used to fade the color of the particles and slow down the speed of the particles, for example. EasingFunctions can be used with AlphaoverLifeTime and DeaacelerationOverLifetime.
+- `EasingFunctions.linear`
+- `EasingFunctions.easeOutSine`
+- `EasingFunctions.easeOutCubic`
+- `EasingFunctions.easeOutExpo`
+- `EasingFunctions.easeOutCirc`
+- `EasingFunctions.easeOutBack`
+- `EasingFunctions.easeElastic`
+  These are based on mathematical formulas that can be used to fade the color of the particles and slow down the speed of the particles, for example. EasingFunctions can be used with AlphaOverLifetime and DeaccelerationOverLifetime.
 
 </details>
 
@@ -229,37 +229,38 @@ Destroys particles which lifetime value is more or equal to particle lifetime.
 
 <details><summary>Circle</summary>
 
-- `type: circle`  
-- `center: position`  
-- `radius: number`  
-  Sets area as circle. Can be used with ShapeGenerator and OutsideBoundsDestructor.
+- `type: "circle"`
+- `center: Position`
+- `radius: number`
 
 </details>
 
 <details><summary>Rectangle</summary>
 
-- `type: rectangle`  
-- `v1: position`  
-- `v2: position`  
-  Sets area as rectangle. Can be used with ShapeGenerator and OutsideBoundsDestructor. V1 postion is parallel to the x-axis. V2 is parallel to the y-axis. 
-
-</details>
-
-<details><summary>Shapes</summary>
-
-  Uses circle, rectangle and triangle for creating shape.
+- `type: "rectangle"`
+- `v1: Position`
+- `v2: Position`
 
 </details>
 
 <details><summary>Triangle</summary>
 
-- `type: triangle`  
-- `v1: position`  
-- `v2: position`  
-- `v3: position`  
-  Sets area as triangle. Can be used with ShapeGenerator and OutsideBoundsDestructor. V1, V2 and V3 set the points of the corners of the triangle
+- `type: "triangle"`
+- `v1: Position`
+- `v2: Position`
+- `v3: Position`
 
 </details>
+
+Example definition of a shape:
+
+```ts
+const rectangle = {
+  type: "rectangle",
+  v1: { x: 100, y: 100 },
+  v2: { x: 200, y: 200 },
+};
+```
 
 ## Development
 
