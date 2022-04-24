@@ -53,7 +53,7 @@ const ShapeProperty = (props) => {
                     }
 
                     return (
-                      <NumberProperty name={entry[0]} value={value[entry[0]] || 10} propertyInfo={propertyInfo} key={`shape-${entry[0]}`} onChange={(number) => {
+                      <NumberProperty name={entry[0]} value={value[entry[0]] || 10} propertyInfo={propertyInfo} key={`${shape.type}-number-${entry[0]}`} onChange={(number) => {
                         value[entry[0]] = number
                         onChange(value)
                       }} />
