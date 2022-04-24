@@ -210,6 +210,57 @@ Destroys particles which lifetime value is more or equal to particle lifetime.
 
 </details>
 
+**EasingFunctions:**
+
+<details><summary>Easing Functions to use with AlphaOverLifeTime and DeaccelerationOverLifetime </summary>
+
+- `easing: linear`
+- `easing: easeOutSine`
+- `easing: easeOutCubic`
+- `easing: easeOutExpo`
+- `easing: easeOutCirc`
+- `easing: easeOutBack`  
+- `easing: easeElastic`
+  These are based on mathematical formulas that can be used to fade the color of the particles and slow down the speed of the particles, for example. EasingFunctions can be used with AlphaoverLifeTime and DeaacelerationOverLifetime.
+
+</details>
+
+**Shapes:**
+
+<details><summary>Circle</summary>
+
+- `type: circle`  
+- `center: position`  
+- `radius: number`  
+  Sets area as circle. Can be used with ShapeGenerator and OutsideBoundsDestructor.
+
+</details>
+
+<details><summary>Rectangle</summary>
+
+- `type: rectangle`  
+- `v1: position`  
+- `v2: position`  
+  Sets area as rectangle. Can be used with ShapeGenerator and OutsideBoundsDestructor. V1 postion is parallel to the x-axis. V2 is parallel to the y-axis. 
+
+</details>
+
+<details><summary>Shapes</summary>
+
+  Uses circle, rectangle and triangle for creating shape.
+
+</details>
+
+<details><summary>Triangle</summary>
+
+- `type: triangle`  
+- `v1: position`  
+- `v2: position`  
+- `v3: position`  
+  Sets area as triangle. Can be used with ShapeGenerator and OutsideBoundsDestructor. V1, V2 and V3 set the points of the corners of the triangle
+
+</details>
+
 ## Development
 
 See separate README for development instructions [here](https://github.com/Risto-Paasivirta/ParticleSystem/blob/master/README-dev.md).
