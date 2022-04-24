@@ -40,6 +40,19 @@
   font-size: 12px;
   text-align: center;
 }
+.particleSandbox-stats {
+  position: absolute;
+  right: 12px;
+  top: 4px;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  white-space: nowrap;
+  color: gray;
+  cursor: default;
+}
+
 .particleSandbox-devNotification-active {
   height: 80px;
   cursor: pointer;

@@ -1,7 +1,6 @@
 import { AlphaDestructor } from "../destructors/alphaDestructor";
 import { LifeTimeDestructor } from "../destructors/lifeTimeDestructor";
 import { OutsideBoundsDestructor } from "../destructors/outsideBoundsDestructor";
-import { CircleExteriorGenerator } from "../generators/circleExteriorGenerator";
 import { PointGenerator } from "../generators/pointGenerator";
 import { AlphaRange } from "../initializers/alphaRange";
 import { LifeTimeRange } from "../initializers/lifeTimeRange";
@@ -15,9 +14,10 @@ import { DeaccelerationOverLifetime } from "../modifiers/deaccelerationOverLifet
 import { Gravity } from "../modifiers/gravity";
 import { Module } from "../module";
 import { ParticleEffect } from "../particleEffect";
-import { CircleGenerator } from "../generators/circleGenerator";
 import { CircleLoadingGenerator } from "../generators/circleLoadingGenerator";
 import { ShapeGenerator } from "../generators/shapeGenerator";
+import { GravityWithCenter } from "../modifiers/gravityWithCenter";
+import { RandomRotation } from "../initializers/randomRotation";
 
 /**
  * This list should contain all Modules in the library.
@@ -28,7 +28,6 @@ export const moduleTypeRegistry: ModuleTypeReference[] = [
     AlphaDestructor,
     LifeTimeDestructor,
     OutsideBoundsDestructor,
-    CircleExteriorGenerator,
     PointGenerator,
     AlphaRange,
     LifeTimeRange,
@@ -40,10 +39,10 @@ export const moduleTypeRegistry: ModuleTypeReference[] = [
     RandomScale,
     RandomColor,
     RandomRotationalVelocity,
-    CircleGenerator,
-    CircleExteriorGenerator,
     CircleLoadingGenerator,
     ShapeGenerator,
+    GravityWithCenter,
+    RandomRotation,
 ];
 
 export interface ModuleTypeReference {

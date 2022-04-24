@@ -8,7 +8,9 @@ const ParticleSandbox = (props) => {
 
   const [renderer, setRenderer] = useState(undefined);
 
-  const [devNoteState, setDevNoteState] = useState(false);
+  const [visibleParticlesCount, setVisibleParticlesCount] = useState(0);
+
+  const [runTime, setRunTime] = useState(0);
 
   useEffect(() => {
     const container = document.getElementById("particleSandbox");
@@ -107,14 +109,24 @@ const ParticleSandbox = (props) => {
       { hideWarnings: true }
     );
     const particleEffects = particleSystem.effects;
+
     particleEffects.forEach((particleEffect, i) =>
       registerParticleEffect(particleEffect, effects[i])
     );
 
+    let runTimeCounter = 0;
     const update = () => {
       const dt = app.ticker.elapsedMS / 1000;
+      runTimeCounter += dt;
+      setRunTime(runTimeCounter);
       particleSystem.update(dt);
       updateRendering();
+
+      const particlesCount = particleEffects.reduce(
+        (prev, cur) => prev + cur.particles.length,
+        0
+      );
+      setVisibleParticlesCount(particlesCount);
     };
     app.ticker?.add(update);
 
@@ -122,13 +134,6 @@ const ParticleSandbox = (props) => {
       app.ticker?.remove(update);
     };
   }, [effects, renderer]);
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setDevNoteState(true);
-    }, 2000);
-    return () => clearTimeout(timeout);
-  }, []);
 
   return (
     <div className="particleSandbox">
@@ -143,17 +148,9 @@ const ParticleSandbox = (props) => {
         ))}
       </div>
       <div className="particleSandbox-canvas" id="particleSandbox"></div>
-      <div
-        className={`particleSandbox-devNotification ${
-          devNoteState ? "particleSandbox-devNotification-active" : ""
-        }`}
-        onClick={() => setDevNoteState(false)}
-      >
-        <p>
-          <b>Work in progress!</b>
-        </p>
-        <p>Particle Count:100</p>
-        <p>Some features are still unimplemented.</p>
+      <div className={`particleSandbox-stats`}>
+        <span>{`Run time ${runTime.toFixed(2)}`}</span>
+        <span>{`Particles ${visibleParticlesCount}`}</span>
       </div>
     </div>
   );
