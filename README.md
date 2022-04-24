@@ -18,26 +18,37 @@ By combining these functionally simple modules, a wide variety of behaviors can 
 [Online Playground](https://risto-paasivirta.github.io/ParticleSystem/)
 
 This core package does NOT include any integration to a graphics framework.
-It is designed to be completely free of any usage restrictions regarding a particular framework.
+It is designed to be completely free of any usage restrictions regarding a particular framework. Some existing references/packages exist for existing integrations to some graphics frameworks, see [this section](#graphics-integrations).
 
-This repository does, however, include an [example integration with `PIXI.js`](https://github.com/Risto-Paasivirta/ParticleSystem/tree/master/playground/apps/helpers/renderer/renderer.ts)
-It can be referenced to learn how the particle system can be integrated with a graphics framework.
+## Installation
 
-## Installation and Usage
+The package is available as:
 
-The library can be installed via `NPM`:
+- IIFE
 
-```bash
-npm i modular-particle-system
+```html
+<script src="https://cdn.jsdelivr.net/npm/modular-particle-system-webgl-renderer@1.0.0/index.iife.js"></script>
 ```
 
-The library is published as _EcmaScript_ module, which means that it can be used with any module bundler, such as _WebPack_, _Parcel_, _Rollup_, etc.
+```js
+const { ParticleSystem } = modularParticleSystem;
+```
 
-The syntax for importing parts of the library is as follows:
+- NPM package
+
+`npm install modular-particle-system`
 
 ```js
 import { ParticleSystem } from "modular-particle-system/particleSystem";
 ```
+
+## Graphics integrations
+
+The current development setup for the particle system is based on `PIXI.js`. This can be used as a reference of how the particle system can be integrated with any graphics framework. See [this file](<(https://github.com/Risto-Paasivirta/ParticleSystem/tree/master/playground/apps/helpers/renderer/renderer.ts)>) for the relevant source code.
+
+TODO: Webgl renderer
+
+## Usage
 
 Usage examples can be inspired from the [development applications found in GitHub](https://github.com/Risto-Paasivirta/ParticleSystem/tree/master/playground/apps).
 

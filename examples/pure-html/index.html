@@ -1,0 +1,120 @@
+<html>
+  <head>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/modular-particle-system@1.2.0/index.iife.js"></script> -->
+    <script src="http://localhost:8002/index.iife.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/modular-particle-system-webgl-renderer@0.0.4/index.iife.js"></script> -->
+    <script src="http://localhost:8001/index.iife.js"></script>
+    <style>
+      #particles-container {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Example web site</h1>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut consectetur
+      ullamcorper bibendum. Aliquam consequat ultrices lacus sit amet
+      vestibulum. Cras gravida, magna ut iaculis ornare, sapien urna tristique
+      enim, vel rhoncus orci justo faucibus nibh. Donec ac convallis erat. Proin
+      nunc orci, vestibulum et gravida sed, egestas non urna. Duis molestie
+      rhoncus eros, gravida posuere diam pulvinar vitae. Sed volutpat accumsan
+      tristique. Vivamus vitae est suscipit, sagittis diam quis, venenatis nibh.
+      Orci varius natoque penatibus et magnis dis parturient montes, nascetur
+      ridiculus mus. Nam sodales ornare ex. Phasellus porta ipsum egestas tellus
+      tempus imperdiet. Morbi iaculis maximus nisl et dapibus. Nullam non leo
+      sed tortor tempus scelerisque.
+    </p>
+    <div id="particles-container"></div>
+    <script>
+      const { ParticleSystem, ParticleEffect } = modularParticleSystem;
+      const { Renderer } = modularParticleSystemWebglRenderer;
+      const particleSystem = new ParticleSystem();
+      const imgCloudTexture = new Image();
+      imgCloudTexture.src = `assets/generic/cloud.png`;
+      const textures = {
+        "generic/cloud.png": imgCloudTexture,
+      };
+      const renderer = Renderer({
+        particleSystem,
+        container: document.getElementById("particles-container"),
+        textures,
+      });
+
+      const effectClick = ParticleEffect.fromObject(particleSystem, {
+        textures: ["generic/cloud_solid.png"],
+        modules: [
+          {
+            moduleTypeId: "AlphaOverLifetime",
+            easing: "easeOutSine",
+          },
+          {
+            moduleTypeId: "PointGenerator",
+            interval: 0,
+            position: {
+              x: 0,
+              y: 0,
+            },
+            bursts: [],
+          },
+          {
+            moduleTypeId: "RandomAngleVelocity",
+            min: 100,
+            max: 300,
+          },
+          {
+            moduleTypeId: "DeaccelerationOverLifetime",
+            easing: "easeOutSine",
+          },
+          {
+            moduleTypeId: "RandomScale",
+            min: 0.05,
+            max: 0.1,
+          },
+          {
+            moduleTypeId: "RandomColor",
+            palette: [
+              {
+                r: 1,
+                g: 0,
+                b: 0,
+              },
+              {
+                r: 0,
+                g: 1,
+                b: 0,
+              },
+              {
+                r: 0,
+                g: 0,
+                b: 1,
+              },
+            ],
+            interpolate: true,
+          },
+          {
+            moduleTypeId: "LifeTimeRange",
+            min: 0.2,
+            max: 0.8,
+          },
+          {
+            moduleTypeId: "LifeTimeDestructor",
+          },
+        ],
+      });
+      const clickGenerator = effectClick.modules.find((module) => {
+        return module.constructor.moduleTypeId === "PointGenerator";
+      });
+      document.body.addEventListener("click", (e) => {
+        clickGenerator.position = { x: e.clientX, y: e.clientY };
+        for (let i = 0; i < 50; i += 1) {
+          clickGenerator.generateParticle();
+        }
+      });
+    </script>
+  </body>
+</html>

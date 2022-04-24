@@ -1,0 +1,36 @@
+{
+  "name": "modular-particle-system-webgl-renderer",
+  "version": "0.0.4",
+  "description": "WebGL 2 renderer for modular-particle-system package",
+  "type": "module",
+  "private": false,
+  "scripts": {
+    "start": "webpack-dev-server",
+    "minify": "rm -rf min && mkdir min && uglifyjs src/renderer.js --output min/renderer.js",
+    "build": "rm -rf build && mkdir build && rollup src/renderer.js --file build/index.iife.js --format iife --name modularParticleSystemWebglRenderer && cp src/renderer.js build/index.js",
+    "release:build": "rm -rf release && mkdir release && npm run build && cp -r LICENSE README.md package.json build/** release",
+    "release": "npm run release:build && cd release && npm publish"
+  },
+  "keywords": [],
+  "author": "Niilo Keinänen",
+  "license": "MIT",
+  "main": "index.js",
+  "browser": "index.iife.js",
+  "devDependencies": {
+    "@babel/core": "^7.17.9",
+    "@babel/preset-env": "^7.16.11",
+    "babel-loader": "^8.2.4",
+    "babel-register": "^6.26.0",
+    "copy-webpack-plugin": "^10.2.4",
+    "html-webpack-plugin": "^5.5.0",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.70.2",
+    "uglify-js": "^3.15.4",
+    "webpack": "^5.72.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.8.1"
+  },
+  "dependencies": {
+    "modular-particle-system": "^1.1.0"
+  }
+}
