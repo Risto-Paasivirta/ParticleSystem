@@ -5,7 +5,6 @@ import { globalStateContext } from "../Editor";
 const TextureSelector = (props) => {
   const { selectedTextures, updateTextures } = props;
   const { availableTextures } = useContext(globalStateContext);
-
   return (
     <select
       className="textureSelector-dropdown field"

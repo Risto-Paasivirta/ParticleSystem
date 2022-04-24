@@ -28,18 +28,6 @@
   width: 100%;
   height: 100%;
 }
-
-.particleSandbox-devNotification {
-  width: 160px;
-  height: 0px;
-  position: absolute;
-  right: 8px;
-  bottom: 30px;
-  background-color: white;
-  transition: height 2s;
-  font-size: 12px;
-  text-align: center;
-}
 .particleSandbox-stats {
   position: absolute;
   right: 12px;
@@ -51,9 +39,4 @@
   white-space: nowrap;
   color: gray;
   cursor: default;
-}
-
-.particleSandbox-devNotification-active {
-  height: 80px;
-  cursor: pointer;
 }
