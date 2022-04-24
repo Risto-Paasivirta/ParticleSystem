@@ -4,6 +4,8 @@
 import fs from "fs-extra";
 import path from "path";
 
+// TODO: Test manual exports with src entry file. Could be much simpler and issue free
+
 var walk = function (dir, done) {
     var results = [];
     fs.readdir(dir, function (err, list) {

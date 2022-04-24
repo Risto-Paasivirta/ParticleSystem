@@ -45,6 +45,72 @@
         textures,
       });
 
+      const effectMouse = ParticleEffect.fromObject(particleSystem, {
+        textures: ["generic/cloud_solid.png"],
+        modules: [
+          {
+            moduleTypeId: "Gravity",
+            strength: -10,
+          },
+          {
+            moduleTypeId: "PointGenerator",
+            interval: 0.05,
+            position: {
+              x: 0,
+              y: 0,
+            },
+            bursts: [],
+          },
+          {
+            moduleTypeId: "RandomAngleVelocity",
+            min: 0,
+            max: 20,
+          },
+          {
+            moduleTypeId: "RandomScale",
+            min: 0.02,
+            max: 0.08,
+          },
+          {
+            moduleTypeId: "RandomColor",
+            palette: [
+              {
+                r: 1,
+                g: 0,
+                b: 0,
+              },
+              {
+                r: 0,
+                g: 1,
+                b: 0,
+              },
+              {
+                r: 0,
+                g: 0,
+                b: 1,
+              },
+            ],
+            interpolate: true,
+          },
+          {
+            moduleTypeId: "LifeTimeRange",
+            min: 1.5,
+            max: 3,
+          },
+          {
+            moduleTypeId: "AlphaOverLifetime",
+            easing: "easeOutSine",
+          },
+          {
+            moduleTypeId: "LifeTimeDestructor",
+          },
+        ],
+      });
+      const mouseGenerator = effectMouse.modules.find((module) => {
+        return module.constructor.moduleTypeId === "PointGenerator";
+      });
+      mouseGenerator.active = false;
+
       const effectClick = ParticleEffect.fromObject(particleSystem, {
         textures: ["generic/cloud_solid.png"],
         modules: [
@@ -114,6 +180,13 @@
         for (let i = 0; i < 50; i += 1) {
           clickGenerator.generateParticle();
         }
+      });
+      document.body.addEventListener("mousemove", (e) => {
+        mouseGenerator.active = true;
+        mouseGenerator.position = { x: e.clientX, y: e.clientY };
+      });
+      document.body.addEventListener("mouseleave", (e) => {
+        mouseGenerator.active = false;
       });
     </script>
   </body>
