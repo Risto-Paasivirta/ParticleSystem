@@ -63,35 +63,9 @@ const particleSystem = ParticleSystem.fromObject({
 });
 ```
 
-### List of modules and their properties (cheat-sheet)
+### List of modules, their properties (cheat-sheet) and short descriptions
 
 **Generators:**
-
-<details><summary>PointGenerator</summary>
-
-- `interval: number`
-- `position: Position`
-
-</details>
-
-<details><summary>ShapeGenerator</summary>
-
-- `interval: number`
-- `shape: Shape`
-
-</details>
-
-<details><summary>CircleGenerator</summary>
-
-TODO
-
-</details>
-
-<details><summary>CircleExteriorGenerator</summary>
-
-TODO
-
-</details>
 
 <details><summary>CircleLoadingGenerator</summary>
 
@@ -99,57 +73,82 @@ TODO
 - `center: Position`
 - `radius: number`
 - `nextParticleAngle: number`
-- `angleStep: number`
-
+- `angleStep: number`  
+Generates particles in a way like loading animation. The particles move along the circumference of the circle. Interval of generating particles, position and radius of circle, the angle between the particles and anglestep can be changed with given properties above.
+  
 </details>
+
+<details><summary>PointGenerator</summary>
+
+- `interval: number`
+- `position: Position`  
+Generates particles from a single point. Interval and position of PointGenerator can be changed with given properties above
+  
+</details>
+
+<details><summary>ShapeGenerator</summary>
+
+- `interval: number`
+- `shape: Shape`  
+Generates particles inside a chosen shape. Interval generating particles and shape of ShapeGenerator can be changed with given properties above. The shape affects the shape of the region in which the particles can be generated.
+</details>
+
+
 
 **Initializers:**
 
 <details><summary>AlphaRange</summary>
 
 - `min: number`
-- `max: number`
+- `max: number`  
+  Gives random degree of transparency between given min and max values.
 
 </details>
 
 <details><summary>LifetimeRange</summary>
 
 - `min: number`
-- `max: number`
+- `max: number`  
+  Gives random lifetime range between min and max values as seconds.
 
 </details>
 
 <details><summary>RandomAngleVelocity</summary>
 
 - `min: number`
-- `max: number`
+- `max: number`  
+  Gives random angle to velocity. Do not use with RandomVelocity.
 
 </details>
 
 <details><summary>RandomColor</summary>
 
-- `palette: Color[]`
+- `palette: Color[]`  
+  Gives random color between given RGB values in matrix.
 
 </details>
 
 <details><summary>RandomRotationalVelocity</summary>
 
 - `min: number`
-- `max: number`
+- `max: number`  
+  Gives random rotational spinning velocity between given min and max values.
 
 </details>
 
 <details><summary>RandomScale</summary>
 
 - `min: number`
-- `max: number`
+- `max: number`  
+  Scales size of particles between given min and max values.
 
 </details>
 
 <details><summary>RandomVelocity</summary>
 
 - `randomX: Range`
-- `randomY: Range`
+- `randomY: Range`  
+  Gives velocity between given values. The values are divided into minimum and maximum values in the x and y directions. Do not use with RandomAngleVelocity.
 
 </details>
 
@@ -157,19 +156,34 @@ TODO
 
 <details><summary>AlphaOverLifetime</summary>
 
-- `easing: EasingFunction`
+- `easing: EasingFunction`  
+  Changes how transparency changes, for example fading or blinking animation.
 
 </details>
 
 <details><summary>DeaccelerationOverLifetime</summary>
 
-- `easing: EasingFunction`
+- `easing: EasingFunction`  
+  Decreases velocity of a particle over its lifetime.
 
 </details>
 
 <details><summary>Gravity</summary>
 
-- `strength: number`
+- `strength: number`  
+  Gives one way gravity to particles.
+
+</details>
+
+<details><summary>GravityWithCenter</summary>
+
+- `strength: number`  
+- `center: position`  
+- `maxPullStrengthDistance: number`  
+- `maxPullStrengthMultiplier: number`  
+- `minPullStrengthDistance: number`  
+- `minPullStrengthMultipler: number`  
+  Gives planetary gravitation to particles based on given values.
 
 </details>
 
@@ -177,15 +191,21 @@ TODO
 
 <details><summary>AlphaDestructor</summary>
 
+- `strength: number`  
+  Destroys particles which alpha value is less or equal to zero.
 </details>
 
 <details><summary>LifetimeDestructor</summary>
 
+- `moduleTypeId: LifeTImeDestructor`  
+  Destroys particles which lifetime value is more or equal to particle lifetime.
+  
 </details>
 
 <details><summary>OutsideBoundsDestructor</summary>
 
-- `bounds: Shape`
+- `bounds: Shape`  
+  Destroys particles which crosses line of given shape.
 
 </details>
 
