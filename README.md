@@ -70,30 +70,32 @@ const particleSystem = ParticleSystem.fromObject({
 <details><summary>CircleLoadingGenerator</summary>
 
 - `interval: number`
+- `bursts: Burst[]`
 - `center: Position`
 - `radius: number`
 - `nextParticleAngle: number`
 - `angleStep: number`  
-Generates particles in a way like loading animation. The particles move along the circumference of the circle. Interval of generating particles, position and radius of circle, the angle between the particles and anglestep can be changed with given properties above.
-  
+  Generates particles in a way like loading animation. The particles move along the circumference of the circle. Interval of generating particles, position and radius of circle, the angle between the particles and anglestep can be changed with given properties above.
+
 </details>
 
 <details><summary>PointGenerator</summary>
 
 - `interval: number`
+- `bursts: Burst[]`
 - `position: Position`  
-Generates particles from a single point. Interval and position of PointGenerator can be changed with given properties above
-  
+  Generates particles from a single point. Interval and position of PointGenerator can be changed with given properties above
+
 </details>
 
 <details><summary>ShapeGenerator</summary>
 
 - `interval: number`
-- `shape: Shape`  
+- `bursts: Burst[]`
+- `shape: Shape`
+- `edgesOnly: Boolean`
 Generates particles inside a chosen shape. Interval generating particles and shape of ShapeGenerator can be changed with given properties above. The shape affects the shape of the region in which the particles can be generated.
 </details>
-
-
 
 **Initializers:**
 
@@ -132,7 +134,7 @@ Generates particles inside a chosen shape. Interval generating particles and sha
 
 - `min: number`
 - `max: number`  
-  Gives random rotational spinning velocity between given min and max values.
+  Gives random rotational spinning velocity between given min and max values. Units are radians/second.
 
 </details>
 
@@ -177,11 +179,11 @@ Generates particles inside a chosen shape. Interval generating particles and sha
 
 <details><summary>GravityWithCenter</summary>
 
-- `strength: number`  
-- `center: position`  
-- `maxPullStrengthDistance: number`  
-- `maxPullStrengthMultiplier: number`  
-- `minPullStrengthDistance: number`  
+- `strength: number`
+- `center: position`
+- `maxPullStrengthDistance: number`
+- `maxPullStrengthMultiplier: number`
+- `minPullStrengthDistance: number`
 - `minPullStrengthMultipler: number`  
   Gives planetary gravitation to particles based on given values.
 
@@ -191,21 +193,20 @@ Generates particles inside a chosen shape. Interval generating particles and sha
 
 <details><summary>AlphaDestructor</summary>
 
-- `strength: number`  
-  Destroys particles which alpha value is less or equal to zero.
+Destroys particles which alpha value is less or equal to zero.
+
 </details>
 
 <details><summary>LifetimeDestructor</summary>
 
-- `moduleTypeId: LifeTImeDestructor`  
-  Destroys particles which lifetime value is more or equal to particle lifetime.
-  
+Destroys particles which lifetime value is more or equal to particle lifetime.
+
 </details>
 
 <details><summary>OutsideBoundsDestructor</summary>
 
 - `bounds: Shape`  
-  Destroys particles which crosses line of given shape.
+  Destroys particles when they are positioned outside a shape.
 
 </details>
 
