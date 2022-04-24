@@ -232,7 +232,8 @@ const loadParticleEffectDefaults = (effect, particleModulesInfo) => {
           propertyInfo.type === "Range" ||
           propertyInfo.type === "Burst[]" ||
           propertyInfo.type === "Position" ||
-          propertyInfo.type === "Color[]"
+          propertyInfo.type === "Color[]" ||
+          propertyInfo.type === "Shape"
         ) {
           try {
             defaultValue = JSON.parse(defaultValue);
