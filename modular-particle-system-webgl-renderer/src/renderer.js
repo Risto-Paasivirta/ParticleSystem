@@ -33,6 +33,8 @@ export const Renderer = (opts) => {
 
   const gl = canvas.getContext("webgl2");
 
+  // #endregion
+
   // #region Init shaders and other static render resources
 
   gl.enable(gl.BLEND);
@@ -302,14 +304,24 @@ export const Renderer = (opts) => {
 
   let tPrev = window.performance.now();
   let rFrame = undefined;
+  let particlesCountPrev = 0;
   const frame = () => {
     const tNow = window.performance.now();
     if (autoUpdate) {
       const tDelta = Math.min(tNow - tPrev, 10000);
       particleSystem.update(tDelta / 1000);
     }
-    render();
+    const particlesCount = particleSystem.effects.reduce(
+      (prev, cur) => prev + cur.particles.length,
+      0
+    );
+
+    if (particlesCountPrev !== 0 || particlesCount !== 0) {
+      render();
+    }
+
     tPrev = tNow;
+    particlesCountPrev = particlesCount;
     rFrame = requestAnimationFrame(frame);
   };
   rFrame = requestAnimationFrame(frame);
