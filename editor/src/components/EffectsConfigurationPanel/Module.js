@@ -4,7 +4,14 @@ import { globalStateContext } from "../Editor";
 import ModuleProperty from "./ModuleProperty/ModuleProperty";
 
 const Module = (props) => {
-  const { module, nKey, updateModule, removeModule } = props;
+  const {
+    module,
+    nKey,
+    updateModule,
+    removeModule,
+    moveModuleUp,
+    moveModuleDown,
+  } = props;
   const { particleModules } = useContext(globalStateContext);
 
   const moduleInfo = particleModules.find(
@@ -13,6 +20,10 @@ const Module = (props) => {
   if (!moduleInfo) {
     throw new Error(`Unidentified module: ${module.moduleTypeId}`);
   }
+
+  const moduleCategories = Array.from(
+    new Set(particleModules.map((moduleType) => moduleType.category))
+  ).filter((item) => item !== undefined);
 
   return (
     <div className="module">
@@ -26,14 +37,38 @@ const Module = (props) => {
             updateModule(updatedModule);
           }}
         >
-          {particleModules
-            .sort((a, b) => a.moduleTypeId.localeCompare(b.moduleTypeId))
-            .map((moduleType, i) => (
-              <option value={moduleType.moduleTypeId} key={`module-${i}`}>
-                {moduleType.moduleTypeId}
-              </option>
+          {moduleCategories
+            .sort((a, b) => a.localeCompare(b))
+            .map((moduleCategory, i) => (
+              <optgroup label={moduleCategory} key={`module-${i}`}>
+                {particleModules
+                  .filter(
+                    (moduleType) => moduleType.category === moduleCategory
+                  )
+                  .map((moduleType, i2) => (
+                    <option value={moduleType.moduleTypeId}>
+                      {moduleType.moduleTypeId}
+                    </option>
+                  ))}
+              </optgroup>
             ))}
         </select>
+        <div className="module-moveContainer">
+          <div
+            className="module-move module-moveUp"
+            title="Move module up"
+            onClick={() => {
+              moveModuleUp();
+            }}
+          ></div>
+          <div
+            className="module-move module-moveDown"
+            title="Move module down"
+            onClick={() => {
+              moveModuleDown();
+            }}
+          ></div>
+        </div>
         <div className="module-remove" onClick={() => removeModule()}></div>
       </div>
       <div className="module-properties">

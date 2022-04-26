@@ -16,7 +16,7 @@ export abstract class ParticleGenerator extends Module {
      *
      * Optional `repeat` property can be supplied to supply a second interval which the batch is automatically repeated with afterwards.
      */
-    bursts: Array<{ time: number; count: number; repeat?: number }> = [];
+    bursts: Burst[] = [];
     private _updateCounter = 0;
 
     update(dt: number): void {
@@ -54,3 +54,5 @@ export abstract class ParticleGenerator extends Module {
      */
     abstract generateParticle(): void;
 }
+
+export type Burst = { time: number; count: number; repeat?: number };

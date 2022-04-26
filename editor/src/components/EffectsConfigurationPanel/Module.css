@@ -14,6 +14,29 @@
   width: 88%;
   cursor: pointer;
 }
+.module-moveContainer {
+  display: flex;
+  flex-direction: column;
+}
+.module-move {
+  width: 18px;
+  height: 18px;
+  background-size: 8px;
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  border-radius: 100%;
+}
+.module-move:hover {
+  background-color: gray;
+}
+.module-moveUp {
+  background-image: url(../../assets/arrow-down.png);
+  transform: rotate(180deg);
+}
+.module-moveDown {
+  background-image: url(../../assets/arrow-down.png);
+}
 .module-remove {
   width: 18px;
   height: 18px;
