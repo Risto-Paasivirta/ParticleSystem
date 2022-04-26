@@ -90,6 +90,7 @@ const renderer = Renderer({
   particleSystem,
   container: document.body,
   textures,
+  coordinateSystem: "pixels",
 });
 
 (() => {
