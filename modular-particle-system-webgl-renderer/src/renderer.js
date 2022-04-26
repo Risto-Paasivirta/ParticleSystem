@@ -125,64 +125,62 @@ export const Renderer = (opts) => {
       }
       console.time(`load texture ${key}`);
       try {
-        if (value instanceof HTMLImageElement) {
-          const loadImage = () => {
-            const index = loadedTextures.length;
-            value.removeEventListener("load", loadImage);
-            const texture = gl.createTexture();
-            gl.activeTexture(gl.TEXTURE0 + index);
-            gl.bindTexture(gl.TEXTURE_2D, texture);
-            gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, false);
+        const loadTextureData = (textureData) => {
+          const index = loadedTextures.length;
+          const texture = gl.createTexture();
+          gl.activeTexture(gl.TEXTURE0 + index);
+          gl.bindTexture(gl.TEXTURE_2D, texture);
+          gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, false);
 
-            const level = 0;
-            const internalFormat = gl.RGBA;
-            const srcFormat = gl.RGBA;
-            const srcType = gl.UNSIGNED_BYTE;
-            const pxData = value;
-            gl.texImage2D(
-              gl.TEXTURE_2D,
-              level,
-              internalFormat,
-              srcFormat,
-              srcType,
-              pxData
-            );
-            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
-            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
-            gl.texParameteri(
-              gl.TEXTURE_2D,
-              gl.TEXTURE_WRAP_S,
-              gl.CLAMP_TO_EDGE
-            );
-            gl.texParameteri(
-              gl.TEXTURE_2D,
-              gl.TEXTURE_WRAP_T,
-              gl.CLAMP_TO_EDGE
-            );
-            loadedTextures.push({ texture, index, name: key });
-            console.timeEnd(`load texture ${key}`);
+          const level = 0;
+          const internalFormat = gl.RGBA;
+          const srcFormat = gl.RGBA;
+          const srcType = gl.UNSIGNED_BYTE;
+          gl.texImage2D(
+            gl.TEXTURE_2D,
+            level,
+            internalFormat,
+            srcFormat,
+            srcType,
+            textureData
+          );
+          gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+          gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+          gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+          gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+          loadedTextures.push({ texture, index, name: key });
+          console.timeEnd(`load texture ${key}`);
 
-            // Select active texture for rendering.
-            let desiredTextureIndex = undefined;
-            particleSystem.effects.forEach((effect) => {
-              effect.textures.forEach((texture) => {
-                const i = loadedTextures.findIndex(
-                  (item) => item.name === texture
-                );
-                if (i >= 0) {
-                  desiredTextureIndex = i;
-                }
-              });
+          // Select active texture for rendering.
+          let desiredTextureIndex = undefined;
+          particleSystem.effects.forEach((effect) => {
+            effect.textures.forEach((texture) => {
+              const i = loadedTextures.findIndex(
+                (item) => item.name === texture
+              );
+              if (i >= 0) {
+                desiredTextureIndex = i;
+              }
             });
-            if (desiredTextureIndex >= 0) {
-              gl.uniform1i(locTexture, desiredTextureIndex);
-            }
-          };
+          });
+          if (desiredTextureIndex >= 0) {
+            gl.uniform1i(locTexture, desiredTextureIndex);
+          }
+        };
+
+        if (value instanceof HTMLImageElement) {
           if (value.complete) {
-            loadImage();
+            loadTextureData(value);
           } else {
+            const loadImage = () => {
+              loadTextureData(value);
+              value.removeEventListener("load", loadImage);
+            };
             value.addEventListener("load", loadImage);
           }
+        } else {
+          // Unidentified texture data. Just attempt to load it and hope it works :)
+          loadTextureData(value);
         }
       } catch (e) {
         console.error(`Couldn't load texture ${key}\n\t${e.message}`);

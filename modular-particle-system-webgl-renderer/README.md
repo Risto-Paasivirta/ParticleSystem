@@ -40,6 +40,45 @@ const renderer = Renderer({
 });
 ```
 
+## Extended usage
+
+### Renderer Options
+
+- **Required** `particleSystem`
+
+Reference to a modular `ParticleSystem` object.
+
+- **Required** `container`
+
+Reference to a `HTML` element that will contain the renderer.
+
+- **Required** `textures`
+
+Texture sources for rendering particles.
+
+This is a object where each property key describes the name of a texture and the value is a texture source. Several types of values are supported:
+- `ArrayBufferView`
+- `ImageData`
+- `HTMLImageElement`
+- `ImageBitmap`
+- Or any other type supported by [WebGL texImage2D `pixels` parameter](https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/texImage2D).
+
+- Optional `autoUpdate`
+
+If `omitted or `true, the renderer will automatically update the `ParticleSystem` between each frame. 
+
+- Optional `maxParticlesCount`
+
+Defaults to `50000`, can be used to set a limit for particle rendering.
+When number of particles exceeds this, the renderer will render some subset of the particles but not all.
+
+### Destroy Renderer
+
+```js
+const renderer = Renderer({ ... });
+renderer.destroy()
+```
+
 ## Development
 
 ```bash
