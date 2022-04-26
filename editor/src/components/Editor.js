@@ -9,16 +9,12 @@ import EffectsConfigurationPanel from "./EffectsConfigurationPanel/EffectsConfig
 import ProjectToolbar from "./ProjectToolbar";
 import ParticleSandbox from "./ParticleSandbox";
 import "./Editor.css";
-import * as PIXI from "pixi.js";
 import { downloadObject } from "../other/utils";
 
 const globalState = {
   particleModules: [],
   easingFunctions: [],
-  /**
-   * Object where key = name of sprite and value = PIXI.js Texture
-   */
-  availableTextures: {},
+  availableTextures: [],
   presetEffects: [],
 };
 export const globalStateContext = createContext(globalState);
@@ -47,34 +43,11 @@ const Editor = (props) => {
         );
       });
 
-    const promiseSpriteSheets = fetch("config.spritesheets.json")
+    const promiseTextures = fetch("config.textures.json")
       .then((r) => r.json())
-      .then((spriteSheetNames) => {
-        console.log("loaded spritesheet names");
-        const loader = PIXI.Loader.shared;
-        if (!loader.resources.spritesheet) {
-          spriteSheetNames.forEach((name) => {
-            loader.add(name, `sprites/${name}`);
-          });
-          loader.load();
-
-          return new Promise((resolve) => {
-            loader.onComplete.once((_, resources) => {
-              console.log("loaded spritesheets");
-              const availableTexturesList = Object.values(resources).map(
-                (resource) => resource.textures
-              );
-              const availableTextures = availableTexturesList.reduce(
-                (prev, cur) => ({ ...prev, ...cur }),
-                {}
-              );
-
-              globalState.availableTextures = availableTextures;
-
-              resolve();
-            });
-          });
-        }
+      .then((textureNames) => {
+        console.log("loaded available textures");
+        globalState.availableTextures = textureNames;
       });
 
     const promisePresetEffects = fetch("config.presetParticleEffects.json")
@@ -86,7 +59,7 @@ const Editor = (props) => {
 
     Promise.all([
       promiseCoreLibraryConfig,
-      promiseSpriteSheets,
+      promiseTextures,
       promisePresetEffects,
     ]).then((_) => {
       setLoading(false);

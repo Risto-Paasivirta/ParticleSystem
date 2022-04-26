@@ -5,7 +5,9 @@
     "data": {
       "effects": [
         {
-          "textures": ["generic/cloud_solid.png"],
+          "textures": [
+            "generic/cloud.png"
+          ],
           "modules": [
             {
               "moduleTypeId": "PointGenerator",
@@ -17,7 +19,7 @@
               "bursts": [
                 {
                   "time": 0,
-                  "count": 10,
+                  "count": 15,
                   "repeat": 1
                 }
               ]
@@ -30,7 +32,7 @@
             {
               "moduleTypeId": "RandomAngleVelocity",
               "min": 50,
-              "max": 100
+              "max": 120
             },
             {
               "moduleTypeId": "RandomScale",
@@ -41,27 +43,26 @@
               "moduleTypeId": "RandomColor",
               "palette": [
                 {
+                  "r": 0.5882352941176471,
+                  "g": 0.5882352941176471,
+                  "b": 0.5882352941176471
+                },
+                {
                   "r": 1,
-                  "g": 0,
-                  "b": 0
-                },
-                {
-                  "r": 0,
                   "g": 1,
-                  "b": 0
-                },
-                {
-                  "r": 0,
-                  "g": 0,
                   "b": 1
                 }
               ],
               "interpolate": true
             },
             {
+              "moduleTypeId": "DeaccelerationOverLifetime",
+              "easing": "easeOutSine"
+            },
+            {
               "moduleTypeId": "LifeTimeRange",
-              "min": 1,
-              "max": 5
+              "min": 0.5,
+              "max": 1.2
             },
             {
               "moduleTypeId": "AlphaOverLifetime",
@@ -114,7 +115,7 @@
             {
               "moduleTypeId": "RandomScale",
               "min": 0.1,
-              "max": 0.3
+              "max": 0.4
             },
             {
               "moduleTypeId": "RandomColor",
@@ -151,27 +152,29 @@
     "data": {
       "effects": [
         {
-          "textures": ["generic/ball.png"],
+          "textures": [
+            "generic/ball.png"
+          ],
           "modules": [
             {
               "moduleTypeId": "Gravity",
-              "strength": 100
+              "strength": 50
             },
             {
               "moduleTypeId": "CircleLoadingGenerator",
-              "interval": 0.008,
+              "interval": 0.003,
               "center": {
                 "x": 0,
                 "y": 0
               },
               "bursts": [],
-              "radius": 100,
+              "radius": 99,
               "nextParticleAngle": 0,
-              "angleStep": 0.1
+              "angleStep": 0.04
             },
             {
               "moduleTypeId": "AlphaRange",
-              "min": 0.5,
+              "min": 0.3,
               "max": 0.7
             },
             {
@@ -181,7 +184,7 @@
             },
             {
               "moduleTypeId": "RandomScale",
-              "min": 0.5,
+              "min": 0.3,
               "max": 0.8
             },
             {
@@ -189,7 +192,7 @@
               "palette": [
                 {
                   "r": 1,
-                  "g": 0,
+                  "g": 0.5882352941176471,
                   "b": 0
                 },
                 {
@@ -202,7 +205,7 @@
             },
             {
               "moduleTypeId": "LifeTimeRange",
-              "min": 2,
+              "min": 1.5,
               "max": 2
             },
             {

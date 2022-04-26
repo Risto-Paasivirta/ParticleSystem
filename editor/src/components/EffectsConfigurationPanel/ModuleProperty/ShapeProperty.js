@@ -2,7 +2,7 @@ import React from "react";
 import "./ShapeProperty.css";
 
 const ShapeProperty = (props) => {
-  const { name, propertyInfo, onChange } = props;
+  const { name } = props;
 
   return (
     <div className="shape-div field">
