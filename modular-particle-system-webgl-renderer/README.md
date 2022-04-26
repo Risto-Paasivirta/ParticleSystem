@@ -1,4 +1,7 @@
-WebGL 2 renderer for [`modular-particle-system`](https://www.npmjs.com/package/modular-particle-system).
+Simple WebGL 2 renderer package for [`modular-particle-system`](https://www.npmjs.com/package/modular-particle-system).
+
+Minified size 9 kB.
+Capable of rendering up to 100 000 particles with smooth FPS (60 times per second).
 
 Available as:
 
@@ -7,6 +10,9 @@ Available as:
 ```html
 <script src="https://cdn.jsdelivr.net/npm/modular-particle-system-webgl-renderer@1.0.0/index.iife.js"></script>
 ```
+
+By using the IIFE build, you can even embed a fully functional particle system + renderer with pure HTML code, for example like [this](../examples/pure-html/README.md).
+
 
 - NPM package
 
@@ -32,4 +38,12 @@ const renderer = Renderer({
   container: document.body,
   textures,
 });
+```
+
+## Development
+
+```bash
+cd modular-particle-system-webgl-renderer
+npm i
+npm start
 ```

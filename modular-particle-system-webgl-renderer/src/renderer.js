@@ -2,19 +2,12 @@
 
 const defaultOpts = {
   autoUpdate: true,
+  maxParticlesCount: 50000,
 };
 
-/**
- * NOTE: This is buffer size, not amount of particles! Actual max particles count is considerably less than this
- */
-const maxParticlesDataBufferSize = 500000;
-
 export const Renderer = (opts) => {
-  const { particleSystem, container, textures, autoUpdate } = Object.assign(
-    {},
-    defaultOpts,
-    opts
-  );
+  const { particleSystem, container, textures, autoUpdate, maxParticlesCount } =
+    Object.assign({}, defaultOpts, opts);
 
   // #region Init
   if (!particleSystem) {
@@ -36,6 +29,13 @@ export const Renderer = (opts) => {
   // #endregion
 
   // #region Init shaders and other static render resources
+
+  const attributesPerParticle = 8;
+  const isParticleCountLimited =
+    typeof maxParticlesCount === "number" && maxParticlesCount > 0;
+  const maxParticlesDataBufferSize = isParticleCountLimited
+    ? maxParticlesCount * attributesPerParticle
+    : Number.MAX_SAFE_INTEGER;
 
   gl.enable(gl.BLEND);
   gl.blendFuncSeparate(
@@ -208,7 +208,6 @@ export const Renderer = (opts) => {
       .map((effect) => effect.particles)
       .flat();
     const particleCount = particles.length;
-    const attributesPerParticle = 8;
     const particlesDataSize = attributesPerParticle * particleCount;
 
     if (

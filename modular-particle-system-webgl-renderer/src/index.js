@@ -91,3 +91,20 @@ const renderer = Renderer({
   container: document.body,
   textures,
 });
+
+(() => {
+  let frames = 0;
+  let tPrevMeasure = window.performance.now();
+  const recordFrame = () => {
+    frames += 1;
+    requestAnimationFrame(recordFrame);
+  };
+  recordFrame();
+  setInterval(() => {
+    const tNow = window.performance.now();
+    const fps = 1000 / ((tNow - tPrevMeasure) / frames);
+    console.log(`FPS: ${fps.toFixed(1)}`);
+    frames = 0;
+    tPrevMeasure = tNow;
+  }, 5000);
+})();

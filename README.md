@@ -17,8 +17,16 @@ By combining these functionally simple modules, a wide variety of behaviors can 
 
 [Online Playground](https://risto-paasivirta.github.io/ParticleSystem/)
 
+## Graphics integrations
+
 This core package does NOT include any integration to a graphics framework.
-It is designed to be completely free of any usage restrictions regarding a particular framework. Some existing references/packages exist for existing integrations to some graphics frameworks, see [this section](#graphics-integrations).
+It is designed to be completely free of any usage restrictions regarding a particular framework. However, this repository includes some usable or referenceable graphics integrations.
+
+`modular-particle-system-webgl-renderer` is a super compact graphics package for rendering modular particles. It's minimized weight is less than 10 KB and it can render even up to 100 000 particles with 60 FPS.
+
+**Learn** more [here](https://github.com/Risto-Paasivirta/ParticleSystem/blob/nk/add-webgl-renderer/modular-particle-system-webgl-renderer/README.md).
+
+Additionally, the current development setup for the particle system is based on `PIXI.js`. This can be used as a reference of how the particle system can be integrated with any graphics framework. See [this file](https://github.com/Risto-Paasivirta/ParticleSystem/tree/master/playground/apps/helpers/renderer/renderer.ts) for the relevant source code.
 
 ## Installation
 
@@ -42,18 +50,11 @@ const { ParticleSystem } = modularParticleSystem;
 import { ParticleSystem } from "modular-particle-system/particleSystem";
 ```
 
-## Graphics integrations
-
-The current development setup for the particle system is based on `PIXI.js`. This can be used as a reference of how the particle system can be integrated with any graphics framework. See [this file](<(https://github.com/Risto-Paasivirta/ParticleSystem/tree/master/playground/apps/helpers/renderer/renderer.ts)>) for the relevant source code.
-
-TODO: Webgl renderer
-
 ## Usage
 
 Usage examples can be inspired from the [development applications found in GitHub](https://github.com/Risto-Paasivirta/ParticleSystem/tree/master/playground/apps).
 
-An alternative usage syntax is to load particle systems from `JSON` definition.
-This is semi-typed but the module IDs and properties have to be manually looked up from the cheat-sheet below.
+Alternatively, you can load particle systems from `JSON` definition:
 
 ```ts
 const particleSystem = ParticleSystem.fromObject({
@@ -73,6 +74,8 @@ const particleSystem = ParticleSystem.fromObject({
   ],
 });
 ```
+
+JSON particle definitions can be built in the [interactive editor application](https://risto-paasivirta.github.io/ParticleSystem/) and exported with the **"Save to file"** button.
 
 ### List of modules, their properties (cheat-sheet) and short descriptions
 
