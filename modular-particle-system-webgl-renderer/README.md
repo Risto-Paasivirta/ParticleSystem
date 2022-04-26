@@ -79,6 +79,12 @@ const renderer = Renderer({ ... });
 renderer.destroy()
 ```
 
+## Known limitations
+
+The renderer currently only supports rendering with 1 texture source.
+
+The vision is to allow rendering with a relatively small number of relatively small textures, let's say 10 textures each smaller than 200x200px, since this is within the limits of keeping things simple and performant.
+
 ## Development
 
 ```bash
