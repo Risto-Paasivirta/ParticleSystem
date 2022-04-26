@@ -18,7 +18,7 @@ By using the IIFE build, you can even embed a fully functional particle system +
 
 `npm install modular-particle-system-webgl-renderer`
 
-NOTE: Usage from NPM package is untested.
+NOTE: Usage from NPM package is currently untested.
 
 ```js
 // IIFE
@@ -27,10 +27,10 @@ const { Renderer } = modularParticleSystemWebglRenderer;
 // NPM
 import { Renderer } from "modular-particle-system-webgl-renderer";
 
-// NOTE: Currently renderer supports only 1 texture at a time. Several can be loaded, but only 1 can be rendered with.
+const imgCloudTexture = new Image();
+imgCloudTexture.src = `my-assets/generic/cloud.png`
 const textures = {
-  "generic/ball.png": loadTextureImage("generic/ball.png"),
-  "generic/cloud.png": loadTextureImage("generic/cloud.png"),
+  "generic/cloud.png": imgCloudTexture,
 };
 
 const renderer = Renderer({
