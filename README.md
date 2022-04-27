@@ -17,32 +17,44 @@ By combining these functionally simple modules, a wide variety of behaviors can 
 
 [Online Playground](https://risto-paasivirta.github.io/ParticleSystem/)
 
+## Graphics integrations
+
 This core package does NOT include any integration to a graphics framework.
-It is designed to be completely free of any usage restrictions regarding a particular framework.
+It is designed to be completely free of any usage restrictions regarding a particular framework. However, this repository includes some usable or referenceable graphics integrations.
 
-This repository does, however, include an [example integration with `PIXI.js`](https://github.com/Risto-Paasivirta/ParticleSystem/tree/master/playground/apps/helpers/renderer/renderer.ts)
-It can be referenced to learn how the particle system can be integrated with a graphics framework.
+`modular-particle-system-webgl-renderer` is a super compact graphics package for rendering modular particles. It's minimized weight is less than 10 KB and it can render even up to 100 000 particles with 60 FPS.
 
-## Installation and Usage
+**Learn** more [here](https://github.com/Risto-Paasivirta/ParticleSystem/blob/nk/add-webgl-renderer/modular-particle-system-webgl-renderer/README.md).
 
-The library can be installed via `NPM`:
+Additionally, the current development setup for the particle system is based on `PIXI.js`. This can be used as a reference of how the particle system can be integrated with any graphics framework. See [this file](https://github.com/Risto-Paasivirta/ParticleSystem/tree/master/playground/apps/helpers/renderer/renderer.ts) for the relevant source code.
 
-```bash
-npm i modular-particle-system
+## Installation
+
+The package is available as:
+
+- IIFE
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/modular-particle-system-webgl-renderer@1.0.0/index.iife.js"></script>
 ```
 
-The library is published as _EcmaScript_ module, which means that it can be used with any module bundler, such as _WebPack_, _Parcel_, _Rollup_, etc.
+```js
+const { ParticleSystem } = modularParticleSystem;
+```
 
-The syntax for importing parts of the library is as follows:
+- NPM package
+
+`npm install modular-particle-system`
 
 ```js
 import { ParticleSystem } from "modular-particle-system/particleSystem";
 ```
 
+## Usage
+
 Usage examples can be inspired from the [development applications found in GitHub](https://github.com/Risto-Paasivirta/ParticleSystem/tree/master/playground/apps).
 
-An alternative usage syntax is to load particle systems from `JSON` definition.
-This is semi-typed but the module IDs and properties have to be manually looked up from the cheat-sheet below.
+Alternatively, you can load particle systems from `JSON` definition:
 
 ```ts
 const particleSystem = ParticleSystem.fromObject({
@@ -62,6 +74,8 @@ const particleSystem = ParticleSystem.fromObject({
   ],
 });
 ```
+
+JSON particle definitions can be built in the [interactive editor application](https://risto-paasivirta.github.io/ParticleSystem/) and exported with the **"Save to file"** button.
 
 ### List of modules, their properties (cheat-sheet) and short descriptions
 
