@@ -10,25 +10,25 @@ import BurstListProperty from "./BurstListProperty";
 import BooleanProperty from "./BooleanProperty";
 
 const ModuleProperty = (props) => {
-  const { propertyInfo, nKey } = props;
+  const { propertyInfo } = props;
 
-  switch (propertyInfo.type) {
-    case "Number":
-      return <NumberProperty {...props} key={nKey} />;
-    case "Position":
-      return <PositionProperty {...props} key={nKey} />;
-    case "Range":
-      return <RangeProperty {...props} key={nKey} />;
-    case "Color[]":
-      return <ColorPaletteProperty {...props} key={nKey} />;
-    case "EasingFunction":
-      return <EasingFunctionProperty {...props} key={nKey} />;
-    case "Shape":
-      return <ShapeProperty {...props} key={nKey} />;
-    case "Burst[]":
-      return <BurstListProperty {...props} key={nKey} />;
-    case "Boolean":
-      return <BooleanProperty {...props} key={nKey} />;
+  switch (propertyInfo.type && propertyInfo.type.toLowerCase()) {
+    case "number":
+      return <NumberProperty {...props} />;
+    case "position":
+      return <PositionProperty {...props} />;
+    case "range":
+      return <RangeProperty {...props} />;
+    case "color[]":
+      return <ColorPaletteProperty {...props} />;
+    case "easingfunction":
+      return <EasingFunctionProperty {...props} />;
+    case "shape":
+      return <ShapeProperty {...props} />;
+    case "burst[]":
+      return <BurstListProperty {...props} />;
+    case "boolean":
+      return <BooleanProperty {...props} />;
     default:
       throw new Error(
         `Unidentified module property type: ${propertyInfo.type}`

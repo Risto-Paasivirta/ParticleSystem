@@ -46,7 +46,10 @@ const Module = (props) => {
                     (moduleType) => moduleType.category === moduleCategory
                   )
                   .map((moduleType, i2) => (
-                    <option value={moduleType.moduleTypeId}>
+                    <option
+                      value={moduleType.moduleTypeId}
+                      key={`option-${i2}`}
+                    >
                       {moduleType.moduleTypeId}
                     </option>
                   ))}
@@ -79,7 +82,6 @@ const Module = (props) => {
               value={module[key]}
               propertyInfo={propertyInfo}
               key={`${nKey}_property${iProperty}`}
-              nKey={`${nKey}_property${iProperty}`}
               onChange={(value) => {
                 const updatedModule = { ...module };
                 updatedModule[key] = value;

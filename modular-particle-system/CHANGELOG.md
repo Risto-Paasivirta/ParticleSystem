@@ -7,13 +7,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.0] - 2022-04-30
+
+### Added
+
+-   Added `ParticleEffect.fromObject`
+
+### Fixed
+
+-   Fixed `ShapeGenerator` not deserializing `bursts` property.
+
+## [1.2.0] - 2022-04-24
+
 ### Added
 
 -   Added `GravityWithCenter` modifier.
 -   Added `RandomColor.interpolate` property.
 -   Added `Circle` shape.
 -   Added `RandomRotation` initializer module.
--   Added `ParticleEffect.fromObject`
 
 ### Removed
 

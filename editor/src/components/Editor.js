@@ -15,6 +15,7 @@ const globalState = {
   particleModules: [],
   easingFunctions: [],
   availableTextures: [],
+  shapes: [],
   presetEffects: [],
 };
 export const globalStateContext = createContext(globalState);
@@ -32,9 +33,10 @@ const Editor = (props) => {
       .then((r) => r.json())
       .then((coreLibraryConfig) => {
         console.log("loaded core library config");
-        const { particleModules, easingFunctions } = coreLibraryConfig;
+        const { particleModules, easingFunctions, shapes } = coreLibraryConfig;
         globalState.particleModules = particleModules;
         globalState.easingFunctions = easingFunctions;
+        globalState.shapes = shapes;
 
         setEffects(
           defaultParticleSystemConf.map((effect) =>
@@ -203,7 +205,8 @@ const loadParticleEffectDefaults = (effect, particleModulesInfo) => {
           propertyInfo.type === "Range" ||
           propertyInfo.type === "Burst[]" ||
           propertyInfo.type === "Position" ||
-          propertyInfo.type === "Color[]"
+          propertyInfo.type === "Color[]" ||
+          propertyInfo.type === "Shape"
         ) {
           try {
             defaultValue = JSON.parse(defaultValue);

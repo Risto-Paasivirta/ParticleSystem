@@ -1,6 +1,10 @@
 import { Position } from "../types";
 import { ShapeLogicImplementation } from "./shape";
 
+/**
+ * @shape
+ * @defaultValue    { "type": "triangle", "v1": { "x": -50, "y": -50 }, "v2": { "x": 0, "y": 50 }, "v3": { "x": 50, "y": -50 } }
+ */
 export interface Triangle {
     type: "triangle";
     v1: Position;

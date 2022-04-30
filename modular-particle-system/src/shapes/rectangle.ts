@@ -2,6 +2,10 @@ import { Position } from "../types";
 import { randomInRange } from "../utilities";
 import { ShapeLogicImplementation } from "./shape";
 
+/**
+ * @shape
+ * @defaultValue    { "type": "rectangle", "v1": { "x": -50, "y": -50 }, "v2": { "x": 50, "y": 50 } }
+ */
 export interface Rectangle {
     type: "rectangle";
     v1: Position;
