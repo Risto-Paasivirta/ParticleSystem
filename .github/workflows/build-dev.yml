@@ -1,7 +1,7 @@
 # Automatic GitHub work flow that simply tests whether the development environment is in working state.
 # If there is, for example, a broken import in some file under apps/ this will fail and display in related pull request.
 
-name: Build development environment
+name: Library and development apps build
 
 # Controls when the workflow will run
 on:

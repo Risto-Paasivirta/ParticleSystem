@@ -44,15 +44,15 @@ const renderer = Renderer({
 
 ### Renderer Options
 
-#### **Required** `particleSystem`
+- **Required** `particleSystem`
 
 Reference to a modular `ParticleSystem` object.
 
-#### **Required** `container`
+- **Required** `container`
 
 Reference to a `HTML` element that will contain the renderer.
 
-#### **Required** `textures`
+- **Required** `textures`
 
 Texture sources for rendering particles.
 
@@ -63,20 +63,11 @@ This is a object where each property key describes the name of a texture and the
 - `ImageBitmap`
 - Or any other type supported by [WebGL texImage2D `pixels` parameter](https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/texImage2D).
 
-#### Optional `autoUpdate`
+- Optional `autoUpdate`
 
 If `omitted or `true, the renderer will automatically update the `ParticleSystem` between each frame. 
 
-#### Optional `coordinateSystem`
-
-Defaults to `'pixels'`. Can be one of:
-
-- `'pixels'`: Particle positions are in pixels, `{x:0, y: 0}` is at top left corner of `container`, positive X is right, positive Y is down..
-
-- `'pixels-centered'`: Particle positions are in pixels, `{x:0, y: 0}` is at center of `container`, positive X is right, positive Y is down.
-
-
-#### Optional `maxParticlesCount`
+- Optional `maxParticlesCount`
 
 Defaults to `50000`, can be used to set a limit for particle rendering.
 When number of particles exceeds this, the renderer will render some subset of the particles but not all.
