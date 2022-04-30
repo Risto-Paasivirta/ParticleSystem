@@ -18,7 +18,14 @@ const ShapeProperty = (props) => {
             const selectedShape = shapes.find(
               (el) => el.type === e.target.value
             );
-            onChange(selectedShape);
+            try {
+              const defaultValue = JSON.parse(selectedShape.defaultValue);
+              onChange(defaultValue);
+            } catch (e) {
+              console.error(
+                `Error parsing shape @defaultValue: ${selectedShape}`
+              );
+            }
           }}
         >
           {shapes.map((shape) => (
@@ -30,7 +37,7 @@ const ShapeProperty = (props) => {
       </div>
       <div className="shape-valuesContainer">
         {Array.from(Object.entries(shape))
-          .filter((entry) => entry[0] !== "type")
+          .filter((entry) => entry[0] !== "type" && entry[0] !== "defaultValue")
           .map((entry, i) => {
             return (
               <ModuleProperty
@@ -40,8 +47,10 @@ const ShapeProperty = (props) => {
                   type: entry[1],
                 }}
                 key={`shape-value-${i}`}
-                onChange={(value) => {
-                  // TODO
+                onChange={(newPropertyValue) => {
+                  const newValue = { ...value };
+                  newValue[entry[0]] = newPropertyValue;
+                  onChange(newValue);
                 }}
               />
             );
