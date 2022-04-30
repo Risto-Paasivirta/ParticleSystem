@@ -2,7 +2,7 @@ import React from "react";
 import "./BooleanProperty.css";
 
 const BooleanProperty = (props) => {
-  const { value, name, propertyInfo, onChange } = props;
+  const { value, name, onChange } = props;
 
   return (
     <div className="boolean-div field">

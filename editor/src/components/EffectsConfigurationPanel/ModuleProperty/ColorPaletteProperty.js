@@ -2,7 +2,7 @@ import React from "react";
 import "./ColorPaletteProperty.css";
 
 const ColorPaletteProperty = (props) => {
-  const { value, name, propertyInfo, onChange } = props;
+  const { value, name, onChange } = props;
 
   const within256range = (num) => {
     if (num > 255) return 255;

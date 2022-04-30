@@ -2,7 +2,7 @@ import React from "react";
 import "./BurstListProperty.css";
 
 const BurstListProperty = (props) => {
-  const { value, name, propertyInfo, onChange } = props;
+  const { value, name, onChange } = props;
 
   return (
     <div className="burstListProperty-div field">
