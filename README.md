@@ -24,7 +24,7 @@ It is designed to be completely free of any usage restrictions regarding a parti
 
 `modular-particle-system-webgl-renderer` is a super compact graphics package for rendering modular particles. It's minimized weight is less than 10 KB and it can render even up to 100 000 particles with 60 FPS.
 
-**Learn** more [here](https://github.com/Risto-Paasivirta/ParticleSystem/blob/nk/add-webgl-renderer/modular-particle-system-webgl-renderer/README.md).
+**Learn** more [here](./modular-particle-system-webgl-renderer/README.md).
 
 Additionally, the current development setup for the particle system is based on `PIXI.js`. This can be used as a reference of how the particle system can be integrated with any graphics framework. See [this file](https://github.com/Risto-Paasivirta/ParticleSystem/tree/master/playground/apps/helpers/renderer/renderer.ts) for the relevant source code.
 
