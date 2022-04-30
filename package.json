@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "modular-particle-system-webgl-renderer": "^1.1.0"
+  }
+}
