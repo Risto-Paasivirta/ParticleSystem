@@ -1,13 +1,25 @@
 // WebGL 2 renderer for "modular-particle-system" developed by Niilo Keinänen 2022
 
+const coordsPixelsCentered = "pixels-centered";
+const coordsPixels = "pixels";
+
 const defaultOpts = {
   autoUpdate: true,
   maxParticlesCount: 50000,
+  loggingEnabled: true,
+  coordinateSystem: coordsPixels,
 };
 
 export const Renderer = (opts) => {
-  const { particleSystem, container, textures, autoUpdate, maxParticlesCount } =
-    Object.assign({}, defaultOpts, opts);
+  const {
+    particleSystem,
+    container,
+    textures,
+    autoUpdate,
+    maxParticlesCount,
+    loggingEnabled,
+    coordinateSystem,
+  } = Object.assign({}, defaultOpts, opts);
 
   // #region Init
   if (!particleSystem) {
@@ -25,6 +37,66 @@ export const Renderer = (opts) => {
   container.append(canvas);
 
   const gl = canvas.getContext("webgl2");
+
+  // #endregion
+
+  // #region Shader source code
+
+  const locGeometry = 0;
+  const locTexCoord = 1;
+  const locPos = 2;
+  const locColor = 3;
+  const locRotation = 4;
+  const locScale = 5;
+
+  const vertexShaderSrc = `#version 300 es
+  precision mediump float;
+  precision mediump int;
+  layout(location=${locGeometry}) in vec2 aPosGeometry;
+  layout(location=${locTexCoord}) in vec2 aTexCoord;
+  layout(location=${locPos}) in vec2 aPos;
+  layout(location=${locColor}) in vec4 aColor;
+  layout(location=${locRotation}) in float aRotationRad;
+  layout(location=${locScale}) in float aScale;
+  uniform vec2 uViewportSizePx;
+  uniform sampler2D uTexture;
+  out vec4 vColor;
+  out vec2 vTexCoord;
+  void main(void) {
+    ivec2 size = textureSize(uTexture, 0);
+    float rotX = cos(aRotationRad);
+    float rotY = sin(aRotationRad);
+    vec2 rotGeometry = vec2(
+      aPosGeometry.x * rotY + aPosGeometry.y * rotX,
+      aPosGeometry.y * rotY - aPosGeometry.x * rotX
+    );
+    ${
+      coordinateSystem === coordsPixels
+        ? "gl_Position = vec4(vec2(-1.0, 1.0) + (vec2(aPos.x, -aPos.y) + rotGeometry * vec2(size) * aScale) * 2.0 / uViewportSizePx, 0.0, 1.0);"
+        : coordinateSystem === coordsPixelsCentered
+        ? "gl_Position = vec4((vec2(aPos.x, -aPos.y) + rotGeometry * vec2(size) * aScale) * 2.0 / uViewportSizePx, 0.0, 1.0);"
+        : (() => {
+            console.error(
+              `Unidentified 'coordinateSystem': ${coordinateSystem}`
+            );
+            return "";
+          })()
+    }
+    vColor = aColor;
+    vTexCoord = aTexCoord;
+  }`;
+
+  const fragmentShaderSrc = `#version 300 es
+  precision mediump float;
+  precision mediump int;
+  in vec4 vColor;
+  in vec2 vTexCoord;
+  uniform sampler2D uTexture;
+  out vec4 fragColor;
+  void main(void) {
+    vec4 texSample = texture(uTexture, vTexCoord);
+    fragColor = vec4(vColor.rgb, vColor.a * texSample.a);
+  }`;
 
   // #endregion
 
@@ -123,7 +195,7 @@ export const Renderer = (opts) => {
       if (!value) {
         return;
       }
-      console.time(`load texture ${key}`);
+      if (loggingEnabled) console.time(`load texture ${key}`);
       try {
         const loadTextureData = (textureData) => {
           const index = loadedTextures.length;
@@ -149,7 +221,7 @@ export const Renderer = (opts) => {
           gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
           gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
           loadedTextures.push({ texture, index, name: key });
-          console.timeEnd(`load texture ${key}`);
+          if (loggingEnabled) console.timeEnd(`load texture ${key}`);
 
           // Select active texture for rendering.
           let desiredTextureIndex = undefined;
@@ -222,9 +294,10 @@ export const Renderer = (opts) => {
         );
         increasedSize = maxParticlesDataBufferSize;
       }
-      console.info(
-        `Increasing particle data buffer size ${particlesDataBufferSize} -> ${increasedSize}`
-      );
+      if (loggingEnabled)
+        console.info(
+          `Increasing particle data buffer size ${particlesDataBufferSize} -> ${increasedSize}`
+        );
       particlesData = new Float32Array(increasedSize);
       particlesDataBufferSize = increasedSize;
     }
@@ -323,59 +396,24 @@ export const Renderer = (opts) => {
   };
   rFrame = requestAnimationFrame(frame);
 
+  let isDestroyed = false;
   const rendererHandle = {
     destroy: () => {
+      if (isDestroyed) return;
+      isDestroyed = true;
       if (rFrame) {
         cancelAnimationFrame(rFrame);
         rFrame = undefined;
         container.removeChild(canvas);
       }
+
+      gl.deleteProgram(shader);
+      gl.deleteBuffer(vertexBufferRectangle);
+      gl.deleteBuffer(particlesDataBuffer);
+      loadedTextures.forEach((texture) => {
+        gl.deleteTexture(texture.texture);
+      });
     },
   };
   return rendererHandle;
 };
-
-const locGeometry = 0;
-const locTexCoord = 1;
-const locPos = 2;
-const locColor = 3;
-const locRotation = 4;
-const locScale = 5;
-
-const vertexShaderSrc = `#version 300 es
-precision mediump float;
-precision mediump int;
-layout(location=${locGeometry}) in vec2 aPosGeometry;
-layout(location=${locTexCoord}) in vec2 aTexCoord;
-layout(location=${locPos}) in vec2 aPos;
-layout(location=${locColor}) in vec4 aColor;
-layout(location=${locRotation}) in float aRotationRad;
-layout(location=${locScale}) in float aScale;
-uniform vec2 uViewportSizePx;
-uniform sampler2D uTexture;
-out vec4 vColor;
-out vec2 vTexCoord;
-void main(void) {
-  ivec2 size = textureSize(uTexture, 0);
-  float rotX = cos(aRotationRad);
-  float rotY = sin(aRotationRad);
-  vec2 rotGeometry = vec2(
-    aPosGeometry.x * rotY + aPosGeometry.y * rotX,
-    aPosGeometry.y * rotY - aPosGeometry.x * rotX
-  );
-  gl_Position = vec4(vec2(-1.0, 1.0) + (vec2(aPos.x, -aPos.y) + rotGeometry * vec2(size) * aScale) * 2.0 / uViewportSizePx, 0.0, 1.0);
-  vColor = aColor;
-  vTexCoord = aTexCoord;
-}`;
-
-const fragmentShaderSrc = `#version 300 es
-precision mediump float;
-precision mediump int;
-in vec4 vColor;
-in vec2 vTexCoord;
-uniform sampler2D uTexture;
-out vec4 fragColor;
-void main(void) {
-  vec4 texSample = texture(uTexture, vTexCoord);
-  fragColor = vec4(vColor.rgb, vColor.a * texSample.a);
-}`;
