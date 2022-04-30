@@ -129,7 +129,7 @@ const Editor = (props) => {
 
 const defaultParticleSystemConf = [
   {
-    textures: ["generic/ball.png"],
+    textures: ["ball.png"],
     modules: [
       {
         moduleTypeId: "PointGenerator",

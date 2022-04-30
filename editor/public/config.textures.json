@@ -1,4 +1,16 @@
 [
-        "generic/ball.png",
-        "generic/cloud.png"
+        "ball.png",
+        "cloud.png",
+        "orb.png",
+        "smoke.png",
+        "heart.png",
+        "star.png",
+        "magic.png",
+        "glimmer.png",
+        "pow.png",
+        "confetti/0.png",
+        "confetti/1.png",
+        "confetti/2.png",
+        "confetti/3.png",
+        "confetti/4.png"
 ]
