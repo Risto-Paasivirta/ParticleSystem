@@ -31,8 +31,6 @@ const readModules = () => {
         )
     );
 
-  console.log(moduleFiles);
-
   const particleModules = moduleFiles.map((moduleFile) => {
     const moduleTypeDef = fs.readFileSync(moduleFile).toString();
     const moduleName = path.basename(moduleFile).replace(".d.ts", "");
