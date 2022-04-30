@@ -4,11 +4,11 @@ import "./ShapeProperty.css";
 import ModuleProperty from "./ModuleProperty";
 
 const ShapeProperty = (props) => {
-  const { value, name, onChange, nKey } = props;
+  const { value, name, onChange } = props;
   const { shapes } = useContext(globalStateContext);
   const shape = shapes.find((el) => el.type === value.type);
   return (
-    <div className="shape-div field" key={nKey}>
+    <div className="shape-div field">
       <div className="shape-headerContainer">
         <span className="shape-name">{name}</span>
         <select
