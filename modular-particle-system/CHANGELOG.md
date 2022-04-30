@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 -   Added `RandomColor.interpolate` property.
 -   Added `Circle` shape.
 -   Added `RandomRotation` initializer module.
+-   Added `ParticleEffect.fromObject`
 
 ### Removed
 

@@ -1,6 +1,7 @@
-import { Module } from "./module";
+import { Module, ModuleObject } from "./module";
 import { Particle } from "./particle";
 import { ParticleSystem } from "./particleSystem";
+import { moduleTypeRegistry } from "./serialization/moduleRegistry";
 
 export class ParticleEffect {
     particleSystem: ParticleSystem;
@@ -80,4 +81,30 @@ export class ParticleEffect {
             clbk(particle);
         });
     }
+
+    static fromObject(
+        particleSystem: ParticleSystem,
+        effectObject: ParticleEffectObject,
+        options?: { hideWarnings?: boolean },
+    ): ParticleEffect {
+        const hideWarnings = options?.hideWarnings || false;
+        const effect = particleSystem.addParticleEffect();
+        effect.textures = effectObject.textures;
+        effectObject.modules?.forEach((moduleObject) => {
+            const moduleTypeReference = moduleTypeRegistry.find(
+                (moduleType) => moduleType.moduleTypeId === moduleObject.moduleTypeId,
+            );
+            if (!moduleTypeReference) {
+                // The module type can't be identified. This probably means that it was saved with a different library version than the active one.
+                if (!hideWarnings) console.warn(`fromObject unidentified module type: "${moduleObject.moduleTypeId}"`);
+                return;
+            }
+
+            const module = moduleTypeReference.fromObject(effect, moduleObject, hideWarnings);
+            effect.modules.push(module);
+        });
+        return effect;
+    }
 }
+
+export type ParticleEffectObject = { modules: ModuleObject[] | undefined; textures: string[] };
