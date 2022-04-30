@@ -216,5 +216,65 @@
         }
       ]
     }
+  },{
+    "label": "Snowflakes",
+    "thumbnail": "snowflakes.png",
+    "data": {
+      "effects": [
+        {
+          "textures": [
+            "generic/ball.png"
+          ],
+          "modules": [
+            {
+              "moduleTypeId": "AlphaRange",
+              "min": 0.3,
+              "max": 1
+            },
+            {
+              "moduleTypeId": "RandomVelocity",
+              "randomX": {
+                "min": -40,
+                "max": 40
+              },
+              "randomY": {
+                "min": 40,
+                "max": 80
+              }
+            },
+            {
+              "moduleTypeId": "LifeTimeRange",
+              "min": 45,
+              "max": 45
+            },
+            {
+              "moduleTypeId": "LifeTimeDestructor"
+            },
+            {
+              "moduleTypeId": "ShapeGenerator",
+              "interval": 0.1,
+              "shape": {
+                "type": "rectangle",
+                "v1": {
+                  "x": -1200,
+                  "y": -700
+                },
+                "v2": {
+                  "x": 1200,
+                  "y": -700
+                }
+              },
+              "bursts": [],
+              "edgesOnly": false
+            },
+            {
+              "moduleTypeId": "RandomScale",
+              "min": 0.5,
+              "max": 0.8
+            }
+          ]
+        }
+      ]
+    }
   }
 ]
