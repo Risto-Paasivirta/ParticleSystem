@@ -1,6 +1,6 @@
 {
     "name": "modular-particle-system",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "homepage": "https://github.com/Risto-Paasivirta/ParticleSystem",
     "description": "Modular particle system library",
     "browserslist": "> 0.25%, not dead",

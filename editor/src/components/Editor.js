@@ -15,6 +15,7 @@ import { downloadObject } from "../other/utils";
 const globalState = {
   particleModules: [],
   easingFunctions: [],
+  shapes: [],
   /**
    * Object where key = name of sprite and value = PIXI.js Texture
    */
@@ -36,9 +37,10 @@ const Editor = (props) => {
       .then((r) => r.json())
       .then((coreLibraryConfig) => {
         console.log("loaded core library config");
-        const { particleModules, easingFunctions } = coreLibraryConfig;
+        const { particleModules, easingFunctions, shapes } = coreLibraryConfig;
         globalState.particleModules = particleModules;
         globalState.easingFunctions = easingFunctions;
+        globalState.shapes = shapes;
 
         setEffects(
           defaultParticleSystemConf.map((effect) =>
@@ -230,7 +232,8 @@ const loadParticleEffectDefaults = (effect, particleModulesInfo) => {
           propertyInfo.type === "Range" ||
           propertyInfo.type === "Burst[]" ||
           propertyInfo.type === "Position" ||
-          propertyInfo.type === "Color[]"
+          propertyInfo.type === "Color[]" ||
+          propertyInfo.type === "Shape"
         ) {
           try {
             defaultValue = JSON.parse(defaultValue);

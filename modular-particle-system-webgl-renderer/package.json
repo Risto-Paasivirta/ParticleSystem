@@ -1,6 +1,6 @@
 {
   "name": "modular-particle-system-webgl-renderer",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "WebGL 2 renderer for modular-particle-system package",
   "type": "module",
   "private": false,
@@ -14,8 +14,7 @@
   "keywords": [],
   "author": "Niilo Keinänen",
   "license": "MIT",
-  "main": "index.js",
-  "browser": "index.iife.js",
+  "main": "./index.js",
   "devDependencies": {
     "@babel/core": "^7.17.9",
     "@babel/preset-env": "^7.16.11",

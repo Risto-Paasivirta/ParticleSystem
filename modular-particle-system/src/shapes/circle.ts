@@ -4,6 +4,7 @@ import { ShapeLogicImplementation } from "./shape";
 
 /**
  * @shape
+ * @defaultValue    { "type": "circle", "center": { "x": 0, "y": 0 }, "radius": 50 }
  */
 export interface Circle {
     type: "circle";
