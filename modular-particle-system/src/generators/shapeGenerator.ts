@@ -37,6 +37,7 @@ import {
  * shape {
  *      @tooltip        TODO
  *      @type           Shape
+ *      @defaultValue   { "type": "rectangle", "v1": {"x": -50, "y": -50}, "v2": {"x": 50, "y": 50} }
  * }
  * bursts {
  *      @tooltip        TODO
@@ -82,6 +83,7 @@ export class ShapeGenerator extends ParticleGenerator {
     static fromObject(particleEffect: ParticleEffect, object: ModuleObject, hideWarnings: boolean): ShapeGenerator {
         const module = new ShapeGenerator(particleEffect);
         loadSerializedProperty(object, ShapeGenerator, module, "interval", deserializePrimitiveDataType, hideWarnings);
+        loadSerializedProperty(object, ShapeGenerator, module, "bursts", deserializePrimitiveDataType, hideWarnings);
         loadSerializedProperty(object, ShapeGenerator, module, "shape", deserializeShape, hideWarnings);
         loadSerializedProperty(object, ShapeGenerator, module, "edgesOnly", deserializePrimitiveDataType, hideWarnings);
         return module;

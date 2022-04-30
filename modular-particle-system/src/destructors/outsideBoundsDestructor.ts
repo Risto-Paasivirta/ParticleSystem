@@ -23,6 +23,7 @@ import { ParticleEffect } from "../particleEffect";
  * bounds {
  *      @tooltip        TODO
  *      @type           Shape
+ *      @defaultValue   { "type": "rectangle", "v1": {"x": -50, "y": -50}, "v2": {"x": 50, "y": 50} }
  * }
  */
 export class OutsideBoundsDestructor extends Module {
