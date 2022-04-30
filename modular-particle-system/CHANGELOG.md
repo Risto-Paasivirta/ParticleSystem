@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 -   Added `ParticleEffect.fromObject`
 
+### Fixed
+
+-   Fixed `ShapeGenerator` not deserializing `bursts` property.
+
 ## [1.2.0] - 2022-04-24
 
 ### Added
