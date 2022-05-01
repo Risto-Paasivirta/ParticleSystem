@@ -1,8 +1,12 @@
 <html>
   <head>
-    <script src="https://cdn.jsdelivr.net/npm/modular-particle-system@1.2.0/index.iife.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/modular-particle-system-webgl-renderer@1.0.2/index.iife.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/modular-particle-system@1.3.0/index.iife.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/modular-particle-system-webgl-renderer@1.1.0/index.iife.js"></script>
     <style>
+      body {
+        background-color: black;
+        color: white;
+      }
       #particles-container {
         position: absolute;
         left: 0px;
@@ -29,162 +33,75 @@
     </p>
     <div id="particles-container"></div>
     <script>
-      const { ParticleSystem, ParticleEffect } = modularParticleSystem;
+      const { ParticleSystem } = modularParticleSystem;
       const { Renderer } = modularParticleSystemWebglRenderer;
-      const particleSystem = new ParticleSystem();
-      const imgCloudTexture = new Image();
-      imgCloudTexture.src = `data:image/png;base64,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`;
+
+      const particleSystem = ParticleSystem.fromObject({
+        effects: [
+          {
+            textures: ["ball.png"],
+            modules: [
+              {
+                moduleTypeId: "AlphaRange",
+                min: 0.3,
+                max: 1,
+              },
+              {
+                moduleTypeId: "RandomVelocity",
+                randomX: {
+                  min: -40,
+                  max: 40,
+                },
+                randomY: {
+                  min: 40,
+                  max: 80,
+                },
+              },
+              {
+                moduleTypeId: "LifeTimeRange",
+                min: 45,
+                max: 45,
+              },
+              {
+                moduleTypeId: "LifeTimeDestructor",
+              },
+              {
+                moduleTypeId: "ShapeGenerator",
+                interval: 0.1,
+                shape: {
+                  type: "rectangle",
+                  v1: {
+                    x: -200,
+                    y: 0,
+                  },
+                  v2: {
+                    x: 2000,
+                    y: 0,
+                  },
+                },
+                bursts: [],
+                edgesOnly: false,
+              },
+              {
+                moduleTypeId: "RandomScale",
+                min: 0.5,
+                max: 0.8,
+              },
+            ],
+          },
+        ],
+      });
+
+      const imgParticleTexture = new Image();
+      imgParticleTexture.src = `data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACEAAAAiCAYAAADRcLDBAAABhWlDQ1BJQ0MgcHJvZmlsZQAAKJF9kT1Iw0AcxV8/pKIVBzsUdQhYnSyIijhKFYtgobQVWnUwufQLmjQkKS6OgmvBwY/FqoOLs64OroIg+AHi6OSk6CIl/i8ptIjx4Lgf7+497t4B3kaFKYZ/AlBUU0/FY0I2tyoEXuFHGL0YwojIDC2RXszAdXzdw8PXuyjPcj/35+iT8wYDPALxHNN0k3iDeGbT1DjvE4dYSZSJz4nHdbog8SPXJYffOBdt9vLMkJ5JzROHiIViB0sdzEq6QjxNHJEVlfK9WYdlzluclUqNte7JXxjMqytprtMcRhxLSCAJARJqKKMCE1FaVVIMpGg/5uIftP1JcknkKoORYwFVKBBtP/gf/O7WKExNOknBGND1Ylkfo0BgF2jWLev72LKaJ4DvGbhS2/5qA5j9JL3e1iJHQP82cHHd1qQ94HIHCD9poi7ako+mt1AA3s/om3LAwC3Qs+b01trH6QOQoa6Wb4CDQ2CsSNnrLu/u7uzt3zOt/n4Ai6FysfEkTT0AAAAGYktHRAD/AP8A/6C9p5MAAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfmBBgLHBJ1f0h7AAAAGXRFWHRDb21tZW50AENyZWF0ZWQgd2l0aCBHSU1QV4EOFwAAAjRJREFUWMPVlz1rFFEUhp+7mY0hCaaxCRo0wsZCQQsbrSSNTRoRCxux8VcIFoKNWFhZCIJ/QBBBsLKyMoUYEJUl+FEYdNH4sWw0u5vH5m5YsjiZ3cyO+sLAzgw79z33nPu+5wRyhBpCCKa977rd/F3iH0DYQdQlYAQYBZIYUAtoAs0QQjvrt/6vnVBHgEngIHAcOAHMAlPAONAG1oAPwDPgCfAcqKXVSdbFd6lH1RvqO7VtNrTUqnpZnYlB9L14os6pt9TvDo62+lSdV8v9EBhTF9RX6ob5YEU9k2lHIoEL6ifzR009FU9WagoW1I8OD0vqgTQSFXUxxxT8CdfUsR6dUEeBs8CxnYhYRlyMR71HrKaBc1H9ho1pYD6mPymppVgoc0ClQJE8HUVuPOmK/FBUxKJwOKotSTQhgL0FW8aebhKduhgvmEQZmOiQ2IgP1ws4FVsdvNQh0fH9LwXvxK/ouiSxEQF4E3elqB7jJ7AKkIQQNqJYVYE6sLsgEi+Br1vF6j3wusB0PAYaQKObxCpwvyACP4BHsRRamyRCCC3gAfC5ABIPgaUQgiGEHl+vAneHTKAGXA8hrKXZ+az6dkgW3lQvRcdOn6LU8/EPeaKtXlWzKbM6qt7MsblZj133RL/d9pR6p48Wf7sGtzxQBamT6hW1PsDiDfW2ui+PSTtRT6r31G/bpKipLscespJ14OlnDCwD+4Ej8ZqJ9t8AVuLxfgEsA/Udj35Zp/LU+aFPT//r+A3zBYDVEixFewAAAABJRU5ErkJggg==`;
       const textures = {
-        "generic/cloud.png": imgCloudTexture,
+        "ball.png": imgParticleTexture,
       };
+
       const renderer = Renderer({
         particleSystem,
         container: document.getElementById("particles-container"),
         textures,
-      });
-
-      const effectMouse = ParticleEffect.fromObject(particleSystem, {
-        textures: ["generic/cloud_solid.png"],
-        modules: [
-          {
-            moduleTypeId: "Gravity",
-            strength: -10,
-          },
-          {
-            moduleTypeId: "PointGenerator",
-            interval: 0.05,
-            position: {
-              x: 0,
-              y: 0,
-            },
-            bursts: [],
-          },
-          {
-            moduleTypeId: "RandomAngleVelocity",
-            min: 0,
-            max: 20,
-          },
-          {
-            moduleTypeId: "RandomScale",
-            min: 0.02,
-            max: 0.08,
-          },
-          {
-            moduleTypeId: "RandomColor",
-            palette: [
-              {
-                r: 1,
-                g: 0,
-                b: 0,
-              },
-              {
-                r: 0,
-                g: 1,
-                b: 0,
-              },
-              {
-                r: 0,
-                g: 0,
-                b: 1,
-              },
-            ],
-            interpolate: true,
-          },
-          {
-            moduleTypeId: "LifeTimeRange",
-            min: 1.5,
-            max: 3,
-          },
-          {
-            moduleTypeId: "AlphaOverLifetime",
-            easing: "easeOutSine",
-          },
-          {
-            moduleTypeId: "LifeTimeDestructor",
-          },
-        ],
-      });
-      const mouseGenerator = effectMouse.modules.find((module) => {
-        return module.constructor.moduleTypeId === "PointGenerator";
-      });
-      mouseGenerator.active = false;
-
-      const effectClick = ParticleEffect.fromObject(particleSystem, {
-        textures: ["generic/cloud_solid.png"],
-        modules: [
-          {
-            moduleTypeId: "AlphaOverLifetime",
-            easing: "easeOutSine",
-          },
-          {
-            moduleTypeId: "PointGenerator",
-            interval: 0,
-            position: {
-              x: 0,
-              y: 0,
-            },
-            bursts: [],
-          },
-          {
-            moduleTypeId: "RandomAngleVelocity",
-            min: 100,
-            max: 300,
-          },
-          {
-            moduleTypeId: "DeaccelerationOverLifetime",
-            easing: "easeOutSine",
-          },
-          {
-            moduleTypeId: "RandomScale",
-            min: 0.05,
-            max: 0.1,
-          },
-          {
-            moduleTypeId: "RandomColor",
-            palette: [
-              {
-                r: 1,
-                g: 0,
-                b: 0,
-              },
-              {
-                r: 0,
-                g: 1,
-                b: 0,
-              },
-              {
-                r: 0,
-                g: 0,
-                b: 1,
-              },
-            ],
-            interpolate: true,
-          },
-          {
-            moduleTypeId: "LifeTimeRange",
-            min: 0.2,
-            max: 0.8,
-          },
-          {
-            moduleTypeId: "LifeTimeDestructor",
-          },
-        ],
-      });
-      const clickGenerator = effectClick.modules.find((module) => {
-        return module.constructor.moduleTypeId === "PointGenerator";
-      });
-      document.body.addEventListener("click", (e) => {
-        clickGenerator.position = { x: e.clientX, y: e.clientY };
-        for (let i = 0; i < 50; i += 1) {
-          clickGenerator.generateParticle();
-        }
-      });
-      document.body.addEventListener("mousemove", (e) => {
-        mouseGenerator.active = true;
-        mouseGenerator.position = { x: e.clientX, y: e.clientY };
-      });
-      document.body.addEventListener("mouseleave", (e) => {
-        mouseGenerator.active = false;
       });
     </script>
   </body>
