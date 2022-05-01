@@ -1,139 +1,86 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./ParticleSandbox.css";
-import * as PIXI from "pixi.js";
+import { Renderer } from "modular-particle-system-webgl-renderer";
 import { ParticleSystem } from "modular-particle-system/particleSystem";
 
 const ParticleSandbox = (props) => {
   const { effects } = props;
 
-  const [renderer, setRenderer] = useState(undefined);
+  const [textures, setTextures] = useState([]);
 
-  const [visibleParticlesCount, setVisibleParticlesCount] = useState(0);
+  const [particleSystem, setParticleSystem] = useState(undefined);
 
-  const [runTime, setRunTime] = useState(0);
+  const refRuntime = useRef(undefined);
 
-  useEffect(() => {
-    const container = document.getElementById("particleSandbox");
-    const app = new PIXI.Application({
-      resizeTo: container,
-      backgroundAlpha: 0,
-    });
-    container.appendChild(app.view);
-    app.view.height = container.clientHeight;
-    // #region PIXI Renderer
-
-    const unusedSprites = [];
-    const activeSprites = new Map();
-    const registerParticleEffect = (particleEffect, effectInfo) => {
-      particleEffect.addParticleListeners.push((particle) =>
-        handleParticleAdd(effectInfo, particle)
-      );
-      particleEffect.destroyParticleListeners.push((particle) =>
-        handleParticleDestroy(particle)
-      );
-    };
-    const handleParticleAdd = (effectInfo, particle) => {
-      // Get sprite for rendering particle.
-      let sprite = unusedSprites.pop();
-      if (!sprite) {
-        // No sprites, make a new one.
-        sprite = new PIXI.Sprite();
-        sprite.blendMode = PIXI.BLEND_MODES.ADD;
-        sprite.anchor.x = 0.5;
-        sprite.anchor.y = 0.5;
-        app.stage.addChild(sprite);
-      }
-      // Prepare sprite for rendering.
-      sprite.visible = true;
-
-      // Save the relation between the particle and sprite.
-      activeSprites.set(particle, sprite);
-    };
-    const handleParticleDestroy = (particle) => {
-      // Get sprite that is used to render the destroyed particle.
-      const sprite = activeSprites.get(particle);
-      if (sprite) {
-        // Remove sprite from rendering.
-        sprite.visible = false;
-        // Remove sprite and particle from list of active sprites.
-        activeSprites.delete(particle);
-        // Add sprite to list of unused sprites.
-        unusedSprites.push(sprite);
-      }
-    };
-    const updateRendering = () => {
-      const width = app.view.width;
-      const height = app.view.height;
-      const center = { x: width / 2, y: height / 2 };
-
-      activeSprites.forEach((sprite, particle) => {
-        sprite.x = center.x + particle.position.x;
-        sprite.y = center.y + particle.position.y;
-        sprite.scale.x = particle.scale;
-        sprite.scale.y = particle.scale;
-        sprite.alpha = particle.alpha;
-        sprite.tint = PIXI.utils.rgb2hex([
-          particle.color.r,
-          particle.color.g,
-          particle.color.b,
-        ]);
-        sprite.rotation = particle.rotation;
-        sprite.texture = PIXI.utils.TextureCache[particle.texture];
-      });
-    };
-    const reset = () => {
-      const allParticles = Array.from(activeSprites.keys());
-      allParticles.forEach(handleParticleDestroy);
-    };
-    // #endregion
-
-    setRenderer({ app, registerParticleEffect, updateRendering, reset });
-
-    return () => {
-      app.destroy(true);
-    };
-  }, []);
+  const refParticleCount = useRef(undefined);
 
   useEffect(() => {
-    if (!renderer) {
-      return;
-    }
-    const { app, updateRendering, registerParticleEffect, reset } = renderer;
-
-    reset();
-
     const particleSystem = ParticleSystem.fromObject(
       {
         effects,
       },
       { hideWarnings: true }
     );
-    const particleEffects = particleSystem.effects;
+    setParticleSystem(particleSystem);
 
-    particleEffects.forEach((particleEffect, i) =>
-      registerParticleEffect(particleEffect, effects[i])
-    );
+    const textures = effects.map((effect) => effect.textures).flat();
+    setTextures(textures);
 
+    // Monitor runtime and particles count.
     let runTimeCounter = 0;
+    let tPrevUpdate = window.performance.now();
     const update = () => {
-      const dt = app.ticker.elapsedMS / 1000;
+      const tNow = window.performance.now();
+      const dt = (tNow - tPrevUpdate) / 1000;
       runTimeCounter += dt;
-      setRunTime(runTimeCounter);
+      if (refRuntime.current)
+        refRuntime.current.innerHTML = `Run time ${runTimeCounter.toFixed(2)}`;
       particleSystem.update(dt);
-      updateRendering();
 
-      const particlesCount = particleEffects.reduce(
+      const particlesCount = particleSystem.effects.reduce(
         (prev, cur) => prev + cur.particles.length,
         0
       );
-      setVisibleParticlesCount(particlesCount);
+      if (refParticleCount.current)
+        refParticleCount.current.innerHTML = `Particles ${particlesCount}`;
+
+      requestUpdate = requestAnimationFrame(update);
+      tPrevUpdate = tNow;
     };
-    app.ticker?.add(update);
+    let requestUpdate = requestAnimationFrame(update);
 
     return () => {
-      app.ticker?.remove(update);
+      cancelAnimationFrame(requestUpdate);
+      requestUpdate = undefined;
     };
-  }, [effects, renderer]);
+  }, [effects]);
+
+  useEffect(() => {
+    if (!particleSystem) {
+      return;
+    }
+
+    const container = document.getElementById("particleSandbox");
+    const textureSources = {};
+    textures.forEach((textureName) => {
+      const img = new Image();
+      img.src = `textures/${textureName}`;
+      textureSources[textureName] = img;
+    });
+
+    const webglRenderer = Renderer({
+      particleSystem,
+      container,
+      textures: textureSources,
+      coordinateSystem: "pixels-centered",
+      autoUpdate: false,
+      loggingEnabled: false,
+    });
+
+    return () => {
+      webglRenderer.destroy();
+    };
+  }, [particleSystem, textures]);
 
   return (
     <div className="particleSandbox">
@@ -149,8 +96,8 @@ const ParticleSandbox = (props) => {
       </div>
       <div className="particleSandbox-canvas" id="particleSandbox"></div>
       <div className={`particleSandbox-stats`}>
-        <span>{`Run time ${runTime.toFixed(2)}`}</span>
-        <span>{`Particles ${visibleParticlesCount}`}</span>
+        <span ref={refRuntime}>{`Run time`}</span>
+        <span ref={refParticleCount}>{`Particles`}</span>
       </div>
     </div>
   );

@@ -11,7 +11,7 @@ const EffectsConfigurationPanel = (props) => {
         className="effectsConfigurationPanel-addDiv field"
         onClick={() => {
           const newEffect = {
-            textures: ["generic/ball.png"],
+            textures: ["ball.png"],
             modules: [],
           };
           const updatedEffects = [...effects];

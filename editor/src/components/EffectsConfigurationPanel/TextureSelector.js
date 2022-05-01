@@ -14,9 +14,9 @@ const TextureSelector = (props) => {
       }}
       value={selectedTextures[0]}
     >
-      {Object.entries(availableTextures)
+      {availableTextures
         .sort((a, b) => a[0].localeCompare(b[0]))
-        .map(([textureName, textureValue], iTexture) => (
+        .map((textureName, iTexture) => (
           <option
             className="textureSelector-option"
             key={`texture-${iTexture}`}

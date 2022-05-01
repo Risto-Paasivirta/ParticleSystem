@@ -1,12 +1,21 @@
 [
   {
-    "label": "Cloud Bursts",
-    "thumbnail": "cloud_bursts.png",
+    "label": "Star Bursts",
+    "thumbnail": "star_bursts.png",
     "data": {
       "effects": [
         {
-          "textures": ["generic/cloud_solid.png"],
+          "textures": ["star.png"],
           "modules": [
+            {
+              "moduleTypeId": "RandomRotationalVelocity",
+              "min": -15,
+              "max": 15
+            },
+            {
+              "moduleTypeId": "Gravity",
+              "strength": 500
+            },
             {
               "moduleTypeId": "PointGenerator",
               "interval": 0,
@@ -17,8 +26,8 @@
               "bursts": [
                 {
                   "time": 0,
-                  "count": 10,
-                  "repeat": 1
+                  "count": 20,
+                  "repeat": 2
                 }
               ]
             },
@@ -29,13 +38,13 @@
             },
             {
               "moduleTypeId": "RandomAngleVelocity",
-              "min": 50,
-              "max": 100
+              "min": 100,
+              "max": 470
             },
             {
               "moduleTypeId": "RandomScale",
-              "min": 0.1,
-              "max": 0.2
+              "min": 0.7,
+              "max": 0.7
             },
             {
               "moduleTypeId": "RandomColor",
@@ -60,8 +69,79 @@
             },
             {
               "moduleTypeId": "LifeTimeRange",
-              "min": 1,
+              "min": 5,
               "max": 5
+            },
+            {
+              "moduleTypeId": "LifeTimeDestructor"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "label": "Exhaust Pipe",
+    "thumbnail": "exhaust.png",
+    "data": {
+      "effects": [
+        {
+          "textures": ["smoke.png"],
+          "modules": [
+            {
+              "moduleTypeId": "PointGenerator",
+              "interval": 0.02,
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "bursts": [
+                {
+                  "time": 0,
+                  "count": 20,
+                  "repeat": 1
+                }
+              ]
+            },
+            {
+              "moduleTypeId": "RandomRotation",
+              "min": 0,
+              "max": 6.2832
+            },
+            {
+              "moduleTypeId": "RandomAngleVelocity",
+              "min": 30,
+              "max": 120
+            },
+            {
+              "moduleTypeId": "RandomScale",
+              "min": 0.1,
+              "max": 0.2
+            },
+            {
+              "moduleTypeId": "RandomColor",
+              "palette": [
+                {
+                  "r": 0.5882352941176471,
+                  "g": 0.5882352941176471,
+                  "b": 0.5882352941176471
+                },
+                {
+                  "r": 1,
+                  "g": 1,
+                  "b": 1
+                }
+              ],
+              "interpolate": true
+            },
+            {
+              "moduleTypeId": "DeaccelerationOverLifetime",
+              "easing": "easeOutSine"
+            },
+            {
+              "moduleTypeId": "LifeTimeRange",
+              "min": 0.5,
+              "max": 1.2
             },
             {
               "moduleTypeId": "AlphaOverLifetime",
@@ -81,7 +161,7 @@
     "data": {
       "effects": [
         {
-          "textures": ["generic/ball.png"],
+          "textures": ["orb.png"],
           "modules": [
             {
               "moduleTypeId": "Gravity",
@@ -93,7 +173,7 @@
             },
             {
               "moduleTypeId": "PointGenerator",
-              "interval": 0.01,
+              "interval": 0.003,
               "position": {
                 "x": 0,
                 "y": 0
@@ -113,8 +193,8 @@
             },
             {
               "moduleTypeId": "RandomScale",
-              "min": 0.1,
-              "max": 0.3
+              "min": 0.05,
+              "max": 0.15
             },
             {
               "moduleTypeId": "RandomColor",
@@ -134,8 +214,8 @@
             },
             {
               "moduleTypeId": "LifeTimeRange",
-              "min": 10,
-              "max": 10
+              "min": 6,
+              "max": 6
             },
             {
               "moduleTypeId": "LifeTimeDestructor"
@@ -151,27 +231,27 @@
     "data": {
       "effects": [
         {
-          "textures": ["generic/ball.png"],
+          "textures": ["ball.png"],
           "modules": [
             {
               "moduleTypeId": "Gravity",
-              "strength": 100
+              "strength": 50
             },
             {
               "moduleTypeId": "CircleLoadingGenerator",
-              "interval": 0.008,
+              "interval": 0.003,
               "center": {
                 "x": 0,
                 "y": 0
               },
               "bursts": [],
-              "radius": 100,
+              "radius": 99,
               "nextParticleAngle": 0,
-              "angleStep": 0.1
+              "angleStep": 0.04
             },
             {
               "moduleTypeId": "AlphaRange",
-              "min": 0.5,
+              "min": 0.3,
               "max": 0.7
             },
             {
@@ -181,7 +261,7 @@
             },
             {
               "moduleTypeId": "RandomScale",
-              "min": 0.5,
+              "min": 0.3,
               "max": 0.8
             },
             {
@@ -189,7 +269,7 @@
               "palette": [
                 {
                   "r": 1,
-                  "g": 0,
+                  "g": 0.5882352941176471,
                   "b": 0
                 },
                 {
@@ -202,7 +282,7 @@
             },
             {
               "moduleTypeId": "LifeTimeRange",
-              "min": 2,
+              "min": 1.5,
               "max": 2
             },
             {
@@ -216,15 +296,14 @@
         }
       ]
     }
-  },{
+  },
+  {
     "label": "Snowflakes",
     "thumbnail": "snowflakes.png",
     "data": {
       "effects": [
         {
-          "textures": [
-            "generic/ball.png"
-          ],
+          "textures": ["orb.png"],
           "modules": [
             {
               "moduleTypeId": "AlphaRange",
@@ -269,22 +348,21 @@
             },
             {
               "moduleTypeId": "RandomScale",
-              "min": 0.5,
-              "max": 0.8
+              "min": 0.1,
+              "max": 0.4
             }
           ]
         }
       ]
     }
-  },{
+  },
+  {
     "label": "Stars",
     "thumbnail": "stars.png",
     "data": {
       "effects": [
         {
-          "textures": [
-            "magic_05.png"
-          ],
+          "textures": ["magic.png"],
           "modules": [
             {
               "moduleTypeId": "AlphaDestructor"
