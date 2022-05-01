@@ -13,7 +13,6 @@ Available as:
 
 By using the IIFE build, you can even embed a fully functional particle system + renderer with pure HTML code, for example like [this](../examples/pure-html/README.md).
 
-
 - NPM package
 
 `npm install modular-particle-system-webgl-renderer`
@@ -28,7 +27,7 @@ const { Renderer } = modularParticleSystemWebglRenderer;
 import { Renderer } from "modular-particle-system-webgl-renderer";
 
 const imgCloudTexture = new Image();
-imgCloudTexture.src = `my-assets/generic/cloud.png`
+imgCloudTexture.src = `my-assets/generic/cloud.png`;
 const textures = {
   "generic/cloud.png": imgCloudTexture,
 };
@@ -57,6 +56,7 @@ Reference to a `HTML` element that will contain the renderer.
 Texture sources for rendering particles.
 
 This is a object where each property key describes the name of a texture and the value is a texture source. Several types of values are supported:
+
 - `ArrayBufferView`
 - `ImageData`
 - `HTMLImageElement`
@@ -65,7 +65,7 @@ This is a object where each property key describes the name of a texture and the
 
 #### Optional `autoUpdate`
 
-If `omitted or `true, the renderer will automatically update the `ParticleSystem` between each frame. 
+If `omitted or `true, the renderer will automatically update the `ParticleSystem` between each frame.
 
 #### Optional `coordinateSystem`
 
@@ -75,11 +75,15 @@ Defaults to `'pixels'`. Can be one of:
 
 - `'pixels-centered'`: Particle positions are in pixels, `{x:0, y: 0}` is at center of `container`, positive X is right, positive Y is down.
 
-
 #### Optional `maxParticlesCount`
 
 Defaults to `50000`, can be used to set a limit for particle rendering.
 When number of particles exceeds this, the renderer will render some subset of the particles but not all.
+
+#### Optional `loggingEnabled`
+
+Defaults to `true`, which enables printing information to the console.
+To disable all non-error console logging, set to `false`.
 
 ### Destroy Renderer
 

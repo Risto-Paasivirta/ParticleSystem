@@ -4,7 +4,7 @@ This README is displayed in the front page of GitHub page
 
 # Lightweight Particle System for TypeScript
 
-The `modular-particle-system` package is an absolutely minimized particle system (**25.5 kB** minified!).
+The `modular-particle-system` package is an absolutely minimized particle system (**25.8 kB** minified\*).
 
 It is based around the idea of describing particle effects as combinations of different _modules_.
 
@@ -16,6 +16,8 @@ By combining these functionally simple modules, a wide variety of behaviors can 
 **Interact with the particle system in an online editor playground at the URL below:**
 
 [Online Playground](https://risto-paasivirta.github.io/ParticleSystem/)
+
+\*Published versions are not minified. The claimed bundle size is the size after using `uglify-js` to minify the library.
 
 ## Graphics integrations
 
@@ -35,7 +37,7 @@ The package is available as:
 - IIFE
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/modular-particle-system-webgl-renderer@1.0.0/index.iife.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/modular-particle-system-webgl-renderer@1.3.0/index.iife.js"></script>
 ```
 
 ```js
@@ -52,32 +54,15 @@ import { ParticleSystem } from "modular-particle-system/particleSystem";
 
 ## Usage
 
-Usage examples can be inspired from the [development applications found in GitHub](https://github.com/Risto-Paasivirta/ParticleSystem/tree/master/playground/apps).
+Usage examples can be inspired from the preset effects available in [Particle Effect Editor](https://risto-paasivirta.github.io/ParticleSystem/) as well as the examples included in the repository:
 
-Alternatively, you can load particle systems from `JSON` definition:
+- [`Pure HTML`](./examples/pure-html/README.md)
+- [`React`](./examples/create-react-app/README.md)
+- [`Webpack`](./examples/webpack/README.md)
 
-```ts
-const particleSystem = ParticleSystem.fromObject({
-  effects: [
-    {
-      modules: [
-        {
-          moduleTypeId: "PointGenerator",
-          position: { x: 100, y: 100 },
-          interval: 1,
-        },
-        {
-          moduleTypeId: "RandomColor",
-        },
-      ],
-    },
-  ],
-});
-```
+On top of these, the [development applications in GitHub](https://github.com/Risto-Paasivirta/ParticleSystem/tree/master/playground/apps) can also be relevant.
 
-JSON particle definitions can be built in the [interactive editor application](https://risto-paasivirta.github.io/ParticleSystem/) and exported with the **"Save to file"** button.
-
-### List of modules, their properties (cheat-sheet) and short descriptions
+## List of modules, their properties (cheat-sheet) and short descriptions
 
 **Generators:**
 
