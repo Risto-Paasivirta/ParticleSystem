@@ -8,8 +8,9 @@ It can be opened from a link on the bottom of GitHub README
 
 - `modular-particle-system`: The library itself
 - `playground`: A separate application for manually testing and developing the library with an example graphics integration with `PIXI.js`
+- `modular-particle-system-webgl-renderer`: WebGL renderer package for the particle system
 - `editor`: A separate application for presenting and experimenting with the library. Hosted with [GitHub Pages](https://risto-paasivirta.github.io/ParticleSystem/).
-- `examples`: Folder that contains use case examples of using the particle library with different frameworks. At this time, these do not give any value other than confirming that the NPM package works.
+- `examples`: Folder that contains use case examples of using the particle library in different frameworks.
 
 ## Developing `modular-particle-system`
 
