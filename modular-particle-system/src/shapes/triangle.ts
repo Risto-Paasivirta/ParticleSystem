@@ -1,4 +1,5 @@
 import { Position } from "../types";
+import { randomInRange, vec2 } from "../utilities";
 import { ShapeLogicImplementation } from "./shape";
 
 /**
@@ -55,8 +56,39 @@ export const triangleLogic: ShapeLogicImplementation<Triangle> = {
         const has_pos = d1 > 0 || d2 > 0 || d3 > 0;
         return !(has_neg && has_pos);
     },
+    /**
+     * Get random position on the Shape edges
+     * @returns Random position on the Shape edges
+     */
     getRandomEdgePosition: function (shape: Triangle): Position {
-        throw new Error("Function not implemented.");
+        const ab = vec2.lengthBetween(shape.v1, shape.v2);
+        const bc = vec2.lengthBetween(shape.v2, shape.v3);
+        const ac = vec2.lengthBetween(shape.v3, shape.v1);
+        const edgeLength = ab + bc + ac;
+
+        const randomEdgeLength = randomInRange(0, edgeLength);
+
+        const positionOnSegment = (
+            positionA: Position,
+            positionB: Position,
+            lengthAB: number,
+            lengthAK: number,
+        ): Position => {
+            const ratio = lengthAK / lengthAB;
+
+            return {
+                x: positionA.x + (positionB.x - positionA.x) * ratio,
+                y: positionA.y + (positionB.y - positionA.y) * ratio,
+            };
+        };
+
+        if (randomEdgeLength < ab) {
+            return positionOnSegment(shape.v1, shape.v2, ab, randomEdgeLength);
+        } else if (randomEdgeLength < ab + bc) {
+            return positionOnSegment(shape.v2, shape.v3, bc, randomEdgeLength - ab);
+        } else {
+            return positionOnSegment(shape.v3, shape.v1, ac, randomEdgeLength - ab - bc);
+        }
     },
 };
 
