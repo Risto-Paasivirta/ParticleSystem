@@ -52,6 +52,16 @@ export const vec2 = {
         const length = vec2.length(v);
         return length === 0 ? { x: 0, y: 0 } : { x: v.x / length, y: v.y / length };
     },
+    /**
+     * Get length between 2 positions.
+     * @param v1    Position 1
+     * @param v2    Position 2
+     *
+     * @returns     Length between 2 positions
+     */
+    lengthBetween: (v1: Position, v2: Position) => {
+        return Math.sqrt((v2.x - v1.x) ** 2 + (v2.y - v1.y) ** 2);
+    },
 };
 
 /**
