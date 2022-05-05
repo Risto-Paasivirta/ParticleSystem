@@ -1,5 +1,4 @@
 .projectToolbar {
-  height: 50px;
   display: flex;
   flex-direction: column;
   border-bottom: solid 1px;
@@ -89,4 +88,15 @@
 .projectToolbar-saveToFile {
 }
 .projectToolbar-loadFromFile {
+}
+
+@media screen and (max-width: 768px) {
+  .projectToolbar-saveToFile {
+    display: none;
+    width: 0px;
+  }
+  .projectToolbar-loadFromFile {
+    display: none;
+    width: 0px;
+  }
 }
